@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "Manage Vacancies";
+}
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+    .comdet span {
+        color: #606163;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li class="active"><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardsection MT30 fade-1">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec ">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="max-height:40%;margin-top:20%" /></a>
+                            <div class="userpronamerec"><span>@ViewBag.Company</span>@ViewBag.Name @ViewBag.SurName</div>
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon"><i class="fa fa-phone" aria-hidden="true"></i> +973 @ViewBag.Phone </div>
+                            <div class="uercon">
+                                <a href="mailto:@ViewBag.Email"><i class="fa fa-envelope" aria-hidden="true"></i> @ViewBag.Email</a>
+                                @*<div class="proediticon"><a href="#"><img src="@Url.Content("~/images/white-edit-icon.png")" alt="" /></a></div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="dashboardwhiteboxshadow paynowpostjob  fade-2">
+                        <div class="paynowjoblist">
+                            <ul>
+                                <li><a href="@Url.Content("~/UserActivityReport")">User Activity Report </a> <a href="@Url.Content("~/UserActivityReport")" class="editiconcat"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                @*<li>Recruitment Activity Report<a href="@Url.Content("~/RecruitmentActivityReport")" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>*@
+
+                            </ul>
+                        </div>
+                        <div class="postjobntn"> <a href="@Url.Content("~/Packages")" class="graybtn">PACKAGES</a> <a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a> </div>
+                    </div>
+    
+                    <div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                        <!-- InstaWidget -->
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+                    </div>
+              
+                </div>
+            </div>
+            <div class="col-sm-9">
+         
+                <div class="dashboard-middsec">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboardwhiteboxshadow tabacc-sec ">
+                                <ul class="accordion-tabs-minimal">
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link is-active">ACTIVE <span>VACANCIES</span></a>
+                                        <div class="tab-content">
+
+                                            @foreach (var lj in ViewBag.LatestJobs)
+                                            {
+
+                                                <div class="listwhitebox tablistsec">
+
+                                                    <div class="jobcomnamelogo">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-md-push-8">
+                                                                <div class="comlogo"><a href="#"><img src="@lj.LogoURL" alt=""></a></div>
+                                                            </div>
+                                                            <div class="col-md-8 col-md-pull-4">
+                                                                <div class="combydata">
+                                                                    <h4><a href="@Url.Content("~/JobDescEmployer/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                                                    <div class="comdet"> @Html.Raw(lj.vc_Description) ... </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listtimelocation">
+                                                        <ul>
+                                                            <li><i class="fa fa-clock-o"></i> @lj.postedsince</li>
+                                                            <li><i class="fa fa-pencil"></i> <a href="@Url.Content("~/JobEdit/"+lj.vc_id)">Edit</a> </li>
+                                                            <li style="cursor:pointer">
+                                                                <form id="Archiveform-@lj.vc_id"  method="post">
+                                                                    <input type="hidden" value="@lj.vc_id" name="vc_id" />
+                                                                    <i class="fa fa-trash"></i> 
+                                                                    
+                                                                    <a id="lnk-@lj.vc_id">Archive</a>
+                                                                </form>
+                                                                <script>
+                                                                    $(document).ready(function () {
+                                                                        $('#lnk-@lj.vc_id').click(function () {
+                                                                            $('#Archiveform-@lj.vc_id').submit();
+                                                                        });
+                                                                    
+                                                                        $("#Archiveform-@lj.vc_id").submit(function (e) {
+                                                                            e.preventDefault();
+                                                                            if (confirm("Are you sure to Archive?")) {
+                                                                                var formdata = new FormData(this);
+                                                                                $.ajax({
+                                                                                    method: "POST",
+                                                                                    url: "@Url.Content("~/DeleteVacancy")",
+                                                                                    data: formdata,
+                                                                                    contentType: false,
+                                                                                    cache: false,
+                                                                                    processData: false,
+                                                                                    success: function (data) {
+                                                                                        alert('Successfully deleted!');
+                                                                                        window.location.href = '@Url.Content("~/ManageVacancies")';
+                                                                                    },
+                                                                                    error: function () {
+                                                                                        alert("Couldn't Delete, try again!");
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                </script>
+                                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                            }
+
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>ARCHIVED</span> VACANCIES</a>
+                                        <div class="tab-content">
+
+                                            @foreach (var lj in ViewBag.ArchivedJobs)
+                                            {
+
+                                                <div class="listwhitebox tablistsec">
+
+                                                    <div class="jobcomnamelogo">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-md-push-8">
+                                                                <div class="comlogo"><a href="#"><img src="@lj.LogoURL" alt=""></a></div>
+                                                            </div>
+                                                            <div class="col-md-8 col-md-pull-4">
+                                                                <div class="combydata">
+                                                                    <h4><a href="@Url.Content("~/JobDescEmployer/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                                                    <div class="comdet"> @Html.Raw(lj.vc_Description) ... </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listtimelocation">
+                                                        <ul>
+                                                            <li><i class="fa fa-clock-o"></i> @lj.postedsince</li>
+                                                            
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+
+                                            }
+
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>DRAFT</span> VACANCIES</a>
+                                        <div class="tab-content">
+                                            
+                                            @foreach (var df in ViewBag.DraftJobs)
+                                            {
+
+                                                <div class="listwhitebox tablistsec">
+
+                                                    <div class="jobcomnamelogo">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-md-push-8">
+                                                                <div class="comlogo"><a href="#"><img src="@df.LogoURL" alt=""></a></div>
+                                                            </div>
+                                                            <div class="col-md-8 col-md-pull-4">
+                                                                <div class="combydata">
+                                                                    <h4><a href="@Url.Content("~/JobDescEmployer/" + df.vc_id + "/" + df.jobURL)">@df.vc_Title</a></h4>
+                                                                    <div class="comdet"> @Html.Raw(df.vc_Description) ... </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listtimelocation">
+                                                        <ul>
+                                                            <li><i class="fa fa-clock-o"></i> @df.postedsince</li>
+                                                            <li><i class="fa fa-pencil"></i> <a href="@Url.Content("~/JobEdit/"+df.vc_id)">Edit</a> </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+
+                                            }
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

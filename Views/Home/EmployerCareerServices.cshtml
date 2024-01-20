@@ -1,0 +1,296 @@
+﻿E@{
+    ViewBag.Title = "Career Services";
+    common cmn = new common();
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    span {
+        color: red;
+    }
+
+ .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+ 
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                               
+                                <li><a href="@Url.Content("~/ManageVacancies")">VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li class="active"><a href="@Url.Content("~/EmployerCareerServices")">CAREERS RESOURCES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+
+            <div class="row">
+                <h1 class="mainpagetitle centertext fade-1"><span>CAREER</span> SERVICES</h1>
+
+                <br />
+                <br />
+                <br />
+                <br />
+                
+
+                <br />
+
+                <div class="col-md-5"></div>
+                <div class="col-md-2">&nbsp;&nbsp;&nbsp;COMING SOON!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+
+
+                <br /><br />
+<br />
+<br />
+<br />
+
+
+<br /><br />
+<br />
+<br />
+<br />
+
+
+<br /><br />
+<br />
+<br />
+<br />
+
+ 
+ 
+
+
+<br />
+                </div>
+
+
+                @*<div class="row">
+                <h1 class="mainpagetitle centertext fade-1"><span>CAREER</span> SERVICES</h1>
+                <br />
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-1.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Resumé keywords to boost your CV</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-2.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Preparing your CV</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-3.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Interview Tips</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-4.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to resign properly from your current employment</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-5.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to deal with a counter offer</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-6.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Salary review negotiation tips</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-7.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Top 10 most common interview questions</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-8.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Skype interview tips</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-9.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Phone interview tips</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-10.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to follow up after a job interview</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-11.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Behavioural interview questions</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-12.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Accepting a job offer</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-13.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Choosing references</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-14.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Tips for starting a new job</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-15.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Signs you need a new job</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-16.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to get a promotion</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-17.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to handle conflict in the workplace</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-18.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to write a good cover letter</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-19.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Who do employers look for in a CV</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-20.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>How to successfully market yourself</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/ECareerServicesDetails/1")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-21.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Things interviewers want to hear</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>*@
+            </div>
+
+    </div>
+
+</div>
+
+
+
+

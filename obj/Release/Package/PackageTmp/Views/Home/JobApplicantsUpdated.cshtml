@@ -1,0 +1,52 @@
+﻿@{
+    common cmn = new common();
+}
+@foreach (var ja in ViewBag.jbapplicants)
+{
+    <div class="row" style="font-size:13px;padding:10px;border-bottom:1px solid #eee;margin:0 3px">
+        <div class="col-md-2">
+            <a target="_blank"  href="@Url.Content("../../Home/CandidateSearchDetail2?ca_id="+ja.ca_id)">
+                <img src="@Url.Content("~/"+cmn.canprofilepic(ja.ca_GUID,ja.ca_PhotoExtension))" style="width:113px;height:125px;" />
+            </a>
+            <div style="background-color:#808080;color:white;text-align:center">Applied On<br />@ja.app_created.ToString("dd-MM-yyyy")</div>
+        </div>
+        <div class="col-md-10 blackspan">
+         
+            <div class="col-md-3 pull-right">
+                <select class="form-control" onchange="updateappstatus(@ja.app_id)" id="ddappstatus-@ja.app_id">
+                    @foreach (var apptype in ViewBag.ListTypeIDs)
+                    {
+                        <option @(ja.app_st_ShortlistStatusId == apptype.lm_Id ? "selected" : "") value="@apptype.lm_Id">@apptype.lm_Value</option>
+                    }
+                </select>
+            </div>
+
+            <a target="_blank"  href="@Url.Content("../../Home/CandidateSearchDetail2?ca_id="+ja.ca_id)">
+                <div class="col-md-9" style="font-size:16px"><b>@ja.ca_FirstName @ja.ca_Surname</b></div>
+            </a>
+
+
+            <div class="col-md-6"><b>Current Location: </b>@ja.CurrentCountry</div>
+            <div class="col-md-6"><b>Education Level: </b>@ja.educationlevel</div>
+            <div class="col-md-6"><b>Gender: </b>@(ja.ca_Gender == "M" ? "Male" : "Female")</div>
+            <div class="col-md-6"><b>Date of Birth: </b>@ja.ca_DateOfBirth.ToString("dd-MM-yyyy")</div>
+            <div class="col-md-6"><b>Marital Status: </b>@ja.ca_maritalstatus</div>
+            <div class="col-md-6"><b>Function Title: </b>@ja.functiontitle</div>
+            <div class="col-md-6"><b>Current Job Title: </b>@ja.CurrentJobTitle</div>
+            <div class="col-md-6"><b>Total Experience: </b>@ja.TotalRelevantExperience </div>
+            <div class="col-md-12">
+                <b>Profile</b><br />
+                @Html.Raw(cmn.StripHTMLExceptsometags(ja.ca_Profile))
+            </div>
+        </div>
+    </div>
+}
+@if (ViewBag.jbapplicants.Count == 0)
+{
+    <div class="col-md-12" style="font-size:16px; height:500px;">
+        <br />
+        <br />
+        <br />
+        No applicants yet!
+    </div>
+}

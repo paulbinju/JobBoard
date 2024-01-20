@@ -1,0 +1,570 @@
+﻿@{
+    Html.RenderAction("menulogin");
+    common cmn = new common();
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext  fade-1"> <span>JOB SEEKER</span> REGISTRATION</h1>
+
+
+        <div class="dashboardwhiteboxshadow tabacc-sec  fadeInUp" data-wow-delay="0.1s" data-wow-duration="1s">
+            @Html.Partial("_CanRegTabs")
+            <br style="clear:both" />
+            <br style="clear:both" />
+            <div class="tabboxpadd   " data--delay="0.1s" data--duration="0.5s">
+                <div class="registerformbox">
+                    <div class="row" style="min-height:500px;">
+
+                        <div id="whform">
+                            <div class="col-md-12">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Job Title <span>*</span></label>
+
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_jobtitle" name="wh_jobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.JobTitle)
+                                            {
+                                                <option @(ViewBag.JobTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Company / Organization <span>*</span></label>
+                                        <input value="@ViewBag.Company" class="form-control" id="wh_company" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company is mandatory')" oninput="setCustomValidity('')">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Level (within the organization) <span>*</span></label>
+
+
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_level" name="wh_level" required oninvalid="this.setCustomValidity('Job Level is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.JobLevel)
+                                            {
+                                                <option @(ViewBag.JobLevelID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="gender">Reporting to <span>*</span></label>
+
+
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_reportingto" name="wh_reportingto" required oninvalid="this.setCustomValidity('Job Level is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Reportingto)
+                                            {
+                                                <option @(ViewBag.ReportingToID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Industry / Sector <span>*</span></label>
+
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var ind in ViewBag.Sectors)
+                                            {
+                                                <option @(ViewBag.IndustryID == ind.lm_Id ? "selected" : "") value="@ind.lm_Id">@ind.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="currentposition">Function / Title <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_function" required oninvalid="this.setCustomValidity('Function is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.FunctionalTitles)
+                                            {
+                                                <option @(ViewBag.FunctionID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>From <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_frommonth">
+                                            <option value="">Month</option>
+                                            <option @(ViewBag.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                            <option @(ViewBag.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                            <option @(ViewBag.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                            <option @(ViewBag.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                            <option @(ViewBag.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                            <option @(ViewBag.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                            <option @(ViewBag.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                            <option @(ViewBag.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                            <option @(ViewBag.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                            <option @(ViewBag.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                            <option @(ViewBag.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                            <option @(ViewBag.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_fromyear" onchange="settoyear()">
+                                            <option value="">Select</option>
+                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                            {
+                                                <option @(ViewBag.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>To <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_tomonth">
+                                            <option value="">Month</option>
+                                            <option @(ViewBag.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                            <option @(ViewBag.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                            <option @(ViewBag.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                            <option @(ViewBag.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                            <option @(ViewBag.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                            <option @(ViewBag.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                            <option @(ViewBag.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                            <option @(ViewBag.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                            <option @(ViewBag.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                            <option @(ViewBag.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                            <option @(ViewBag.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                            <option @(ViewBag.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_toyear">
+                                            <option value="">Select</option>
+                                            @if (DateTime.Now.Year != 0)
+                                            {
+                                                for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                {
+                                                    <option @(ViewBag.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                                }
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 clear">
+                                    <div class="form-group">
+
+
+                                        <div class="form-check">
+                                            <input style="float:left;font-size:18px" class="form-check-input" id="wh_currentlywork" type="checkbox" value="True" @(ViewBag.CurrentlyWorkingHere == true ? "checked" : "")>
+                                            <label class="form-check-label" for="wh_currentlywork" style="float:left;font-size:16px;margin-top:18px">Currently working here</label>
+
+                                            <input type="hidden" name="wh_tomonth" id="wh_tomonth1" value="0" />
+                                            <input type="hidden" name="wh_toyear" id="wh_toyear1" value="0" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 clear">
+                                    <div class="form-group">
+
+                                        <label>Job Location <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_location" required oninvalid="this.setCustomValidity('Job Location is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var con in ViewBag.Country)
+                                            {
+                                                <option @(ViewBag.JobLocationID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="currentposition">Salary <span>*</span></label>
+
+                                        <select style="width:100%" class="form-control searchableselect" id="wh_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var con in ViewBag.Salary)
+                                            {
+                                                <option @(ViewBag.SalaryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="summary">Description</label>
+                                        <textarea class="form-control" name="description" id="wh_description" placeholder="Job description, skills used at work etc">@ViewBag.Description</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="@ViewBag.CaWorkHistory_ID" name="CaWorkHistory_ID" id="CaWorkHistory_ID" />
+                            <input type="hidden" value="@ViewBag.tabupdate" name="tabupdate" id="tabupdate" />
+                            <div class="col-md-12">
+                                <div class="form-group formbtn ">
+                                    <div class="col-md-12">
+                                        <input id="whaddmore" type="button" value="+ ADD MORE WORK HISTORY" class="jsaddmore pull-left">
+
+@if (ViewBag.addmore == "YES")
+{
+    <input onclick="window.location.href='@Url.Content("~/CanRegITSkills")'" type="button" value="SAVE / NEXT" class="btnsubmit pull-right">
+}
+else
+{
+                                        <input name="save" type="submit" value="SAVE / NEXT" id="whsave" class="pull-right btnsubmit">
+}
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                            @if (ViewBag.tabupdate == "tabupdate")
+                            {
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Job</th>
+                                                <th>Delete</th>
+                                            </tr>
+
+                                            @foreach (var e in ViewBag.Experience2)
+                                            {
+
+                                                <tr>
+                                                    <td>
+                                                        <b>Company: @e.Company</b><br />
+                                                        @if (e.CurrentlyWorkingHere == false)
+                                                        {
+                                                            <span>
+                                                                <b>Period:</b> @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear <br />
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>
+                                                                <b>Currently working here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                            </span>
+                                                        }
+                                                        <b>Location:</b> @e.JobLocation <br />
+                                                        <b>Salary:</b> BHD @e.Salary
+                                                    </td>
+
+                                                    <td>
+                                                        <b>Job Title: @e.JobTitle</b>
+                                                        <br />
+                                                        <b>Job Level:</b> @e.JobLevel<br />
+                                                        <b>Industry:</b> @e.Industry<br />
+                                                        <b>Function:</b> @e.JobFunction<br />
+                                                        <b>Reporting to:</b> @e.ReportingTo
+                                                    </td>
+
+                                                    <td rowspan="2"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" onclick="delWH(@e.CaWorkHistory_ID)"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><b>Activities:</b> @Html.Raw(e.Description)</td>
+
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                                <br style="clear:both" />
+                            }
+                            <br style="clear:both" />
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+        <br style="clear:both" />
+
+        <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i> Completed tabs
+    </div>
+</div>
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+<script>
+
+        function delWH(cawhid) {
+        if (confirm("Are you sure to delete?")) {
+
+            $.ajax({
+                url: "@Url.Content("~/DeleteWH/")" + cawhid,
+                success: function (data) {
+                  //  alert('Work History Deleted!');
+                    window.location.href = "@Url.Content("~/CanRegWorkHistory/tabupdate/YES")";
+                },
+                error: function () {
+                    alert('No Work History to delete!');
+                }
+            });
+        }
+    }
+
+
+    function settoyear() {
+
+        $('#wh_toyear').empty();
+        for (i = @DateTime.Now.Year;i >= $('#wh_fromyear').val(); i--) {
+            $('#wh_toyear').append($('<option>',
+                {
+                    value: i,
+                    text: i
+                }));
+        }
+    }
+
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+
+        if ($("#wh_currentlywork").is(":checked")) {
+            $("#wh_tomonth,#wh_toyear").prop("disabled", true);
+            $("#wh_tomonth1,#wh_toyear1").prop("disabled", false);
+            $("#wh_tomonth,#wh_toyear").val("").change();
+        }
+        else {
+            $("#wh_tomonth,#wh_toyear").prop("disabled", false);
+            $("#wh_tomonth1,#wh_toyear1").prop("disabled", true);
+        }
+
+        $("#whaddmore").click(function () {
+            $('#CaWorkHistory_ID').val("");
+
+
+            if ($("#wh_currentlywork").is(":checked")) {
+
+                if ($('#wh_jobtitle').val() != "" && $('#wh_company').val() != "" && $('#wh_level').val() != "" && $('#wh_reportingto').val() != "" && $('#wh_industry').val() != "" && $('#wh_function').val() != "" && $('#wh_frommonth').val() != "" && $('#wh_fromyear').val() != "" && $('#wh_currentlywork').val() != "" && $('#wh_location').val() != "" && $('#wh_salary').val() != "") {
+                    addWorkHistory(1);
+                    $('#wh_jobtitle').val("").change();
+                        $('#wh_company').val("").change();
+                        $('#wh_location').val("").change();
+                        $('#wh_level').val("").change();
+                        $('#wh_reportingto').val("").change();
+                        $("#wh_frommonth").val("").change();
+                        $("#wh_tomonth").val("").change();
+                        $("#wh_fromyear").val("").change();
+                        $("#wh_toyear").val("").change();
+                        $('#wh_description').val("").change();
+                        $('#wh_salary').val("").change();
+                        $('#wh_industry').val("").change();
+                        $('#wh_function').val("").change();
+                        $('#currentposition').val("").change();
+                }
+
+                else {
+                    alert('All fields are mandatory');
+
+                }
+            }
+            else {
+                if ($('#wh_tomonth').val() != "" && $('#wh_toyear').val() != "") {
+                    if ($('#wh_jobtitle').val() != "" && $('#wh_company').val() != "" && $('#wh_level').val() != "" && $('#wh_reportingto').val() != "" && $('#wh_industry').val() != "" && $('#wh_function').val() != "" && $('#wh_frommonth').val() != "" && $('#wh_fromyear').val() != "" && $('#wh_currentlywork').val() != "" && $('#wh_location').val() != "" && $('#wh_salary').val() != "") {
+                        addWorkHistory(1);
+                        $('#wh_jobtitle').val("").change();
+                        $('#wh_company').val("").change();
+                        $('#wh_location').val("").change();
+                        $('#wh_level').val("").change();
+                        $('#wh_reportingto').val("").change();
+                        $("#wh_frommonth").val("").change();
+                        $("#wh_tomonth").val("").change();
+                        $("#wh_fromyear").val("").change();
+                        $("#wh_toyear").val("").change();
+                        $('#wh_description').val("").change();
+                        $('#wh_salary').val("").change();
+                        $('#wh_industry').val("").change();
+                        $('#wh_function').val("").change();
+                        $('#currentposition').val("").change();
+                    }
+                }
+                else {
+                    alert('All fields are mandatory');
+
+                }
+            }
+
+
+
+        });
+        $("#whsave").click(function () {
+
+            if ($("#wh_currentlywork").is(":checked")) {
+
+                if ($('#wh_jobtitle').val() != "" && $('#wh_company').val() != "" && $('#wh_level').val() != "" && $('#wh_reportingto').val() != "" && $('#wh_industry').val() != "" && $('#wh_function').val() != "" && $('#wh_frommonth').val() != "" && $('#wh_fromyear').val() != "" && $('#wh_currentlywork').val() != "" && $('#wh_location').val() != "" && $('#wh_salary').val() != "") {
+                    addWorkHistory(2);
+                }
+
+                else {
+                    alert('All fields are mandatory');
+
+                }
+            }
+            else {
+                if ($('#wh_tomonth').val() != "" && $('#wh_toyear').val() != "") {
+                    if ($('#wh_jobtitle').val() != "" && $('#wh_company').val() != "" && $('#wh_level').val() != "" && $('#wh_reportingto').val() != "" && $('#wh_industry').val() != "" && $('#wh_function').val() != "" && $('#wh_frommonth').val() != "" && $('#wh_fromyear').val() != "" && $('#wh_currentlywork').val() != "" && $('#wh_location').val() != "" && $('#wh_salary').val() != "") {
+                        addWorkHistory(2);
+                    }
+                }
+                else {
+                    alert('All fields are mandatory');
+
+                }
+            }
+
+        });
+    });
+
+
+
+    $("#wh_currentlywork").click(function () {
+        if ($("#wh_currentlywork").is(":checked")) {
+            $("#wh_tomonth,#wh_toyear").prop("disabled", true);
+            $("#wh_tomonth1,#wh_toyear1").prop("disabled", false);
+            $("#wh_tomonth,#wh_toyear").val("").change();
+        }
+        else {
+            $("#wh_tomonth,#wh_toyear").prop("disabled", false);
+            $("#wh_tomonth1,#wh_toyear1").prop("disabled", true);
+        }
+    });
+
+    function addWorkHistory(btn) {
+
+        var FromMonth = $('#wh_frommonth').val();
+        var FromYear = $('#wh_fromyear').val();
+
+
+        if ($("#wh_currentlywork").is(":checked")) {
+            var ToMonth = $('#wh_tomonth1').val()
+            var ToYear = $('#wh_toyear1').val();
+        }
+        else {
+            var ToMonth = $('#wh_tomonth').val()
+            var ToYear = $('#wh_toyear').val();
+            $('#wh_currentlywork').val("False");
+        }
+
+
+
+        $.ajax({
+            method: "POST",
+            url: "@Url.Content("~/JobSeekerWorkHistory")",
+            data: {
+                tabupdate: $('#tabupdate').val(),CaWorkHistory_ID: $('#CaWorkHistory_ID').val(), JobTitleID: $('#wh_jobtitle').val(), Company: $('#wh_company').val(), JobLevelID: $('#wh_level').val(), ReportingToID: $('#wh_reportingto').val(), IndustryID: $('#wh_industry').val(), FunctionID: $('#wh_function').val(), FromMonth: FromMonth, FromYear: FromYear, ToMonth: ToMonth, ToYear: ToYear, CurrentlyWorkingHere: $('#wh_currentlywork').val(), JobLocationID: $('#wh_location').val(), SalaryID: $('#wh_salary').val(), Description: $('#wh_description').val()
+            },
+            success: function (data) {
+                $("#save").show();
+                $("#loader").hide();
+                if (btn == 1) {
+                   // alert('Successfully saved!');
+                     window.location.href = "@Url.Content("~/CanRegWorkHistory/tabupdate/YES")";
+                }
+                else {
+                    //alert('Successfully saved!');
+                    window.location.href = "@Url.Content("~/CanRegITSkills")";
+                }
+
+            },
+            error: function () {
+                alert("Couldn't Save, check the input values!");
+            }
+        });
+
+    }
+</script>
+
+
+
+<style>
+    .registerformbox input, .registerformbox textarea, .registerformbox select {
+        height: 50px;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+<script>
+    $(function () {
+
+
+        $("#wh_company").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Content("~/getABCcompanies")/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.Company,
+                                id: el.id
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+
+
+
+    });
+</script>

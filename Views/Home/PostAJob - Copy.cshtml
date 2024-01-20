@@ -1,0 +1,331 @@
+﻿
+@{
+    ViewBag.Title = "PostAJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.js")"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=kncszy5g1um8j9c92i9j4yv9ulglpz9npadjlqjzciz1d78h"></script>
+<script type="text/javascript">
+
+    tinyMCE.init({
+        mode: "textareas",
+        theme: "modern",
+        toolbar: [
+            "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+        ],
+        plugins: "lists, advlist,tinymcespellchecker",
+        spellchecker_language: 'en',
+        menubar: false,
+        statusbar: false,
+     
+    });
+
+</script>
+
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+</style>
+
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                
+                                <li class="active"><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <div class="dashboardwhiteboxshadow">
+
+            <br />
+            <h1 class="mainpagetitle centertext wow fade-1" style="margin-bottom:15px">POST A <span>JOB</span></h1>
+            <div class="formbtn"></div>
+            <br style="clear:both" />
+            <div class="row">
+
+                <form    onsubmit="return validateForm()">
+                    <div class="col-md-12">
+                        <div class="searchformsec">
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Job Title <span>*</span></label>
+                                    <input name="vc_Title" type="text" placeholder="Enter text" required oninvalid="this.setCustomValidity('Job Title is mandatory')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Client reference <span>*</span></label>
+                                    <input name="referencecode" type="text" placeholder="Enter text" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Job Location <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_JobLocationID" name="vc_JobLocationID" required oninvalid="this.setCustomValidity('Job Location is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.Country)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Job Description <span>*</span></label><div style="font-size:12px;color:#ccc">Note: If you are copy pasting then paste on a notepad file and copy paste from there to remove unnecessay formatting.</div>
+                                    <textarea name="description" id="description" rows="10" style="width:100%;border:1px solid #ccc;font-size:14px; padding:10px;" placeholder="Enter text (Minimum characters 200)"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Job Requirements <span>*</span></label><div style="font-size:12px;color:#ccc">Note: If you are copy pasting then paste on a notepad file and copy paste from there to remove unnecessay formatting.</div>
+                                    <textarea name="vc_JobRequirements" id="vc_JobRequirements" rows="10" style="width:100%;border:1px solid #ccc;font-size:14px; padding:10px;" placeholder="Enter text (Minimum characters 200)"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Company Description <span>*</span></label><div style="font-size:12px;color:#ccc">Note: If you are copy pasting then paste on a notepad file and copy paste from there to remove unnecessay formatting.</div>
+                                    <textarea name="vc_CompanyDetails" id="vc_CompanyDetails" rows="10" style="width:100%;border:1px solid #ccc;font-size:14px; padding:10px;" placeholder="Enter text (Minimum characters 200)">@ViewBag.co_JobCompanyDesc</textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Industry <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_IndustryID" name="vc_IndustryID" required oninvalid="this.setCustomValidity('Industry is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.Sectors)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Function <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_FunctionID" name="vc_FunctionID" required oninvalid="this.setCustomValidity('Function is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.Functions)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Contract Type <span>*</span></label>
+                                    <select class="form-control searchableselect" id="contracttype" name="contracttype" required oninvalid="this.setCustomValidity('Contract type is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.JobType)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Experience <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_ExperienceID" name="vc_ExperienceID" required oninvalid="this.setCustomValidity('Experience is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.Experience)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Qualification / Education  <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_QualificationID" name="vc_QualificationID" required oninvalid="this.setCustomValidity('Qualification is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.EducationLevel)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Age group  <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_AgeGroupID" name="vc_AgeGroupID" required oninvalid="this.setCustomValidity('Age group is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.Agegroup)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Salary range  <span>*</span></label>
+                                    <select class="form-control searchableselect" id="vc_SalaryRangeID" name="vc_SalaryRangeID" required oninvalid="this.setCustomValidity('Salary is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var con in ViewBag.Salary)
+                                        {
+                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Reserved for Disabled  <span>*</span></label>
+                                    <select class="form-control searchableselect" name="reserved" required oninvalid="this.setCustomValidity('Special requirement is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        <option value="True">Yes</option>
+                                        <option value="False">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Application Email <span>*</span></label>
+                                    <input name="applicationemailid" id="applicationemailid" type="email" placeholder="Enter text" required oninvalid="this.setCustomValidity('Application email is mandatory')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Application Email confirmation <span>*</span></label>
+                                    <input name="applicationemailid2" id="applicationemailid2" type="email" placeholder="Enter text" required oninvalid="this.setCustomValidity('Application email confirmation is mandatory')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                        
+                        <br style="clear:both" /><br />
+
+                        <div class="formbtn col-md-12">
+               
+                            <button style="margin:0 0 0 10px" type="submit" formmethod="post" formaction="@Url.Content("~/PostedJob")"  class="btnsubmit pull-right">POST</button>
+                            <button style="margin:0 0 0 10px" type="submit" formmethod="post"  formaction="@Url.Content("~/PostedJobDraft")" class="btnsubmit pull-right">SAVE AS DRAFT</button>
+                            <button style="margin:0 0 0 10px" type="submit" formmethod="post"  formaction="@Url.Content("~/PostedJobPreview")" class="btnsubmit pull-right">PREVIEW</button>
+                                
+                        </div>
+                        <br style="clear:both" /><br />
+                    </div>
+  
+              
+                </form>
+
+            </div>
+ 
+
+        </div>
+        </div>
+</div>
+
+<script>
+    function validateForm() {
+
+ 
+
+
+        if ($('#applicationemailid2').val() !== $('#applicationemailid').val()) {
+            alert('Confirm Application Email should be same as Application Email');
+            $('#applicationemailid2').focus();
+            return false;
+        }
+
+        tinyMCE.triggerSave();
+        var description = $(tinyMCE.get('description').getBody()).text();
+        
+        if (description.length < 200) {
+            alert('Job Description must have more than 200 characters!');
+            $('#description').focus();
+            return false;
+        }
+        var vc_JobRequirements = $(tinyMCE.get('vc_JobRequirements').getBody()).text();
+        if (vc_JobRequirements.length < 200) {
+            alert('Job Requirements must have more than 200 characters!');
+            $('#vc_JobRequirements').focus();
+            return false;
+        }
+
+        var vc_CompanyDetails = $(tinyMCE.get('vc_CompanyDetails').getBody()).text();
+
+
+        if (vc_CompanyDetails.length < 200) {
+            alert('Company Description must have more than 200 characters!');
+            $('#vc_CompanyDetails').focus();
+            return false;
+        }
+    }
+
+ 
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+    });
+</script>

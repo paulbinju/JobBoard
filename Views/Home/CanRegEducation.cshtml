@@ -1,0 +1,493 @@
+﻿@{
+    Html.RenderAction("menulogin");
+    common cmn = new common();
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+<div class="homesearchsection mainlightgraybg PTb60" style="overflow:hidden">
+    <div class="container">
+        <h1 class="mainpagetitle centertext   fade-1"> <span>JOB SEEKER</span> REGISTRATION</h1>
+
+
+        <div class="dashboardwhiteboxshadow tabacc-sec   fadeInUp">
+
+            @Html.Partial("_CanRegTabs")
+            <br style="clear:both" />
+            <br style="clear:both" />
+            <div class="tabboxpadd   " data--delay="0.1s" data--duration="0.5s">
+                <div class="registerformbox" id="registerformbox">
+                    <form id="educationform" method="post" enctype="multipart/form-data">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>School / University <span>*</span></label>
+                                <select style="width:100%" class="form-control searchableselect" id="eduSchool" name="eduSchool" required oninvalid="this.setCustomValidity('Name of High School / University')" onchange="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var uni in ViewBag.University)
+                                    {
+                                    <option @(ViewBag.UniversityID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country of School / University <span>*</span></label>
+                                <select style="width:100%" class="form-control searchableselect" id="eduSchoolcountry" name="eduSchoolcountry" required oninvalid="this.setCustomValidity('School / University Country is mandatory')" onchange="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var con in ViewBag.Country)
+                                    {
+                                    <option @(ViewBag.UniCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Degree <span>*</span></label>
+
+                                <select style="width:100%" class="form-control searchableselect" id="eduDegree" name="eduDegree" required oninvalid="this.setCustomValidity('Degree is mandatory')" onchange="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var uni in ViewBag.Degree)
+                                    {
+                                    <option @(ViewBag.DegreeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Field of Study / Specialization <span>*</span></label>
+                                <select style="width:100%" class="form-control searchableselect" id="eduField" name="eduField" required oninvalid="this.setCustomValidity('Field of Study / Specialization is mandatory')" onchange="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var uni in ViewBag.Specialization)
+                                    {
+                                    <option @(ViewBag.SpecializationID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Grade <span>*</span></label>
+                                <select style="width:100%" class="form-control searchableselect" id="eduGrade" name="eduGrade" required oninvalid="this.setCustomValidity('Grade is mandatory')" onchange="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var uni in ViewBag.Grade)
+                                    {
+                                    <option @(ViewBag.GradeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="curstudyhere">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>From <span>*</span></label>
+                                    <select style="width:100%" class="form-control searchableselect" id="edufrommonth" name="edufrommonth" required oninvalid="this.setCustomValidity('From month is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Month</option>
+                                        <option @(ViewBag.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                        <option @(ViewBag.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                        <option @(ViewBag.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                        <option @(ViewBag.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                        <option @(ViewBag.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                        <option @(ViewBag.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                        <option @(ViewBag.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                        <option @(ViewBag.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                        <option @(ViewBag.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                        <option @(ViewBag.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                        <option @(ViewBag.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                        <option @(ViewBag.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <select style="width:100%" class="form-control searchableselect" id="edufromyear" name="edufromyear" required oninvalid="this.setCustomValidity('From year is mandatory')" onchange="setCustomValidity('');settoyear()">
+                                        <option value="">Year</option>
+                                        @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                        {
+                                        <option @(ViewBag.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                        }
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>To <span>*</span></label>
+                                    <select style="width:100%" class="form-control searchableselect" id="edutomonth" name="edutomonth" required oninvalid="this.setCustomValidity('To month is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Month</option>
+                                        <option @(ViewBag.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                        <option @(ViewBag.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                        <option @(ViewBag.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                        <option @(ViewBag.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                        <option @(ViewBag.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                        <option @(ViewBag.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                        <option @(ViewBag.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                        <option @(ViewBag.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                        <option @(ViewBag.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                        <option @(ViewBag.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                        <option @(ViewBag.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                        <option @(ViewBag.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <select style="width:100%" class="form-control searchableselect" id="edutoyear" name="edutoyear" required oninvalid="this.setCustomValidity('To year is mandatory')" onchange="setCustomValidity('')">
+                                        <option value="">Year</option>
+                                        @if (ViewBag.ToYear != 0)
+                                        {
+                                            for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                            {
+                                        <option @(ViewBag.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-check" style="vertical-align:middle">
+                                    <input class="form-check-input" id="educurrentlystudy" name="educurrentlystudy" type="checkbox" value="True" style="float:left" @(ViewBag.CurrentlyStudyHere == true ? "checked" : "")>
+                                    <div class="form-check-label" for="educurrentlystudy" style="float:left;font-size:16px;margin-top:18px">Currently Studying here</div>
+
+
+                                    <input type="hidden" name="edutomonth" id="edutomonth1" value="0" />
+                                    <input type="hidden" name="edutoyear" id="edutoyear1" value="0" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="summary">Activities / Society Affiliations</label>
+                                <textarea class="form-control" name="eduActivities" id="eduActivities" placeholder="For example : Toastmasters, Manama Football Club etc">@ViewBag.Activities</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @if (ViewBag.candidatemedia == null)
+                            {
+                            <label class="pull-left">Proof of completion ie Academic certificate </label><br style="clear:both" />
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top"><div style=" background-color:#ec2027;padding:1px 15px;color:white;margin:0 0 0 0"><i class="fa fa-cloud-upload"></i> Attach Certificate </div></td>
+                                    <td style="vertical-align:top"><input style="float:left;" type="file" name="uploadmedia" id="uploadmedia" onchange="showuploadcer()" /></td>
+
+                                </tr>
+                            </table>
+
+
+
+
+                            }
+                            else
+                            {
+                            <div class=""><b>Uploaded Media:</b> @ViewBag.candidatemedia<br style="clear:both" /><br /></div>
+                            }
+
+
+
+                            <input type="hidden" value="@ViewBag.CaEdu_ID" name="CaEdu_ID" id="CaEdu_ID" />
+
+                            <input type="hidden" value="@ViewBag.addmore" name="addmore" id="addmore" />
+                        </div>
+
+                        <br style="clear:both" />
+                        <div class=" " style="clear:both;">
+                            <div class="form-group formbtn ">
+                                <div class="col-md-12">
+
+                                    <input name="eduaddmore" id="eduaddmore" type="submit" value="+ ADD MORE EDUCATION" class="jsaddmore pull-left">
+
+                                    @if (ViewBag.addmore == "YES")
+                                    {
+                                    <input onclick="window.location.href='@Url.Content("~/CanRegWorkHistory")'" type="button" value="SAVE / NEXT" class="btnsubmit pull-right">
+                                    }
+                                    else
+                                    {
+                                    <input name="save" type="submit" value="SAVE / NEXT" id="edusave" class="btnsubmit pull-right">
+                                    }
+
+
+                                    <div style="margin:13px 5px 0 0;font-size:13px; float:right;color:red"><span>* Mandatory Fields</span></div>
+                                    <img src="@Url.Content("~/images/loader.gif")" class="pull-right" id="loader" style="width:50px;" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+
+                    @if (ViewBag.tabupdate == "tabupdate")
+                    {
+                    <br style="clear:both" /><br style="clear:both" />
+                    <br />
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive" style="font-size:15px;">
+                            <tr>
+                                <th>University / School</th>
+                                <th>Degree</th>
+                                <th>Period</th>
+                                <th>Delete</th>
+
+                            </tr>
+                            @foreach (var e in ViewBag.Education)
+                                {
+                                <tr>
+                                    <td>
+                                        <b>@e.University</b>
+                                        <br /><b>Country:</b> @e.UniCountry
+                                    </td>
+                                    <td>
+                                        <b>@e.Degree</b>
+                                        <br />
+                                        <b>Specialization:</b> @e.Specialization
+                                    </td>
+
+                                    <td>
+                                        @if (e.CurrentlyStudyHere == false)
+                                            {
+                                            <span>
+                                                @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                            </span>
+                                            }
+                                            else
+                                            {
+                                            <span>
+                                                <b>Currently studying here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                            </span>
+                                            }
+
+                                    </td>
+
+                                    <td rowspan="2"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" onclick="delEDU(@e.CaEdu_ID)"></i></td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <b>Activities:</b> @Html.Raw(e.Activities)
+
+                                        @foreach (var cdm in ViewBag.candidatemediadocs)
+                                            {
+                                                if (e.CaEdu_ID == cdm.cd_CaEdu_ID)
+                                                {
+                                            <p><b>Document: </b> @(cdm.cd_OriginalName).@(cdm.cd_FileExtension)</p>
+                                                }
+                                            }
+
+                                    </td>
+
+
+
+                                </tr>
+                                }
+                        </table>
+
+
+                    </div>
+                    <br style="clear:both" />
+                    }
+                    <br style="clear:both" />
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+        <br style="clear:both" />
+
+        <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i> Completed tabs
+
+
+        <link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+        <script>
+    function delEDU(cawhid) {
+        if (confirm("Are you sure to delete?")) {
+
+            $.ajax({
+                url: "@Url.Content("~/DeleteEDU/")" + cawhid,
+                success: function (data) {
+                    // alert('Education Deleted!');
+                     window.location.href = "@Url.Content("~/CanRegEducation/tabupdate/YES")";
+                },
+                error: function () {
+
+                }
+            });
+        }
+    }
+
+
+
+                                    function settoyear() {
+
+                                        $('#edutoyear').empty();
+                                        for (i = @DateTime.Now.Year;i >= $('#edufromyear').val(); i--) {
+                                            $('#edutoyear').append($('<option>',
+                                                {
+                                                    value: i,
+                                                    text: i
+                                                }));
+                                        }
+                                    }
+
+
+
+                                    $(document).ready(function () {
+                                        $('.searchableselect').select2();
+
+                                        if ($("#educurrentlystudy").is(":checked")) {
+                                            $("#edutomonth,#edutoyear").prop("disabled", true);
+                                            $("#edutomonth1,#edutoyear1").prop("disabled", false);
+                                            $("#edutomonth,#edutoyear").val("").change();
+                                        }
+                                        else {
+                                            $("#edutomonth,#edutoyear").prop("disabled", false);
+                                            $("#edutomonth1,#edutoyear1").prop("disabled", true);
+                                        }
+                                        $("#loader").hide();
+
+                                        $("#educationform").submit(function (e) {
+                                            e.preventDefault();
+                                            $("#save").hide();
+                                            $("#loader").show();
+
+                                            if ($("#educurrentlystudy").is(":checked")) {
+
+
+                                                $("#edutomonth,#edutoyear").prop("disabled", true);
+                                                $("#edutomonth1,#edutoyear1").prop("disabled", false);
+                                                $("#edutomonth,#edutoyear").val("").change();
+                                            }
+                                            else {
+
+                                                $("#edutomonth,#edutoyear").prop("disabled", false);
+                                                $("#edutomonth1,#edutoyear1").prop("disabled", true);
+                                            }
+
+                                            if ($(document.activeElement).attr('id') == 'eduaddmore') {
+                                                $("#CaEdu_ID").val("")
+                                            }
+
+
+                                            var edudata = new FormData(this);
+                                            $.ajax({
+                                                method: "POST",
+                                                url: "@Url.Content("~/JobSeekerEducation")",
+                                                data: edudata,
+                                                mimeTypes: "multipart/form-data",
+                                                contentType: false,
+                                                cache: false,
+                                                processData: false,
+                                                success: function (data) {
+
+                                                    $("#save").show();
+                                                    $("#loader").hide();
+                                                    // alert('Successfully saved!');
+
+
+                                                    if ($(document.activeElement).attr('id') == 'eduaddmore') {
+                                                        window.location.href = "@Url.Content("~/CanRegEducation/tabupdate/YES")";
+                                                        $("#eduSchool").val("").change();
+                                                        $("#eduSchoolcountry").val("").change();
+                                                        $("#eduDegree").val("").change();
+                                                        $("#eduField").val("").change();
+                                                        $("#eduGrade").val("").change();
+                                                        $("#eduDescription").val("").change();
+                                                        $("#eduActivities").val("").change();
+                                                        $("#edufrommonth").val("").change();
+                                                        $("#edutomonth").val("").change();
+                                                        $("#edufromyear").val("").change();
+                                                        $("#edutoyear").val("").change();
+                                                        $("#uploadmedia").val("").change();
+
+
+                                                    }
+                                                    else {
+
+                                                        window.location.href = "@Url.Content("~/CanRegWorkHistory")";
+                                                    }
+
+
+                                                },
+                                                error: function () {
+
+                                                    $("#loader").hide();
+                                                }
+                                            });
+                                        });
+
+
+
+
+
+
+                                    });
+
+                                    $("#educurrentlystudy").click(function () {
+                                        if ($("#educurrentlystudy").is(":checked")) {
+                                            $("#edutomonth,#edutoyear").prop("disabled", true);
+                                            $("#edutomonth1,#edutoyear1").prop("disabled", false);
+                                            $("#edutomonth,#edutoyear").val("").change();
+                                        }
+                                        else {
+                                            $("#edutomonth,#edutoyear").prop("disabled", false);
+                                            $("#edutomonth1,#edutoyear1").prop("disabled", true);
+                                        }
+                                    });
+
+
+        </script>
+
+
+
+        <style>
+            .registerformbox input, .registerformbox textarea, .registerformbox select {
+                height: 50px;
+            }
+
+            label span {
+                color: red;
+            }
+        </style>
+    </div>
+</div>
+

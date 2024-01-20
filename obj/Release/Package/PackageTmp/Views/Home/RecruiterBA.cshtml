@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Login";
+    
+}
+@Html.Partial("_menu")
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="fade-1 dashboardwhiteboxshadow" style="min-height:810px">
+
+           
+            <h1 class="mainpagetitle centertext fade-1 Padd15"> <span>EMPLOYER</span> REGISTRATION</h1>
+            <br />
+            <div class="col-md-12 fade-2 ">
+
+                
+                <div class="col-md-12">
+
+
+                    <br />
+                   
+
+                    <div class="col-md-12" id="sectorfirst">
+
+
+
+                        @{
+
+                            int colcount = ViewBag.FirstSectorID;
+                            int firstid = ViewBag.FirstSectorID;
+                            int onetdcount = ViewBag.SectorCount / 3;
+                            int firsttd = firstid + onetdcount;
+                            int secondtd = firstid + onetdcount + onetdcount;
+                            int thirdtd = firstid + onetdcount + onetdcount + onetdcount;
+
+                        }
+
+
+                        <table style="width:100%">
+                            <tr>
+                                <td style="vertical-align:top">
+
+
+                                    @foreach (var s in ViewBag.Sectors)
+                                    {
+                                        if (colcount < firsttd)
+                                        {
+
+                                            <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+
+
+                                            colcount++;
+                                            <br class="clearfix" />
+                                        }
+
+
+                                    }
+
+
+                                </td>
+                                <td style="vertical-align:top">
+
+                                    @foreach (var s in ViewBag.Sectors)
+                                    {
+                                        if (s.lm_Id >= firsttd && s.lm_Id < secondtd)
+                                        {
+
+
+
+                                            <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+
+                                            colcount++;
+                                            <br class="clearfix" />
+                                        }
+
+
+                                    }
+                                </td>
+                                <td style="vertical-align:top">
+                                    @foreach (var s in ViewBag.Sectors)
+                                    {
+                                        if (s.lm_Id >= secondtd)
+                                        {
+
+
+
+                                            <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+
+                                            colcount++;
+                                            <br class="clearfix" />
+                                        }
+
+
+                                    }
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+
+
+
+
+
+                        <br style="clear:both" />
+                        <br style="clear:both" />
+                        <input id="savesector" class="btnsubmit pull-right" type="button" value="SAVE">
+                        <div class="col-md-5 pull-right text-right"><br /> (Maximum 3 Business Activities are allowed)</div>
+
+                        <br style="clear:both" />
+                    </div>
+
+
+
+
+                </div>
+
+
+                    <br />
+
+              
+
+                <br />
+
+
+                <br style="clear:both" />
+                <br style="clear:both" />
+                <br />
+                
+
+
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_partners")
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#savesector").click(function (e) {
+            //  e.preventDefault();
+            var listCheck = [];
+            $("input[name='chksector']:checked").each(function () {
+                listCheck.push($(this).val());
+            });
+            //    alert(listCheck);
+            var checkeditems = listCheck.join(',');
+            $.ajax({
+                method: "POST",
+                url: "@Url.Content("~/RecruiterSectors2")",
+                data: { checkeditems: checkeditems },
+                success: function (data) {
+                    window.location.href = "@Url.Content("~/EmployerRegSuccess")";
+                },
+                error: function () {
+                    alert("Sorry unable to add, Select atleast one sector!");
+                }
+            });
+        });
+    });
+</script>

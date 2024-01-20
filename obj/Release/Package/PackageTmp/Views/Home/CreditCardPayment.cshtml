@@ -1,0 +1,164 @@
+﻿ 
+@{
+    ViewBag.Title = "PaymentMode";
+    Html.RenderAction("menulogin");
+}
+
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li><a href="@Url.Content("~/")">Home</a></li>
+                            <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li class="active"><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li><a href="@Url.Content("~/CareerServices")">Career Services</a></li>
+                            <li><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+ 
+
+
+
+
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="row">
+            
+                <script src="https://credimax.gateway.mastercard.com/checkout/version/50/checkout.js"
+                        data-error="errorCallback"
+                        data-cancel="cancelCallback" 
+                         data-complete="completeCallback">
+                </script>
+
+                <script type="text/javascript">
+                    function errorCallback(error) {
+                        console.log(JSON.stringify(error));
+                    }
+                    function cancelCallback() {
+                        console.log('Payment cancelled');
+                    }
+
+                    Checkout.configure({
+                        merchant: 'E05783950',
+                        session: {
+                            id: "@ViewBag.sessionid"
+                        },
+                        order: {
+                            amount: function () {
+                                return 0.050;
+                            },
+                            currency: 'BHD',
+                            description: 'J4B Subscription',
+                            id: '@ViewBag.invoiceno'
+                        },
+                        interaction: {
+                            merchant: {
+                                name: 'Jobs4Bahrainis',
+                                address: {
+                                    line1: 'Office 1201 Almoayyed Tower',
+                                    line2: 'Seef Bahrain'
+                                }
+                            }
+                        }
+                    });
+
+
+
+                    function paystarted() {
+
+
+                    }
+
+                    function completeCallback(resultIndicator, sessionVersion) {
+
+                        if (resultIndicator == null) {
+                            window.location.href = '@Url.Content("~/SuccessfullPayment")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/PaymentFailed")';
+                        }
+                    }
+
+                    $("#loader").hide();
+
+                    function hidebtn() {
+                        $("#loader").show();
+                        $("#paynow,#textx").hide();
+                    }
+
+
+                </script>
+            
+
+   
+         
+
+            <div class="fade-1 dashboardwhiteboxshadow" style="min-height:440px">
+                <h1 class="mainpagetitle Padd15 centertext">CREDIT CARD <span>PAYMENT</span></h1>
+                <br />
+
+
+                <div class=" centertext fade-2">
+                    <br />
+
+                    <div id="loader" style="clear:both;display:none"><img src="@Url.Content("~/images/loader.gif")" style="width:50px;" /></div>
+
+                    <div id="textx" style="font-size:16px;height:50px;">Please click pay now button to make the payment.</div>
+                    <br />
+                    
+                    
+                    <p id="resut"></p>
+
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="button" id="paynow" class="btnsubmit" value="PAY NOW" onclick="Checkout.showLightbox(); hidebtn();" />
+                        </div>
+                    </div>
+                   <br />
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.Raw(ViewBag.HtmlInvoice)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+
+ 
+
+
+            </div>
+             
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@Html.Partial("_partners")

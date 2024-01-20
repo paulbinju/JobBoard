@@ -1,0 +1,733 @@
+﻿@{
+    ViewBag.Title = "Jobs for Bahrainis";
+    ViewBag.Description = "Jobs4Bahrainis is a unique interactive job portal providing employers with access to Bahraini talent and enabling Bahraini nationals to search for job opportunities within their specialized or preferred employment sectors";
+
+    Html.RenderAction("menulogin");
+
+
+}
+
+
+
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li class="active"><a href="@Url.Content("~/")">Home</a></li>
+                            <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li><a href="@Url.Content("~/CareerServices")">Careers Resources</a></li>
+                            <li><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.searchableselect').select2();
+    });
+</script>
+
+<div class="homebannerbgimg ">
+    <div class="container fullhight">
+        <div class="bannercontable">
+            <div class="bannertablecell leftcon">
+                <div class="bannercon  fade-2">
+                    <h2>I AM A JOB SEEKER!</h2>
+                    <div class="bannertext">
+                        <p>
+                            Are you a Bahraini national looking for a new opportunity?
+                            <br />
+                            Register your profile for free and leave the rest to us.  Hundreds of professionals and fresh graduates are being contacted every week by employers in the Kingdom looking to enhance their workforce with Bahraini talent.
+
+                            <br />
+                            <br />
+                            Don’t miss out…. Your dream job could be next!
+                        </p>
+                    </div>
+                    <table align="center" class="homebuttonsca">
+                        <tr>
+                            @*<td><div class="jobsbtn"><a  data-toggle="modal" data-target="#profilePicModal">BROWSE JOBS</a></div></td>*@
+                            <td><div class="jobsbtn"><a href="@Url.Content("~/LatestJobs")">BROWSE JOBS</a></div></td>
+                            <td><a href="@Url.Content("~/RegisterJobseekerLogin")"><div class="candidatehomejoin">JOIN NOW</div></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="bannertablecell rightcon">
+                <div class="bannercon2  fade-2">
+                    <h2>I AM AN EMPLOYER!</h2>
+                    <div class="bannertext">
+                        <p>
+                            Jobs4Bahrainis is the top choice if you are looking to recruit Bahrainis to enhance your workforce. J4B offers easy and direct access to thousands of talented Bahraini nationals through a unique interactive job portal, providing the most comprehensive CV database of Bahraini graduates and experienced professionals.
+                            <br />
+                            <br />
+                            Save money and time with Jobs4bahrainis.com
+                        </p>
+
+
+
+
+                    </div>
+
+
+                    <table class="homebuttonsem" align="center">
+                        <tr>
+                            <td><div class="jobsbtn"><a href="@Url.Content("~/Packages")">VIEW PRICING</a></div></td>
+                            <td><a href="@Url.Content("~/RegisterEmployerLogin")"><div class="employerhomejoin">JOIN NOW</div></a></td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container fade-1">
+        <h1 class="mainpagetitle centertext  fade-2"><span>SEARCH YOUR </span>DREAM JOB</h1>
+        <div class="searchformsec   fade-2">
+            <div class="row">
+                @using (Html.BeginForm("Search", "Home"))
+                {
+
+                    <div class="col-sm-5">
+                        <input name="keywords" type="text" placeholder="Search keywords" id="keywords" class="skill-search-icon">
+                    </div>
+                    <div class="col-sm-4">
+                        <select name="sector" required class="searchableselect">
+                            <option value="0">Any Sector</option>
+                            @foreach (var s in ViewBag.Sectors)
+                            {
+                                <option value="@s.lm_Id">@s.lm_Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select name="jobtype" required>
+                            <option value="0">Any Job type</option>
+                            <option>Permenant</option>
+                            <option>Contract</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <input name="" type="submit" value="Search">
+
+                        <div style="margin-top:8px;"><a href="@Url.Content("~/JobSearch3")" class="advsearch">Advanced Search</a></div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="careerservices-section" style="background-color:white">
+        <div class="container">
+            <br style="clear:both" />
+            <h1 class="mainpagetitle centertext wow  fade-2"><span>KEY</span> STATISTICS <br style="clear:both" /></h1>
+
+               <div class="service-sec exhibition-statistics-about">
+
+                   <div class="row">
+                       <div class="col-md-4 blue-text text-center">
+                           <div class="col-md-12 Padd15">
+                               <div class="exhibition-icon"><img src="@Url.Content("~/images/exhibition-size-icon.png")" alt="GIF19"></div>
+                               <div class="exhibition-title">
+                                   <h3><span class="spincrementint" style="opacity: 1; visibility: visible;">3600</span></h3>		  	   			 	<h4>Jobs</h4>
+                               </div>
+                           </div>
+
+                       </div>
+                       <div class="col-md-4 orange-text text-center">
+                           <div class="col-md-12 Padd15">
+                               <div class="exhibition-icon"><img src="@Url.Content("~/images/exhibition-visitore-icon.png")" alt="GIF19"></div>
+                               <div class="exhibition-title">
+                                   <h3><span class="spincrementint" style="opacity: 1; visibility: visible;">@ViewBag.candicount</span></h3>		  	   			 	<h4>Candidates</h4>
+                               </div>
+                           </div>
+
+                       </div>
+                       <div class="col-md-4 violet-text text-center ">
+                          <div class="col-md-12 Padd15">
+                              <div class="exhibition-icon"><img src="@Url.Content("~/images/total-visitore-icon.png")" alt="GIF19"></div>
+                              <div class="exhibition-title">
+                                  <h3><span class="spincrementint" style="opacity: 1; visibility: visible;">@ViewBag.VisitorCount </span></h3>		  	   			 	<h4>Visitors</h4>
+                              </div>
+                          </div>
+                       </div>
+                   </div>
+
+               </div>
+
+        </div>
+    </div>*@
+
+
+<div class="careerservices-section ">
+    <div class="container">
+
+        <h1 class="mainpagetitle centertext wow  fade-2"><span>TRENDING</span> SECTORS</h1>
+
+        <div class="col-md-12">
+
+            <div class="visitore-profile-country visitore-interested-sectors">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Banking &amp; Finance </h5><span class="value">24%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Information Technology </h5><span class="value">10%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Sales </h5><span class="value">11%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 11%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Hospitality </h5><span class="value">8%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100" style="width: 18%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class="col-sm-6">
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Insurance </h5><span class="value">28%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Human Resource and Recruitment </h5><span class="value">5%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Retail </h5><span class="value">10%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="barWrapper orangetext">
+                            <span class="progressText"><h5>Engineering </h5><span class="value">4%</span></span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <br style="clear:both" />
+        <br style="clear:both" />
+    </div>
+</div>
+
+<div class="careerservices-section PTb6030" style="background-color:white">
+    <div class="container">
+        <h1 class="mainpagetitle centertext wow  fade-2"><span>CAREERS</span> RESOURCES <br style="clear:both" /><div style="text-transform:none;font-size:15px;margin-top:10px"> (Job seekers can log in to view our career advice)</div></h1>
+        <div class="service-sec">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/CareerServices")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-2.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>CV writing tips</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/CareerServices")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-20.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Successful tips to make your CV stand out. </span> </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/CareerServices")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/career-ser-img-3.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>CV Checklist</span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="career-serbox">
+                        <a href="@Url.Content("~/CareerServices")">
+                            <div class="gallerimg"> <img src="@Url.Content("~/images/ccareerservices4small.jpg")" alt="" /> </div>
+                            <div class="careertitle"> <span>Tips for a successful Skype Interview</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/jquery.js"></script>
+<div class="latestjobsection mainlightgraybg PTb6030">
+    <div class="container">
+        <h1 class="mainpagetitle centertext  fade-2"><span>LATEST</span> JobS</h1>
+        <div class="joblistboxsec   fade-2">
+            <div class="row">
+
+                @foreach (var lj in ViewBag.LatestJobs)
+                {
+                    <div class="col-sm-6 loadbox">
+                        <div class="listwhitebox">
+                            <div class="jobcomnamelogo">
+                                <div class="row">
+                                    <div class="col-md-4 col-md-push-8">
+
+                                        <div class="comlogo">
+                                            @if (Convert.ToString(lj.vc_Confidential) == "True")
+                                            {
+                                                <img class="img-responsive" src="@Url.Content("~/images/ConfidentialLogo.png")" alt="" />
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Content("~/Employer/" + lj.vc_co_CompanyId + "/" + lj.co_NameURL)"><img class="img-responsive" src="@Url.Content(lj.LogoURL)" alt="" /></a>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-pull-4">
+                                        <div class="combydata">
+                                            <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                            @*<h4><a data-toggle="modal" data-target="#profilePicModal">@lj.vc_Title</a></h4>*@
+
+                                            <div class="comdet"> @Html.Raw(lj.vc_Description) ... </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="listtimelocation">
+                                <ul>
+                                    <li><img src="images/latestjob-icon-1.png" alt="" /> @lj.postedsince</li>
+                                    @*<li><img src="images/latestjob-icon-2.png"  alt="" /><a href="@Url.Content("~/Employer/" + lj.vc_co_CompanyId + "/" + lj.co_NameURL)">@lj.co_Name</a></li>*@
+                                    @*<li><img src="images/latestjob-icon-2.png" alt="" /><a  data-toggle="modal" data-target="#profilePicModal">@lj.co_Name</a></li>*@
+                                    <li><img src="images/latestjob-icon-3.png" alt="" /> @lj.vc_Location</li>
+                                    <li><img src="images/latestjob-icon-4.png" alt="" /> Full Time</li>
+                                    <li title="Views"><div class="fa fa-eye"></div> @lj.vc_views</li>
+                                    <li title="Applications"><div class="fa fa-file"></div> @lj.vc_applications</li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="showmorebtn"><a href="javascript:void(0);" id="loadMore">SHOW MORE</a> <a href="@Url.Content("~/LatestJobs")" id="showLess">MORE JOBS</a></div>
+
+            @*<div class="showmorebtn"><a style="cursor:pointer" data-toggle="modal" data-target="#profilePicModal">SHOW MORE</a></div>  *@
+        </div>
+    </div>
+</div>
+
+
+<div class="employerssec PTb6030  " style="background-color:white">
+    <div class="container">
+        <h1 class="mainpagetitle centertext wow  fade-2"><span>FEATURED </span>EMPLOYERS</h1>
+        <div class="emplogosec wow fade-2">
+            <div class="row">
+
+
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="http://www.bahrainsteel.com.bh"><img src="@Url.Content("~/")images/emplogo-1.png" alt=""></a></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="https://www.bmmigroup.com/"><img src="@Url.Content("~/")images/emplogo-2.png" alt=""></a></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="http://orientalpress.com/"><img src="@Url.Content("~/")images/emp-logo-4.jpg" alt=""></a></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="http://www.almoayyed.com/"><img src="@Url.Content("~/")images/emp-logo-8.jpg" alt=""></a></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="https://www.nmc.com.bh"><img src="@Url.Content("~/")images/emplogo-9.png" alt=""></a></div>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="https://bahrainbus.bh/en"><img src="@Url.Content("~/")images/emplogo-4.png" alt=""></a></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="https://www.bh.zain.com/en"><img src="@Url.Content("~/")images/emplogo-5.png" alt=""></a></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="emp-logo"><a target="_blank" href="http://www.gulfconnexions.com"><img src="@Url.Content("~/")images/emplogo-13.png" alt=""></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mainlightgraybg test-sec PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1s"><span>OUR </span>TESTIMONIALS</h1>
+        <div class="owl-carousel testimoneal-carousel centertext wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="2s">
+
+            <div class="item">
+                <div class="testimonialwhitebg">
+                    <div class="testi-det">
+                        <p>
+                            Since 2014 I am recruiting Bahrainis for our group of companies & I found J4B very effective tool in doing selective or preferential recruitment. J4B helps in screening large number of CVs.
+                        </p>
+                    </div>
+                    <div class="authornamedet">
+                        <div class="testi-img"><img src="@Url.Content("~/")images/javed.jpg" alt="" /></div>
+                        <div class="atuhorname">
+                            <h3> Javed Hassan Orakzai</h3>
+                            <h5>HR Manager, Oriental Group</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <div class="testimonialwhitebg">
+                    <div class="testi-det">
+                        <p>
+                            J4B provides a key resource to the Gulf Hotel to provide career opportunities to talented Bahrainis. It is a successful partnership for promoting Bahrainis in the workspace.
+                        </p>
+                    </div>
+                    <div class="authornamedet">
+                        <div class="testi-img"><img src="@Url.Content("~/")images/hisham.png" alt="" /></div>
+                        <div class="atuhorname">
+                            <h3> Hisham Saleh</h3>
+                            <h5>HR Manager, Gulf Hotel</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testimonialwhitebg">
+                    <div class="testi-det">
+                        <p>
+                            J4B helped Unisono in sourcing candidates in the Media and Communications sector. Thanks to Jobs4Bahrainis.com, Bahrain’s talent is being utilised.
+                        </p>
+                    </div>
+                    <div class="authornamedet">
+                        <div class="testi-img"><img src="@Url.Content("~/")images/zahra.png" alt="" /></div>
+                        <div class="atuhorname">
+                            <h3>Zahra Jassim Mohammed</h3>
+                            <h5>Client Servicing Executive, Unisono</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testimonialwhitebg">
+                    <div class="testi-det">
+                        <p>
+                            My area of expertise is Finance, and thanks to J4B, I have found a position with Zain. Jobs4Bahrainis.com was the perfect platform to search for job opportunities.
+                        </p>
+                    </div>
+                    <div class="authornamedet">
+                        <div class="testi-img"><img src="@Url.Content("~/")images/mohd.png" alt="" /></div>
+                        <div class="atuhorname">
+                            <h3>Mohammed Abdul Karim</h3>
+                            <h5>Finance Department, Zain</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="testimonialwhitebg">
+                    <div class="testi-det">
+                        <p>
+                            J4B provides a key resource to the Gulf Hotel to provide career opportunities to talented Bahrainis. It is a successful partnership for promoting Bahrainis in the workspace.
+                        </p>
+                    </div>
+                    <div class="authornamedet">
+                        <div class="testi-img"><img src="@Url.Content("~/")images/hisham.png" alt="" /></div>
+                        <div class="atuhorname">
+                            <h3> Hisham Saleh</h3>
+                            <h5>HR Manager, Gulf Hotel</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testimonialwhitebg">
+                    <div class="testi-det">
+                        <p>
+                            J4B helped Unisono in sourcing candidates in the Media and Communications sector. Thanks to Jobs4Bahrainis.com, Bahrain’s talent is being utilised.
+                        </p>
+                    </div>
+                    <div class="authornamedet">
+                        <div class="testi-img"><img src="@Url.Content("~/")images/zahra.png" alt="" /></div>
+                        <div class="atuhorname">
+                            <h3>Zahra Jassim Mohammed</h3>
+                            <h5>Client Servicing Executive, Unisono</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+
+
+
+<script src="@Url.Content("~/js/jquery.spincrement.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.spincrementint').spincrement({
+            from: 0,
+            to: false,
+            decimalPlaces: 0,
+            decimalPoint: '.',
+            thousandSeparator: ',',
+            duration: 10000, // ms; TOTAL length animation
+            //easing: 'spincrementEasing',
+            //fade: true
+        });
+
+        $('.spincrement').spincrement({
+            from: 0,
+            to: false,
+            decimalPlaces: 2,
+            decimalPoint: '.',
+            thousandSeparator: ',',
+            duration: 10000, // ms; TOTAL length animation
+            //easing: 'spincrementEasing',
+            //fade: true
+        });
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.js"></script>
+<script>
+    $(document).ready(function ($) {
+        function animateElements() {
+            $('.progressbar').each(function () {
+                var elementPos = $(this).offset().top;
+                var topOfWindow = $(window).scrollTop();
+                var percent = $(this).find('.circle').attr('data-percent');
+                var percentage = parseInt(percent, 10) / parseInt(100, 10);
+                var animate = $(this).data('animate');
+                if (elementPos < topOfWindow + $(window).height() - 30 && !animate) {
+                    $(this).data('animate', true);
+                    if ($(this).find('.circle').hasClass("procounter0")) {
+                        $(this).find('.circle').circleProgress({
+                            startAngle: -Math.PI / 2,
+                            value: percent / 100,
+                            size: 250,
+                            thickness: 30,
+                            emptyFill: "#ffffff",
+                            fill: {
+                                color: '#d71921'
+                            }
+
+                        }).on('circle-animation-progress', function (event, progress, stepValue) {
+                            $(this).find('div').text((stepValue * 100).toFixed(1) + "%");
+                        }).stop();
+                    }
+                    else if ($(this).find('.circle').hasClass("procounter1")) {
+                        $(this).find('.circle').circleProgress({
+                            startAngle: -Math.PI / 2,
+                            value: percent / 100,
+                            size: 250,
+                            thickness: 30,
+                            emptyFill: "#ffffff",
+                            fill: {
+                                color: '#008855'
+                            }
+                        }).on('circle-animation-progress', function (event, progress, stepValue) {
+                            $(this).find('div').text((stepValue * 100).toFixed(1) + "%");
+                        }).stop();
+                    }
+                    else if ($(this).find('.circle').hasClass("procounter2")) {
+                        $(this).find('.circle').circleProgress({
+                            startAngle: -Math.PI / 2,
+                            value: percent / 100,
+                            size: 250,
+                            thickness: 30,
+                            emptyFill: "#ffffff",
+                            fill: {
+                                color: '#00aced'
+                            }
+                        }).on('circle-animation-progress', function (event, progress, stepValue) {
+                            $(this).find('div').text((stepValue * 100).toFixed(1) + "%");
+                        }).stop();
+                    }
+                    else if ($(this).find('.circle').hasClass("procounter3")) {
+                        $(this).find('.circle').circleProgress({
+                            startAngle: -Math.PI / 2,
+                            value: percent / 100,
+                            size: 250,
+                            thickness: 30,
+                            emptyFill: "#ffffff",
+                            fill: {
+                                color: '#f89c1c'
+                            }
+                        }).on('circle-animation-progress', function (event, progress, stepValue) {
+                            $(this).find('div').text((stepValue * 100).toFixed(1) + "%");
+                        }).stop();
+                    }
+                    else {
+                        $(this).find('.circle').circleProgress({
+                            startAngle: -Math.PI / 2,
+                            value: percent / 100,
+                            size: 250,
+                            thickness: 30,
+                            emptyFill: "#ffffff",
+                            fill: {
+                                color: '#d71921'
+                            }
+                        }).on('circle-animation-progress', function (event, progress, stepValue) {
+                            $(this).find('div').text((stepValue * 100).toFixed(1) + "%");
+                        }).stop();
+                    }
+                }
+            });
+        }
+
+        // Show animated elements
+        animateElements();
+        $(window).scroll(animateElements);
+    }); //end document ready function
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({ trigger: 'manual' }).tooltip('hide');
+    });
+
+
+    $(document).ready(function ($) {
+        function animateElements11() {
+            $(".progress-bar").each(function () {
+                var elementPos = $(this).offset().top;
+                var topOfWindow = $(window).scrollTop();
+                var animate = $(this).data('animate');
+                if (elementPos < topOfWindow + $(window).height() - 30 && !animate) {
+                    $(this).data('animate', true);
+                    each_bar_width = $(this).attr('aria-valuenow');
+                    $(this).width(each_bar_width + '%');
+                }
+            });
+        }
+        animateElements11();
+        $(window).scroll(animateElements11);
+    }); //end document ready function
+
+
+/*$( window ).scroll(function() {
+  // if($( window ).scrollTop() > 10){   scroll down abit and get the action
+  $(".progress-bar").each(function(){
+    each_bar_width = $(this).attr('aria-valuenow');
+    $(this).width(each_bar_width + '%');
+  });
+
+ //  }
+});*/
+</script>
+
+<div id="profilePicModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <div class="modal-body">
+                <div class="registerformbox">
+
+
+                    <div class="row" style="text-align:center">
+                        <img src="@Url.Content("~/images/jobs4bahrainislogo.png")" /><br style="clear:both" /><br />
+                        <div class="col-md-12" style="font-size:26px;font-weight:bold;text-align:center"><span style="color:red">Jobs4Bahrainis</span> is currently in a prelaunch phase</div>
+                        <br style="clear:both" />
+                        <br />
+
+
+                        <p style="font-size:16px">
+                            From 2nd January 2019 the leading local and international organizations in Bahrain <br />will be advertising  and accepting applications for their live jobs.
+                        </p>
+                        <p style="font-size:16px">
+                            To give yourself the best opportunity of being selected for jobs in Bahrain, <br />make sure you register your unique profile on jobs4bahrainis.com today.
+                        </p>
+                        <br style="clear:both" />
+
+                        <div class="showmorebtn"><a style="cursor:pointer" onclick="window.location.href='@Url.Content("~/RegisterJobseekerLogin")'">REGISTER</a></div>
+                        <br style="clear:both" />
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

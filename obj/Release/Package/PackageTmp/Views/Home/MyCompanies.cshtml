@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "My Companies";
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-7 pull-left">
+
+                        <div id="cssmenu">
+                            <ul>
+                                <li><a href="@Url.Content("~/JobSeekerProfile")">PROFILE</a></li>
+                                <li><a href="@Url.Content("~/JobSeeker")">JOBS</a></li>
+                                <li class="active"><a href="@Url.Content("~/MyCompanies")">MY COMPANIES</a></li>
+                                <li><a href="@Url.Content("~/CandidateCareerServices")">CAREERS RESOURCES</a></li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_candidatelogin")
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+                <div class="col-sm-3">
+                    <div class="leftpanelsec">
+                        <div class="userproimgsec fade-1">
+                            <div class="userimg">
+                                <a href="#"><img src="@ViewBag.Profilepic" alt="" /></a>
+
+                            </div>
+                            <div class="usernamegraybg">
+                                <div class="uercon">
+                                    @ViewBag.Phone
+                                    <div class="proediticon"></div>
+                                </div>
+                                <div class="uercon">
+                                    <a href="mailto:@ViewBag.Email">@ViewBag.Email</a>
+                                    <div class="proediticon"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br style="clear:both" />
+                        <div class="moneytran-img  dashboardwhiteboxshadow  fade-1" style="padding-bottom:10px"> <a href="#"><img src="images/money-transfer-img.jpg" alt="" /></a> </div>
+                        <div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                            <!-- InstaWidget -->
+                            <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                            <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="homesearchsection fade-2">
+                        <h1 class="mainpagetitle Padd15">JOB <span>SEARCH</span></h1>
+                        <div class="searchformsec">
+                            <div class="row">
+                                @*@using (Html.BeginForm("Search", "Home"))*@
+                                @using (Html.BeginForm("JobSearchResult", "Home", FormMethod.Get))
+                                {
+
+                                <div class="col-sm-5">
+                                    <input name="keywords" id="keywords" type="text" placeholder="Search job title" class="skill-search-icon">
+                                </div>
+                                <div class="col-sm-4">
+                                    <select name="sector">
+                                        <option value="">Sectors</option>
+                                        @foreach (var jsc in ViewBag.Sectors)
+                                            {
+                                        <option value="@jsc.lm_Id">@jsc.lm_Value</option>
+                                            }
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select name="jobtype">
+                                        <option value="">Job type</option>
+                                        <option>Any</option>
+                                        <option>Permenant</option>
+                                        <option>Contract</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input name="" type="submit" value="Search">
+                                </div>
+                                }
+                                <div style="margin-top:8px;"><a href="@Url.Content("~/JobSearch3")" class="advsearch">Advanced Search</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="homesearchsection fade-2">
+                        <h1 class="mainpagetitle Padd15">MY <span>COMPANIES</span></h1>
+                        <div class="searchformsec">
+                            <div class="row" style="min-height:765px;">
+
+                                @foreach (var co in ViewBag.Companies)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3 pull-right">
+                                                <a href="@Url.Content("~/Employer/" + co.co_id + "/J4B")"><img style="max-height:100px;" class="img-responsive" src="@Url.Content(co.LogoURL)" alt="" /></a>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h4>@co.co_Name</h4>
+                                            </div>
+                                                <div class="col-md-6">
+                                                    <span style="font-weight:bold">Address:</span> @co.co_postaladdress
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <br style="clear:both" />
+                                    <hr />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br style="clear:both" />
+
+            </div>
+
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="@Url.Content("~/js/autocompletevalues.js")"></script>

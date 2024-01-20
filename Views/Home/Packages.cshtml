@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Packages";
+    Html.RenderAction("menulogin");
+}
+
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li><a href="@Url.Content("~/")">Home</a></li>
+                            <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li class="active"><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li><a href="@Url.Content("~/CareerServices")">Careers Resources</a></li>
+                            <li><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="dashboardsection MT30">
+    <div class="container">
+
+        <div class="recruiter-pricing-wrapper">
+            <h1 class="mainpagetitle centertext fade-1"><span>RECRUITER </span>PRICING</h1>
+            <div class="row">
+                @*<div class="col-sm-3">
+                        <div class="price-table-wrapper">
+                            <div class="price-table-header platinum">
+                                <div class="title-left">PLATINUM
+                                    <div style="color:white;font-size:15px;">VAT included</div>
+                                </div>
+
+                                <div class="price-right">
+                                    <h4><span>BD</span>165<sup>*</sup></h4>
+                                    <p>per month</p>
+                                </div>
+
+                            </div>
+                            <div class="price-description-list">
+                                <div class="price-desc-content ">
+                                    <ul>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Unlimited monthly C.V. search</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Unlimited contact credits<small>(per month)</small></li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Unlimited job postings<small>(per month)</small></li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">12 user proﬁles</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Chat help</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Email campaigns</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Prominent featured job listing</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Banner ads</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Social media adverts</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Top management in proﬁle </li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Company video in proﬁle</li>
+                                        <li><img src="images/correct-price-arrow.png" alt="">Direct career consultation</li>
+                                    </ul>
+                                    <div style="text-align:center">
+                                        @using (Html.BeginForm("PaymentMode", "Home"))
+                                        {
+                                            <input type="hidden" name="PackageID" value="1" />
+                                            <input type="submit" class="btnsubmit" value="PURCHASE" />
+                                            <div class="note"><sup>*</sup>annual subscription</div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <div class="col-md-4">
+                    <div class="price-table-wrapper">
+                        <div class="price-table-header bronze">
+                            <div class="title-left">
+                                BRONZE
+                                <div style="color:white;font-size:15px;font-weight:normal">VAT included</div>
+                            </div>
+                            <div class="price-right">
+                                <h4><span>BD</span>500</h4>
+                                <p>3 months</p>
+                            </div>
+                        </div>
+                        <div class="price-description-list">
+                            <div class="price-desc-content ">
+                                <ul>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited monthly C.V. search</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited contact credits<small>(per month)</small></li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited job postings<small>(per month)</small></li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">12 user proﬁles</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Chat help</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Email campaigns</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Prominent featured job listing</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Banner ads</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Social media adverts</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Top management in proﬁle </li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Company video in proﬁle</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Direct career consultation</li>
+                                </ul>
+                                <div style="text-align:center">
+                                    @*@using (Html.BeginForm("PaymentMode", "Home"))
+            {
+                <input type="hidden" name="PackageID" value="4" />
+                <input type="submit" class="btnsubmit" value="PURCHASE" />
+                <div class="note"><sup>*</sup>annual subscription</div>
+            }*@
+                                    <br class="clear" />
+                                   
+
+                                    <a href="@Url.Content("~/ContactUs")" class="btnsubmit">CONTACT US</a>
+                                    <br class="clear" />
+
+                                </div>
+                                <br class="clear" />
+                                <br class="clear" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="price-table-wrapper">
+                        <div class="price-table-header silver">
+                            <div class="title-left">
+                                SILVER
+                                <div style="color:white;font-size:15px;">VAT included</div>
+                            </div>
+                            <div class="price-right">
+                                <h4><span>BD</span>750</h4>
+                                <p>6 months</p>
+                            </div>
+                        </div>
+                        <div class="price-description-list">
+                            <div class="price-desc-content ">
+                                <ul>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited monthly C.V. search</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited contact credits<small>(per month)</small></li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited job postings<small>(per month)</small></li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">12 user proﬁles</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Chat help</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Email campaigns</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Prominent featured job listing</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Banner ads</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Social media adverts</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Top management in proﬁle </li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Company video in proﬁle</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Direct career consultation</li>
+                                </ul>
+                                <div style="text-align:center">
+                                    @*@using (Html.BeginForm("PaymentMode", "Home"))
+            {
+                <input type="hidden" name="PackageID" value="3" />
+                <input type="submit" class="btnsubmit" value="PURCHASE" />
+                <div class="note"><sup>*</sup>annual subscription</div>
+            }*@
+                                    <br class="clear" />
+                                  
+
+                                    <a href="@Url.Content("~/ContactUs")" class="btnsubmit">CONTACT US</a>
+                                </div>
+                                <br class="clear" />
+                                <br class="clear" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-table-wrapper">
+                        <div class="price-table-header gold">
+                            <div class="title-left">
+                                GOLD
+                                <div style="color:white;font-size:15px;">VAT included</div>
+                            </div>
+                            <div class="price-right">
+                                <h4><span>BD</span>1,000</h4>
+                                <p>12 months</p>
+                            </div>
+                        </div>
+                        <div class="price-description-list">
+                            <div class="price-desc-content ">
+                                <ul>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited monthly C.V. search</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited contact credits<small>(per month)</small></li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Unlimited job postings<small>(per month)</small></li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">12 user proﬁles</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Chat help</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Email campaigns</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Prominent featured job listing</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Banner ads</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Social media adverts</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Top management in proﬁle </li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Company video in proﬁle</li>
+                                    <li><img src="images/correct-price-arrow.png" alt="">Direct career consultation</li>
+                                </ul>
+                                <div style="text-align:center">
+                                    @*@using (Html.BeginForm("PaymentMode", "Home"))
+            {
+                <input type="hidden" name="PackageID" value="2" />
+                <input type="submit" class="btnsubmit" value="PURCHASE" />
+                <div class="note"><sup>*</sup>annual subscription</div>
+            }*@
+                                    <br class="clear" />
+                                  
+
+                                    <a href="@Url.Content("~/ContactUs")" class="btnsubmit">CONTACT US</a>
+
+                                </div>
+                                <br class="clear" />
+
+                                <br class="clear" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_partners")

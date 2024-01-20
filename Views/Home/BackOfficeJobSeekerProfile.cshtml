@@ -1,0 +1,517 @@
+﻿@{
+    ViewBag.Title = "JobSeeker";
+    common cmn = new common();
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.js")"></script>
+<script type="text/javascript">
+
+    tinyMCE.init({
+        mode: "textareas",
+        theme: "modern",
+        theme_advanced_buttons1: "bold,italic,underline,strikethrough",
+        menubar: false,
+        statusbar: true,
+        branding: false,
+        plugins: "wordcount",
+    });
+
+</script>
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/")images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-11 pull-left">
+
+                        @Html.Partial("_BOmenu")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+                <div class="col-sm-3">
+                    <div class="leftpanelsec">
+                        <div class="userproimgsec ">
+                            <div class="userimg">
+                                <img src="@ViewBag.Profilepic" alt="" />
+                               
+
+                            </div>
+
+                            <div class="usernamegraybg">
+                                <div class="uercon">
+                                    <i class="fa fa-phone" aria-hidden="true"></i> @ViewBag.Phone
+                                </div>
+                                <div class="uercon">
+                                    <a href="mailto:@ViewBag.Email"><i class="fa fa-envelope" aria-hidden="true"></i> @ViewBag.Email</a>
+                                </div>
+                            </div>
+                        </div>
+                   
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="homesearchsection  ">
+                        <h1 class="mainpagetitle Padd15"><span>JOBSEEKER </span>PROFILE</h1>
+                        <div class="searchformsec">
+                            <div class="row" style="font-size:15px;padding:0 5px">
+
+
+                                <div class="row">
+                                    <div class="col-md-8" style="font-size:22px;"><b>@ViewBag.Name</b></div>
+                                    <div class="col-md-4" id="activationstatus"></div>
+                                    <div class="col-md-4 pull-right">Created On: @ViewBag.ca_lastupdated</div>
+                                    
+                                </div>
+                                <br />
+
+                                <div class="row">
+
+                                    <div class="col-md-6" style="font-size:14px"><b>Phone:</b> @ViewBag.Phone</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Email:</b> @ViewBag.Email</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Date of Birth:</b> @ViewBag.DOB</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Gender:</b> @(ViewBag.ca_Gender == "M" ? "Male" : "Female")</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Marital Status:</b> @ViewBag.MaritalStatus</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Nationality:</b> @ViewBag.Nationality</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Current Location:</b> @ViewBag.CurrentLocation</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Education Level:</b> @ViewBag.HighestEducation</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Name of University:</b> @ViewBag.University2</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Current Job Function:</b> @ViewBag.FunctionTitle</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Current Job Title:</b> @ViewBag.CurrentJobTitle</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Total Experience:</b> @ViewBag.TotalExperience</div>
+                                    
+                                    <div class="col-md-12" style="padding-top:15px"><b style="font-size:14px">Profile Summary:</b> @Html.Raw(ViewBag.ca_Profile)</div>
+                                </div>
+                                <br style="clear:both" />
+                                <div class="row">
+                                     <div class="col-md-2 pull-right"><a target="_blank" onclick="CandidateRejectx()"   style="cursor:pointer;margin:0px 0 0 0;padding:12px 25px;background-color:gray;color:white">REJECT</a> </div>
+                                    <div class="col-md-2 pull-right"><a target="_blank" onclick="CandidateActivatex()"  class="" style="cursor:pointer;margin:0px 0 0 0;padding:12px 25px;background-color:#ec2027;color:white">ACTIVATE</a> </div>
+                                    <div class="col-md-2 pull-right"><a target="_blank" href="@Url.Content("~/"+ViewBag.IDpath)" style="margin:0px 0 0 0;padding:12px 25px;background-color:gray;color:white">VIEW ID</a> </div>
+                                    <div class="col-md-2 pull-right"><a target="_blank" href="@Url.Content("~/"+ViewBag.CVpath)" class="" style="margin:0px 0 0 0;padding:12px 25px;background-color:#ec2027;color:white">VIEW CV</a> </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>WORK </span>HISTORY</h1>
+                        <div class="searchformsec">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Job</th>
+                                    <th>Company</th>
+                                    
+                                </tr>
+                        
+                                @foreach (var e in ViewBag.Experience2)
+                                {
+                                    <tr>
+                                        <td>
+                                            <b>@e.JobTitle</b>
+                                            <br />
+                                            <b>Job Level:</b> @e.JobLevel<br />
+                                            <b>Industry:</b> @e.Industry<br />
+                                            <b>Function:</b> @e.JobFunction<br />
+                                            <b>Reporting to:</b> @e.ReportingTo
+                                        </td>
+                                        <td>
+                                            <b>@e.Company</b><br />
+                                            @if (e.CurrentlyWorkingHere == false)
+                                            {
+                                                <span>
+                                                    <b>Period:</b> @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear <br />
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <b>Currently working here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                </span>
+                                            }
+                                            <b>Location:</b> @e.JobLocation <br />
+                                            <b>Salary:</b> BHD @e.Salary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><b>Activities:</b> @Html.Raw(e.Description)</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>EDUCATION </span></h1>
+                        <div class="searchformsec">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Degree</th>
+                                    <th>University / School</th>
+                                    <th>Period</th>
+
+                                
+                                </tr>
+
+                                @foreach (var e in ViewBag.Education)
+                                {
+
+                                    <tr>
+                                        <td><b>@e.Degree</b>
+                                            <br />
+                                            <b>Specialization:</b> @e.Specialization
+                                        </td>
+                                        <td>
+                                            @e.University<br />
+                                            <b>Country:</b> @e.UniCountry
+                                        </td>
+                                        <td>
+                                            @if (e.CurrentlyStudyHere == false)
+                                            {
+                                                <span>
+                                                    @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <b>Currently studying here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                </span>
+                                            }
+
+                                        </td>
+
+                                      
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <b>Activities:</b> @Html.Raw(e.Activities)
+
+                                            @foreach (var cdm in ViewBag.candidatemediadocs)
+                                            {
+                                                if (e.CaEdu_ID == cdm.cd_CaEdu_ID)
+                                                {
+                                                    <p><b>Document: </b> @(cdm.cd_OriginalName).@(cdm.cd_FileExtension)</p>
+                                                }
+                                            }
+
+                                        </td>
+
+
+
+                                    </tr>
+
+
+
+
+                                       
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>IT </span>SKILLS</h1>
+                        <div class="searchformsec">
+
+
+                            <div id="SkillsAdded"></div>
+                            <br style="clear:both" />
+
+                        </div>
+                    </div>
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>OTHER </span>SKILLS</h1>
+                        <div class="searchformsec">
+
+
+                            <div id="OSkillsAdded"></div>
+                            <br style="clear:both" />
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>CERTIFICATIONS  </span>& AWARDS</h1>
+                        <div class="searchformsec">
+
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Certification</th>
+                                    <th>Autority</th>
+                                    <th>Validity</th>
+                                    
+                                </tr>
+
+                                @foreach (var e in ViewBag.CandidateCertifications)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @e.Certification<br />
+
+                                        </td>
+                                        <td>@e.Authority</td>
+                                        <td>
+                                            @if (e.DoNotExpire == false)
+                                            {
+                                                <span>
+                                                    From @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    From @cmn.GetMonthName(e.FromMonth) @e.FromYear (does not expire) <br />
+                                                </span>
+                                            }
+
+                                        </td>
+                                        
+                                  
+                                       
+                                    </tr>
+
+                                   
+
+
+                                }
+                            </table>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>LANGUAGES </span></h1>
+                        <div class="searchformsec">
+                            <div id="LanguagesAdded"></div>
+                            <br style="clear:both" />
+
+                        </div>
+                    </div>
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>IDEAL </span>CAREER MOVE</h1>
+                        <div class="searchformsec">
+
+
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Job Function</th>
+                                    <th>Industry</th>
+                                    <th>Salary (BD)</th>
+                                    <th>Experience</th>
+                                    
+
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.IdealCareerMove)
+                                {
+
+                                    <tr>
+                                        <td>@e.JobTitle</td>
+                                        <td>@e.JobFunction</td>
+                                        <td>@e.Industry</td>
+                                        <td>@e.ExpectedSalary </td>
+                                        <td>@e.Experience</td>
+                                        
+                                    </tr>
+                                }
+                            </table>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+ 
+
+
+ 
+ 
+
+<script>
+
+
+
+
+
+
+        function getCandidateSkills() {
+            var contenthtml = '';
+            $.ajax({
+                url: "@Url.Content("~/getJobSeekerSkills/" + ViewBag.Candidateid + "")",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Skills + '</div><div class="skillleveltags">' + data[key].SkillLevel + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsSkills(' + data[key].CaSkillID + ')" class="fa fa-minus-circle"></i></div></div>';
+                    });
+                    $('#SkillsAdded').html(contenthtml);
+                },
+                error: function () {
+
+                }
+            });
+
+        }
+
+
+    function getCandidateOSkills() {
+        var contenthtml = '';
+        $.ajax({
+            url: "@Url.Content("~/getJobSeekerOSkills/" + ViewBag.Candidateid + "")",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Skills + '</div><div class="skillleveltags">' + data[key].SkillLevel + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsOSkills(' + data[key].CaSkillID + ')" class="fa fa-minus-circle"></i></div></div>';
+                });
+                $('#OSkillsAdded').html(contenthtml);
+            },
+            error: function () {
+
+            }
+        });
+
+    }
+
+
+    function getJobSeekerLanguages() {
+        var contenthtml = '';
+        $.ajax({
+            url: "@Url.Content("~/getJobSeekerLanguages/" + ViewBag.Candidateid + "")",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Language + '</div><div class="skillleveltags">' + data[key].Proficiency + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsLanguage(' + data[key].Caln_ID + ')" class="fa fa-minus-circle"></i></div></div>';
+                });
+                $('#LanguagesAdded').html(contenthtml);
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function getactivationstatus() {
+        var contenthtml = '';
+        $.ajax({
+            url: "@Url.Content("~/getActivationStatus/" + ViewBag.Candidateid + "")",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    if (data[key].Ca_ID != null) {
+                        contenthtml += '<b>Activation Status: </b><span>Activated</span>';
+                    }
+                });
+                if (data == "") {
+                    contenthtml += '<b>Activation Status: </b><span>Inactive</span>';
+                }
+                $('#activationstatus').html(contenthtml);
+            },
+            error: function () {
+            }
+        });
+    }
+
+
+    function CandidateActivatex() {
+
+        var urlx = "@Url.Content("~/CandidateActivate/" + ViewBag.guidz + "")";
+
+        $.ajax({
+            url: urlx,
+            success: function (data) {
+                getactivationstatus();
+                alert('Activated Successfully');
+            },
+            error: function () {
+            }
+        });
+    }
+
+
+    function CandidateRejectx() {
+
+        var urlx = "@Url.Content("~/CandidateReject/" + ViewBag.guidz + "")";
+
+        $.ajax({
+            url: urlx,
+            success: function (data) {
+                getactivationstatus();
+                alert('Rejected Successfully');
+            },
+            error: function () {
+            }
+        });
+    }
+
+
+        $(document).ready(function () {
+            getCandidateSkills();
+            getCandidateOSkills();
+            getJobSeekerLanguages();
+            getactivationstatus();
+        });
+
+
+        $(document).ready(function () {
+            $('.searchableselect').select2();
+        });
+</script>

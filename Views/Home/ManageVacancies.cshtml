@@ -1,0 +1,577 @@
+﻿
+@{
+    ViewBag.Title = "Manage Vacancies";
+}
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+
+    .comdet span {
+        color: #606163;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li class="active"><a href="@Url.Content("~/ManageVacancies")">VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREERS RESOURCES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+        <div class="row">
+
+
+
+
+
+            <div class="col-md-12">
+                <div class="dashboardwhiteboxshadow tabacc-sec ">
+                    <ul class="accordion-tabs-minimal">
+                        <li class="tab-header-and-content">
+                            <a href="#" class="tab-link"><span>ACTIVE</span> JOBS</a>
+                            <div class="tab-content">
+
+                                <div class="postjobntn pull-right" style="padding:10px 25px;"><a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a></div>
+                                <br />
+                                <div class="dashboardwhiteboxshadow tabacc-sec col-md-12">
+                                    <table class="table table-striped" style="font-size:15px;">
+                                        <tr>
+                                            <th>Ref.</th>
+                                            <th>Position</th>
+                                            <th>Updated On</th>
+                                            <th>Expires On</th>
+                                            <th>Posted by</th>
+                                            <th>Views</th>
+                                            <th>Applicants</th>
+                                            <th>Status</th>
+                                            <th>Modify</th>
+
+                                        </tr>
+                                        @foreach (var mv in ViewBag.lstManageVacancies)
+                                        {
+                                            if (mv.vc_st_StatusID == 1)
+                                            {
+                                                if (mv.vc_Deleted == null)
+                                                {
+                                                    if (mv.vc_ExpiryDate >= DateTime.Now)
+                                                    {
+                                                    <tr>
+                                                        <td>@mv.vc_Reference</td>
+                                                        <td><a href="@Url.Content("~/JobDescEmployer/" + mv.vc_id + "/j4b")">@mv.vc_Title</a></td>
+                                                        <td>@mv.vc_Created.ToString("dd-MMM-yyyy")</td>
+                                                        <td>@mv.vc_ExpiryDate.ToString("dd-MMM-yyyy")</td>
+                                                        <td>@mv.ct_Forename @mv.ct_Surname</td>
+                                                        <td>@mv.vc_Views</td>
+                                                        <td>@mv.applicants</td>
+                                                        <td>
+                                                            @if (mv.vc_Deleted != null)
+                                                            {
+                                                                <span>Archived</span>
+                                                            }
+                                                            else
+                                                            {
+
+                                                                if (mv.vc_st_StatusID == 6)
+                                                                {
+                                                                    <span>Draft</span>
+                                                                }
+                                                                else if (mv.vc_st_StatusID == 1)
+                                                                {
+                                                                    <span>Active</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <table style="width:100%">
+                                                                <tr>
+                                                                    <td><i class="fa fa-search" data-toggle="modal" data-target="#PreviewModal-@mv.vc_id" style="color:red;font-size:18px;cursor:pointer" title="Preview Vacancy"></i></td>
+
+                                                                    <td><a href="@Url.Content("~/JobEdit/" + mv.vc_id)"><i class="fa fa-edit" style="color:red;font-size:18px" title="Edit Vacancy"></i></a></td>
+
+                                                                    @if (mv.vc_Deleted != null)
+                                                                    {
+                                                                        <td><a href="#" onclick="publishvcy(@mv.vc_id)"><i class="fa fa-check" style="color:red;font-size:18px" title="Post Vacancy"></i></a></td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (mv.vc_st_StatusID == 1)
+                                                                        {
+                                                                            <td>
+                                                                                <form style="float:left" id="Archiveform-@mv.vc_id" method="post">
+                                                                                    <a href="#" id="lnk-@mv.vc_id"><i class="fa fa-times" style="color:red;font-size:18px" title="Archive Vacancy"></i></a>
+                                                                                    <input type="hidden" value="@mv.vc_id" name="vc_id" />
+                                                                                </form>
+
+                                                                                <script>
+                                        $(document).ready(function () {
+                                            $('#lnk-@mv.vc_id').click(function () {
+                                                $('#Archiveform-@mv.vc_id').submit();
+                                            });
+
+                                            $("#Archiveform-@mv.vc_id").submit(function (e) {
+                                                e.preventDefault();
+                                                if (confirm("Are you sure you want to archive this vacancy? If so it will no longer be live on Jobs4Bahrainis.")) {
+                                                    var formdata = new FormData(this);
+                                                    $.ajax({
+                                                        method: "POST",
+                                                        url: "@Url.Content("~/DeleteVacancy")",
+                                                        data: formdata,
+                                                        contentType: false,
+                                                        cache: false,
+                                                        processData: false,
+                                                        success: function (data) {
+
+                                                            window.location.href = '@Url.Content("~/ManageVacancies")';
+                                                        },
+                                                        error: function () {
+                                                            alert("Couldn't Delete, try again!");
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                                        });
+
+
+
+
+                                                                                </script>
+                                                                            </td>
+                                                                        }
+                                                                        else if (mv.vc_st_StatusID == 6)
+                                                                        {
+                                                                            <td><a onclick="publishvcy(@mv.vc_id)" href="#"><i class="fa fa-check" style="color:red;font-size:18px" title="Post Vacancy"></i></a></td>
+                                                                        }
+
+
+
+                                                                    }
+
+                                                                </tr>
+                                                            </table>
+
+
+
+
+
+                                                        </td>
+
+                                                    </tr>
+                                                    }
+                                                }
+                                            }
+
+
+                                        }
+                                    </table>
+
+                                </div>
+
+
+
+
+                            </div>
+                        </li>
+                        <li class="tab-header-and-content">
+                            <a href="#" class="tab-link"><span>ARCHIVED</span> JOBS</a>
+                            <div class="tab-content">
+
+                                <div class="postjobntn pull-right" style="padding:10px 25px;"><a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a></div>
+                                <br />
+                                <div class="dashboardwhiteboxshadow tabacc-sec col-md-12">
+                                    <table class="table table-striped" style="font-size:15px;">
+                                        <tr>
+                                            <th>Ref.</th>
+                                            <th>Position</th>
+                                            <th>Created On</th>
+                                            <th>Expires On</th>
+                                            <th>Posted by</th>
+                                            <th>Views</th>
+                                            <th>Applicants</th>
+                                            <th>Status</th>
+                                            <th>Modify</th>
+
+                                        </tr>
+                                        @foreach (var mv in ViewBag.lstManageVacancies)
+                                        {
+                                            if (mv.vc_st_StatusID == 1)
+                                            {
+                                                if (mv.vc_Deleted != null || mv.vc_ExpiryDate < DateTime.Now)
+                                                {
+                                                    <tr>
+                                                        <td>@mv.vc_Reference</td>
+                                                        <td><a href="@Url.Content("~/JobDescEmployer/" + mv.vc_id + "/j4b")">@mv.vc_Title</a></td>
+                                                        <td>@mv.vc_Created.ToString("dd-MMM-yyyy")</td>
+                                                        <td>@mv.vc_ExpiryDate.ToString("dd-MMM-yyyy")</td>
+
+                                                        <td>@mv.ct_Forename @mv.ct_Surname</td>
+                                                        <td>@mv.vc_Views</td>
+                                                        <td>@mv.applicants</td>
+                                                        <td>
+                                                            @if (mv.vc_Deleted != null || mv.vc_ExpiryDate < DateTime.Now)
+                                                            {
+                                                                <span>Archived</span>
+                                                            }
+                                                            else
+                                                            {
+
+                                                                if (mv.vc_st_StatusID == 6)
+                                                                {
+                                                                    <span>Draft</span>
+                                                                }
+                                                                else if (mv.vc_st_StatusID == 1)
+                                                                {
+                                                                    <span>Active</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <table style="width:100%">
+                                                                <tr>
+                                                                    <td><i class="fa fa-search" data-toggle="modal" data-target="#PreviewModal-@mv.vc_id" style="color:red;font-size:18px;cursor:pointer" title="Preview Vacancy"></i></td>
+
+                                                                    <td><a href="@Url.Content("~/JobEdit/" + mv.vc_id)"><i class="fa fa-edit" style="color:red;font-size:18px" title="Edit Vacancy"></i></a></td>
+
+                                                                    @if (mv.vc_Deleted != null || mv.vc_ExpiryDate < DateTime.Now)
+                                                                    {
+                                                                        <td><a href="#" onclick="publishvcy(@mv.vc_id)"><i class="fa fa-check" style="color:red;font-size:18px" title="Post Vacancy"></i></a></td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (mv.vc_st_StatusID == 1)
+                                                                        {
+                                                                            <td>
+                                                                                <form style="float:left" id="Archiveform-@mv.vc_id" method="post">
+                                                                                    <a href="#" id="lnk-@mv.vc_id"><i class="fa fa-times" style="color:red;font-size:18px" title="Archive Vacancy"></i></a>
+                                                                                    <input type="hidden" value="@mv.vc_id" name="vc_id" />
+                                                                                </form>
+
+                                                                                <script>
+                                        $(document).ready(function () {
+                                            $('#lnk-@mv.vc_id').click(function () {
+                                                $('#Archiveform-@mv.vc_id').submit();
+                                            });
+
+                                            $("#Archiveform-@mv.vc_id").submit(function (e) {
+                                                e.preventDefault();
+                                                if (confirm("Are you sure you want to archive this vacancy? If so it will no longer be live on Jobs4Bahrainis.")) {
+                                                    var formdata = new FormData(this);
+                                                    $.ajax({
+                                                        method: "POST",
+                                                        url: "@Url.Content("~/DeleteVacancy")",
+                                                        data: formdata,
+                                                        contentType: false,
+                                                        cache: false,
+                                                        processData: false,
+                                                        success: function (data) {
+
+                                                            window.location.href = '@Url.Content("~/ManageVacancies")';
+                                                        },
+                                                        error: function () {
+                                                            alert("Couldn't Delete, try again!");
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                                        });
+
+
+
+
+                                                                                </script>
+                                                                            </td>
+                                                                        }
+                                                                        else if (mv.vc_st_StatusID == 6)
+                                                                        {
+                                                                            <td><a onclick="publishvcy(@mv.vc_id)" href="#"><i class="fa fa-check" style="color:red;font-size:18px" title="Post Vacancy"></i></a></td>
+                                                                        }
+
+
+
+                                                                    }
+
+                                                                </tr>
+                                                            </table>
+
+
+
+
+
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            }
+
+
+                                        }
+                                    </table>
+
+                                </div>
+
+
+
+
+                            </div>
+                        </li>
+                        <li class="tab-header-and-content">
+                            <a href="#" class="tab-link"><span>DRAFT</span> JOBS</a>
+                            <div class="tab-content">
+
+                                <div class="postjobntn pull-right" style="padding:10px 25px;"><a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a></div>
+                                <br />
+                                <div class="dashboardwhiteboxshadow tabacc-sec col-md-12">
+                                    <table class="table table-striped" style="font-size:15px;">
+                                        <tr>
+                                            <th>Ref.</th>
+                                            <th>Position</th>
+                                            <th>Created On</th>
+                                            <th>Expires On</th>
+                                            <th>Posted by</th>
+                                            <th>Views</th>
+                                            <th>Applicants</th>
+                                            <th>Status</th>
+                                            <th>Modify</th>
+
+                                        </tr>
+                                        @foreach (var mv in ViewBag.lstManageVacancies)
+                                        {
+                                            if (mv.vc_st_StatusID == 6)
+                                            {
+                                                if (mv.vc_Deleted == null)
+                                                {
+                                                    <tr>
+                                                        <td>@mv.vc_Reference</td>
+                                                        <td><a href="@Url.Content("~/JobDescEmployer/" + mv.vc_id + "/j4b")">@mv.vc_Title</a></td>
+                                                        <td>@mv.vc_Created.ToString("dd-MMM-yyyy")</td>
+                                                        <td>@mv.vc_ExpiryDate.ToString("dd-MMM-yyyy")</td>
+                                                        <td>@mv.ct_Forename @mv.ct_Surname</td>
+                                                        <td>@mv.vc_Views</td>
+                                                        <td>@mv.applicants</td>
+                                                        <td>
+                                                            @if (mv.vc_Deleted != null)
+                                                            {
+                                                                <span>Archived</span>
+                                                            }
+                                                            else
+                                                            {
+
+                                                                if (mv.vc_st_StatusID == 6)
+                                                                {
+                                                                    <span>Draft</span>
+                                                                }
+                                                                else if (mv.vc_st_StatusID == 1)
+                                                                {
+                                                                    <span>Active</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <table style="width:100%">
+                                                                <tr>
+                                                                    <td><i class="fa fa-search" data-toggle="modal" data-target="#PreviewModal-@mv.vc_id" style="color:red;font-size:18px;cursor:pointer" title="Preview Vacancy"></i></td>
+
+                                                                    <td><a href="@Url.Content("~/JobEdit/" + mv.vc_id)"><i class="fa fa-edit" style="color:red;font-size:18px" title="Edit Vacancy"></i></a></td>
+
+                                                                    @if (mv.vc_Deleted != null)
+                                                                    {
+                                                                        <td><a href="#" onclick="publishvcy(@mv.vc_id)"><i class="fa fa-check" style="color:red;font-size:18px" title="Post Vacancy"></i></a></td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (mv.vc_st_StatusID == 1)
+                                                                        {
+                                                                            <td>
+                                                                                <form style="float:left" id="Archiveform-@mv.vc_id" method="post">
+                                                                                    <a href="#" id="lnk-@mv.vc_id"><i class="fa fa-times" style="color:red;font-size:18px" title="Archive Vacancy"></i></a>
+                                                                                    <input type="hidden" value="@mv.vc_id" name="vc_id" />
+                                                                                </form>
+
+                                                                                <script>
+                                        $(document).ready(function () {
+                                            $('#lnk-@mv.vc_id').click(function () {
+                                                $('#Archiveform-@mv.vc_id').submit();
+                                            });
+
+                                            $("#Archiveform-@mv.vc_id").submit(function (e) {
+                                                e.preventDefault();
+                                                if (confirm("Are you sure you want to archive this vacancy? If so it will no longer be live on Jobs4Bahrainis.")) {
+                                                    var formdata = new FormData(this);
+                                                    $.ajax({
+                                                        method: "POST",
+                                                        url: "@Url.Content("~/DeleteVacancy")",
+                                                        data: formdata,
+                                                        contentType: false,
+                                                        cache: false,
+                                                        processData: false,
+                                                        success: function (data) {
+
+                                                            window.location.href = '@Url.Content("~/ManageVacancies")';
+                                                        },
+                                                        error: function () {
+                                                            alert("Couldn't Delete, try again!");
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                                        });
+
+
+
+
+                                                                                </script>
+                                                                            </td>
+                                                                        }
+                                                                        else if (mv.vc_st_StatusID == 6)
+                                                                        {
+                                                                            <td><a onclick="publishvcy(@mv.vc_id)" href="#"><i class="fa fa-check" style="color:red;font-size:18px" title="Post Vacancy"></i></a></td>
+                                                                        }
+
+
+
+                                                                    }
+
+                                                                </tr>
+                                                            </table>
+
+
+
+
+
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            }
+
+
+                                        }
+                                    </table>
+                                </div>
+
+
+
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function publishvcy(vcid) {
+
+        if (confirm("Are you sure you want to make this job live on J4B? If so, this job will be visible to candidates immediately and will use 1 credit.")) {
+
+            $.ajax({
+                url: "@Url.Content("~/PublishVacancyy/")" + vcid,
+                success: function (data) {
+
+                    window.location.href = "@Url.Content("~/ManageVacancies")";
+                },
+                error: function () {
+
+                }
+            });
+        }
+
+    }
+</script>
+
+
+@foreach (var mv in ViewBag.lstManageVacancies)
+{
+    <div id="PreviewModal-@mv.vc_id" class="modal fade" role="dialog">
+        <div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="searchformsec">
+                        <div class="row">
+                            @foreach (var lj in ViewBag.JobDetails)
+                            {
+                                if (lj.vc_Id == mv.vc_id)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="col-md-12 combydata">
+                                            <h3 style="font-size:30px;font-weight:bold"><a href="#">@lj.vc_Title</a></h3>
+                                            <div class="listtimelocation">
+                                                <ul>
+                                                    <li><img src="@Url.Content("~/images/latestjob-icon-1.png")" alt=""> @lj.postedsince</li>
+                                                    <li><img src="@Url.Content("~/images/latestjob-icon-2.png")" alt=""> @lj.co_Name</li>
+                                                    <li><img src="@Url.Content("~/images/latestjob-icon-3.png")" alt=""> @lj.JobLocation</li>
+                                                    <li><img src="@Url.Content("~/images/latestjob-icon-4.png")" alt=""> @lj.JobType</li>
+                                                </ul>
+                                            </div>
+                                            <br /> <b>Job Description</b><br style="clear:both" />
+                                            <div style="font-size:16px;margin-top:10px">@Html.Raw(lj.vc_Description)</div>
+                                            <b>Job Requirements</b><br style="clear:both" />
+                                            <div style="font-size:16px;margin-top:10px">@Html.Raw(lj.vc_JobRequirements)</div>
+                                            <b>Company Details</b><br style="clear:both" />
+                                            <div style="font-size:16px;margin-top:10px">@Html.Raw(lj.vc_CompanyDetails)</div>
+                                            <ul style="list-style:square;font-size:16px;margin-top:15px">
+                                                <li><b>Industry</b>: @lj.Industry</li>
+                                                <li><b>Function</b>: @lj.Functions</li>
+                                                <li><b>Experience</b>: @lj.Experience</li>
+                                                <li><b>Qualification</b>: @lj.Qualification</li>
+                                                <li><b>Age Group</b>: @lj.AgeGroup</li>
+                                                <li><b>Salary Range</b>: @lj.SalaryRange</li>
+                                                <li><b>Contact Type</b>: @lj.JobType</li>
+                                                <li><b>Reserved for Disabled</b>: @lj.vc_Disabled</li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+}

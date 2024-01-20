@@ -1,0 +1,69 @@
+﻿
+<div class="topgraybg socialmedialogin">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="topsocialmedia  fade-1">
+                    <ul>
+                        <li><a target="_blank" href="https://www.facebook.com/Jobs4bahrainis"><i class="fa fa-facebook"></i></a></li>
+                        <li><a target="_blank" href="http://instagram.com/jobs4bahrainis"><i class="fa fa-instagram"></i></a></li>
+                        <li><a target="_blank" href="https://www.youtube.com/channel/UCGlv-6oMLkfY7MBnxtDj4ww"><i class="fa fa-youtube-play"></i></a></li>
+                        <li><a target="_blank" href="https://twitter.com/Jobs4Bahrainis"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="toploginsec">
+
+                    @if (Session["Ca_ID"] != null)
+                    {
+                        <div class="col-md-8 pull-right">@Html.Partial("_candidatelogin")</div>
+                    }
+                    else if (Session["RecruiterID"] != null)
+                    {
+                        <div class="col-md-6 pull-right">@Html.Partial("_recruiterlogin")</div>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li class="dropdown user-dropdownmenu">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user posnone"></i> Sign In <span class="fa fa-angle-down posnone"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @using (Html.BeginForm("Login", "Home"))
+                                        {
+                                            <div class="signinformlabel">
+                                                <label>Username</label>
+                                                <input name="emailid" placeholder="Email ID" type="email">
+                                            </div>
+                                            <div class="signinformlabel">
+                                                <label>Password</label>
+                                                <input name="password" placeholder="Password" type="password">
+                                            </div>
+                                            <div class="forgot">
+                                                <span><a class="popup-modal" href="@Url.Content("~/ForgotPassword")">Forgot User ID / Password?</a></span>
+                                                <input name="Sign In" value="Sign In" type="submit">
+                                            </div>
+                                            <div class="forgot bornone" style="color:red;">@ViewBag.LoggedIn</div>
+
+
+                                            <div class="col-md-12"><b>Not a member? Join Now!</b></div>
+                                            <br style="clear:both" />
+                                            <br />
+                                            <div class="col-md-6 centertext"><a href="@Url.Content("~/RegisterJobseekerLogin")"><div class="" style="padding:8px 15px;color:white;background-color:#808184;float:left">JOB SEEKER</div></a> </div>
+                                            <div class="col-md-6 centertext"><a href="@Url.Content("~/RegisterEmployerLogin")"><div class="" style="padding:8px 15px;color:white;background-color:#ec2027;float:right">EMPLOYER</div></a></div>
+                                            <br style="clear:both" />
+                                            <br />
+                                            <input type="hidden" value="@ViewBag.returnurl" name="returnurl" />
+                                        }
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

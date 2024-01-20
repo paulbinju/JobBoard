@@ -1,0 +1,347 @@
+﻿
+@{
+    ViewBag.Title = "Recruiter Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_menu")
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext fade-1"> <span>EMPLOYER</span> REGISTRATION</h1>
+        <div class="row">
+ 
+
+            <div class="registerformsec MTB30">
+                <div class="container">
+                    
+                    <div class="dashboardwhiteboxshadow tabacc-sec fadeInUp" data-wow-delay="0.1s" data-wow-duration="1s">
+                        <ul class="accordion-tabs-minimal">
+                            <li class="tab-header-and-content">
+                                <a href="#" class="tab-link is-active" id="contact">CONTACT</a>
+                                <div class="tab-content" id="contactcontent" >
+                                    <div class="tabboxpadd fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                                        <div class="registerformbox">
+                                            <div class="row">
+                                               
+                                                <div class="col-md-12">
+                                                  
+                                                        <div class="col-md-12">
+
+                                               
+
+                                                            @if (Session["Recruiter1"] == null)
+                                                            {
+                                                                <div class="col-md-12">
+                                                                    <h4>Sign-up today and access your future talent pool for under 10BD ( $30) per week.</h4>
+                                                                </div>
+
+                                                         <div class="col-md-12">
+                                                             <p style="font-size:12px">
+                                                                 To access CVs for the Jobs4Bahrainis website, for 500 BD ( $1500) a year please register here after which you will be directed to the payment gateway.
+                                                             </p>
+                                                             <p style="font-size:12px">
+                                                                 Once you have paid you will receive a link in your email to allow you to log-in .
+                                                             </p>
+                                                             <p style="font-size:12px">
+                                                                 Remember the information that you provide here may be required for identification / verification later. Only valid corporate email ID’s will be allowed for the registration.
+                                                             </p>
+                                                         </div>
+
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group formbtn text-right">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                using (Html.BeginForm("RecruiterContact", "Home"))
+                                                                {
+
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>First Name <span class="red">*</span></label>
+                                                                    <input class="form-control" name="FirstName" placeholder="First Name" type="text" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Last Name <span class="red">*</span></label>
+                                                                    <input class="form-control" name="LastName" placeholder="Last Name" type="text" required>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Company Name <span class="red">*</span></label>
+                                                                    <input class="form-control" name="CompanyName" placeholder="Company Name" type="text" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Phone No. <span class="red">*</span></label>
+                                                                    <input class="form-control" name="Phone" placeholder="Phone No." type="text" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Email ID <span class="red">*</span> <span style="font-size:11px;">(for login)</span></label>
+                                                                    <input class="form-control" name="EmailID" placeholder="Email ID" type="email" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Password <span class="red">*</span> <span style="font-size:11px;">(for login)</span></label>
+                                                                    <input class="form-control" name="Password" placeholder="Password" type="password" required>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="summary">Address</label>
+                                                                    <textarea class="form-control" name="Address" id="address" placeholder="Address"></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group formbtn text-right">
+                                                                    <input name="save" type="submit" value="SAVE & CONTINUE">
+                                                                </div>
+                                                            </div>
+
+                                                                        }
+
+
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group formbtn text-right">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <br />
+                                                                    <br />
+                                                                   
+                                                                    <p class="red">You've successfully registered! please continue to add recruitment sectors. </p><br />
+                                                                    <div class="form-group formbtn text-right">
+                                                                        <input name="next" type="submit" value="CONTINUE" onclick="getsectortab()">
+                                                                    </div>
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="tab-header-and-content">
+                                <a href="#" class="tab-link" id="sectors">SECTORS</a>
+                                <div class="tab-content" id="sectorscontent" >
+                                    <div class="tabboxpadd ">
+                                        <div class="registerformbox">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
+                                                        <p>Select the sectors of recruitment .</p>
+                                                    </div>
+                                                    <div class="col-md-12" id="sectorfirst">
+
+                                                       
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group formbtn text-right">
+
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        <div class="col-md-12" style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #ccc;padding:10px 40px;">
+                                                            <div style="font-size:14px;margin-bottom:12px;margin-left:-10px;color:#808080">Select Job Sector(s)</div>
+
+                                                            @foreach (var s in ViewBag.Sectors)
+                                                            {
+                                                                <div class="col-sm-12">
+                                                                    <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:black">@s.Sector</span>
+                                                                </div>
+                                                            }
+
+                                                        </div>
+
+@if (Session["Recruiter1"] != null)
+{
+
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group formbtn text-right">
+                                                                    <input id="savesector" name="save" type="submit" value="SAVE">
+                                                                </div>
+                                                            </div>
+
+}
+
+                                                    </div>
+                                                    <div id="sectorsecond">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group formbtn text-right">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <br />
+                                                            <br />
+
+                                                            <p class="red">You've successfully added sectors! please continue to upload company logo and add profile. </p><br />
+                                                            <div class="form-group formbtn text-right">
+                                                                <input name="next" type="submit" value="CONTINUE" onclick="getprofiletab()">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="tab-header-and-content">
+                                <a href="profile" class="tab-link  " id="profile">PROFILE</a>
+                                <div class="tab-content" id="profilecontent" >
+                                    <div class="tabboxpadd">
+                                        <div class="registerformbox">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
+                                                        <p>Attach the logo and profile summary. </p>
+                                                    </div>
+                                                    <div class="col-md-12">
+
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group formbtn text-right">
+
+                                                            </div>
+                                                        </div>
+
+                                              @using (Html.BeginForm("RecruiterLogo", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                              {
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Logo <span>(jpg or png image with file size less than 500kb)</span></label>
+                                                        <input class="form-control" id="file" name="file" placeholder="Attach Logo" type="file" required>
+                                                    </div>
+                                                </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="summary">Company Profile</label>
+                                                                <textarea class="form-control" name="Profile" placeholder="Company Profile" required></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                               
+                                                                <input type="checkbox" name="agree" required /> Yes, I agree to the <a class="red" href="@Url.Content("~/Terms")">Terms & Conditions</a> of Jobs4Bahrainis.
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="col-sm-12" id="finalsave" >
+                                                            <div class="form-group formbtn text-right">
+                                                                <input name="save" type="submit" value="PROCEED TO PAY">
+                                                            </div>
+                                                        </div>
+                                                         
+                                               }
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#file').on('change', function () {
+        if ($(this).get(0).files.length > 0) { // only if a file is selected
+            var fileSize = $(this).get(0).files[0].size;
+            if (fileSize > 500000) {
+                alert("File size is too big, attach file less than 500kb!");
+                $('#file').val('');
+            }
+        }
+    });
+
+
+    $("#sectorsecond").hide();
+
+    function getsectortab() {
+        $("#contact").removeClass("is-active");
+        $("#contactcontent").hide();
+        $("#sectors").addClass("is-active");
+        $("#sectorscontent").show();
+
+    }
+
+
+    function getprofiletab() {
+        $("#sectors").removeClass("is-active");
+        $("#sectorscontent").hide();
+        $("#profile").addClass("is-active");
+        $("#profilecontent").show();
+    }
+
+    $(document).ready(function () {
+        $("#finalsave").hide();
+
+
+        $("#savesector").click(function (e) {
+            e.preventDefault();
+
+            var listCheck = [];
+            $("input[name='chksector']:checked").each(function () {
+                listCheck.push($(this).val());
+            });
+
+        //    alert(listCheck);
+
+            var checkeditems = listCheck.join(',');
+            $.ajax({
+                method: "POST",
+                url: "RecruiterSectors2",
+                data: { checkeditems: checkeditems},
+                success: function (data) {
+                    $("#sectorfirst").hide();
+                    $("#sectorsecond").show();
+                    $("#finalsave").show();
+
+                    
+                },
+                error: function () {
+                    alert("Sorry unable to add, Select atleast one sector!");
+                }
+            });
+
+
+            
+
+
+        });
+    });
+</script>

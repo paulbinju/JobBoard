@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Html.RenderAction("menulogin");
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+            <h1 class="mainpagetitle Padd15 centertext"> <span>SIGN IN </span> TO PROCEED</h1>
+            <br />
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
+
+                <div class="col-md-12 centertext fade-2 searchformsec">
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                        <div class="col-md-12">
+                            <input name="emailid" type="email" placeholder="Email ID">
+                        </div>
+                        <br style="clear:both" /><br />
+
+
+                        <div class="col-md-12">
+                            <input name="password" type="password" placeholder="Password">
+                        </div>
+                        <br style="clear:both" /><br />
+
+                        <div class="col-md-3 pull-right">
+                            <input name="" type="submit" value="Login">
+                        </div>
+                        <br style="clear:both" /><br />
+
+                        <div class="col-md-12" style="color:red">
+                            @ViewBag.LoggedIn
+                        </div>
+                        <input type="hidden" value="@ViewBag.returnurl" name="returnurl" />
+                    }
+
+                    <br />
+
+
+
+                </div>
+                
+                <br />
+                <hr />
+                <div class="col-md-12 centertext"><b>Not a member? Join Now!</b></div>
+
+                <br style="clear:both" />
+                <br />
+                <div class="col-md-2"></div>
+                <div class="col-md-4"><a href="@Url.Content("~/Registration")"><div class="" style="padding:8px 15px;color:white;background-color:#8c8c3f;float:left">JOB SEEKER</div></a> </div>
+                <div class="col-md-3"><a href="@Url.Content("~/RecruiterRegistration")"><div class="" style="padding:8px 15px;color:white;background-color:#ec2027;float:left">EMPLOYER</div></a></div>
+                <div class="col-md-2"></div>
+
+                <br style="clear:both" />
+                <br />
+                <br />
+                <br />
+
+
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+ 
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+

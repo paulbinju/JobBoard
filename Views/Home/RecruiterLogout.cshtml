@@ -1,0 +1,76 @@
+﻿
+
+
+@{
+    ViewBag.Title = "ContactUs";
+}
+
+
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li class="active"><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    <div class="dasdeticon"><a href="@Url.Content("~/RecruiterContact")"><img src="@Url.Content("~/images/email-icon.png")" alt="" /></a> <a href="@Url.Content("~/RecruiterAlert")"><img src="@Url.Content("~/images/notification-icon.png")" alt="" /></a> <a title="Logout" href="@Url.Content("~/RecruiterLogout")"><img src="@Url.Content("~/images/setting-icon.png")" alt="" /></a></div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext wow fade-1"> <span>LOGOUT</span></h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="servicebox wow fade-1-5">
+                    <div class="serviceicon"><a href="#"><img src="images/service-icon-1.png" alt=""></a></div>
+                    <div class="servdet">
+                        <p>
+                           
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="searchformsec">
+                    <p>You've successfully logged out of Jobs4Bahrainis Recruiter section!</p>
+                </div>
+                    
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+

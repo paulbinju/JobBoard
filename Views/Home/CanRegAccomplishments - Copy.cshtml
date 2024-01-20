@@ -1,0 +1,636 @@
+﻿@{
+    Html.RenderAction("menulogin");
+    common cmn = new common();
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext   fade-1"> <span>JOB SEEKER</span> REGISTRATION</h1>
+
+
+        <div class="dashboardwhiteboxshadow tabacc-sec   fadeInUp" data- -delay="0.1s">
+            @Html.Partial("_CanRegTabs")
+            <br style="clear:both" />
+
+            <div class="tabboxpadd   " data--delay="0.1s" data--duration="0.5s">
+
+                <div class="registerformbox">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-check col-md-12">
+                                <input style="float:left;font-size:18px" class="form-check-input" id="cert_nocertifications" type="checkbox" value="True">
+                                <label class="form-check-label" for="cert_nocertifications" style="float:left;font-size:16px;margin-top:18px"> No certifications</label>
+                            </div>
+                        </div>
+                        <div id="cert_form">
+                            <div class="col-md-12">
+                                <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">CERTIFICATIONS & AWARDS</div><br /><br />
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Certification / Award Name <span>*</span></label>
+
+
+                                        <select style="width:100%" class="form-control searchableselect" id="cert_title" required oninvalid="this.setCustomValidity('Certification is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Certification)
+                                            {
+                                                <option @(ViewBag.CertificationID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Certification Authority <span>*</span></label>
+                                        
+                                        <select style="width:100%" class="form-control searchableselect" id="cert_auth" required oninvalid="this.setCustomValidity('Authority is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Authority)
+                                            {
+                                                <option @(ViewBag.AuthorityID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>From <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="cert_frommonth" required oninvalid="this.setCustomValidity('Month from is mandatory')" onchange="setCustomValidity('')">
+
+                                            <option value="">Month</option>
+                                            <option @(ViewBag.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                            <option @(ViewBag.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                            <option @(ViewBag.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                            <option @(ViewBag.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                            <option @(ViewBag.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                            <option @(ViewBag.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                            <option @(ViewBag.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                            <option @(ViewBag.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                            <option @(ViewBag.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                            <option @(ViewBag.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                            <option @(ViewBag.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                            <option @(ViewBag.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <select style="width:100%" class="form-control searchableselect" id="cert_fromyear" required oninvalid="this.setCustomValidity('Year from is mandatory')" onchange="setCustomValidity('');settoyear()">
+                                            <option value="">Year</option>
+                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                            {
+                                                <option @(ViewBag.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>To <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="cert_tomonth" required oninvalid="this.setCustomValidity('Month is mandatory')" onchange="setCustomValidity('')">
+
+                                            <option value="">Month</option>
+                                            <option @(ViewBag.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                            <option @(ViewBag.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                            <option @(ViewBag.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                            <option @(ViewBag.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                            <option @(ViewBag.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                            <option @(ViewBag.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                            <option @(ViewBag.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                            <option @(ViewBag.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                            <option @(ViewBag.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                            <option @(ViewBag.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                            <option @(ViewBag.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                            <option @(ViewBag.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <select style="width:100%" class="form-control searchableselect" id="cert_toyear" required oninvalid="this.setCustomValidity('Year is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Year</option>
+                                            @if (DateTime.Now.Year != 0)
+                                            {
+                                                for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                {
+                                                    <option @(ViewBag.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                                }
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <br style="clear:both" />
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input style="float:left;font-size:18px" class="form-check-input" id="cert_noexpiry" type="checkbox" value="True" @(ViewBag.DoNotExpire == true ? "checked" : "")>
+
+                                        <label class="form-check-label" for="cert_noexpiry" style="float:left;font-size:16px;margin-top:18px">This certification does not expire.</label>
+
+
+                                        <input type="hidden" name="cert_tomonth" id="cert_tomonth1" value="0" />
+                                        <input type="hidden" name="cert_toyear" id="cert_toyear1" value="0" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br style="clear:both" />
+                            <div class="col-sm-12">
+                                <div class="form-group formbtn col-md-12">
+
+                                    <input id="cert_addmore" type="button" value="+ ADD MORE CERTIFICATIONS" class="jsaddmore pull-left">
+
+
+                                    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+@if (ViewBag.tabupdate == "tabupdate")
+{ 
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Certification</th>
+                                        <th>Autority</th>
+                                        <th>Validity</th>
+                                        <th>Delete</th>
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.CandidateCertifications)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @e.Certification<br />
+
+                                            </td>
+                                            <td>@e.Authority</td>
+                                            <td>
+                                                @if (e.DoNotExpire == false)
+                                                {
+                                                    <span>
+                                                        From @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>
+                                                        From @cmn.GetMonthName(e.FromMonth) @e.FromYear (does not expire) <br />
+                                                    </span>
+                                                }
+
+                                            </td>
+                                            <td><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" onclick="delCER(@e.CaCertification_ID)"></i></td>
+
+
+
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+}
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="registerformbox">
+                    <div class="row" style="min-height:350px;">
+                        <br />
+                        <br />
+
+
+                        <div id="lnform">
+
+
+                            <div class="col-md-12">
+                                <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">LANGUAGES</div><br /><br />
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Language <span>*</span></label>
+
+                                        <select style="width:100%" class="form-control searchableselect" id="acclanguage" required oninvalid="this.setCustomValidity('Language is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Languages)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Proficiency <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="accProficiency" required oninvalid="this.setCustomValidity('Profeciency is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.SkillLevel)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-12" id="LanguagesAdded"></div>
+                                <input type="hidden" id="languageatleastone" />
+                            </div>
+                            <br style="clear:both" />
+                            <br style="clear:both" />
+                            <div class="col-sm-12">
+                                <div class="form-group formbtn ">
+                                    <div class="col-md-12">
+
+                                        <input id="lang_addmore" type="button" value="+ ADD MORE LANGUAGES" class="jsaddmore pull-left">
+
+                                        <input id="lang_save" type="submit" value="SAVE / NEXT" class="btnsubmit pull-right">
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+        <br style="clear:both" />
+
+        <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i> Completed tabs
+    </div>
+</div>
+
+
+
+
+<div id="CertModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">ADD <span>CERTIFICATION AUTHORITY</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="cert_form">
+                                
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Certification Authority <span>*</span></label>
+
+                                        <select class="form-control" id="cert_auth" required oninvalid="this.setCustomValidity('Authority is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Authority)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+ 
+
+                                <div class="col-sm-12">
+                                    <div class="form-group formbtn ">
+                                        <div class="text-left" style="float:left">
+
+                                        </div>
+                                        <div class="pull-right">
+                                            <input id="cert_save" type="submit" value="SAVE" class="btnsubmit">
+                                        </div>
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+<script>
+        function settoyear() {
+
+            $('#cert_toyear').empty();
+        for (i = @DateTime.Now.Year;i >= $('#cert_fromyear').val(); i--) {
+            $('#cert_toyear').append($('<option>',
+                {
+                    value: i,
+                    text: i
+                }));
+        }
+    }
+
+
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+
+
+        if ($("#cert_noexpiry").is(":checked")) {
+            $("#cert_tomonth,#cert_toyear").prop("disabled", true);
+            $("#cert_tomonth1,#cert_toyear1").prop("disabled", false);
+            $("#cert_tomonth,#cert_toyear").val("").change();
+        }
+        else {
+            $("#cert_tomonth,#cert_toyear").prop("disabled", false);
+            $("#cert_tomonth1,#cert_toyear1").prop("disabled", true);
+        }
+
+        getJobSeekerLanguages();
+
+
+        $("#cert_addmore").click(function () {
+
+            if ($('#cert_title').val() != "" && $('#cert_auth').val() != "" && ($('#cert_frommonth').val() != "" || $('#cert_frommonth1').val() != "") && ($('#cert_fromyear').val() != "" || $('#cert_fromyear1').val() != "") && ($('#cert_tomonth').val() != "" || $('#cert_tomonth1').val() != "") && ($('#cert_toyear').val() != "" || $('#cert_toyear1').val() != "")) {
+                addCertification();
+                $('#cert_title').val("").change();
+                $('#cert_auth').val("").change();
+                $("#cert_frommonth").val("").change();
+                $("#cert_fromyear").val("").change();
+                $("#cert_tomonth").val("").change();
+                $("#cert_toyear").val("").change();
+
+                window.location.href = "@Url.Content("~/CanRegAccomplishments/tabupdate/YES")";
+
+            }
+            else {
+                alert('All fields are mandatory');
+            }
+
+        });
+        $("#cert_save").click(function () {
+
+            if ($('#cert_title').val() != "" && $('#cert_auth').val() != "" && ($('#cert_frommonth').val() != "" || $('#cert_frommonth1').val() != "") && ($('#cert_fromyear').val() != "" || $('#cert_fromyear1').val() != "") && ($('#cert_tomonth').val() != "" || $('#cert_tomonth1').val() != "") && ($('#cert_toyear').val() != "" || $('#cert_toyear1').val() != "")) {
+                addCertification();
+
+            }
+            else {
+
+                //$("#cert_form").hide();
+                //$("#cert_form2").show();
+                alert('All fields are mandatory');
+            }
+
+        });
+
+
+        $("#lang_addmore").click(function () {
+            addLanguages();
+
+            $('#acclanguage').val('').change();
+            $('#accProficiency').val('').change();
+
+
+        });
+        $("#lang_save").click(function () {
+            if ($('#acclanguage').val() != "" && $('#accProficiency').val() != "") {
+                addLanguages();
+                window.location.href = "@Url.Content("CanRegIdealCareerMove")";
+            }
+            else {
+                if ($('#languageatleastone').val() == "1") {
+                     window.location.href = "@Url.Content("~/CanRegIdealCareerMove")";
+                }
+                else {
+                    alert("All language fields are mandatory");
+                }
+
+            }
+
+        });
+    });
+
+
+    function delCER(cacerid) {
+        if (confirm("Are you sure to delete?")) {
+
+            $.ajax({
+                url: "@Url.Content("~/DeleteCER/")" + cacerid,
+                success: function (data) {
+
+                   window.location.href = "@Url.Content("~/CanRegAccomplishments/tabupdate")";
+                },
+                error: function () {
+                    alert('No Certificates to delete!');
+                }
+            });
+        }
+    }
+
+    function getJobSeekerLanguages() {
+
+        var contenthtml = '';
+        var url = "@Url.Content("~/getJobSeekerLanguages")/" + @Session["Ca_ID"];
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Language + '</div><div class="skillleveltags">' + data[key].Proficiency + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsLanguage(' + data[key].Caln_ID + ')" class="fa fa-minus-circle"></i></div></div>';
+                    $('#languageatleastone').val("1");
+                });
+                $('#LanguagesAdded').html(contenthtml);
+
+            },
+            error: function () {
+                $('#languageatleastone').val("0");
+            }
+        });
+
+    }
+    function addLanguages() {
+
+
+
+        if ($('#acclanguage').val() != "" && $('#accProficiency').val() != "") {
+
+
+
+            $.ajax({
+                method: "POST",
+                url: "@Url.Content("~/JobSeekerLanguage")",
+                data: { LanguageID: $('#acclanguage').val(), ProficiencyID: $('#accProficiency').val() },
+                success: function (data) {
+
+
+                    getJobSeekerLanguages();
+                },
+                error: function () {
+                     
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#lnform2").hide();
+            $("#lnform").show();
+        }
+
+    }
+
+    function deletejsLanguage(Caln_ID) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteCandidateLanguage/")" + Caln_ID,
+            success: function (data) {
+
+                getJobSeekerLanguages();
+            },
+            error: function () {
+                alert('No Language to delete!');
+            }
+        });
+    }
+
+
+    $("#cert_nocertifications").click(function () {
+
+        $("#cert_form").toggle();
+    });
+
+
+    $("#cert_noexpiry").click(function () {
+        if ($("#cert_noexpiry").is(":checked")) {
+            $("#cert_tomonth,#cert_toyear").prop("disabled", true);
+            $("#cert_tomonth1,#cert_toyear1").prop("disabled", false);
+            $("#cert_tomonth,#cert_toyear").val("").change();
+        }
+        else {
+            $("#cert_tomonth,#cert_toyear").prop("disabled", false);
+            $("#cert_tomonth1,#cert_toyear1").prop("disabled", true);
+        }
+    });
+
+    function addCertification() {
+
+        $("#cert_noexpiry").val()
+
+
+        var cert_noexpiry = "";
+        if ($("#cert_noexpiry").is(':checked')) {
+            // alert('  selected');
+            cert_noexpiry = "true";
+
+            var FromMonth = $('#cert_frommonth').val();
+            var FromYear = $('#cert_fromyear').val();
+            var ToMonth = $('#cert_tomonth1').val()
+            var ToYear = $('#wh_toyear1').val();
+        }
+        else {
+            // alert('not selected');
+            cert_noexpiry = "false";
+
+            var FromMonth = $('#cert_frommonth').val();
+            var FromYear = $('#cert_fromyear').val();
+            var ToMonth = $('#cert_tomonth').val()
+            var ToYear = $('#cert_toyear').val();
+        }
+
+        $.ajax({
+            method: "POST",
+            url: "@Url.Content("~/JobSeekerCertification")",
+            data: {
+                CertificationID: $('#cert_title').val(), AuthorityID: $('#cert_auth').val(), FromMonth: FromMonth, FromYear: FromYear, ToMonth: ToMonth, ToYear: ToYear, DoNotExpire: cert_noexpiry
+            },
+            success: function (data) {
+             //   alert('Successfully added!');
+            },
+            error: function () {
+                
+            }
+        });
+
+    }
+</script>
+
+
+
+<style>
+    .registerformbox input, .registerformbox textarea, .registerformbox select {
+        height: 50px;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+

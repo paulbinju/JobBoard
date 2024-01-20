@@ -1,0 +1,435 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@*@using PagedList.Mvc.Common;*@
+@model IEnumerable<Jobs4Bahrainis.Models.CandidateSearchResultModel>  
+@{
+    ViewBag.Title = "JobSeeker";
+}
+@*@Html.Partial("_menu")*@
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+    .dashboard-middsec .col-md-12 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .pagination-container{
+        text-align:right;
+    }
+    .searchformsec a:hover {
+        color: #606163;
+    }
+
+    .modals {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        filter: alpha(opacity=60);
+        opacity: 0.6;
+        -moz-opacity: 0.8;
+    }
+
+    .center {
+        z-index: 1000;
+        margin: 300px auto;
+        padding: 10px;
+        width: 148px;
+        background-color: white;
+        border-radius: 10px;
+        filter: alpha(opacity=100);
+        opacity: 1;
+        -moz-opacity: 1;
+    }
+
+        .center img {
+            height: 128px;
+            width: 128px;
+        }
+
+    .center {
+        text-align: center;
+    }
+</style>
+@*<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul  style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li class="active"><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modals loader2" style="display:none">
+    <div class="center">
+        <img src="@Url.Content("~/images/loaderarrows.gif")" />
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+
+                <div class="col-sm-12">
+                  
+                    <div class="dashboard-middsec">
+                        <div class="row">
+                            <div class="homesearchsection wow fade-2 ">
+                                <h1 class="mainpagetitle Padd15">SEARCH <span>RESULTS</span></h1>
+                                <div class="searchformsec">
+                                    @{
+                                        if (Model != null && Model.Count() > 0)
+                                        {
+                                            <div style="background-color:#f0f0f0;color:#ec2027;padding:3px;text-align:left;font-style: italic;">
+                                                <b>@ViewBag.totalSearchResult <span>Total results found </span></b>
+                                                @*<div style="margin-top:8px;font-style:normal">
+                                                    <a href="@Url.Content("~/Home/CandidateSearchRefine?gender="+ Request.QueryString["gender"]+"&vc_AgeGroupID="+ Request.QueryString["vc_AgeGroupID"]+"&ca_lm_CountryId="+Request.QueryString["ca_lm_CountryId"]+"&notice_period="+Request.QueryString["notice_period"]+"&employment_status="+Request.QueryString["employment_status"]+
+                                                        "&wh_jobtitle="+Request.QueryString["wh_jobtitle"]+"&wh_company="+Request.QueryString["wh_company"]+"&ca_TotalRelavantExperience="+Request.QueryString["ca_TotalRelavantExperience"]+"&wh_level="+Request.QueryString["wh_level"]+"&eduSchool="+Request.QueryString["eduSchool"]+"&ca_lm_EducationLevel="+Request.QueryString["ca_lm_EducationLevel"]+"" +
+                                                        "&eduDegree="+Request.QueryString["eduDegree"]+"&eduField="+Request.QueryString["eduField"]+"&ic_currentjobtitle="+Request.QueryString["ic_currentjobtitle"]+"&icm_industry="+Request.QueryString["icm_industry"]+"&icm_salary="+Request.QueryString["icm_salary"]+"&employment_type="+Request.QueryString["employment_type"]+"&acclanguage="+Request.QueryString["acclanguage"]+"&last_login="+Request.QueryString["last_login"]+"" )">Refine Search</a>
+                                                </div>*@
+                                                <div class="postjobntn">  <a  style="float: right;margin-top: -32px;max-width:160px;font-style: normal;" class="graybtn" href="@Url.Content("~/Home/CandidateSearchRefine?gender="+ Request.QueryString["gender"]+"&vc_AgeGroupID="+ Request.QueryString["vc_AgeGroupID"]+"&ca_lm_CountryId="+Request.QueryString["ca_lm_CountryId"]+"&notice_period="+Request.QueryString["notice_period"]+"&employment_status="+Request.QueryString["employment_status"]+
+                                                        "&wh_jobtitle="+Request.QueryString["wh_jobtitle"]+"&wh_company="+Request.QueryString["wh_company"]+"&ca_TotalRelavantExperience="+Request.QueryString["ca_TotalRelavantExperience"]+"&wh_level="+Request.QueryString["wh_level"]+"&eduSchool="+Request.QueryString["eduSchool"]+"&ca_lm_EducationLevel="+Request.QueryString["ca_lm_EducationLevel"]+"" +
+                                                        "&eduDegree="+Request.QueryString["eduDegree"]+"&eduField="+Request.QueryString["eduField"]+"&ic_currentjobtitle="+Request.QueryString["ic_currentjobtitle"]+"&icm_industry="+Request.QueryString["icm_industry"]+"&icm_salary="+Request.QueryString["icm_salary"]+"&employment_type="+Request.QueryString["employment_type"]+"&acclanguage="+Request.QueryString["acclanguage"]+"&last_login="+Request.QueryString["last_login"]+"" )">Modify Search</a> </div>
+                                                </div>
+                                               
+
+                                                @*<a href="@Url.Content("~/Home/CandidateSearchRefine?gender="+ Request.QueryString["gender"]+"")"><b>Refine Search</b></a>*@
+
+                                            foreach (var js in Model)
+                                            {
+
+
+                                            <div class="listwhitebox tablistsec" style="cursor:pointer"  onclick='window.open("@Url.Content("~/Home/CandidateSearchDetail2?ca_id=" + js.ca_Id + "&vid=0")", "Candidate Profile", "width=900")'>
+
+                                                <div class="row" style="font-size:15px;">
+                                                    <div class="col-md-12">
+                                                        <div class="candidatesearchimage" style="float:left;width:100px">
+                                                            <img style="width:100px;height:100px;" src="@js.LogoURL" alt="" onerror="this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                                          
+                                                           
+                                                            <div class="usernamegraybg">
+
+                                                               
+                                                                <div><b style="font-size:14px">Last Active:</b> </div>
+                                                                  
+                                                                <div style="font-size:14px"> @(js.ca_LastLogin != null ? js.ca_LastLogin.GetValueOrDefault().ToString("dd-MM-yyyy") : "")</div>
+                                                               
+                                                                    
+
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="candidatesearchdet" style="margin-left:120px">
+                                                            @*<div class="row">
+                                                                <div class="col-md-8" style="font-size:18px;"><b>@js.ca_FullName</b></div>
+                                                                                                                <div class="col-md-2 postjobntn"><a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a> </div>
+                                                                    </div>
+                                                            *@
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="font-size:18px;margin-bottom:20px"><b>@js.ca_FullName</b></div>
+
+                                                                <div class="col-md-5"><b style="font-size:14px">Date of Birth:</b> @(js.ca_DateOfBirth != null ? js.ca_DateOfBirth.GetValueOrDefault().ToString("dd-MM-yyyy") : "")</div>
+                                                                @*<div class="col-md-4" style="font-size:14px"><b>Phone:</b> @js.ca_PhoneMobile</div>*@
+                                                                @*<div class="col-md-4"><b style="font-size:14px">Email:</b> @js.ca_EmailAddress</div>*@
+
+                                                                <div class="col-md-4"><b style="font-size:14px">Gender:</b> @js.ca_Gender</div>
+                                                                <div class="col-md-3"><b style="font-size:14px">Location:</b> @js.CurrentLocation </div>
+                                                                <div class="col-md-5"><b style="font-size:14px">Current Employer:</b> @js.Company</div>
+                                                                
+                                                                <div class="col-md-4"><b style="font-size:14px">Job Title:</b> @js.CurrentJobTitle</div>
+                                                                <div class="col-md-3"><b style="font-size:14px">Total Years of Experience:</b> @js.TotalExperience</div>
+                                                                
+                                                                <div class="col-md-5"><b style="font-size:14px">Education Level:</b> @js.EducationLevel</div>
+                                                                <div class="col-md-4"><b style="font-size:14px">Current Salary:</b>  @js.Salary</div>
+                                                                <div class="col-md-3"><b style="font-size:14px">Expected Salary:</b>  @js.ExpectedSalary</div>
+                                                                @*<div class="col-md-4"><b style="font-size:14px">Last Active :</b> </div>*@
+                                                                @*<div class="col-md-12 comdet"><b style="font-size:14px">Interested Sectors:</b> @js.Interest</div>*@
+                                                                <br  />
+                                                                <div class="col-md-12" style="padding-top: 15px;">
+                                                                <div class="comdet"><b style="font-size:14px">Profile Summary:</b> @Html.Raw(js.ca_Profile) </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        
+                                            }
+                                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("CandidateSearchResult2",
+                                           new { page, keyword = Request.QueryString["keyword"] , lname = Request.QueryString["lname"],
+                                               fname = Request.QueryString["fname"],age = Request.QueryString["age"],
+                                               gender = Request.QueryString["gender"] ,qualification = Request.QueryString["qualification"],
+                                               salary = Request.QueryString["salary"] , experience = Request.QueryString["experience"],
+                                               chksector = Request.QueryString["chksector"],
+                                               chksector2 = Request.QueryString["chksector2"],
+                                               vc_AgeGroupID = Request.QueryString["vc_AgeGroupID"],
+                                               ca_lm_CountryId = Request.QueryString["ca_lm_CountryId"],
+                                               acclanguage = Request.QueryString["acclanguage"],
+                                               notice_period = Request.QueryString["notice_period"],
+                                               employment_status = Request.QueryString["employment_status"],
+                                               wh_jobtitle = Request.QueryString["wh_jobtitle"],
+                                               wh_company = Request.QueryString["wh_company"],
+                                               ca_TotalRelavantExperience = Request.QueryString["ca_TotalRelavantExperience"],
+                                               wh_level = Request.QueryString["wh_level"],
+                                               eduSchool = Request.QueryString["eduSchool"],
+                                               ca_lm_EducationLevel = Request.QueryString["ca_lm_EducationLevel"],
+                                               eduDegree = Request.QueryString["eduDegree"],
+                                               eduField = Request.QueryString["eduField"],
+                                               skill_add = Request.QueryString["skill_add"],
+                                               ic_currentjobtitle = Request.QueryString["ic_currentjobtitle"],
+                                               icm_industry = Request.QueryString["icm_industry"],
+                                               icm_salary = Request.QueryString["icm_salary"],
+                                               employment_type = Request.QueryString["employment_type"],
+                                               last_login = Request.QueryString["last_login"]
+
+
+
+                                           }))
+                                        }
+                                        else
+                                        {
+                                            @*<div>
+                                                No Record Found!!!
+                                            </div>*@
+
+                                            <div style="background-color:#f0f0f0;color:#ec2027;padding:3px;text-align:left;font-style: italic;">
+                                                <b>No Record Found!</b>
+                                                @*<div style="margin-top:8px;font-style:normal">
+                                                        <a href="@Url.Content("~/Home/CandidateSearchRefine?gender="+ Request.QueryString["gender"]+"&vc_AgeGroupID="+ Request.QueryString["vc_AgeGroupID"]+"&ca_lm_CountryId="+Request.QueryString["ca_lm_CountryId"]+"&notice_period="+Request.QueryString["notice_period"]+"&employment_status="+Request.QueryString["employment_status"]+
+                                                            "&wh_jobtitle="+Request.QueryString["wh_jobtitle"]+"&wh_company="+Request.QueryString["wh_company"]+"&ca_TotalRelavantExperience="+Request.QueryString["ca_TotalRelavantExperience"]+"&wh_level="+Request.QueryString["wh_level"]+"&eduSchool="+Request.QueryString["eduSchool"]+"&ca_lm_EducationLevel="+Request.QueryString["ca_lm_EducationLevel"]+"" +
+                                                            "&eduDegree="+Request.QueryString["eduDegree"]+"&eduField="+Request.QueryString["eduField"]+"&ic_currentjobtitle="+Request.QueryString["ic_currentjobtitle"]+"&icm_industry="+Request.QueryString["icm_industry"]+"&icm_salary="+Request.QueryString["icm_salary"]+"&employment_type="+Request.QueryString["employment_type"]+"&acclanguage="+Request.QueryString["acclanguage"]+"&last_login="+Request.QueryString["last_login"]+"" )">Refine Search</a>
+                                                    </div>*@
+                                                <div class="postjobntn">
+                                                    <a style="float: right;margin-top: -32px;max-width:160px;font-style: normal;" class="graybtn" href="@Url.Content("~/Home/CandidateSearchRefine?gender="+ Request.QueryString["gender"]+"&vc_AgeGroupID="+ Request.QueryString["vc_AgeGroupID"]+"&ca_lm_CountryId="+Request.QueryString["ca_lm_CountryId"]+"&notice_period="+Request.QueryString["notice_period"]+"&employment_status="+Request.QueryString["employment_status"]+
+                                                        "&wh_jobtitle="+Request.QueryString["wh_jobtitle"]+"&wh_company="+Request.QueryString["wh_company"]+"&ca_TotalRelavantExperience="+Request.QueryString["ca_TotalRelavantExperience"]+"&wh_level="+Request.QueryString["wh_level"]+"&eduSchool="+Request.QueryString["eduSchool"]+"&ca_lm_EducationLevel="+Request.QueryString["ca_lm_EducationLevel"]+"" +
+                                                        "&eduDegree="+Request.QueryString["eduDegree"]+"&eduField="+Request.QueryString["eduField"]+"&ic_currentjobtitle="+Request.QueryString["ic_currentjobtitle"]+"&icm_industry="+Request.QueryString["icm_industry"]+"&icm_salary="+Request.QueryString["icm_salary"]+"&employment_type="+Request.QueryString["employment_type"]+"&acclanguage="+Request.QueryString["acclanguage"]+"&last_login="+Request.QueryString["last_login"]+"" )">Modify Search</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                </div>
+                                    @*<div class="col-md-8">
+                                        <div class="dashboardwhiteboxshadow tabacc-sec wow fade-2">
+                                          
+
+                                    <div class="tab-content">
+                                        <div class="vacancieslist">
+                                            <ul>
+
+                                                @foreach (var js in Model)
+                                                {
+
+                                                    <li>
+                                                        <div class="vacanciestuserimg"><a href="#"><img style="width:100px;height:100px;" src="@ViewBag.TestImg" alt="" onerror="this.src='@Url.Content("~/images/jobseeker.png")';" /></a></div>
+                                                        <div class="vacanciestdet">
+                                                            <h4><a href="#">@js.ca_FullName</a></h4>
+                                                            <span>@js.ca_EmailAddress</span> @js.ca_PhoneMobile<br />
+                                                            Gender: @js.ca_Gender &nbsp;&nbsp;&nbsp;Age: @js.ca_Age
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>*@
+                            @*<div class="col-md-4">
+                                    <div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3" style="padding:10px">
+                                        <h1 class="mainpagetitle Padd15"><span>FEATURED</span> SECTORS</h1>
+                                        <div class="feturlist">
+                                           <ul>
+                                                @{ count = 0;}
+                                                @foreach (var jsc in ViewBag.lstjobsectorcount)
+                                                {
+                                                    if (count < 18)
+                                                    {
+                                                        <li><a href="@Url.Content("~/SectorJobs/"+jsc.SectorID+"/"+jsc.SectorURL)">@jsc.Sector</a></li>
+                                                    }
+                                                    count++;
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+            <h1 class="mainpagetitle Padd15">Top <span>EMPLOYERS</span></h1>
+            <div class="topemp-carousel centertext wow fade-1-5">
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-3.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-4.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-5.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-6.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-3.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-4.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-5.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-6.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+            </div>
+        </div>*@
+        @*<div class="employerssec  dashboardwhiteboxshadow">
+            <div class="container">
+                <h1 class="mainpagetitle centertext ">Top <span>EMPLOYERS</span></h1>
+                <div class="emplogosec wow fade-2">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.diyar.bh/"><img src="@Url.Content("~/")images/emp-logo-1.jpg" alt="" /></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://firstbahrain.com/"><img src="@Url.Content("~/")images/emp-logo-2.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.hajihassan.com/"><img src="@Url.Content("~/")images/emp-logo-3.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.oriental-press.com/main.php"><img src="@Url.Content("~/")images/emp-logo-4.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="https://www.tamkeen.bh"><img src="@Url.Content("~/")images/emp-logo-5.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="https://www.bbkonline.com/Pages/default.aspx"><img src="@Url.Content("~/")images/emp-logo-6.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.bapco.net/en-us"><img src="@Url.Content("~/")images/emp-logo-7.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.almoayyed.com/"><img src="@Url.Content("~/")images/emp-logo-8.jpg" alt=""></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+<script>
+    $(document).ready(function (e) {
+        //alert('lol');
+        //loaderSpin2(true);
+        function loaderSpin2(visible) {
+            // alert('loader');
+            var $loader = $('.loader2');
+            if (visible === true) {
+                $loader.show();
+            }
+            else {
+                $loader.hide();
+                //setTimeout(function () {
+                //    $loader.hide();
+                //}, 10);
+            }
+        }
+
+        $(document).on('click', '.pagination a', function () {
+            loaderSpin2(true);
+        });
+    });
+</script>

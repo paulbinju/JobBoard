@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "Recruitment Reports";
+}
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+
+    .comdet span {
+        color: #606163;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li ><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<style>
+    .progress {
+        height: 30px;
+    }
+</style>
+      
+
+ 
+
+
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="padding:0px;">
+                <h1 class="mainpagetitle Padd15">USER ACTIVITY <span>REPORTS</span></h1>
+                <br />
+                <div class="dashboardwhiteboxshadow tabacc-sec col-md-12">
+
+
+
+
+
+
+
+
+                    <div class="col-md-3"><b></b></div>
+                    <div class="col-md-2"><b>Logins</b></div>
+                    <div class="col-md-2"><b>Job Post</b></div>
+                    <div class="col-md-2"><b>Profile Views</b></div>
+                    <div class="col-md-2"><b>CV Searches</b></div>
+                    <div class="col-md-1"><b>Credits</b></div>
+                    <div class="col-md-12"><hr /></div>
+                    <div class="col-md-12"></div>
+
+
+                    @{
+                        string namex = "";
+                        int colcount = 0;
+                    }
+
+                    @foreach (var r in ViewBag._report)
+                    {
+                        if (namex != r.name)
+                        {
+                            <div class="col-md-12"></div>
+                            <div class="col-md-3">
+                                <b>@r.name</b><br /><i style="font-size:12px;">(Last Login: @Convert.ToDateTime(r.lastlogin).ToString("dd-MM-yyyy hh:mm:ss tt"))</i>
+
+                            </div>
+                            foreach (var r2 in ViewBag._report)
+                            {
+                                if (r.name == r2.name)
+                                {
+                                    if (r2.type == "Login")
+                                    {
+                                        <div class="col-md-2">@r2.total</div>
+                                        colcount++;
+                                    }
+
+                                    if (r2.type == "Candidate Search")
+                                    {
+                                        <div class="col-md-2">@r2.total</div>
+                                        colcount++;
+
+                                    }
+                                    if (r2.type == "CV View")
+                                    {
+                                        <div class="col-md-2">@r2.total</div>
+                                        colcount++;
+
+                                    }
+                                    if (r2.type == "Job Post")
+                                    {
+                                        <div class="col-md-2">@r2.total</div>
+                                        colcount++;
+
+                                    }
+
+                                }
+                            }
+                            if (colcount < 4)
+                            {
+                                //  colcount = 4 - colcount;
+
+                                for (int x = colcount; x < 4; x++)
+                                {
+                                    <div class="col-md-2">0</div>
+                                }
+                            }
+                            <div class="col-md-1">@r.credits</div>
+                            <div class="col-md-12" style="border-bottom:1px solid #ececec;margin:0px 0 10px 0"></div>
+                            colcount = 0;
+                        }
+                        namex = r.name;
+
+
+                    }
+
+
+                    <br style="clear:both" />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-md-12"></div>       <div class="col-md-12"></div>       <div class="col-md-12"></div>       <div class="col-md-12"></div>       <div class="col-md-12"></div>
+
+
+                    @*<div class="col-md-10">
+
+            @{
+                double valcal = 0.0;
+            }
+            @foreach (var c in ViewBag.comcontacts)
+            {
+                <h4>@c.name</h4>
+                <table class="table table-striped" style="width:900px;">
+                    <tr>
+                        <th style="width:300px;">Activity</th>
+                        <th style="width:300px;">Total Usage</th>
+                        <th style="width:300px;"></th>
+                    </tr>
+
+                    @foreach (var r in ViewBag.Reports)
+                    {
+
+                        if (c.ct_id == r.ContactID)
+                        {
+
+                            if (r.Type == "Login")
+                            {
+                                valcal = (double)r.Total / Login * 100;
+                            }
+                            if (r.Type == "Candidate Search")
+                            {
+                                valcal = (double)r.Total / CandidateSearch * 100;
+                            }
+                            if (r.Type == "Job Post")
+                            {
+                                valcal = (double)r.Total / JobPost * 100;
+                            }
+                            if (r.Type == "CV View")
+                            {
+                                valcal = (double)r.Total / CVView * 100;
+                            }
+
+
+                            <tr>
+                                <td>@r.Type</td>
+                                <td>@r.Total</td>
+                                <td style="height:30px;">
+
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:@valcal%">
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+                <br /><br />
+            }
+
+
+        </div>*@
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

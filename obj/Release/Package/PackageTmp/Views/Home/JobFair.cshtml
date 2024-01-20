@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Bahrain Job Fair";
+    Layout = null;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+
+<div class="col-xs-12 col-lg-8 col-lg-offset-2  text-center">
+    <br />
+    <a href="http://www.jobs4bahrainis.com"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" /></a>
+    <br />
+    <br />
+
+   
+
+    <div class="col-lg-6 col-lg-offset-3" style="background-color: rgba(228,23,27,0.86);color:white;font-size:15px;height:600px; font-family: 'Roboto', sans-serif;">
+        <br style="clear:both" />
+
+        @if (ViewBag.Regd == "" || ViewBag.Regd == null)
+        {
+            using (Html.BeginForm("JobFair", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <h3>Register Now</h3>
+
+                <div class="col-lg-8 col-lg-offset-2">
+                    <br style="clear:both" />
+                    <b class="pull-left">Name *</b>
+                    <input type="text" name="Name" class="form-control" required />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <b class="pull-left">Email Address *</b>
+                    <input type="email" name="Email" class="form-control" required />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <b class="pull-left">Mobile No. *</b>
+                    <input type="number" name="Mobile" class="form-control" required />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <b class="pull-left">Attach CV *</b>
+                    <input type="file" name="file" class="form-control" style="text-align:left" />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <input type="submit" class="btn btn-default pull-right" value="Register" />
+                </div>
+
+                <br style="clear:both" />
+
+            }
+        }
+        else
+        {
+            <br style="clear:both" />
+            <br style="clear:both" />
+            <br style="clear:both" />
+            <br style="clear:both" />
+
+            <h3>You've successfully registered!</h3>
+        }
+
+    </div>
+</div>
+
+

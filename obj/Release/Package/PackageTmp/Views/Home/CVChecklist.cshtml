@@ -1,0 +1,111 @@
+﻿
+
+@{
+    ViewBag.Title = "About Us";
+}
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-7 pull-left">
+
+                        <div id="cssmenu">
+                            <ul>
+                                <li><a href="@Url.Content("~/JobSeekerProfile")">PROFILE</a></li>
+                                <li ><a href="@Url.Content("~/JobSeeker")">JOBS</a></li>
+                                <li class="has-sub active">
+                                    <a href="#">Career Services</a>
+                                    <ul>
+                                        <li><a href="@Url.Content("~/CVChecklist")">CV Checklist</a></li>
+                                        <li><a href="@Url.Content("~/CVTips")">CV Tips</a></li>
+                                        <li><a href="@Url.Content("~/CVWriting")">CV Writing Tips</a></li>
+                                    </ul>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_candidatelogin")
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+<br />
+<div class="dashboardsection  mainlightgraybg ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 fade-1 dashboardwhiteboxshadow">
+                <h1 class="mainpagetitle Padd15">CV <span>CHECKLIST</span></h1>
+                <br />
+                <div class="col-md-12">
+                    <p>
+                        <b>Are you happy with your CV?</b>
+                    </p>
+                    <ul>
+
+                        <li>Is the structure of your CV clear and concise and the lay out flowing in an easy to read format?</li>
+                        <li>Are your relevant skills and experience clearly highlighted and easy to see by a recruiter?</li>
+                        <li>
+                            Are all of your personal details up to date?
+                        </li>
+                        <li>
+                            Have you double checked all the spelling and grammar in your CV?
+                        </li>
+                        <li>
+                            Has the CV been tailored to the particular position you are applying for?
+                        </li>
+                        <li>
+                            For each of your roles is there a description of your responsibilities and achievements?
+                        </li>
+                        <li>
+                            Is there information that is irrelevant on your resume? If there is have you removed it?
+                        </li>
+                        <li>Are you happy with your CV?</li>
+                    </ul>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+ 
+
+@Html.Partial("_partners")
+
+
+
+
+
+

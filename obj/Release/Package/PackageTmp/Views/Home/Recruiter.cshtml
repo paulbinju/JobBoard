@@ -1,0 +1,3356 @@
+﻿
+@{
+    ViewBag.Title = "Recruiter";
+    common cmn = new common();
+
+    int userprofilesforpackage = 0;
+}
+
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+
+    body.modal-open {
+        overflow: visible;
+    }
+
+    .modal-backdrop {
+        z-index: 100000 !important;
+    }
+
+    .modal {
+        z-index: 100001 !important;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg  ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li class="active"><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+
+                                <li><a href="@Url.Content("~/ManageVacancies")">VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREERS RESOURCES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec  fade-1">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="margin-top:6%" /></a>
+
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon"><span style="font-size:18px;">@ViewBag.Company</span></div>
+                            <div class="uercon">
+                                @ViewBag.Name @ViewBag.SurName
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboardwhiteboxshadow paynowpostjob  fade-2">
+                        <div class="paynowjoblist">
+                            <div style="font-weight:bold;padding:20px 0 3px 15px;font-size:18px;">  Modify / Manage</div>
+                            <ul>
+                                <li><a href="#" data-toggle="modal" data-target="#LogoModal">Company Logo</a> <a href="#" data-toggle="modal" data-target="#LogoModal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#HeaderModal">Header Pic</a><a href="#" data-toggle="modal" data-target="#HeaderModal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#OverViewModal">Company Overview</a> <a href="#" data-toggle="modal" data-target="#OverViewModal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#BAmodal">Business Activities</a> <a href="#" data-toggle="modal" data-target="#BAmodal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#ManagementModal">Top Management</a> <a href="#" data-toggle="modal" data-target="#ManagementModal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#VideoModal">Company Video </a><a href="#" data-toggle="modal" data-target="#VideoModal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#PhotoGalleryModal">Photo Gallery</a><a href="#" data-toggle="modal" data-target="#PhotoGalleryModal" class="editiconcat"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="dashboardwhiteboxshadow paynowpostjob  fade-2">
+                        <div class="paynowjoblist">
+                            <ul>
+                                <li><a href="@Url.Content("~/Reports")">User Activity Report </a> <a href="@Url.Content("~/Reports")" class="editiconcat"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="@Url.Content("~/UserActivityReport")">Recruitment Report </a> <a href="@Url.Content("~/UserActivityReport")" class="editiconcat"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="postjobntn"> <a href="@Url.Content("~/Packages")" class="graybtn">PACKAGES</a> <a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a> </div>
+                    </div>
+
+
+                    @*<div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                       instagram
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-9">
+
+                <div class="homesearchsection  fade-1">
+                    <h1 class="mainpagetitle Padd15">MY <span>STATS</span></h1>
+
+
+
+                    <div class="row">
+
+
+
+                        @{ int itemcount = 0; }
+                        @foreach (var s in ViewBag.Statistics)
+                        {
+                            switch (itemcount)
+                            {
+                                case 0:
+                                    {
+                                        <div class="col-md-3 centertext">
+                                            @*<div class="progress pink">
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <span class="progress-right">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <div class="progress-value">
+
+                                                    </div>
+                                                </div>*@
+                                            <div class="numbercrunch">@s</div>
+                                            <div style="font-size:18px;">Total Jobs</div>
+                                        </div>
+
+
+                                        break;
+                                    }
+
+                                case 3:
+                                    {
+
+                                        <div class="col-md-2 centertext">
+                                            @*<div class="progress yellow">
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <span class="progress-right">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <div class="progress-value"></div>
+                                                </div>*@
+                                            <div class="numbercrunch">@s</div>
+                                            <div style="font-size:18px;">Active Jobs</div>
+                                        </div>
+
+                                        break;
+                                    }
+
+                            }
+
+
+
+
+
+                            itemcount++;
+                        }
+                        <div class="col-md-2 centertext">
+
+                            <div class="numbercrunch">@ViewBag.TotalFollowers</div>
+                            <div style="font-size:18px;">Followers</div>
+                        </div>
+                        <div class="col-md-2 centertext">
+                            @*<div class="progress pink">
+                                    <span class="progress-left">
+                                        <span class="progress-bar"></span>
+                                    </span>
+                                    <span class="progress-right">
+                                        <span class="progress-bar"></span>
+                                    </span>
+                                    <div class="progress-value"></div>
+                                </div>*@
+                            <div class="numbercrunch">@ViewBag.TotalCVViewed</div>
+                            <div style="font-size:18px;">CV Views</div>
+                        </div>
+
+                        <div class="col-md-3 centertext">
+                            @*<div class="progress yellow">
+                                    <span class="progress-left">
+                                        <span class="progress-bar"></span>
+                                    </span>
+                                    <span class="progress-right">
+                                        <span class="progress-bar"></span>
+                                    </span>
+                                    <div class="progress-value"></div>
+                                </div>*@
+                            <div class="numbercrunch">@ViewBag.TotalJobViews</div>
+                            <div style="font-size:18px;">Jobs Viewed</div>
+                        </div>
+                     
+
+                        
+                    </div>
+                    <br />
+                </div>
+
+
+
+                <link href="@Url.Content("~/css/graphcircle.css")" rel="stylesheet" />
+
+
+                @if (ViewBag.CreditsAvailable != null)
+                {
+                    <div class="homesearchsection  fade-1">
+                        <h1 class="mainpagetitle Padd15">
+                            <span>SUBSCRIPTION</span> PACKAGE -
+                            @foreach (var s in ViewBag.Subscription)
+                            {
+                                <span style="text-transform:uppercase">@s.PackageName</span>
+                            }
+
+                        </h1>
+                        <div class="searchformsec">
+
+                            <div class="row">
+
+                                <div class="col-md-12 ">
+
+
+                                    <style>
+                                        @@keyframes loading-6 {
+                                            0% {
+                                                -webkit-transform: rotate(0deg);
+                                                transform: rotate(0deg);
+                                            }
+
+                                            100% {
+                                                -webkit-transform: rotate(100);
+                                                transform: rotate(100);
+                                            }
+                                        }
+
+                                        @@keyframes loading-7 {
+                                            0% {
+                                                -webkit-transform: rotate(0deg);
+                                                transform: rotate(0deg);
+                                            }
+
+                                            100% {
+                                                -webkit-transform: rotate(180deg);
+                                                transform: rotate(180deg);
+                                            }
+                                        }
+                                    </style>
+                                    <div class="col-md-6 centertext">
+                                        <div class="col-md-12 subheads">CANDIDATE VIEW CREDITS</div>
+                                        <br style="clear:both" /><br />
+                                        <div class="progress burgandy">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <div class="progress-value">
+                                                <div class="numbercrunch2">
+                                                    @foreach (var s in ViewBag.Subscription)
+                                                    {
+                                                        if (s.PackageName == "Platinum")
+                                                        {
+                                                            <div style="font-size:25px;top:2%">Unlimited</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>@ViewBag.thismonthcvcredit</span>
+                                                        }
+                                                    }
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="font-size:16px;margin:3px 0 10px 0;">
+                                            *out of
+                                            @foreach (var s in ViewBag.Subscription)
+                                            {
+                                                if (s.PackageName == "Platinum")
+                                                {
+                                                    <span>Unlimited</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@ViewBag.totalmonthcvcredit</span>
+                                                }
+                                            }
+                                            credits for<br />the month of @ViewBag.ThisMonthname
+                                        </div>
+                                        <a href="@Url.Content("~/UserActivityReport")"><button class="btnsubmit">CANDIDATES VIEWED</button></a>
+                                    </div>
+
+
+
+                                    <div class="col-md-6 centertext">
+                                        <div class="col-md-12 subheads">JOB POSTING CREDITS</div>
+                                        <br style="clear:both" /><br />
+                                        <div class="progress burgandy">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <div class="progress-value">
+                                                <div class="numbercrunch2">
+                                                    @foreach (var s in ViewBag.Subscription)
+                                                    {
+                                                        if (s.PackageName == "Platinum")
+                                                        {
+                                                            <div style="font-size:25px;top:2%">Unlimited</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>@ViewBag.thismonthjobcredit</span>
+                                                        }
+                                                    }
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="font-size:16px;margin:3px 0 10px 0;">
+                                            *out of
+
+                                            @foreach (var s in ViewBag.Subscription)
+                                            {
+                                                if (s.PackageName == "Platinum")
+                                                {
+                                                    <span>Unlimited</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@ViewBag.totalmonthjobcredit</span>
+                                                }
+                                            }
+
+                                            credits for<br />the month of @ViewBag.ThisMonthname
+                                        </div>
+                                        <a href="@Url.Content("~/ManageVacancies")"><button class="btnsubmit">JOBS POSTED</button></a>
+
+
+                                    </div>
+
+                                    <br style="clear:both" />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <table class="col-md-12">
+                                        <tr>
+
+                                            <th>Package</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Purchase Date</th>
+                                        </tr>
+
+                                        @foreach (var s in ViewBag.Subscription)
+                                        {
+                                            <tr>
+
+                                                <td>@s.PackageName</td>
+                                                <td>@s.StartDate.ToString("dd MMM yyyy")</td>
+                                                <td>@s.EndDate.ToString("dd MMM yyyy")</td>
+                                                <td>@s.PurchaseDate.ToString("dd MMMM yyyy")</td>
+
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                }
+
+
+                @if (ViewBag.HeaderPic != null)
+                {
+                    <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#HeaderModal"></i></div>
+                    <div class="row" style="max-height:325px;overflow:hidden;clear:both">
+                        <div class="col-md-12">
+                            <img class="img-responsive" src="@Url.Content("~/" + ViewBag.HeaderPic)" />
+                        </div>
+
+                    </div>
+                    <br style="clear:both" />
+                }
+                else
+                {
+                    <table class="col-md-12 text-center" style="height:325px;background-color:#f0f0f0">
+                        <tr>
+                            <td style="vertical-align:middle;text-align:center">
+                                <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#HeaderModal" class="fa fa-photo"></i>
+                                <br />
+                                <br />
+                                Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#HeaderModal">upload header pic from computer</a>
+                                <br />
+
+                                <span>Size : 900 pixels Width X 325 pixels Height</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                }
+
+
+                <div class="homesearchsection  fade-1">
+
+
+                    <h1 class="mainpagetitle Padd15">COMPANY <span>OVERVIEW</span> <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#OverViewModal"></i></div></h1>
+
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            <div class="col-md-12" style="font-size:20px;font-weight:bold;margin:0 0 15px 0">About Us</div>
+                            <br style="clear:both" />
+
+                            <div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Telephone:</span> @ViewBag.CompanyPhone
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Company Size:</span> @ViewBag.ThisCompanySize
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Email:</span> @ViewBag.Email
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Business Activities:</span>
+                                    @{ int x = 0; }
+                                    @foreach (var ba in ViewBag.CompanyBA)
+                                    {
+                                        if (x == 0)
+                                        {
+                                            <span>@ba.lm_Value</span>
+                                        }
+                                        else
+                                        {
+                                            <span>, @ba.lm_Value</span>
+                                        }
+                                        x++;
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Address:</span> @ViewBag.PostalAddress
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Last Updated:</span> @ViewBag.LastUpdated.ToString("dd-MMM-yyyy")
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+                        <br style="clear:both" />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="font-size:20px;font-weight:bold;margin:0 0 15px 0;float:left">
+                                   
+                                    @foreach (var s in ViewBag.Subscription)
+                                    {
+                                        if (s.PackageName == "Platinum")
+                                        {
+                                            <span> Platinum (@ViewBag.Contacts.Count of 12)</span>
+                                            userprofilesforpackage = 12;
+                                        }
+                                        else if (s.PackageName == "Gold")
+                                        {
+                                            <span> Gold (@ViewBag.Contacts.Count of 6)</span>
+                                            userprofilesforpackage = 6;
+                                        }
+                                        else if (s.PackageName == "Silver")
+                                        {
+                                            <span> Silver (@ViewBag.Contacts.Count of 3)</span>
+                                            userprofilesforpackage = 3;
+                                        }
+                                        else if (s.PackageName == "Bronze")
+                                        {
+                                            <span> Bronze (@ViewBag.Contacts.Count of 1)</span>
+                                            userprofilesforpackage = 1;
+                                        }
+                                        else if (s.PackageName == "Trial")
+                                        {
+                                            <span> Trial (@ViewBag.Contacts.Count of 6)</span>
+                                            userprofilesforpackage = 6;
+                                        }
+                                    }
+
+ 
+                                </div>
+
+                                @if (ViewBag.Subscription.Count != 0)
+                                {
+                                    if (userprofilesforpackage - ViewBag.Contacts.Count != 0)
+                                    {
+                                        if (ViewBag.ct_Superuser == true)
+                                        {
+                                        <div class="pull-right" style="width:93px;cursor:pointer" data-toggle="modal" data-target="#ContactModal">Add Users&nbsp;&nbsp;<i class="fa fa-plus-square-o" style="color:red;font-size:20px;cursor:pointer"></i></div>
+                                        }
+                                    }
+                                }
+                                <table class="col-md-12">
+                                    <tr class="fullgraybg">
+                                        <th></th>
+                                        <th style="padding:6px">Name</th>
+                                        <th>Position</th>
+                                        <th>Email</th>
+                                        <th>Type</th>
+                                        <th>Post Jobs</th>
+                                        <th>Search CV</th>
+                                        <th>Modify</th>
+
+                                    </tr>
+                                    @{
+                                        int alterrow = 0;
+                                    }
+                                    @foreach (var con in ViewBag.Contacts)
+                                    {
+                                        <tr @(alterrow == 1 ? "class=fullgraybg" : "")>
+                                            <td>
+@if (ViewBag.ct_Id == con.ct_Id)
+{
+    <i class="fa fa-play" style="color:red;font-size:8px;"></i>
+}
+                                            </td>
+                                            <td style="padding:6px">@con.ct_Forename @con.ct_Surname</td>
+                                            <td>@con.lm_Value</td>
+                                            <td>@con.ct_EmailAddress</td>
+                                            <td>@(con.ct_Superuser == true ? "Admin" : "User")</td>
+
+                                            <td style="text-align:center">
+                                                @if (ViewBag.ct_Superuser == true || ViewBag.ct_Id == con.ct_Id)
+                                                {
+                                                    <i class="fa @(con.ct_PostJob == true ? "fa-check" : "fa-times")" style="color:red;font-size:20px;"></i>
+                                                }
+                                            </td>
+                                            <td style="text-align:center">
+                                                @if (ViewBag.ct_Superuser == true || ViewBag.ct_Id == con.ct_Id)
+                                                {
+                                                    <i class="fa @(con.ct_SearchCV == true ? "fa-check" : "fa-times")" style="color:red;font-size:20px;"></i>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (ViewBag.ct_Superuser == true || ViewBag.ct_Id == con.ct_Id)
+                                                {
+                                                    <i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ContactEditModal-@con.ct_Id"></i>
+                                                }
+                                            </td>
+                                        </tr>
+
+                                        if (alterrow == 0)
+                                        {
+                                            alterrow = 1;
+                                        }
+                                        else
+                                        {
+                                            alterrow = 0;
+                                        }
+                                    }
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">
+                        COMPANY <span>PROFILE</span>
+                        <div title="Publish" class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-check-circle-o" style="color:red;font-size:20px;cursor:pointer" onclick="PublishProfile(1)"></i></div>
+                        <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Preview"><a href="@ViewBag.PreviewURL" target="_blank"><i class="fa fa-search" style="color:red;font-size:20px;cursor:pointer"></i></a></div>
+                    </h1>
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ProfileModal1"></i></div>
+                            </div>
+                            @if (ViewBag.ProfileTitle1 != null)
+                            {
+
+                                <div class="col-md-6" style="max-height:300px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic1" /></div>
+                                <div class="col-md-6" style="max-height:300px;overflow:hidden">
+                                    <h4>@ViewBag.ProfileTitle1</h4>
+                                    @Html.Raw(ViewBag.CompanyProfile)
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="col-md-6">
+                                    <table class="text-center" style="height:320px;background-color:#f0f0f0;width:100%">
+                                        <tr>
+                                            <td style="vertical-align:middle;text-align:center">
+                                                <i style="font-size:25px;color:#ec2027;cursor:pointer" class="fa fa-photo" data-toggle="modal" data-target="#ProfileModal1"></i>
+                                                <br />
+                                                <br />
+                                                Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#ProfileModal1">upload photos</a>
+                                                <br />
+                                                Size: 500 pixels width X 320 pixels height
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 data-toggle="modal" data-target="#ProfileModal" style="cursor:pointer">Add a title</h4>
+
+
+                                    Add text
+
+
+                                </div>
+                            }
+
+
+                            <div class="col-md-12">
+                                <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ProfileModal2"></i></div>
+                            </div>
+                            @if (ViewBag.ProfileTitle2 != null)
+                            {
+
+
+                                <div class="col-md-6" style="max-height:300px;overflow:hidden">
+                                    <h4>@ViewBag.ProfileTitle2</h4>
+                                    @Html.Raw(ViewBag.CompanyProfile2)
+
+
+                                </div>
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic2" /></div>
+                            }
+                            else
+                            {
+                                <div class="col-md-6">
+                                    <h4 data-toggle="modal" data-target="#ProfileModal2" style="cursor:pointer">Add a title</h4>
+
+
+                                    Add text
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="text-center" style="height:320px;background-color:#f0f0f0;width:100%">
+                                        <tr>
+                                            <td style="vertical-align:middle;text-align:center">
+                                                <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#ProfileModal2" class="fa fa-photo"></i>
+                                                <br />
+                                                <br />
+                                                Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#ProfileModal2">upload photos</a>
+                                                <br />
+                                                Size: 500 pixels width X 320 pixels height
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            }
+
+                            <div class="col-md-12">
+                                <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ProfileModal3"></i></div>
+                            </div>
+                            @if (ViewBag.ProfileTitle3 != null)
+                            {
+
+
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic3" /></div>
+                                <div class="col-md-6" style="max-height:300px;overflow:hidden">
+                                    <h4>@ViewBag.ProfileTitle3</h4>
+
+                                    @Html.Raw(ViewBag.CompanyProfile3)
+
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="col-md-6">
+                                    <table class="text-center" style="height:320px;background-color:#f0f0f0;width:100%">
+                                        <tr>
+                                            <td style="vertical-align:middle;text-align:center">
+                                                <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#ProfileModal3" class="fa fa-photo"></i>
+                                                <br />
+                                                <br />
+                                                Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#ProfileModal3">upload photos</a>
+                                                <br />
+                                                Size: 500 pixels width X 320 pixels height
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 data-toggle="modal" data-target="#ProfileModal3" style="cursor:pointer">Add a title</h4>
+
+
+                                    Add text
+
+
+                                </div>
+                            }
+
+
+                            <div class="col-md-12">
+                                <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ProfileModal4"></i></div>
+                            </div>
+
+
+
+
+                            @if (ViewBag.ProfileTitle4 != null && ViewBag.ProfileTitle4 != "")
+                            {
+
+                                <div class="col-md-6" style="max-height:300px;overflow:hidden">
+                                    <h4>@ViewBag.ProfileTitle4</h4>
+                                    @Html.Raw(ViewBag.CompanyProfile4)
+                                </div>
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic4" /></div>
+
+                                <br style="clear:both" />
+                                <br style="clear:both" />
+
+                            }
+                            else
+                            {
+                                <div class="col-md-6">
+                                    <h4 data-toggle="modal" data-target="#ProfileModal4" style="cursor:pointer">Add a title</h4>
+
+
+                                    Add text
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="text-center" style="height:320px;background-color:#f0f0f0;width:100%">
+                                        <tr>
+                                            <td style="vertical-align:middle;text-align:center">
+                                                <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#ProfileModal4" class="fa fa-photo"></i>
+                                                <br />
+                                                <br />
+                                                Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#ProfileModal4">upload photos</a>
+                                                <br />
+                                                Size: 500 pixels width X 320 pixels height
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            }
+
+                            <div class="col-md-12">
+                                <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ProfileModal5"></i></div>
+                            </div>
+                            @if (ViewBag.ProfileTitle5 != null && ViewBag.ProfileTitle5 != "")
+                            {
+
+
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic5" /></div>
+                                <div class="col-md-6" style="max-height:300px;overflow:hidden">
+                                    <h4>@ViewBag.ProfileTitle5</h4>
+                                    @Html.Raw(ViewBag.CompanyProfile5)
+
+
+                                </div>
+
+
+                            }
+                            else
+                            {
+
+                                <div class="col-md-6">
+                                    <table class="text-center" style="height:320px;background-color:#f0f0f0;width:100%">
+                                        <tr>
+                                            <td style="vertical-align:middle;text-align:center">
+                                                <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#ProfileModal5" class="fa fa-photo"></i>
+                                                <br />
+                                                <br />
+                                                Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#ProfileModal5">upload photos</a>
+                                                <br />
+                                                Size: 500 pixels width X 320 pixels height
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 data-toggle="modal" data-target="#ProfileModal5" style="cursor:pointer">Add a title</h4>
+
+
+                                    Add text
+
+
+                                </div>
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">TOP <span>MANAGEMENT</span> <div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#ManagementModal"></i></div></h1>
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            @if (ViewBag.CompanyManagement.Count != 0)
+                            {
+
+
+                                foreach (var cm in ViewBag.CompanyManagement)
+                                {
+                                    <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                            <img style="height:190px;width:204px;" src="@cm.Extn" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                        </div>
+                                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                            <b>@cm.Name</b>
+                                            <br />
+                                            @cm.Position
+                                        </div>
+                                    </div>
+                                    <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                            <img style="height:190px;width:204px;" src="@cm.Extn2" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                        </div>
+                                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                            <b>@cm.Name2</b>
+                                            <br />
+                                            @cm.Position2
+                                        </div>
+                                    </div>
+                                    <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                            <img style="height:190px;width:204px;" src="@cm.Extn3" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                        </div>
+                                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                            <b>@cm.Name3</b>
+                                            <br />
+                                            @cm.Position3
+                                        </div>
+                                    </div>
+                                    <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                            <img style="height:190px;width:204px;" src="@cm.Extn4" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                        </div>
+                                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                            <b>@cm.Name4</b>
+                                            <br />
+                                            @cm.Position4
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                for (int t = 0; t <= 3; t++)
+                                {
+                                    <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                        <table class="text-center" style="height:190px;background-color:#f0f0f0;width:100%">
+                                            <tr>
+                                                <td style="vertical-align:middle;text-align:center">
+                                                    <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#ManagementModal" class="fa fa-photo"></i>
+                                                    <br />
+                                                    <br />
+                                                    Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#ManagementModal">add photo</a>
+                                                    <br />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div style="background-color:#444;color:white;padding:3px;text-align:center;cursor:pointer" data-toggle="modal" data-target="#ManagementModal">
+                                            <b>+ Add Top Management</b>
+                                            <br />
+                                            + Add Position
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <style>
+                    .video-container {
+                        position: relative;
+                        padding-bottom: 56.25%;
+                        padding-top: 30px;
+                        height: 0;
+                        overflow: hidden;
+                    }
+
+                        .video-container iframe,
+                        .video-container object,
+                        .video-container embed {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                    .switch input {
+                        display: none;
+                    }
+
+                    .switch {
+                        display: inline-block;
+                        width: 47px;
+                        height: 17px;
+                        margin: 0px;
+                        transform: translateY(50%);
+                        position: relative;
+                    }
+
+                    .slider {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        border-radius: 20px;
+                        box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+                        cursor: pointer;
+                        border: 3px solid transparent;
+                        overflow: hidden;
+                        transition: .4s;
+                    }
+
+                        .slider:before {
+                            position: absolute;
+                            content: "";
+                            width: 100%;
+                            height: 100%;
+                            background: #777;
+                            border-radius: 20px;
+                            transform: translateX(-30px);
+                            transition: .4s;
+                        }
+
+                    input:checked + .slider:before {
+                        transform: translateX(30px);
+                        background: red;
+                    }
+
+                    input:checked + .slider {
+                        box-shadow: 0 0 0 2px red,0 0 2px red;
+                    }
+                </style>
+
+
+
+                <div class="homesearchsection  fade-1">
+
+                    <div class="mainpagetitle Padd15">
+                        COMPANY <span>VIDEO</span>
+                        @if (ViewBag.videourls.Count != 0)
+                        {
+                            <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Edit Video"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" onclick="editvideo()"></i></div>
+                        }
+                        <div title="Add Video" class="pull-right" style="width:15px;margin:10px 10px 0 0"><i class="fa fa-plus-square-o" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#VideoModal"></i></div>
+
+                        <div class="pull-right" style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                            <label class="switch">
+                                <input type="checkbox" id="chkvideo" @(ViewBag.co_VideoPublished == true ? "checked" : "")>
+                                <span class="slider"></span>
+                            </label>
+                            <div style="float:right;margin:9px 20px 0 5px">Visible</div>
+                        </div>
+                    </div>
+
+                    <script>
+                        $("#chkvideo").change(function () {
+                            if ($(this).prop("checked") == true) {
+                                PublishVideo(1);
+                            } else {
+                                PublishVideo(0);
+                            }
+                        });
+                    </script>
+
+
+
+
+
+
+
+
+
+
+                    <div class="searchformsec">
+
+                        <div class="row">
+
+                            @if (ViewBag.videourls.Count != 0)
+                            {
+
+
+                                foreach (var v in ViewBag.videourls)
+                                {
+                                    <div class="col-md-4">
+                                        <div class="videodelrow"><i class="fa fa-times-circle" style="color:red;font-size:20px;cursor:pointer;float:right" title="Delete Company Video" onclick="delVDO(@v.CoVideo_ID)"></i><br /></div>
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/@v.VideoURL" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                for (int v = 1; v <= 3; v++)
+                                {
+                                    <div class="col-md-4">
+                                        <table class="text-center" style="height:200px;background-color:#f0f0f0;width:100%">
+                                            <tr>
+                                                <td style="vertical-align:middle;text-align:center">
+                                                    <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#VideoModal" class="fa fa-file-video-o"></i>
+                                                    <br />
+                                                    <br />
+                                                    Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#VideoModal">upload videos</a>
+                                                    <br />
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <script>
+
+                        $(".videodelrow").hide();
+                        function editvideo() {
+                            $(".videodelrow").show();
+                        }
+
+
+                </script>
+
+
+                @{
+                    int countpg = 0;
+
+                }
+
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">
+                        PHOTO <span>GALLERY</span>
+                        @if (ViewBag.photogallery.Count != 0)
+                        {
+                            <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Edit Photo Gallery"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" onclick="editphoto()"></i></div>
+                        }
+                        <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Add Photo Gallery"><i class="fa fa-plus-square-o" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#PhotoGalleryModal"></i></div>
+
+                        <div class="pull-right" style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                            <label class="switch">
+                                <input type="checkbox" id="chkgallery" @(ViewBag.co_GalleryPublished == true ? "checked" : "")>
+                                <span class="slider"></span>
+                            </label>
+                            <div style="float:right;margin:9px 20px 0 5px">Visible</div>
+                        </div>
+                    </h1>
+
+                    <script>
+                        $("#chkgallery").change(function () {
+                            if ($(this).prop("checked") == true) {
+                                PublishGallery(1);
+                            } else {
+                                PublishGallery(0);
+                            }
+                        });
+                    </script>
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            @if (ViewBag.photogallery.Count != 0)
+                            {
+                                foreach (var pg in ViewBag.photogallery)
+                                {
+
+                                    <div class="col-md-4">
+                                        <div class="photodelrow"><i class="fa fa-times-circle" style="color:red;font-size:20px;cursor:pointer;float:right" title="Delete Photo" onclick="delpg(@pg.PGID)"></i><br /></div>
+
+
+                                        <a target="_blank" href="@Url.Content("~/" + pg.ImagePath)">
+                                            <img class="img-responsive" src="@pg.ImagePath" />
+
+                                        </a>
+                                    </div>
+                                    countpg++;
+                                    if (countpg == 3 || countpg == 6 || countpg == 9)
+                                    {
+                                        <br style="clear:both" />
+                                        <br style="clear:both" />
+
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                for (int v = 1; v <= 3; v++)
+                                {
+                                    <div class="col-md-4">
+                                        <table class="text-center" style="height:200px;background-color:#f0f0f0;width:100%">
+                                            <tr>
+                                                <td style="vertical-align:middle;text-align:center">
+                                                    <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#PhotoGalleryModal" class="fa fa-photo"></i>
+                                                    <br />
+                                                    <br />
+                                                    Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#PhotoGalleryModal">upload photos</a>
+                                                    <br />
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                <script>
+
+                        $(".photodelrow").hide();
+                        function editphoto() {
+                            $(".photodelrow").show();
+                        }
+
+
+                </script>
+
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">
+                        TESTI<span>MONIALS</span>
+                        @if (ViewBag.testimonials.Count != 0)
+                        {
+                            <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Edit Testimonials"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" onclick="editTestimonials()"></i></div>
+                        }
+                        <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Add Testimonials"><i class="fa fa-plus-square-o" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#TestimonialModal"></i></div>
+
+                        <div class="pull-right" style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                            <label class="switch">
+                                <input type="checkbox" id="chktestimony" @(ViewBag.co_TestimonialsPublished == true ? "checked" : "")>
+                                <span class="slider"></span>
+                            </label>
+                            <div style="float:right;margin:9px 20px 0 5px">Visible</div>
+                        </div>
+                    </h1>
+                    <script>
+                        $("#chktestimony").change(function () {
+                            if ($(this).prop("checked") == true) {
+                                PublishTestimonials(1);
+                            } else {
+                                PublishTestimonials(0);
+                            }
+                        });
+                    </script>
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            @if (ViewBag.testimonials.Count != 0)
+                            {
+                                countpg = 0;
+                                foreach (var ct in ViewBag.testimonials)
+                                {
+
+                                    <div class="col-md-4">
+                                        <div class="Testimonialsrow"><i class="fa fa-times-circle" style="color:red;font-size:20px;cursor:pointer;float:right" title="Delete Testimonials" onclick="delct(@ct.CTID)"></i><br /></div>
+
+
+                                        <a target="_blank" href="@Url.Content("~/" + ct.CTPicExtension)">
+                                            <img class="img-responsive" src="@ct.CTPicExtension" />
+                                            <br style="clear:both" />
+
+                                            <div>@Html.Raw(ct.CTDetails)</div>
+                                        </a>
+                                    </div>
+                                    countpg++;
+                                    if (countpg == 3 || countpg == 6 || countpg == 9)
+                                    {
+                                        <br style="clear:both" />
+                                        <br style="clear:both" />
+
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                for (int v = 1; v <= 3; v++)
+                                {
+                                    <div class="col-md-4">
+                                        <table class="text-center" style="height:200px;background-color:#f0f0f0;width:100%">
+                                            <tr>
+                                                <td style="vertical-align:middle;text-align:center">
+                                                    <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#TestimonialModal" class="fa fa-photo"></i>
+                                                    <br />
+                                                    <br />
+                                                    Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#TestimonialModal">upload Testimonials</a>
+                                                    <br />
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                <script>
+
+                        $(".Testimonialsrow").hide();
+                        function editTestimonials() {
+                            $(".Testimonialsrow").show();
+                        }
+
+
+                </script>
+
+
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">
+                        MED<span>IA</span>
+                        @if (ViewBag.medias.Count != 0)
+                        {
+                            <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Edit Medias"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" onclick="editMedias()"></i></div>
+                        }
+                        <div class="pull-right" style="width:15px;margin:10px 10px 0 0" title="Add Medias"><i class="fa fa-plus-square-o" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#MediaModal"></i></div>
+
+                        <div class="pull-right" style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                            <label class="switch">
+                                <input type="checkbox" id="chkmedia" @(ViewBag.co_MediaPublished == true ? "checked" : "")>
+                                <span class="slider"></span>
+                            </label>
+                            <div style="float:right;margin:9px 20px 0 5px">Visible</div>
+                        </div>
+                    </h1>
+
+                    <script>
+                        $("#chkmedia").change(function () {
+                            if ($(this).prop("checked") == true) {
+                                PublishMedia(1);
+                            } else {
+                                PublishMedia(0);
+                            }
+                        });
+                    </script>
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            @if (ViewBag.medias.Count != 0)
+                            {
+                                foreach (var cmedia in ViewBag.medias)
+                                {
+
+                                    <div class="col-md-12">
+                                        <div class="Mediasrow"><i class="fa fa-times-circle" style="color:red;font-size:20px;cursor:pointer;float:left" title="Delete Medias" onclick="delmedia(@cmedia.CMID)"></i></div>
+                                        <a target="_blank" href="@Url.Content("~/" + cmedia.CMPicExtension)">
+                                            <div>@Html.Raw(cmedia.CMTitle)</div>
+                                        </a>
+                                    </div>
+                                    <br style="clear:both" />
+
+                                }
+                            }
+                            else
+                            {
+                                for (int v = 1; v <= 3; v++)
+                                {
+                                    <div class="col-md-4">
+                                        <table class="text-center" style="height:200px;background-color:#f0f0f0;width:100%">
+                                            <tr>
+                                                <td style="vertical-align:middle;text-align:center">
+                                                    <i style="font-size:25px;color:#ec2027;cursor:pointer" data-toggle="modal" data-target="#MediaModal" class="fa fa-photo"></i>
+                                                    <br />
+                                                    <br />
+                                                    Click here to <a href="" style="color:#ec2027" data-toggle="modal" data-target="#MediaModal">upload Media</a>
+                                                    <br />
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                <script>
+
+                        $(".Mediasrow").hide();
+                        function editMedias() {
+                            $(".Mediasrow").show();
+                        }
+
+
+                </script>
+
+
+
+
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">ACTIVE JOB <span> VACANCIES</span></h1>
+
+
+
+
+                    @foreach (var lj in ViewBag.LatestJobs)
+                    {
+
+                        <div class="listwhitebox tablistsec">
+
+                            <div class="jobcomnamelogo">
+                                <div class="row">
+                                    <div class="col-md-3 col-md-push-9">
+                                        <div class="comlogo"><a href="#"><img src="@lj.LogoURL" alt=""></a></div>
+                                    </div>
+                                    <div class="col-md-9 col-md-pull-3">
+                                        <div class="combydata">
+                                            <h4><a href="@Url.Content("~/JobDescEmployer/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                            <div class="comdet"> @Html.Raw(lj.vc_Description) ... </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="listtimelocation">
+                                <ul>
+                                    <li><img src="images/latestjob-icon-1.png" alt="" /> @lj.postedsince</li>
+                                    @*<li><img src="images/latestjob-icon-2.png"  alt="" /><a href="@Url.Content("~/Employer/" + lj.vc_co_CompanyId + "/" + lj.co_NameURL)">@lj.co_Name</a></li>*@
+                                    @*<li><img src="images/latestjob-icon-2.png" alt="" /><a  data-toggle="modal" data-target="#profilePicModal">@lj.co_Name</a></li>*@
+                                    <li><img src="images/latestjob-icon-3.png" alt="" /> @lj.vc_Location</li>
+                                    <li><img src="images/latestjob-icon-4.png" alt="" /> Full Time</li>
+                                    <li title="Views"><div class="fa fa-eye"></div> @lj.vc_views</li>
+                                    <li title="Applications"><div class="fa fa-file"></div> @lj.vc_applications</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    }
+
+                    @if (ViewBag.LatestJobs.Count == 0)
+                    {
+
+                        <br class="clearfix" />
+
+                        <div class="col-md-12">No active jobs!</div>
+                        <br class="clearfix" />
+                        <br class="clearfix" />
+                        <br class="clearfix" />
+                    }
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.js")"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=kncszy5g1um8j9c92i9j4yv9ulglpz9npadjlqjzciz1d78h"></script>
+<script type="text/javascript">
+
+                        tinyMCE.init({
+                            mode: "textareas",
+                            theme: "modern",
+                            toolbar: [
+                                "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+                            ],
+                            plugins: "lists, advlist,tinymcespellchecker",
+                            spellchecker_language: 'en',
+                            menubar: false,
+                            statusbar: false,
+
+                        });
+
+</script>
+
+<div id="OverViewModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> OVERVIEW</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+                    <form method="post" action="@Url.Content("~/RecruiterUpdate")" id="signupform">
+
+
+
+                        <div class="col-sm-12">
+                            <div class="form-group   ui-front">
+                                <label>Company Name <span class="red">*</span></label>
+                                <input value="@ViewBag.Company" class="form-control" id="companyname" name="CompanyName" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company Name is mandatory')" oninput="setCustomValidity('')">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Company Size <span class="red">*</span></label>
+                                <select class="form-control" id="co_CompanySizeID" name="co_CompanySizeID" required oninvalid="this.setCustomValidity('Company size is mandatory')" oninput="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var edu in ViewBag.CompanySize)
+                                    {
+                                        <option @(ViewBag.CompanySizeID == edu.lm_Id ? "selected" : "") value="@edu.lm_Id">@edu.lm_Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Company Phone Number <span class="red">*</span></label>
+                                <input value="@ViewBag.CompanyPhone" class="form-control" name="Phone" placeholder="Enter digits" maxlength="15" pattern="\d*" title="Only digits" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="summary">Address</label>
+                                <input class="form-control" name="Address" id="address" placeholder="Enter text" type="text" value="@ViewBag.PostalAddress" />
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="hidden" name="Registration" value="NO" />
+
+
+                                <br style="clear:both" />
+                                <div class="pull-right col-md-2">
+
+
+                                    <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+                                </div>
+                                <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span style="color:red">* Mandatory Fields</span></div>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="ProfileModal1" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> PROFILE</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+                    <form method="post" action="@Url.Content("~/RecruiterProfileUpdate")" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Title 1 <span style="color:red">*</span></label>
+                                <input value="@ViewBag.ProfileTitle1" class="form-control" name="title" placeholder="Title 1" type="text" required oninvalid="this.setCustomValidity('Title 1 is mandatory')" oninput="setCustomValidity('')">
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Image 1 <span style="color:red">*</span></label>
+                                <input type="file" id="profileimage1" name="profileimage" @(ViewBag.co_ProfilePicExtn1 == null ? "required" : "") />
+                                <p><span style="font-size:11px;"><br />(500 pixels width X 320 pixels height)</span></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            @if (ViewBag.co_ProfilePicExtn1 != null)
+                            {
+                                <img style="width:200px;height:150px;" src="@Url.Content("~/")@ViewBag.co_ProfilePic1" />
+                            }
+                        </div>
+                        <br class="clear" />
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Para 1 <span style="color:red">*</span></label>
+                                <textarea class="form-control" id="para" name="para" placeholder="Enter text">@ViewBag.CompanyProfile</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br style="clear:both" />
+
+                                <div class="pull-right" style="width:100px">
+                                    <input type="hidden" name="CompanyGUID" value="@ViewBag.CompanyGUID" />
+                                    <input type="hidden" name="profileno" value="1" />
+                                    <input type="submit" value="SAVE" class="btnsubmit">
+                                </div>
+                                <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span style="color:red">* Mandatory Fields</span></div>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+                    <script>
+
+
+
+                        $('#profileimage1').bind('change', function () {
+
+                            var extension = $('#profileimage1').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png are allowed');
+                                $('#profileimage1').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#profileimage1').val("");
+                            }
+                        });
+
+
+
+                    </script>
+
+                    <br class="clear" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="ProfileModal2" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> PROFILE</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+                    <form method="post" action="@Url.Content("~/RecruiterProfileUpdate")" enctype="multipart/form-data">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Title 2 </label>
+                                <input value="@ViewBag.ProfileTitle2" class="form-control" name="title" placeholder="Title 2" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Image 2 </label>
+                                <input type="file" id="profileimage2" name="profileimage" />
+                                <p><span style="font-size:11px;"><br />(500 pixels width X 320 pixels height)</span></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            @if (ViewBag.co_ProfilePicExtn2 != null)
+                            {
+                                <img style="width:200px;height:150px;" src="@Url.Content("~/")@ViewBag.co_ProfilePic2" />
+                            }
+                        </div>
+                        <br class="clear" />
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Para 2 <span style="color:red">*</span></label>
+                                <textarea class="form-control" id="para" name="para" placeholder="Enter text">@ViewBag.CompanyProfile2</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br style="clear:both" />
+                                <input type="button" value="DELETE" class="jsaddmore pull-left" style="width:100px;" onclick="deleteprofile(2)">
+                                <div class="pull-right" style="width:100px">
+                                    <input type="hidden" name="CompanyGUID" value="@ViewBag.CompanyGUID" />
+                                    <input type="hidden" name="profileno" value="2" />
+                                    <input type="submit" value="SAVE" class="btnsubmit">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+                    <script>
+
+
+
+                        $('#profileimage2').bind('change', function () {
+
+                            var extension = $('#profileimage2').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png are allowed');
+                                $('#profileimage2').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#profileimage2').val("");
+                            }
+                        });
+
+
+
+                    </script>
+
+                    <br class="clear" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="ProfileModal3" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> PROFILE</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+                    <form method="post" action="@Url.Content("~/RecruiterProfileUpdate")" enctype="multipart/form-data" ">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Title 3 </label>
+                                <input value="@ViewBag.ProfileTitle3" class="form-control" name="title" placeholder="Title 3" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Image 3 <span style="color:red">*</span></label>
+                                <input type="file" id="profileimage3" name="profileimage" />
+                                <p><span style="font-size:11px;"><br />(500 pixels width X 320 pixels height)</span></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            @if (ViewBag.co_ProfilePicExtn3 != null)
+                            {
+                            <img style="width:200px;height:150px;" src="@Url.Content("~/")@ViewBag.co_ProfilePic3" />
+                            }
+                        </div>
+                        <br class="clear" />
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Para 3 <span style="color:red">*</span></label>
+                                <textarea class="form-control" id="para" name="para" placeholder="Enter text">@ViewBag.CompanyProfile3</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br style="clear:both" />
+                                <input type="button" value="DELETE" class="jsaddmore pull-left" style="width:100px;" onclick="deleteprofile(3)">
+                                <div class="pull-right" style="width:100px">
+                                    <input type="hidden" name="CompanyGUID" value="@ViewBag.CompanyGUID" />
+                                    <input type="hidden" name="profileno" value="3" />
+                                    <input type="submit" value="SAVE" class="btnsubmit">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+                    <script>
+
+
+
+                        $('#profileimage3').bind('change', function () {
+
+                            var extension = $('#profileimage3').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png are allowed');
+                                $('#profileimage3').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#profileimage3').val("");
+                            }
+                        });
+
+
+
+                    </script>
+
+                    <br class="clear" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="ProfileModal4" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> PROFILE</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+                    <form method="post" action="@Url.Content("~/RecruiterProfileUpdate")" enctype="multipart/form-data">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Title 4  </label>
+                                <input value="@ViewBag.ProfileTitle4" class="form-control" name="title" placeholder="Title 4" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Image 4 <span style="color:red">*</span></label>
+                                <input type="file" id="profileimage4" name="profileimage" />
+                                <p><span style="font-size:11px;"><br />(500 pixels width X 320 pixels height)</span></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            @if (ViewBag.co_ProfilePicExtn4 != null)
+                            {
+                            <img style="width:200px;height:150px;" src="@Url.Content("~/")@ViewBag.co_ProfilePic4" />
+                            }
+                        </div>
+                        <br class="clear" />
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Para 4 <span style="color:red">*</span></label>
+                                <textarea class="form-control" id="para" name="para" placeholder="Enter text">@ViewBag.CompanyProfile4</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br style="clear:both" />
+                                <input type="button" value="DELETE" class="jsaddmore pull-left" style="width:100px;" onclick="deleteprofile(4)">
+                                <div class="pull-right" style="width:100px">
+                                    <input type="hidden" name="CompanyGUID" value="@ViewBag.CompanyGUID" />
+                                    <input type="hidden" name="profileno" value="4" />
+                                    <input type="submit" value="SAVE" class="btnsubmit">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+                    <script>
+
+
+
+                        $('#profileimage4').bind('change', function () {
+
+                            var extension = $('#profileimage4').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png are allowed');
+                                $('#profileimage4').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#profileimage4').val("");
+                            }
+                        });
+
+
+
+                    </script>
+
+                    <br class="clear" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="ProfileModal5" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> PROFILE</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+                    <form method="post" action="@Url.Content("~/RecruiterProfileUpdate")" enctype="multipart/form-data">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Title 5  </label>
+                                <input value="@ViewBag.ProfileTitle5" class="form-control" name="title" placeholder="Title 5" type="text">
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Image 5 <span style="color:red">*</span></label>
+                                <input type="file" id="profileimage5" name="profileimage" />
+                                <p><span style="font-size:11px;"><br />(500 pixels width X 320 pixels height)</span></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            @if (ViewBag.co_ProfilePicExtn5 != null)
+                            {
+                            <img style="width:200px;height:150px;" src="@Url.Content("~/")@ViewBag.co_ProfilePic5" />
+                            }
+                        </div>
+                        <br class="clear" />
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Para 5 <span style="color:red">*</span></label>
+                                <textarea class="form-control" id="para" name="para" placeholder="Enter text">@ViewBag.CompanyProfile5</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br style="clear:both" />
+                                <input type="button" value="DELETE" class="jsaddmore pull-left" style="width:100px;" onclick="deleteprofile(5)">
+                                <div class="pull-right" style="width:100px">
+                                    <input type="hidden" name="CompanyGUID" value="@ViewBag.CompanyGUID" />
+                                    <input type="hidden" name="profileno" value="5" />
+                                    <input type="submit" value="SAVE" class="btnsubmit">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+                    <script>
+
+
+
+                        $('#profileimage5').bind('change', function () {
+
+                            var extension = $('#profileimage5').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png are allowed');
+                                $('#profileimage5').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#profileimage5').val("");
+                            }
+                        });
+
+
+
+
+                    </script>
+
+                    <br class="clear" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+                        function deleteprofile(profileno) {
+
+                            if (confirm("Are you sure to delete?")) {
+
+                                $(document).ready(function () {
+                                    $.ajax({
+                                        method: "GET",
+                                        url: "@Url.Content("~/ProfileParaDelete/")" + profileno,
+                                        contentType: false,
+                                        cache: false,
+                                        processData: false,
+                                        success: function (data) {
+                                            window.location.href = "@Url.Content("~/Recruiter")";
+                                        },
+                                        error: function () {
+
+                                        }
+                                    });
+                                });
+                            }
+                        }
+</script>
+
+
+
+<div id="VideoModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle">ADD COMPANY <span>VIDEO</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    <form method="post" action="@Url.Content("~/Home/CompanyVideo")" onsubmit="return validatevideo()">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">Youtube Video URL <span class="mandatory">*</span></label>
+                                <input class="form-control" name="Video" id="Video" type="text" required placeholder="https://www.youtube.com/watch?v=fpdWv5aKX_I">
+                                <p>Copy paste Youtube URL </p>
+                            </div>
+                        </div>
+
+                        <div class="pull-right col-md-2">
+                            <input type="submit" value="SAVE" class="btnsubmit">
+                        </div>
+                    </form>
+
+                    <script>
+                        function validatevideo() {
+                            if ($("#Video").val().indexOf('=') == -1) {
+                                alert("URL format must be like\nhttps://www.youtube.com/watch?v=fpdWv5aKX_I \n Go to your video in Youtube and copy the address and paste here.");
+                                return false;
+                            }
+                            else {
+                                return true;
+                            }
+                        }
+                    </script>
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div id="ManagementModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>TOP</span> MANAGEMENT</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @if (ViewBag.CompanyManagement.Count == 0)
+                    {
+                    <form id="companymanagement" method="post" enctype="multipart/form-data">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name <span class="mandatory">*</span></label>
+                                <input class="form-control" id="Name" name="Name" type="text" required placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position <span class="mandatory">*</span></label>
+                                <input class="form-control" id="Position" name="Position" type="text" required placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo <span class="mandatory">*</span></label>
+                                <input type="file" id="uploadcv" name="uploadcv" required oninvalid="this.setCustomValidity('Image is mandatory')" oninput="setCustomValidity('')" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name  </label>
+                                <input class="form-control" id="Name2" name="Name2" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position </label>
+                                <input class="form-control" id="Position2" name="Position2" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo </label>
+                                <input type="file" id="uploadcv2" name="uploadcv2" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name </label>
+                                <input class="form-control" id="Name3" name="Name3" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position </label>
+                                <input class="form-control" id="Position3" name="Position3" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo </label>
+                                <input type="file" id="uploadcv3" name="uploadcv3" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name </label>
+                                <input class="form-control" id="Name4" name="Name4" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position </label>
+                                <input class="form-control" id="Position4" name="Position4" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo </label>
+                                <input type="file" id="uploadcv4" name="uploadcv4" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <br style="clear:both" /><br style="clear:both" />
+                        <div class="col-md-2 pull-right">
+                            <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+
+                        </div>
+                        <div class="pull-right" style="margin:13px 5px 0 0;font-size:13px; float:right"><span style="color:red">* Mandatory Fields</span></div>
+                    </form>
+                    }
+                    else
+                    {
+
+                        foreach (var cm in ViewBag.CompanyManagement)
+                        {
+                    <form id="companymanagement" method="post" enctype="multipart/form-data">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name <span class="mandatory">*</span></label>
+                                <input class="form-control" value="@cm.Name" id="Name" name="Name" type="text" required placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position <span class="mandatory">*</span></label>
+                                <input class="form-control" value="@cm.Position" id="Position" name="Position" type="text" required placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo <span class="mandatory">*</span></label>
+                                <input type="file" id="uploadcv" name="uploadcv" @(cm.Extn == "" ? "required" : "") oninvalid="this.setCustomValidity('Image is mandatory')" oninput="setCustomValidity('')" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name  </label>
+                                <input class="form-control" value="@cm.Name2" id="Name2" name="Name2" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position </label>
+                                <input class="form-control" value="@cm.Position2" id="Position2" name="Position2" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo </label>
+                                <input type="file" id="uploadcv2" name="uploadcv2" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name </label>
+                                <input class="form-control" id="Name3" value="@cm.Name3" name="Name3" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position </label>
+                                <input class="form-control" value="@cm.Position3" id="Position3" name="Position3" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo </label>
+                                <input type="file" id="uploadcv3" name="uploadcv3" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="pull-left">Name </label>
+                                <input class="form-control" id="Name4" name="Name4" value="@cm.Name4" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Position </label>
+                                <input class="form-control" value="@cm.Position4" id="Position4" name="Position4" type="text" placeholder="Enter Text">
+                            </div>
+                            <div class="form-group">
+                                <label class="pull-left">Photo </label>
+                                <input type="file" id="uploadcv4" name="uploadcv4" />
+                                <div style="font-size:11px;text-align:center">
+                                    ( 300 pixels Width X 325 pixels Height )
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <br style="clear:both" /><br style="clear:both" />
+                        <div class="col-md-2 pull-right">
+                            <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+
+                        </div>
+                        <div class="pull-right" style="margin:13px 5px 0 0;font-size:13px; float:right"><span style="color:red">* Mandatory Fields</span></div>
+                    </form>
+
+                    <br style="clear:both" /><br style="clear:both" />
+
+
+
+
+                    <div class="col-md-3">
+                        <div><i class="fa fa-times pull-right" style="color:red;cursor:pointer" onclick="delCM(1,@cm.CompanyManagementID)"></i></div>
+                        <br style="clear:both" />
+                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                            <img style="height:190px;width:204px;" src="@cm.Extn" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                        </div>
+                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px">
+                            <b>@cm.Name</b>
+                            <br />
+                            @cm.Position
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div><i class="fa fa-times pull-right" style="color:red;cursor:pointer" onclick="delCM(2,@cm.CompanyManagementID)"></i></div>
+                        <br style="clear:both" />
+                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                            <img style="height:190px;width:204px;" src="@cm.Extn2" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                        </div>
+                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px">
+                            <b>@cm.Name2</b>
+                            <br />
+                            @cm.Position2
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div><i class="fa fa-times pull-right" style="color:red;cursor:pointer" onclick="delCM(3,@cm.CompanyManagementID)"></i></div>
+                        <br style="clear:both" />
+                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                            <img style="height:190px;width:204px;" src="@cm.Extn3" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                        </div>
+                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px">
+                            <b>@cm.Name3</b>
+                            <br />
+                            @cm.Position3
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div><i class="fa fa-times pull-right" style="color:red;cursor:pointer" onclick="delCM(4,@cm.CompanyManagementID)"></i></div>
+                        <br style="clear:both" />
+                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                            <img style="height:190px;width:204px;" src="@cm.Extn4" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                        </div>
+                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px">
+                            <b>@cm.Name4</b>
+                            <br />
+                            @cm.Position4
+                        </div>
+                    </div>
+                    <br style="clear:both" /><br style="clear:both" />
+                        }
+                    }
+                    <script>
+                            $(document).ready(function () {
+
+                                $("#companymanagement").submit(function (e) {
+                                    e.preventDefault();
+                                    var formdata = new FormData(this);
+
+
+
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "@Url.Content("~/CompanyManagement")",
+                                        data: formdata,
+                                        mimeTypes: "multipart/form-data",
+                                        contentType: false,
+                                        cache: false,
+                                        processData: false,
+                                        success: function (data) {
+
+                                           window.location.href = "@Url.Content("~/Recruiter")";
+
+
+                                        },
+                                        error: function () {
+
+                                        }
+                                    });
+                        });
+                            });
+
+
+
+                        $('#uploadcv').bind('change', function () {
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file!');
+                                $('#uploadcv').val("")
+                            }
+                        });
+
+                    </script>
+
+                </div>
+                <br style="clear:both" />
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div id="LogoModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>COMPANY</span> LOGO</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("RecruiterLogo", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                    <div class="col-md-8"><input class="form-control" id="file" name="file" placeholder="Attach Logo" type="file" required></div>
+                    <div class="col-md-4"><input name="save" type="submit" value="Upload"></div>
+                    }
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div id="BAmodal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>BUSINESS</span> ACTIVITIES</h1>
+            </div>
+            <div class="modal-body">
+
+
+
+                @{
+                    int flag = 0;
+                    int colcount = ViewBag.FirstSectorID;
+                    int firstid = ViewBag.FirstSectorID;
+                    int onetdcount = ViewBag.SectorCount / 3;
+                    int firsttd = firstid + onetdcount;
+                    int secondtd = firstid + onetdcount + onetdcount;
+                    int thirdtd = firstid + onetdcount + onetdcount + onetdcount;
+
+                }
+
+
+                <table style="width:100%">
+                    <tr>
+                        <td style="vertical-align:top">
+
+
+                            @foreach (var s in ViewBag.Sectors)
+                            {
+                                if (colcount < firsttd)
+                                {
+                                    foreach (var ext in ViewBag.BAexisting)
+                                    {
+                                        if (ext == s.lm_Id)
+                                        {
+                                            flag = 1;
+                            <input checked type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+                                            break;
+                                        }
+
+                                    }
+                                    if (flag == 0)
+                                    {
+                            <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+                                    }
+
+                                    flag = 0;
+                                    colcount++;
+                            <br class="clearfix" />
+                                }
+
+
+                            }
+
+
+                        </td>
+                        <td style="vertical-align:top">
+
+                            @foreach (var s in ViewBag.Sectors)
+                            {
+                                if (s.lm_Id >= firsttd && s.lm_Id < secondtd)
+                                {
+
+
+                                    foreach (var ext in ViewBag.BAexisting)
+                                    {
+                                        if (ext == s.lm_Id)
+                                        {
+                                            flag = 1;
+                            <input checked type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+                                            break;
+                                        }
+
+                                    }
+                                    if (flag == 0)
+                                    {
+                            <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+                                    }
+
+                                    flag = 0;
+                                    colcount++;
+                            <br class="clearfix" />
+                                }
+
+
+                            }
+                        </td>
+                        <td style="vertical-align:top">
+                            @foreach (var s in ViewBag.Sectors)
+                            {
+                                if (s.lm_Id >= secondtd)
+                                {
+
+
+                                    foreach (var ext in ViewBag.BAexisting)
+                                    {
+                                        if (ext == s.lm_Id)
+                                        {
+                                            flag = 1;
+                            <input checked type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+                                            break;
+                                        }
+
+                                    }
+                                    if (flag == 0)
+                                    {
+                            <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:14px;color:#333">@s.lm_Value</span>
+                                    }
+
+                                    flag = 0;
+                                    colcount++;
+                            <br class="clearfix" />
+                                }
+
+
+                            }
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
+
+
+
+
+                <br style="clear:both" />
+                <br style="clear:both" />
+                <input id="savesector" class="btnsubmit pull-right" type="button" value="SAVE">
+                <div class="col-md-5 pull-right text-right"><br /> (Maximum 3 Business Activities are allowed)</div>
+
+                <br style="clear:both" />
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="HeaderModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>HEADER</span> PIC</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("RecruiterHeader", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                    <div class="col-md-9"><input class="form-control" id="filex" name="file" placeholder="Attach Header Pic" type="file" required></div>
+                    <div class="col-md-3"><input name="save" type="submit" value="Upload"></div>
+                    <div class="col-md-12">( 900 pixels Width X 325 pixels Height )</div>
+                    }
+
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+                        $('#filex').bind('change', function () {
+
+                            var extension = $('#filex').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png, .gif are allowed');
+                                $('#filex').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#filex').val("");
+                            }
+                        });
+
+    </script>
+
+</div>
+
+<div id="PhotoGalleryModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>PHOTO</span> GALLERY</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("RecruiterPhotoGallery", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                    <div class="col-md-9"><input class="form-control" id="photogallery" name="file" placeholder="Attach Gallery Pic" type="file" required></div>
+                    <div class="col-md-3"><input name="save" type="submit" value="Upload"></div>
+                    <div class="col-md-12">( 800 pixels Width X 600 pixels Height )</div>
+                    }
+
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+        <script>
+
+
+                        $('#photogallery').bind('change', function () {
+
+                            var extension = $('#photogallery').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png, .gif are allowed');
+                                $('#photogallery').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#photogallery').val("");
+                            }
+                        });
+
+        </script>
+
+    </div>
+</div>
+
+<div id="TestimonialModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle">TESTI<span>MONIALS</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("RecruiterTestimonial", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Attach Pic <span class="mandatory">*</span></label> &nbsp;&nbsp;( 500 pixels Width X 500 pixels Height )
+                            <input class="form-control" id="testimonialpic" name="file" placeholder="Attach Pic" type="file" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Testimonial</label>
+                            <br style="clear:both" />
+                            <textarea class="form-control" name="Testimonial"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 pull-right"><input name="save" type="submit" value="SAVE"></div>
+                    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span style="color:red">* Mandatory Fields</span></div>
+
+                    }
+
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+        <script>
+
+
+                        $('#testimonialpic').bind('change', function () {
+
+                            var extension = $('#testimonialpic').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                alert('Only .jpg, .jpeg, .png, .gif are allowed');
+                                $('#testimonialpic').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#testimonialpic').val("");
+                            }
+                        });
+
+        </script>
+    </div>
+</div>
+
+<div id="MediaModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>MEDIA</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("RecruiterMedias", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Title <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="Title" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Attach Media <span class="mandatory">*</span></label>
+                            <input class="form-control" id="mediafile" name="mediafile" placeholder="Attach file" type="file" required>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3 pull-right"><input name="save" type="submit" value="Upload"></div>
+                    <br class="clearfix" />
+                    <div class="col-md-12">(PDF, Microsoft Word, JPG, PNG )</div>
+                    }
+
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+        <script>
+
+
+                        $('#mediafile').bind('change', function () {
+
+                            var extension = $('#mediafile').val().split('.').pop().toLowerCase();
+                            if ($.inArray(extension, ['doc', 'png', 'jpg', 'jpeg', 'docx', 'pdf']) == -1) {
+                                alert('Only .pdf,.doc, .docx, .jpg, .jpeg, .png are allowed');
+                                $('#mediafile').val("");
+                                return false;
+                            }
+
+                            if (this.files[0].size > 1500000) {
+                                alert('File size is too big, attach a smaller file (less than 2mb) !');
+                                $('#mediafile').val("");
+                            }
+                        });
+
+        </script>
+    </div>
+</div>
+
+
+
+
+<div id="ContactModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>USER</span> PROFILES</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+
+                    <form id="companycontact" method="post" enctype="multipart/form-data">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">First Name <span class="mandatory">*</span></label>
+                                <input class="form-control" id="FirstName" name="FirstName" type="text" required placeholder="Enter Text">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Last Name <span class="mandatory">*</span></label>
+                                <input class="form-control" id="LastName" name="LastName" type="text" required placeholder="Enter Text">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Phone Number <span class="mandatory">*</span></label>
+                                <input class="form-control" id="Phone" name="Phone" type="text" required placeholder="Enter Number" pattern="\d{8,13}" title="Numbers only">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Position in Company <span class="red">*</span></label>
+                                <select class="form-control" id="co_PositioninCompanyID" name="co_PositioninCompanyID" required oninvalid="this.setCustomValidity('Position in company is mandatory')" oninput="setCustomValidity('')">
+                                    <option value="">Select</option>
+                                    @foreach (var edu in ViewBag.Position)
+                                    {
+                                        <option value="@edu.lm_Id">@edu.lm_Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Email (User ID) <span class="mandatory">*</span></label>
+                                <input class="form-control" id="Email" name="Email" type="email" required placeholder="Enter Text">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Password <span class="mandatory">*</span></label>
+                                <input class="form-control" id="Password" name="Password" type="password" required placeholder="Enter Text">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">User Type <span class="mandatory">*</span></label>
+                                    <select class="form-control" id="ct_Superuser" name="ct_Superuser">
+                                        <option value="true">Admin</option>
+                                        <option value="false">User</option>
+                                        </select>
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Permissions</label>
+                                    <div style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                                        <label class="switch pull-left">
+                                            <input type="checkbox" id="ct_PostJob" name="ct_PostJob" value="true" />
+                                            <span class="slider"></span>
+                                        </label>
+                                        <div style="float:left;margin:9px 0px 0 6px">Post Job</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <div style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                                        <label class="switch pull-left">
+                                            <input type="checkbox" id="ct_SearchCV" name="ct_SearchCV" value="true" />
+                                            <span class="slider"></span>
+                                        </label>
+                                        <div style="float:left;margin:9px 0px 0 6px">Search CV</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        <input type="hidden" name="CompanyID" value="@ViewBag.CompanyID" />
+                        <div class="col-md-12"></div>
+
+                        <div class="pull-right col-md-2">
+                            <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+                        </div>
+                    </form>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#companycontact").submit(function (e) {
+                                e.preventDefault();
+                                var formdata = new FormData(this);
+                                $.ajax({
+                                    method: "POST",
+                                    url: "@Url.Content("~/CompanyContact")",
+                                    data: formdata,
+                                    mimeTypes: "multipart/form-data",
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        alert('Successfully added!');
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                        alert("Couldn't Save, check the input values! may be Email already in use.");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+
+                        function delmedia(CMID) {
+                            if (confirm("Are you sure to delete?")) {
+                                $.ajax({
+                                    url: "@Url.Content("~/DeleteMedia/")" + CMID,
+                                    success: function (data) {
+
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+
+                                    }
+                                });
+                            }
+                        }
+
+                            function delct(CTID) {
+                            if (confirm("Are you sure to delete?")) {
+                                $.ajax({
+                                    url: "@Url.Content("~/DeleteTestimonials/")" + CTID,
+                                    success: function (data) {
+
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+
+                                    }
+                                });
+                            }
+                        }
+
+                        function delpg(PGID) {
+                            if (confirm("Are you sure to delete?")) {
+                                $.ajax({
+                                    url: "@Url.Content("~/DeletePhotoGallery/")" + PGID,
+                                    success: function (data) {
+
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+
+                                    }
+                                });
+                            }
+                        }
+
+                        function delCM(itemno, CompanyManagementID) {
+                            if (confirm("Are you sure to delete?")) {
+                                $.ajax({
+                                    url: "@Url.Content("~/DeleteCompanyManagement/")" + CompanyManagementID + "/" + itemno,
+                                    success: function (data) {
+                                        alert('Company Management Deleted!');
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                        alert('No  Company Management to delete!');
+                                    }
+                                });
+                            }
+                        }
+
+
+                            function delVDO(CoVideo_ID) {
+                                if (confirm("Are you sure to delete?")) {
+                                    $.ajax({
+                                        url: "@Url.Content("~/DeleteVideo/")" + CoVideo_ID,
+                                        success: function (data) {
+                                            // alert('Company Video Deleted!');
+                                            window.location.href = "@Url.Content("~/Recruiter")";
+                                        },
+                                        error: function () {
+                                            alert('No  Video to delete!');
+                                        }
+                                    });
+                                }
+
+                            }
+
+
+
+
+
+                            $(document).ready(function () {
+                                $("#savesector").click(function (e) {
+                                  //  e.preventDefault();
+                                    var listCheck = [];
+                                    $("input[name='chksector']:checked").each(function () {
+                                        listCheck.push($(this).val());
+                                    });
+                                    //    alert(listCheck);
+                                    var checkeditems = listCheck.join(',');
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "@Url.Content("~/RecruiterSectors2")",
+                                        data: { checkeditems: checkeditems },
+                                        success: function (data) {
+                                            window.location.href = "@Url.Content("~/Recruiter")";
+                                        },
+                                        error: function () {
+                                            alert("Sorry unable to add, Select atleast one sector!");
+                                        }
+                                    });
+                                });
+                            });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+<script>
+                            $(function () {
+
+
+                                $("#companyname").autocomplete({
+                                    source: function (request, response) {
+                                        $.ajax({
+                                            url: "getABCcompanies/" + request.term,
+                                            success: function (data) {
+                                                var transformed = $.map(data, function (el) {
+                                                    return {
+                                                        label: el.Company,
+                                                        id: el.id
+                                                    };
+                                                });
+                                                response(transformed);
+                                            },
+                                            error: function () {
+                                                response([]);
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+
+</script>
+
+@foreach (var con in ViewBag.Contacts)
+{
+
+    <div id="ContactEditModal-@con.ct_Id" class="modal fade" role="dialog">
+        <div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>USER</span> PROFILES</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+
+                        <form id="frmcompanycontactedit-@con.ct_Id" method="post" enctype="multipart/form-data">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">First Name <span class="mandatory">*</span></label>
+                                    <input class="form-control" name="FirstName" value="@con.ct_Forename" type="text" required placeholder="Enter Text">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">Last Name <span class="mandatory">*</span></label>
+                                    <input class="form-control" name="LastName" type="text" value="@con.ct_Surname" required placeholder="Enter Text">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">Phone Number <span class="mandatory">*</span></label>
+                                    <input class="form-control" name="Phone" value="@con.ct_Telephone" type="text" required placeholder="Enter Number" pattern="\d{8,13}" title="Numbers only">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Position in Company <span class="red">*</span></label>
+                                    <select class="form-control" name="co_PositioninCompanyID" required oninvalid="this.setCustomValidity('Position in company is mandatory')" oninput="setCustomValidity('')">
+                                        <option value="">Select</option>
+                                        @foreach (var edu in ViewBag.Position)
+                                        {
+                                            <option @(con.co_PositioninCompanyID == edu.lm_Id ? "selected" : "") value="@edu.lm_Id">@edu.lm_Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">Email (User ID) <span class="mandatory">*</span></label>
+                                    <input class="form-control" value="@con.ct_EmailAddress" name="Email" type="email" required placeholder="Enter Text">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">Password <span class="mandatory">*</span></label>
+                                    <input class="form-control" value="@con.ct_Password" name="Password" type="password" required placeholder="Enter Text">
+                                </div>
+                            </div>
+
+                            @if (ViewBag.ct_Superuser == true)
+                            {
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="pull-left">User Type <span class="mandatory">*</span></label>
+                                    <select class="form-control"  name="ct_Superuser">
+                                        <option @(con.ct_Superuser == true ? "selected" : "")  value="true">Admin</option>
+                                        <option value="false"  @(con.ct_Superuser == false ? "selected" : "")  >User</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label >Permissions</label>
+                                    <div style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                                        <label class="switch pull-left">
+                                            <input type="checkbox" name="ct_PostJob" value="true" @(con.ct_PostJob == true ? "checked" : "") />
+                                            <span class="slider"></span>
+                                        </label>
+                                        <div style="float:left;margin:9px 0px 0 6px">Post Job</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <div style="font-size:13px;font-weight:normal;text-transform:initial;padding:6px 0 0 0">
+                                        <label class="switch pull-left">
+                                            <input type="checkbox"  name="ct_SearchCV" value="true" @(con.ct_SearchCV == true ? "checked" : "")  />
+                                            <span class="slider"></span>
+                                        </label>
+                                        <div style="float:left;margin:9px 0px 0 6px">Search CV</div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                            else
+                            {
+                                <input type="hidden"  name="ct_Superuser" value="@(con.ct_Superuser == true ? "true" : "false")" />
+                                <input type="hidden" name="ct_PostJob" value="@(con.ct_PostJob == true ? "true" : "false")" />
+                                <input type="hidden" name="ct_SearchCV" value="@(con.ct_SearchCV == true ? "true" : "false")"  />
+
+                            }
+                            <div class="col-sm-12"></div>
+                            <input type="hidden" name="ContactID" value="@con.ct_Id" />
+                            <div class=" pull-left col-md-2">
+                                <input onclick="deluser(@con.ct_Id)" type="button" value="DELETE" class="jsaddmore">
+                            </div>
+                            <div class="pull-right col-md-2">
+                                <input type="submit" value="SAVE" class="btnsubmit">
+                            </div>
+                        </form>
+
+                        <script>
+
+                            function deluser(contactid) {
+
+                                if (confirm("Are you sure to delete?")) {
+                                    $.ajax({
+                                        method: "GET",
+                                        url: "@Url.Content("~/CompanyContactDelete/")" + contactid,
+                                        contentType: false,
+                                        cache: false,
+                                        processData: false,
+                                        success: function (data) {
+                                            window.location.href = "@Url.Content("~/Recruiter")";
+                                        },
+                                        error: function () {
+                                        }
+                                    });
+                                }
+                            }
+
+
+
+                            function PublishTestimonials(yesno) {
+                                $.ajax({
+                                    method: "GET",
+                                    url: "@Url.Content("~/PublishTestimonials/")" + yesno,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            }
+
+
+
+                            function PublishMedia(yesno) {
+                                $.ajax({
+                                    method: "GET",
+                                    url: "@Url.Content("~/PublishMedia/")" + yesno,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            }
+
+
+                            function PublishGallery(yesno) {
+                                $.ajax({
+                                    method: "GET",
+                                    url: "@Url.Content("~/PublishGallery/")" + yesno,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            }
+
+
+                            function PublishVideo(yesno) {
+                                $.ajax({
+                                    method: "GET",
+                                    url: "@Url.Content("~/PublishVideos/")" + yesno,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            }
+
+
+                            function PublishProfile(yesno) {
+                                $.ajax({
+                                    method: "GET",
+                                    url: "@Url.Content("~/PublishProfile/")" + yesno,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        alert('Profile successfully published.');
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            }
+
+
+
+                        $(document).ready(function () {
+                            $("#frmcompanycontactedit-@con.ct_Id").submit(function (e) {
+                                e.preventDefault();
+                                var formdata = new FormData(this);
+                                $.ajax({
+                                    method: "POST",
+                                    url: "@Url.Content("~/CompanyContactEdit")",
+                                    data: formdata,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+
+                                        window.location.href = "@Url.Content("~/Recruiter")";
+                                    },
+                                    error: function () {
+
+                                    }
+                                });
+                            });
+                        });
+                        </script>
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+}

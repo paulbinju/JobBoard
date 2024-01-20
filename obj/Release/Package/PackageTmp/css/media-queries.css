@@ -1,0 +1,903 @@
+@media only screen and (min-width:1200px) and (max-width:1229px) {
+    .container {
+        max-width: 1170px;
+    }
+
+    .postjobntn a {
+        padding: 10px 17px;
+    }
+}
+
+@media only screen and (min-width:1039px) and (max-width:1049px) {
+    .bannercon {
+        padding: 0px 50px 0 30px;
+    }
+}
+@media only screen and (min-width:1050px) and (max-width:1057px) {
+    .bannercon {
+        padding: 0px 45px 0 40px;
+    }
+}
+
+@media only screen and (min-width:1058px) and (max-width:1066px) {
+    .bannercon {
+        padding: 0px 50px 0 40px;
+    }
+}
+
+
+@media only screen and (min-width:1067px) and (max-width:1076px) {
+    .bannercon {
+        padding: 0px 55px 0 40px;
+    }
+}
+
+
+@media only screen and (min-width:1077px) and (max-width:1081px) {
+    .bannercon {
+        padding: 0px 60px 0 40px;
+    }
+}
+
+@media only screen and (min-width:1082px) and (max-width:1091px) {
+    .bannercon {
+        padding: 0px 60px 0 43px;
+    }
+}
+
+
+
+@media only screen and (min-width:1092px) and (max-width:1100px) {
+    .bannercon {
+        padding: 0px 65px 0 43px;
+    }
+}
+
+
+
+@media only screen and (min-width:1101px) and (max-width:1110px) {
+    .bannercon {
+        padding: 0px 70px 0 43px;
+    }
+}
+
+
+
+
+@media only screen and (min-width:1111px) and (max-width:1119px) {
+    .bannercon {
+        padding: 0px 75px 0 43px;
+    }
+}
+
+
+@media only screen and (min-width:1120px) and (max-width:1129px) {
+    .bannercon {
+        padding: 0px 80px 0 43px;
+    }
+}
+
+@media only screen and (min-width:1130px) and (max-width:1138px) {
+    .bannercon {
+        padding: 0px 85px 0 43px;
+    }
+}
+
+@media only screen and (min-width:1139px) and (max-width:1147px) {
+    .bannercon {
+        padding: 0px 90px 0 43px;
+    }
+}
+@media only screen and (min-width:1148px) and (max-width:1158px) {
+    .bannercon {
+        padding: 0px 95px 0 43px;
+    }
+}
+@media only screen and (min-width:1159px) and (max-width:1164px) {
+    .bannercon {
+        padding: 0px 90px 0 43px;
+    }
+}
+
+@media only screen and (min-width:1165px) and (max-width:1174px) {
+    .bannercon {
+        padding: 0px 100px 0 38px;
+    }
+}
+@media only screen and (min-width:1175px) and (max-width:1181px) {
+    .bannercon {
+        padding: 0px 100px 0 30px;
+    }
+}
+
+
+
+
+
+    @media only screen and (min-width:1182px) and (max-width:1199px) {
+        #cssmenu > ul > li > a {
+            padding: 55px 13px;
+            padding-bottom: 22px;
+            font-size: 16px;
+        }
+
+        .homebannerbgimg {
+            height: 550px;
+        }
+
+        .bannercon2 {
+            padding: 0px -1px;
+        }
+
+        .bannercon {
+            text-align: center;
+            font-size: 18px;
+            padding: 0px 71px;
+        }
+
+        .bannertablecell {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            width: 53%;
+        }
+
+        .servicebox {
+            padding: 0px 0px;
+        }
+
+        .testi-det {
+            height: 215px;
+        }
+
+        .comdet {
+            height: 70px;
+        }
+
+        .dashboardmenu #cssmenu > ul > li > a {
+            padding-left: 14px !important;
+            padding-right: 14px !important;
+        }
+
+        .dasdeticon a {
+            margin-left: 24px;
+        }
+
+        .dashboardmenu .sticking #cssmenu > ul > li > a {
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+
+        .dashboard-middsec .col-md-8 {
+            float: none;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-middsec .col-md-4 {
+            float: none;
+            width: auto;
+        }
+
+        .dashboard-middsec .jobcomnamelogo .col-md-8 {
+            float: left;
+            width: 66.66666667%;
+            margin-bottom: inherit;
+        }
+
+        .dashboard-middsec .jobcomnamelogo .col-md-4 {
+            float: left;
+            width: 33.33333333%;
+            margin-bottom: inherit;
+        }
+
+        .dashboardsection .col-sm-3 {
+            width: 32%;
+        }
+
+        .dashboardsection .col-sm-9 {
+            width: 68%;
+        }
+
+        .dashboardsection .searchformsec .col-sm-2 {
+            width: auto;
+            clear: both;
+            float: none;
+            padding-top: 15px;
+        }
+
+        .dashboardsection .searchformsec .col-sm-5 {
+            width: 40%;
+        }
+    }
+
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+
+        #cssmenu > ul > li > a {
+            padding: 20px 10px;
+            font-size: 15px;
+        }
+
+        .homebannerbgimg {
+            height: 550px;
+        }
+
+        .bannercon {
+            padding: 0px 35px;
+        }
+
+        .servicebox {
+            padding: 0px 0px;
+        }
+
+        .testi-det {
+            height: 152px;
+        }
+
+        .searchformsec .col-sm-5 {
+            float: none;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-4 {
+            width: 45%;
+        }
+
+        .searchformsec .col-sm-3 {
+            width: 35%;
+        }
+
+        .searchformsec .col-sm-2 {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        body {
+            font-size: 16px;
+        }
+
+        .servdet p {
+            line-height: 27px;
+        }
+
+        .servdet {
+            height: 140px;
+            line-height: 29px;
+        }
+
+        .emp-logo {
+            height: 100px;
+        }
+
+        .footerabout {
+            font-size: 16px;
+            line-height: 27px;
+        }
+
+        .footernewsletter p {
+            line-height: 27px;
+        }
+
+        .bannercon, .bannercon2 {
+            font-size: 16px;
+            line-height: 27px;
+        }
+
+            .bannercon, .bannercon2 p {
+                line-height: 27px;
+            }
+
+        .toplogosection .col-sm-10 {
+            float: none;
+            width: auto;
+        }
+
+        .toplogosection .col-sm-2 {
+            float: none;
+            width: auto;
+            text-align: center;
+        }
+
+        .toplogo {
+            padding-bottom: 7px;
+        }
+
+            .toplogo img {
+                height: 60px;
+            }
+
+        #cssmenu ul {
+            text-align: center;
+        }
+
+        #cssmenu > ul > li.has-sub > a::after {
+            top: 22px;
+            right: 6px;
+            width: 7px;
+            height: 7px;
+        }
+
+        .sticking .col-sm-2 {
+            display: none;
+        }
+
+        .sticking #cssmenu > ul > li > a {
+            font-size: 15px;
+        }
+
+        .comlogo {
+            height: 60px;
+            position: relative;
+            margin-bottom: 1px;
+            transition: all 0.5s ease-in-out 0s;
+        }
+
+            .comlogo a {
+                display: block;
+            }
+
+            .comlogo img {
+                max-width: 90%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                -moz-transform: translate(-50%,-50%);
+                -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                display: block;
+            }
+
+        .dashboard-middsec .col-md-8 {
+            float: none;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-middsec .col-md-4 {
+            float: none;
+            width: auto;
+        }
+
+        .dashboardsection .col-sm-3 {
+            width: 35%;
+        }
+
+        .dashboardsection .col-sm-9 {
+            width: 65%;
+        }
+
+        .dashboardsection .searchformsec .col-sm-2 {
+            width: auto;
+            clear: both;
+            float: none;
+            padding-top: 15px;
+        }
+
+        .searchformsec .col-sm-5 {
+            width: 100%;
+            float: none;
+        }
+
+        .searchformsec .col-sm-4 {
+            width: 50%;
+        }
+
+        .searchformsec .col-sm-3 {
+            width: 50%;
+        }
+
+        .accordion-tabs-minimal .tab-header-and-content {
+            font-size: 17px;
+        }
+
+        .postjobntn a {
+            padding: 10px 4px;
+            font-size: 14px;
+            max-width: 103px;
+            margin: 0px 3px;
+        }
+
+        .dashboardmenu #cssmenu ul {
+            margin-left: 80px;
+        }
+
+        .dashboardmenu #cssmenu > ul > li > a {
+            padding: 40px 5px 37px 5px !important;
+            font-size: 14px;
+        }
+
+        .dasdeticon a {
+            margin-left: 10px;
+        }
+
+        .dasdeticon img {
+            height: 22px;
+        }
+
+        .notiuserdet li:first-child {
+            padding-left: 0px !important;
+        }
+
+        .notiuserdet li {
+            padding: 20px 20px 28px 20px !important;
+            height: auto;
+        }
+
+        .dashboardmenu .topheaderbg {
+            height: 95px;
+        }
+
+        .menutoprel {
+            height: 95px;
+        }
+
+        .userimg {
+            height: 205px;
+        }
+
+        .dashboardmenu .sticking #cssmenu > ul > li > a {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+            font-size: 14px;
+        }
+
+        .dashboardmenu .sticking .notiuserdet li:first-child {
+            padding-left: 0px !important;
+        }
+
+        .dashboardmenu .topheaderbg.sticking {
+            height: 68px;
+        }
+
+        .ingrambox iframe {
+            width: 239px !important;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+
+        body {
+            font-size: 16px;
+        }
+
+        #cssmenu {
+            text-align: left;
+        }
+
+            #cssmenu > ul > li > a {
+                padding: 18px 0px;
+                font-size: 15px;
+            }
+
+            #cssmenu > ul > li > a {
+                background: none;
+            }
+
+        .topsocialmedia {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .toploginsec {
+            text-align: right;
+        }
+
+        .toplogosection {
+            position: relative;
+        }
+
+            .toplogosection .col-sm-2 {
+                position: absolute;
+                left: 0px;
+                top: -100px;
+            }
+
+        .toplogo img {
+            height: 60px;
+        }
+
+        #cssmenu ul {
+            text-align: left;
+        }
+
+        .homepage .sticking #cssmenu > ul > li > a {
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+
+        .toplogosection {
+            position: relative !important;
+        }
+
+        .homepage .sticking {
+            box-shadow: none !important;
+            position: inherit !important;
+            display: inherit !important;
+            top: inherit !important;
+            animation: fadeInDown 0s ease-in-out;
+            -webkit-animation: fadeInDown 0s ease-in-out;
+        }
+
+        .sticking {
+            box-shadow: none !important;
+            position: inherit !important;
+            display: inherit !important;
+            top: inherit !important;
+            animation: fadeInDown 0s ease-in-out;
+            -webkit-animation: fadeInDown 0s ease-in-out;
+        }
+
+        .searchformsec .col-sm-5 {
+            float: none;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-4 {
+            width: 50%;
+            float: left;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-3 {
+            width: 50%;
+            float: left;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-2 {
+            width: auto;
+            text-align: center;
+            clear: both;
+        }
+
+        .bannercontable {
+            display: block;
+        }
+
+        .bannertablecell {
+            display: block;
+            width: auto;
+        }
+
+        .homebannerbgimg::after {
+            width: 100%;
+            height: 50%;
+            bottom: 0px;
+            top: 50%;
+        }
+
+        .homebannerbgimg::before {
+            width: 100%;
+            height: 50%;
+        }
+
+        .bannercon, .bannercon2 {
+            padding: 30px 20px;
+        }
+        /*.leftcon { border-bottom:1px solid #fff;}*/
+        .homebannerbgimg {
+            height: auto;
+        }
+
+        .servdet {
+            height: auto;
+        }
+
+        .servicebox {
+            border-bottom: 1px solid #d6d6d5;
+            padding-bottom: 20px;
+        }
+
+        .comdet {
+            height: auto;
+        }
+
+        .emplogosec .col-sm-3 {
+            float: left;
+            width: 50%;
+        }
+
+        .footerabout {
+            font-size: 16px;
+            line-height: 27px;
+        }
+
+        .footernewsletter p {
+            line-height: 27px;
+        }
+
+        .bannercon, .bannercon2 {
+            font-size: 16px;
+            line-height: 27px;
+        }
+
+            .bannercon, .bannercon2 p {
+                line-height: 27px;
+            }
+
+        .footerlist {
+            padding-left: 0px;
+        }
+
+        .footermenu {
+            padding: 30px 0px;
+        }
+
+            .footermenu .col-sm-4 {
+                margin-bottom: 30px;
+            }
+
+                .footermenu .col-sm-4:last-child {
+                    margin-bottom: 0px;
+                }
+
+        .testi-det {
+            height: 125px;
+        }
+
+        .topgoogleadd {
+            padding: 15px 10px;
+        }
+
+        .PTb60 {
+            padding: 30px 0px;
+        }
+
+        .PTb6030 {
+            padding: 30px 0px 30px 0px;
+        }
+
+        .toploginsec li {
+            font-size: 16px;
+        }
+
+        #cssmenu ul ul li {
+            padding: 0px;
+        }
+
+            #cssmenu ul ul li:first-child {
+                padding: 0px;
+            }
+
+            #cssmenu ul ul li:last-child {
+                padding: 0px;
+            }
+
+        #cssmenu ul ul::before {
+            display: none;
+        }
+
+        #cssmenu ul ul {
+            box-shadow: none;
+        }
+
+            #cssmenu ul ul li:hover > a,
+            #cssmenu ul ul li a:hover {
+                padding-left: 17px;
+            }
+
+        .dashboardsection .col-sm-3 {
+            margin-bottom: 30px;
+        }
+
+        .searchformsec .col-sm-3 {
+            margin-bottom: 12px;
+        }
+
+        .leftpanelsec {
+            margin: auto;
+            max-width: 350px;
+        }
+
+        .dashboard-middsec .col-md-8 {
+            margin-bottom: 30px;
+        }
+
+        .accordion-tabs-minimal .tab-link {
+            border-top: 1px solid #ccc;
+        }
+
+        .dashboardmenu .topheaderbg {
+            height: auto;
+        }
+
+        .notiuserdet li {
+            height: auto;
+        }
+
+        .dashboardmenu .topheaderbg.sticking {
+            height: auto;
+        }
+
+        .dashboardmenu .sticking #cssmenu ul {
+            margin-left: auto;
+        }
+
+        .dashboardmenu {
+            height: auto !important;
+        }
+
+            .dashboardmenu .toplogosection .toplogo {
+                position: relative;
+                left: inherit;
+                top: inherit;
+                text-align: left;
+            }
+
+            .dashboardmenu .toplogosection .col-sm-4 {
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+
+            .dashboardmenu .notiuserdet li {
+                padding: 10px 20px 10px 20px !important;
+            }
+
+                .dashboardmenu .notiuserdet li:first-child {
+                    padding-left: 0px !important;
+                }
+
+            .dashboardmenu .dasdeticon a {
+                margin-left: 15px;
+            }
+
+            .dashboardmenu .dasdeticon img {
+                height: 24px;
+            }
+
+            .dashboardmenu .notiuserdet li:last-child {
+                padding-right: 0px !important;
+            }
+
+            .dashboardmenu #cssmenu ul {
+                margin-left: 20px;
+            }
+
+            .dashboardmenu #cssmenu > ul > li > a {
+                padding: 20px 10px 20px 10px !important;
+            }
+
+            .dashboardmenu #cssmenu > ul > li.active > a {
+                border-bottom: none;
+            }
+
+            .dashboardmenu #cssmenu > ul > li > a:hover {
+                border-bottom: none;
+            }
+
+            .dashboardmenu #cssmenu {
+                border-top: 1px solid #ccc;
+            }
+
+            .dashboardmenu .sticking #cssmenu > ul > li > a {
+                padding: 20px 15px 20px 15px !important;
+            }
+
+        .homepage .sticking .toplogo img {
+            height: 60px;
+        }
+
+        .dashboardmenu .toplogo {
+            text-align: center;
+            padding: 10px 0px;
+        }
+
+        .dashboardmenu .toplogosection .toplogo {
+            z-index: 0;
+        }
+    }
+
+    @media only screen and (min-width: 640px) and (max-width: 767px) {
+        .testi-det {
+            height: 206px;
+        }
+    }
+
+
+    @media only screen and (min-width: 480px) and (max-width: 639px) {
+    }
+
+
+ /*@media only screen and (min-width: 375px) and (max-width: 413px) {
+
+    #topbannerblock {
+        width: 375px;
+    }
+
+    #topbannerblock iframe{
+        width:375px;
+    }
+
+    #topbannerblock iframe img {
+        width: 375px;
+    }
+}*/
+
+    @media only screen and (min-width: 320px) and (max-width: 479px) {
+
+        .searchformsec .col-sm-5 {
+            float: none;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-4 {
+            float: none;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-3 {
+            float: none;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .searchformsec .col-sm-2 {
+            float: none;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .bannercon, .bannercon2 {
+            padding: 30px 0px;
+        }
+
+        .emp-logo {
+            height: 80px;
+        }
+
+        .testi-det {
+            height: 175px;
+            line-height: 24px;
+        }
+
+        .toplogo {
+            text-align: center;
+            padding: 10px 0px;
+        }
+
+        .toplogosection .col-sm-2 {
+            position: inherit;
+            left: inherit;
+            top: inherit;
+            border-bottom: 1px solid #d6d6d5;
+        }
+
+        .toploginsec .dropdown-menu li label {
+            display: block;
+        }
+
+        .toploginsec .dropdown-menu li input {
+            width: 273px;
+        }
+
+        .accordion-tabs-minimal .tab-header-and-content {
+            font-size: 18px;
+        }
+
+        .vacanciestuserimg {
+            width: 60px;
+        }
+
+        .vacanciestdet {
+            margin-left: 75px;
+            font-size: 15px;
+        }
+
+        .vacancieslist li {
+            padding: 15px;
+        }
+    }
+
+    img {
+        
+        height: auto;
+        width: auto\9; /* ie8 */
+    }

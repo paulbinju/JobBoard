@@ -1,0 +1,2064 @@
+﻿@{  
+   Html.RenderAction("menulogin");
+}
+
+
+
+
+
+<br /><br />
+<div class="registerformsec MTB30">
+    <div class="container">
+        <h1 class="mainpagetitle centertext fade-1">JOB SEEKER <span>REGISTRATION</span></h1>
+        <div class="dashboardwhiteboxshadow tabacc-sec  fadeInUp" data--delay="0.1s" data--duration="1s">
+            <ul class="accordion-tabs-minimal">
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link ">PROFILE SUMMARY</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox" id="registerformbox">
+                               <form id="mainform">
+                                   <div class="row">
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label>First Name <span>*</span></label>
+
+                                               <input class="form-control" id="FirstName" type="text" required>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label>Last Name <span>*</span></label>
+                                               <input class="form-control" id="LastName" type="text" required>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label>Date of Birth <span>*</span></label>
+
+
+                                               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+                                               <input class="form-control" id="dateofbirth" name="dateofbirth" placeholder="Date / Month / Year" type="text" onkeydown="return false;" required>
+
+                                               <script>
+                                                   $(document).ready(function () {
+
+                                                       var options = $.extend({},
+                                                           $.datepicker.regional["ja"], {
+                                                               dateFormat: "yy/mm/dd",
+                                                               changeMonth: true,
+                                                               changeYear: true,
+                                                               yearRange: "1975:2015"
+                                                           }
+                                                       );
+
+                                                       $("#dateofbirth").datepicker(options);
+
+
+
+                                                   });
+
+                                               </script>
+
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label for="gender">Gender <span>*</span></label>
+                                               <select class="form-control" id="gender" required>
+                                                   <option value="">Select</option>
+                                                   <option value="M">Male</option>
+                                                   <option value="F">Female</option>
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label>Marital Status <span>*</span></label>
+                                               <select class="form-control" id="maritalstatus" required>
+                                                   <option value="">Select</option>
+                                                   <option value="Single">Single</option>
+                                                   <option value="Married">Married</option>
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label for="currentposition">Job Function </label>
+                                               <select class="form-control" id="currentposition" required>
+                                                   <option value="">Select</option>
+                                                   @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                   {
+                                                       <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                   }
+
+                                               </select>
+
+                                           </div>
+                                       </div>
+
+                              
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label for="highesteducation">Highest Level of Education <span>*</span></label>
+                                               <select class="form-control" id="highesteducation" required>
+                                                   <option value="">Select</option>
+                                                   @foreach (var edu in ViewBag.EducationLevel)
+                                                   {
+                                                       <option value="@edu.lm_Id">@edu.lm_Value</option>
+                                                   }
+
+
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label>Expected Monthly Salary (BHD) <span>*</span></label>
+
+                                               <input class="form-control" id="expectedsalary" type="number" step=".5" required min="100" max="5000"  title="BHD between 100 - 5000">
+                                           </div>
+                                       </div>
+                                    
+                                
+                                      
+                                       
+
+                                       <div id="freshcheck">
+                                           
+            
+                                           <div class="col-sm-6">
+                                               <div class="form-group">
+                                                   <label>Total Experience (Years) <span>*</span></label>
+                                                   <input class="form-control" id="totalexperience" type="number" step=".1" min="0" max="50" required>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label>High School/University <span>*</span></label>
+                                               <input class="form-control" id="profile_University" name="profile_University" type="text" required>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label for="country">Country of High School/University <span>*</span></label>
+                                               <select class="form-control" id="country">
+                                                   @foreach (var con in ViewBag.Country)
+                                                   {
+                                                       <option value="@con.lm_Id">@con.lm_Value</option>
+                                                   }
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                           <div class="form-group">
+                                               <label for="summary">Summary</label>
+                                               <textarea class="form-control" name="Summary" id="summary"></textarea>
+
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                           <div class="form-group">
+                                               <input type="checkbox" required />
+                                               <label for="summary">I am a <b>Bahraini</b></label>
+                                                
+
+                                           </div>
+                                       </div>
+                                      
+                                       
+
+                                       <div class="col-sm-12">
+                                         
+                                           <div class="form-group formbtn text-right">
+                                               <input name="save" type="submit" value="NEXT">
+                                               <br />
+                                               <br />
+                                               <span>* <span style="font-size:14px;">mandatory fields</span></span>
+                                           </div>
+
+                                       </div>
+
+                                   </div>
+                               </form>
+                                    </div>
+                            <div id="registerformbox2">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <span><br /><br />You've successfully saved the Profile, proceed to the next tab!</span>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">EDUCATION</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row">
+                                    <div id="eduform">
+
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>School / University <span>*</span></label>
+                                                <input class="form-control" name="eduSchool" placeholder="School / University" type="text" id="eduSchool">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Degree <span>*</span></label>
+                                                <input class="form-control" name="eduDegree" placeholder="Degree" type="text" id="eduDegree">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label>Field of Study / Specialization <span>*</span></label>
+                                                <input class="form-control" id="eduField" placeholder="Field of Study / Specialization" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Grade <span>*</span></label>
+                                                <select class="form-control" id="eduGrade">
+                                                    <option value="O">O</option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="First Class">First Class</option>
+                                                    <option value="Second Class">Second Class</option>
+                                                    <option value="Third Class">Third Class</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>From <span>*</span></label>
+                                                <select class="form-control" id="edufrommonth">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="edufromyear">
+                                                    @for (int x= DateTime.Now.Year; x >= 1970; x--)
+                                                {
+                                                        <option value="@x">@x</option>
+                                                }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>To <span>*</span></label>
+                                                <select class="form-control" id="edutomonth">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="edutoyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                {
+                                                        <option value="@x">@x</option>
+                                                }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="educurrentlystudy" type="checkbox" value="True">
+                                                    <label class="form-check-label" for="educurrentlystudy">Currently Studying here</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="eduDescription">Description</label>
+                                                <textarea class="form-control" name="eduDescription" id="eduDescription" placeholder="Description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="summary">Activities / Society Affiliations</label>
+                                                <textarea class="form-control" name="eduActivities" id="eduActivities" placeholder="Activities / Society Affiliations"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="currentposition">Media  (Add relavant files, documents, presentations etc)</label>
+                                                <input type="file" class="form-control" name="jsupload" />
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left" style="float:left">
+                                                    <input id="eduaddmore" type="button" value="+ Add More" class="jsaddmore">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input name="save" type="submit" value="SAVE" id="edusave">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="eduform2" style="min-height:500px;">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span><br /><br />You've successfully saved the Education details, proceed to the next tab!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">SKILLS</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+                                    <div id="skillform">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Add Skill <span>*</span></label>
+                                                <input class="form-control skill-search-icon" id="skill_add" placeholder="Add Skill" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Level <span>*</span></label>
+                                                <select class="form-control" id="skill_level">
+                                                    <option>Beginner</option>
+                                                    <option>Intermediate</option>
+                                                    <option>Advanced</option>
+                                                    <option>Expert</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left" style="float:left">
+                                                    <input id="skill_addmore" type="button" value="+ Save & Add More" class="jsaddmore">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input id="skill_save" type="submit" value="SAVE">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="skillform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span><br /><br />You've successfully saved the Skill, proceed to the next tab!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">WORK HISTORY</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row">
+
+                                    <div id="whform">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Job Title <span>*</span></label>
+                                                <input class="form-control" id="wh_jobtitle" placeholder="Job Title" type="text" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Company / Organization <span>*</span></label>
+                                                <input class="form-control" id="wh_company" placeholder="Company / Organization" type="text" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Level (within the organization)<span>*</span></label>
+                                                <input class="form-control" id="wh_level" placeholder="Level" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="gender">Reporting to <span>*</span></label>
+                                                <input class="form-control" id="wh_reportingto" placeholder="Reporting to" type="text">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Industry<span>*</span></label>
+                                               
+                                                <select class="form-control" id="wh_industry">
+                                                    @foreach (var ind in ViewBag.Sectors)
+                                                    {
+                                                        <option value="@ind.SectorID">@ind.Sector</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="wh_location">Location <span>*</span></label>
+                                                <input class="form-control" id="wh_location" placeholder="Location" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>From <span>*</span></label>
+                                                <select class="form-control" id="wh_frommonth">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="wh_fromyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>To <span>*</span></label>
+                                                <select class="form-control" id="wh_tomonth">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="wh_toyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="currentposition">Salary <span>*</span></label>
+                                                <select class="form-control" id="wh_salary">
+                                                    <option value="100-200">BHD 100-200</option>
+                                                    <option value="201-300">BHD 201-300</option>
+                                                    <option value="301-400">BHD 301-400</option>
+                                                    <option value="401-500">BHD 401-500</option>
+                                                    <option value="501-600">BHD 501-600</option>
+                                                    <option value="601-700">BHD 601-700</option>
+                                                    <option value="701-800">BHD 701-800</option>
+                                                    <option value="801-900">BHD 801-900</option>
+                                                    <option value="901-1000">BHD 901-1000</option>
+                                                    <option value="1001-1200">BHD 1001-1200</option>
+                                                    <option value="1201-1400">BHD 1201-1400</option>
+                                                    <option value="1401-1600">BHD 1401-1600</option>
+                                                    <option value="1601-1800">BHD 1601-1800</option>
+                                                    <option value="1801-2000">BHD 1801-2000</option>
+                                                    <option value="2001-2500">BHD 2001-2500</option>
+                                                    <option value="2501-3000">BHD 2501-3000</option>
+                                                    <option value="3001-4000">BHD 3001-4000</option>
+                                                    <option value="4001-5000">BHD 4001-5000</option>
+                                                    <option value="5001-6000">BHD 5001-6000</option>
+                                                    <option value="6001-7000">BHD 6001-7000</option>
+                                                    <option value="7001-8000">BHD 7001-8000</option>
+                                                    <option value="8001-9000">BHD 8001-9000</option>
+                                                    <option value="9001-10000">BHD 9001-10000</option>
+                                                    <option value="10001-12000">BHD 10001-12000</option>
+                                                    <option value="12001-15000">BHD 12001-15000</option>
+                                                    <option value="15001-25000">Above BHD 15000</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="summary">Description</label>
+                                                <textarea class="form-control" name="description" id="wh_description" placeholder="Description"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="currentposition">Media  (Add relavant files, documents, presentations etc)</label>
+                                                <input type="file" class="form-control" name="jsupload" id="wh_fileupload" />
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left" style="float:left">
+                                                    <input id="whaddmore" type="button" value="+ Add More" class="jsaddmore">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input name="save" type="submit" value="SAVE" id="whsave">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="whform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span>You've successfully saved Work History!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">ACCOMPLISHMENTS</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row">
+                                    <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">HONOURS & AWARDS</div><br /><br />
+                                    <div id="hoform">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Title <span>*</span></label>
+                                                <input class="form-control" id="ho_title" placeholder="Title" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Associated with <span>*</span></label>
+                                                <input class="form-control" id="ho_assowith" placeholder="Associated With" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Issuer <span>*</span></label>
+                                                <input class="form-control" id="ho_issuer" placeholder="Issuer" type="text">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>From <span>*</span></label>
+                                                <select class="form-control" id="ho_month">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="ho_year">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="summary">Description</label>
+                                                <textarea class="form-control" id="ho_description" placeholder="Description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left" style="float:left">
+                                                    <input id="ho_addmore" type="button" value="+ Add More" class="jsaddmore">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input id="ho_save" type="submit" value="SAVE">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="hoform2" class="col-md-12">
+                                        <span>You've successfully saved Honors & Awards, please proceed!</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="registerformbox">
+                                <div class="row">
+                                    <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">CERTIFICATIONS</div><br /><br />
+
+                                    <div id="cert_form">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Certification Name <span>*</span></label>
+                                                <input class="form-control" id="cert_title" placeholder="Certification Name" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Certification Authority <span>*</span></label>
+                                                <input class="form-control" id="cert_auth" placeholder="Certification Authority" type="text">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>From <span>*</span></label>
+                                                <select class="form-control" id="cert_frommonth">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="cert_fromyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>To <span>*</span></label>
+                                                <select class="form-control" id="cert_tomonth">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="cert_toyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="cert_noexpiry" type="checkbox" value="true">
+                                                <label class="form-check-label" for="cert_noexpiry">This certification does not expire.</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left" style="float:left">
+                                                    <input id="cert_addmore" type="button" value="+ Add More" class="jsaddmore">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input id="cert_save" type="submit" value="SAVE">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="cert_form2">
+                                        <span>You've successfully saved Certification, please proceed!</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <br /><br />
+
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+                                    <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">LANGUAGES</div><br /><br />
+                                   <div id="lnform">
+                                       <div class="col-sm-12">
+                                           <div class="form-group">
+                                               <label>Language <span>*</span></label>
+                                               <input class="form-control" id="acclanguage" placeholder="Language" type="text">
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                           <div class="form-group">
+                                               <label>Proficiency <span>*</span></label>
+                                               
+                                               <select class="form-control" id="accProficiency">
+                                                   <option value="Beginner">Beginner</option>
+                                                   <option value="Intermediate">Intermediate</option>
+                                                   <option value="Advanced">Advanced</option>
+                                                   <option value="Expert">Expert</option>
+
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                           <div class="form-group formbtn ">
+                                               <div class="text-left" style="float:left">
+                                                   <input id="lang_addmore" type="button" value="+ Add More" class="jsaddmore">
+                                               </div>
+                                               <div class="pull-right">
+                                                   <input id="lang_save" type="submit" value="SAVE">
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                    <div id="lnform2" class="col-md-12">
+                                        <span>You've successfully saved Language, please proceed!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">IDEAL CAREER MOVE</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+                                    <div id="icmform">
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Industry <span>*</span></label>
+                                                <select class="form-control" id="icm_industry">
+                                                    @foreach (var ind in ViewBag.Sectors)
+                                                {
+                                                        <option value="@ind.SectorID">@ind.Sector</option>
+                                                }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Job Function <span>*</span></label>
+                                                <input class="form-control skill-search-icon" id="icm_jobfunction" placeholder="Job Function" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Salary <span>*</span></label>
+                                                <select class="form-control" id="icm_salary">
+                                                    <option value="100-200">BHD 100-200</option>
+                                                    <option value="201-300">BHD 201-300</option>
+                                                    <option value="301-400">BHD 301-400</option>
+                                                    <option value="401-500">BHD 401-500</option>
+                                                    <option value="501-600">BHD 501-600</option>
+                                                    <option value="601-700">BHD 601-700</option>
+                                                    <option value="701-800">BHD 701-800</option>
+                                                    <option value="801-900">BHD 801-900</option>
+                                                    <option value="901-1000">BHD 901-1000</option>
+                                                    <option value="1001-1200">BHD 1001-1200</option>
+                                                    <option value="1201-1400">BHD 1201-1400</option>
+                                                    <option value="1401-1600">BHD 1401-1600</option>
+                                                    <option value="1601-1800">BHD 1601-1800</option>
+                                                    <option value="1801-2000">BHD 1801-2000</option>
+                                                    <option value="2001-2500">BHD 2001-2500</option>
+                                                    <option value="2501-3000">BHD 2501-3000</option>
+                                                    <option value="3001-4000">BHD 3001-4000</option>
+                                                    <option value="4001-5000">BHD 4001-5000</option>
+                                                    <option value="5001-6000">BHD 5001-6000</option>
+                                                    <option value="6001-7000">BHD 6001-7000</option>
+                                                    <option value="7001-8000">BHD 7001-8000</option>
+                                                    <option value="8001-9000">BHD 8001-9000</option>
+                                                    <option value="9001-10000">BHD 9001-10000</option>
+                                                    <option value="10001-12000">BHD 10001-12000</option>
+                                                    <option value="12001-15000">BHD 12001-15000</option>
+                                                    <option value="15001-25000">Above BHD 15000</option>
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Year of experience <span>*</span></label>
+                                                <select class="form-control" id="icm_experience">
+                                                    <option value="0">Fresher</option>
+                                                    <option value="1">1 Year</option>
+
+                                                    @for (int e = 2; e <= 40; e++)
+                                                {
+                                                        <option value="@e">@e Years</option>
+
+                                                }
+                                                    <option value="50">Above 40 years</option>
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left" style="float:left">
+                                                     
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input id="icm_save" type="submit" value="SAVE">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="icmform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span>You've successfully saved Ideal Career Move!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+
+
+
+
+<script>
+    /*jQuery to save all form values<span>*/
+
+
+                                                   $(document).ready(function () {
+
+                                                       $("#mainform").submit(function (e) {
+                                                           e.preventDefault();
+
+                                                          
+
+                                                           $.ajax({
+                                                               method: "POST",
+                                                               url: "RegisterCandidate",
+                                                               data: {
+                                                                   ca_FirstName: $('#FirstName').val(), ca_Surname: $('#LastName').val(), ca_DateOfBirth: $('#dateofbirth').val(), ca_Gender: $('#gender').val(), ca_PhoneMobile: $('#MobileNo').val(), ca_lm_CountryId: 523, ca_EmailAddress: $('#EmailID').val(), ca_Password: $('#Password').val(),ca_CVSearchable: 0, ca_lm_EducationLevel: $('#highesteducation').val(), ca_MaritalStatus: $('#maritalstatus').val(), ca_FunctionTitleID: $('#currentposition').val(),ca_University: $('#profile_University').val(), ca_UniCountry: $('#country').val(), ca_ExpectedSalary: $('#expectedsalary').val(), ca_TotalRelavantExperience: $('#totalexperience').val(), ca_Profile: $('#summary').val()},
+                                                               success: function (data) {
+                                                                   alert('Successfully added!' + data.Ca_Id);
+                                                                   $("#registerformbox").hide();
+                                                                   $("#registerformbox2").show();
+                                                               },
+                                                               error: function () {
+                                                                   alert("Couldn't Save, check the input values!");
+                                                               }
+                                                           });
+                                                       });
+                                                       
+
+
+
+
+
+
+                                                       $("#registerformbox2,#skillform2,#icmform2,#eduform2,#whform2,#lnform2,#hoform2,#cert_form2").hide();
+
+
+                                                       $("#freshgraduate").click(function () {
+                                                           if ($("#freshgraduate").is(":checked")) {
+                                                               $("#freshcheck").hide();
+                                                           }
+                                                           else {
+                                                               $("#freshcheck").show();
+                                                           }
+                                                       });
+
+
+
+                                                       $("#cert_addmore").click(function () {
+                                                           addCertification();
+                                                           $('#cert_title').val('');
+                                                           $('#cert_auth').val('');
+                                                           $("#cert_frommonth").val('January');
+                                                           $("#cert_fromyear").val('@DateTime.Now.Year');
+                                                           $("#cert_tomonth").val('January');
+                                                           $("#cert_toyear").val('@DateTime.Now.Year');
+
+                                                       });
+                                                       $("#cert_save").click(function () {
+                                                           $("#cert_form").hide();
+                                                           $("#cert_form2").show();
+                                                           addCertification();
+                                                       });
+
+
+
+
+                                                       $("#ho_addmore").click(function () {
+                                                           addHonours();
+                                                           $('#ho_title').val('');
+                                                           $('#ho_assowith').val('');
+                                                           $('#ho_description').val('');
+                                                           $('#ho_issuer').val('');
+                                                           $("#ho_month").val('January');
+                                                           $("#ho_year").val('@DateTime.Now.Year');
+
+                                                       });
+                                                       $("#ho_save").click(function () {
+                                                           $("#hoform").hide();
+                                                           $("#hoform2").show();
+                                                           addHonours();
+                                                       });
+
+                                                       $("#lang_addmore").click(function () {
+                                                           addLanguages();
+                                                           $('#acclanguage').val('');
+                                                           $('#accProficiency').val('Beginner')
+
+                                                       });
+                                                       $("#lang_save").click(function () {
+                                                           $("#lnform").hide();
+                                                           $("#lnform2").show();
+                                                           addLanguages();
+                                                       });
+
+                                                       $("#whaddmore").click(function () {
+                                                           addWorkHistory();
+                                                           $('#wh_jobtitle').val("");
+                                                           $('#wh_company').val("");
+                                                           $('#wh_location').val("");
+                                                           $('#wh_level').val("");
+                                                           $('#wh_reportingto').val("");
+                                                           $("#wh_frommonth").val('January');
+                                                           $("#wh_tomonth").val('January');
+                                                           $("#wh_fromyear").val('@DateTime.Now.Year');
+                                                           $("#wh_toyear").val('@DateTime.Now.Year');
+                                                           $('#wh_description').val("");
+                                                           $('#wh_salary').val("100-200");
+                                                           $('#wh_industry').val("854");
+
+                                                       });
+                                                       $("#whsave").click(function () {
+                                                           $("#whform").hide();
+                                                           $("#whform2").show();
+                                                           addWorkHistory();
+                                                       });
+
+
+
+
+                                                       $("#eduaddmore").click(function () {
+                                                           addEdu();
+                                                           $("#eduSchool").val('');
+                                                           $("#eduDegree").val('');
+                                                           $("#eduField").val('');
+                                                           $("#eduGrade").val('');
+                                                           $("#eduDescription").val('');
+                                                           $("#eduActivities").val('');
+                                                           $("#edufrommonth").val('January');
+                                                           $("#edutomonth").val('January');
+                                                           $("#edufromyear").val('@DateTime.Now.Year');
+                                                           $("#edutoyear").val('@DateTime.Now.Year');
+
+
+                                                       });
+                                                       $("#edusave").click(function () {
+
+                                                           $("#eduform").hide();
+                                                           $("#eduform2").show();
+                                                           addEdu();
+                                                       });
+
+
+
+                                                       $("#skill_addmore").click(function () {
+                                                           addskill();
+                                                           $('#skill_add').val("");
+
+                                                       });
+                                                       $("#skill_save").click(function () {
+                                                           addskill();
+                                                           $("#skillform").hide();
+                                                           $("#skillform2").show();
+                                                       });
+                                                       $("#icm_addmore").click(function () {
+                                                           idelcareermove();
+
+                                                           $('#icm_salary').val("100-200");
+                                                           $('#icm_industry').val("854");
+                                                           $('#icm_jobfunction').val("");
+                                                           $('#icm_experience').val("0");
+                                                       });
+                                                       $("#icm_save").click(function () {
+                                                           idelcareermove();
+                                                           $("#icmform").hide();
+                                                           $("#icmform2").show();
+                                                       });
+                                                   });
+
+    function idelcareermove() {
+        if ($('#icm_jobfunction').val() != "") {
+
+            var sal = $('#icm_salary').val().split('-');
+            var salfrom = sal[0];
+            var salto = sal[1];
+
+            $.ajax({
+                method: "POST",
+                url: "JobseekerCareerMove",
+                data: { Ca_Id: 1050, SectorID: $('#icm_industry').val(), JobTitle: $('#icm_jobfunction').val(), SalaryFrom: salfrom, SalaryTo: salto, ExperienceYears: $('#icm_experience').val() },
+                success: function (data) {
+                    alert('Successfully added!');
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('Job function is mandatory');
+        }
+    }
+
+
+    function addskill() {
+        if ($('#skill_add').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobseekerSkills",
+                data: { Ca_Id: 1050, Skills: $('#skill_add').val(), SkillLevel: $('#skill_level').val()},
+                success: function (data) {
+                    alert('Successfully added!');
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('Skill is mandatory');
+        }
+    }
+
+    function addEdu() {
+        if ($('#eduSchool').val() != "") {
+            var educurent = "";
+            if ($("#educurrentlystudy").not(':checked')) {
+                educurent = "false";
+            }
+            else {
+                educurent = "true";
+
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerEducation",
+                data: { Ca_ID: 1500, DegreeLevel: $('#eduDegree').val(), MajorSubject: $('#eduField').val(), Institute: $('#eduSchool').val(), Grade: $('#eduGrade').val(), FromDate: $('#edufrommonth').val() + ' ' + $('#edufromyear').val(), ToDate: $('#edutomonth').val() + ' ' + $('#edutoyear').val(), Description: $('#eduDescription').val(), Activities: $('#eduActivities').val(), CurrentlyStudyinghere: educurent },
+                success: function (data) {
+                    alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#eduform2").hide();
+            $("#eduform").show();
+        }
+    }
+
+    function addWorkHistory() {
+        if ($('#wh_jobtitle').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerWorkHistory",
+                data: { Ca_ID: 1150, JobTitle: $('#wh_jobtitle').val(), Company: $('#wh_company').val(), TotalExp: 0, City: $('#wh_location').val(), joblevel: $('#wh_level').val(), reportingto: $('#wh_reportingto').val(), industry: $('#wh_industry').val(), FromDate: $('#wh_frommonth').val() + ' ' + $('#wh_fromyear').val(), ToDate: $('#wh_tomonth').val() + ' ' + $('#wh_toyear').val(), salary: $('#wh_salary').val(), description: $('#wh_description').val()  },
+                success: function (data) {
+                    alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#whform2").hide();
+            $("#whform").show();
+        }
+
+    }
+
+    function addLanguages() {
+        if ($('#acclanguage').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerLanguage",
+                data: { Ca_ID: 1150, Language: $('#acclanguage').val(), Proficiency: $('#accProficiency').val()},
+                success: function (data) {
+                    alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#lnform2").hide();
+            $("#lnform").show();
+        }
+
+    }
+
+
+    function addHonours() {
+        if ($('#ho_title').val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerHonours",
+                data: { Ca_ID: 1150, Title: $('#ho_title').val(), Associatedwith: $('#ho_assowith').val(), Issuer: $('#ho_issuer').val(), Issuedon: $('#ho_month').val() + ' ' + $('#ho_year').val(), Description: $('#ho_description').val() },
+                success: function (data) {
+                    alert('Successfully added!');
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#hoform2").hide();
+            $("#hoform").show();
+        }
+    }
+
+    function addCertification() {
+        if ($('#cert_title').val() != "") {
+
+            var cert_noexpiry = "";
+
+
+            if ($("#cert_noexpiry").is(':checked'))
+            {
+                alert('not selected');
+                cert_noexpiry = "false";
+            }
+            else {
+                alert('selected');
+
+                cert_noexpiry = "true";
+
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerCertification",
+                data: { Ca_Id: 1820, Certification: $('#cert_title').val(), Authority: $('#cert_auth').val(), FromDate: $('#cert_frommonth').val() + ' ' + $('#cert_fromyear').val(), ToDate: $('#cert_tomonth').val() + ' ' + $('#cert_toyear').val(), Doesnotexpire: cert_noexpiry},
+                success: function (data) {
+                    alert('Successfully added!');
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#cert_form2").hide();
+            $("#cert_form").show();
+        }
+    }
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        var availableTags = [
+            "Arabian Gulf University",
+            "Bahrain Polytechnic",
+            "College of Health Sciences",
+            "University of Bahrain",
+            "Private universities and higher education institutions",
+            "Arab Open University",
+            "AMA International University",
+            "Applied Science University",
+            "Ahlia University",
+            "Bahrain Institute of Banking and Finance",
+            "Bentley University",
+            "Birla Institute of Technology International Centre",
+            "British University of Bahrain",
+            "Delmon University for Science & Technology",
+            "DePaul University",
+            "Gulf University",
+            "Hull University",
+            "Kent Business Foundation Courses in Bahrain",
+            "The Kingdom University",
+            "Royal College of Surgeons in Ireland(RCSI) - Bahrain",
+            "Royal University for Women",
+            "Talal Abu Ghazaleh University College of Business",
+            "University College of Bahrain",
+            "University of Wales, Bangor",
+            "Stanford University, United States",
+            "Harvard University, United States",
+            "University of Oxford, United Kingdom",
+            "University of Hong Kong, Hong Kong",
+            "University of California, Berkeley, United States",
+            "University of Wisconsin-Madison, United States",
+            "University of California, Los Angeles, United States",
+            "University of Michigan, United States",
+            "University of Pennsylvania, United States",
+            "Michigan State University, United States",
+            "University of Toronto, Canada",
+            "Vanderbilt University, United States",
+            "University of British Columbia, Canada",
+            "Columbia University, United States",
+            "Johns Hopkins University, United States",
+            "University College London, United Kingdom",
+            "University of Cambridge, United Kingdom",
+            "King’s College London, United Kingdom",
+            "University of Washington, United States",
+            "Chinese University of Hong Kong, Hong Kong",
+            "University of Melbourne, Australia",
+            "National Taiwan Normal University, Taiwan",
+            "University of Southern California, United States",
+            "University of Sydney, Australia",
+            "Pennsylvania State University, United States",
+            "Humboldt University of Berlin, Germany",
+            "Nanyang Technological University, Singapore",
+            "Arizona State University, United States",
+            "University of Queensland, Australia",
+            "University of Minnesota, United States",
+            "Utrecht University, Netherlands",
+            "Indiana University, United States",
+            "University of Texas at Austin, United States",
+            "Florida State University, United States",
+            "University of Helsinki, Finland",
+            "McGill University, Canada",
+            "University of Auckland, New Zealand",
+            "Monash University, Australia",
+            "Boston College, United States",
+            "University of Bristol, United Kingdom",
+            "Ohio State University, United States",
+            "The Open University, United Kingdom",
+            "Seoul National University, South Korea",
+            "University of Virginia, United States",
+            "National Taiwan University of Science and Technology (Taiwan Tech), Taiwan",
+            "University of North Carolina at Chapel Hill, United States",
+            "University of Tokyo, Japan",
+            "Brown University, United States",
+            "Ghent University, Belgium",
+            "University of Sheffield, United Kingdom",
+            "Durham University, United Kingdom",
+            "University of Edinburgh, United Kingdom",
+            "University of Tübingen, Germany",
+            "Lancaster University, United Kingdom",
+            "University of Georgia, United States",
+            "Maastricht University, Netherlands",
+            "University of Amsterdam, Netherlands",
+            "University of California, San Diego, United States",
+            "University of Maryland, College Park, United States",
+            "University of Alberta, Canada",
+            "LMU Munich, Germany",
+            "University of New South Wales, Australia",
+            "University of Hamburg, Germany",
+            "University of Southampton, United Kingdom",
+            "KU Leuven, Belgium",
+            "University of Colorado Boulder, United States",
+            "Korea University, South Korea",
+            "University of Manchester, United Kingdom",
+            "University of Nottingham, United Kingdom",
+            "Free University of Berlin, Germany",
+            "University of Technology Sydney, Australia",
+            "University of California, Santa Barbara, United States",
+            "University of Pittsburgh, United States",
+            "University of California, Irvine, United States",
+            "Delft University of Technology, Netherlands",
+            "University of Warwick, United Kingdom",
+            "University of Exeter, United Kingdom",
+            "Cardiff University, United Kingdom",
+            "University of Western Australia, Australia",
+            "University of Zurich, Switzerland",
+            "Boston University, United States",
+            "National Sun Yat-Sen University, Taiwan",
+            "University of Oslo, Norway",
+            "University of Jyväskylä, Finland",
+            "Tufts University, United States",
+            "University of Connecticut, United States",
+            "University of Hawai’i at Mānoa, United States",
+            "University of Groningen, Netherlands",
+            "University of Glasgow, United Kingdom",
+            "Queensland University of Technology, Australia",
+            "University of Rochester, United States",
+            "University of York, United Kingdom",
+            "University of Kansas, United States",
+            "University of Miami, United States",
+            "University of Oregon, United States",
+            "University of Bath, United Kingdom",
+            "Lomonosov Moscow State University, Russian Federation",
+            "Simon Fraser University, Canada",
+            "Trinity College Dublin, Republic of Ireland",
+            "Yonsei University (Seoul campus), South Korea"
+        ];
+        $("#eduSchool,#profile_University").autocomplete({
+            source: availableTags
+        });
+
+
+
+        var unidegrees = [
+            "Bachelor of Architecture",
+            "Bachelor of Biomedical Science",
+            "Bachelor of Business Administration",
+            "Bachelor of Clinical Science",
+            "Bachelor of Commerce",
+            "Bachelor of Computer Applications",
+            "Bachelor of Community Health",
+            "Bachelor of Computer Information Systems",
+            "Bachelor of Science in Construction Technology",
+            "Bachelor of Criminal Justice",
+            "Bachelor of Divinity",
+            "Bachelor of Economics",
+            "Bachelor of Education",
+            "Bachelor of Engineering",
+            "Bachelor of Fine Arts",
+            "Bachelor of Letters",
+            "Bachelor of Information Systems",
+            "Bachelor of Management",
+            "Bachelor of Music",
+            "Bachelor of Pharmacy",
+            "Bachelor of Philosophy",
+            "Bachelor of Social Work",
+            "Bachelor of Technology",
+            "Bachelor of Accountancy",
+            "Bachelor of Arts in American Studies",
+            "Bachelor of Arts in American Indian Studies",
+            "Bachelor of Arts in Applied Psychology",
+            "Bachelor of Arts in Biology",
+            "Bachelor of Arts in Anthropology",
+            "Bachelor of Arts in Child Advocacy",
+            "Bachelor of Arts in Clinical Psychology",
+            "Bachelor of Arts in Forensic Psychology",
+            "Bachelor of Arts in Organizational Psychology",
+            "Bachelor of Science in Aerospace Engineering",
+            "Bachelor of Science in Actuarial",
+            "Bachelor of Science in Agriculture",
+            "Bachelor of Science in Architecture",
+            "Bachelor of Science in Architectural Engineering",
+            "Bachelor of Science in Athletic Training",
+            "Bachelor of Science in Biology",
+            "Bachelor of Science in Biomedical Engineering",
+            "Bachelor of Science in Bible",
+            "Bachelor of Science in Business Administration",
+            "Bachelor of Science in Business and Technology",
+            "Bachelor of Science in Chemical Engineering",
+            "Bachelor of Science in Chemistry",
+            "Bachelor of Science in Civil Engineering",
+            "Bachelor of Science in Clinical Laboratory Science",
+            "Bachelor of Science in Cognitive Science",
+            "Bachelor of Science in Computer Engineering",
+            "Bachelor of Science in Computer Science",
+            "Bachelor of Science in Construction Engineering",
+            "Bachelor of Science in Construction Management",
+            "Bachelor of Science in Criminal Justice",
+            "Bachelor of Science in Criminology",
+            "Bachelor of Science in Diagnostic Radiography",
+            "Bachelor of Science in Education",
+            "Bachelor of Science in Electrical Engineering",
+            "Bachelor of Science in Engineering Physics",
+            "Bachelor of Science in Engineering Science",
+            "Bachelor of Science in Engineering Technology",
+            "Bachelor of Science in English Literature",
+            "Bachelor of Science in Environmental Engineering",
+            "Bachelor of Science in Environmental Science",
+            "Bachelor of Science in Environmental Studies",
+            "Bachelor of Science in Food Science",
+            "Bachelor of Science in Foreign Service",
+            "Bachelor of Science in Forensic Science",
+            "Bachelor of Science in Forestry",
+            "Bachelor of Science in History",
+            "Bachelor of Science in Hospitality Management",
+            "Bachelor of Science in Human Resources Management",
+            "Bachelor of Science in Industrial Engineering",
+            "Bachelor of Science in Information Technology",
+            "Bachelor of Science in Information Systems",
+            "Bachelor of Science in Integrated Science",
+            "Bachelor of Science in International Relations",
+            "Bachelor of Science in Journalism",
+            "Bachelor of Science in Legal Management",
+            "Bachelor of Science in Management",
+            "Bachelor of Science in Manufacturing Engineering",
+            "Bachelor of Science in Marketing",
+            "Bachelor of Science in Mathematics",
+            "Bachelor of Science in Mechanical Engineering",
+            "Bachelor of Science in Medical Technology",
+            "Bachelor of Science in Metallurgical Engineering",
+            "Bachelor of Science in Meteorology",
+            "Bachelor of Science in Microbiology",
+            "Bachelor of Science in Mining Engineering",
+            "Bachelor of Science in Molecular Biology",
+            "Bachelor of Science in Neuroscience",
+            "Bachelor of Science in Nursing",
+            "Bachelor of Science in Nutrition science",
+            "Bachelor of Science in Software Engineering",
+            "Bachelor of Science in Petroleum Engineering",
+            "Bachelor of Science in Podiatry",
+            "Bachelor of Science in Pharmacology",
+            "Bachelor of Science in Pharmacy",
+            "Bachelor of Science in Physical Therapy",
+            "Bachelor of Science in Physics",
+            "Bachelor of Science in Plant Science",
+            "Bachelor of Science in Politics",
+            "Bachelor of Science in Psychology",
+            "Bachelor of Science in Public Safety",
+            "Bachelor of Science in Quantity Surveying Engineering",
+            "Bachelor of Science in Radiologic Technology",
+            "Bachelor of Science in Real-Time Interactive Simulation",
+            "Bachelor of Science in Religion",
+            "Bachelor of Science in Respiratory Therapy",
+            "Bachelor of Science in Risk Management and Insurance",
+            "Bachelor of Science in Science Education",
+            "Bachelor of Science in Sports Management",
+            "Bachelor of Science in Systems Engineering",
+            "Bachelor of Music in Jazz Studies",
+            "Bachelor of Music in Composition",
+            "Bachelor of Music in Performance",
+            "Bachelor of Music in Theory",
+            "Bachelor of Music in Music Education",
+            "Bachelor of Science in Veterinary Technology",
+            "Master degrees",
+            "Master of Accountancy",
+            "Master of Accounting and Information Systems",
+            "Master of Advanced Study",
+            "Master of Applied Finance",
+            "Master of Applied Mathematical Sciences",
+            "Master of Applied Psychology",
+            "Master of Applied Science",
+            "Master of Architecture",
+            "Master of Arts",
+            "Master of Arts in Archives and Records Management",
+            "Master of Arts in Liberal Studies",
+            "Master of Arts in Museum Studies",
+            "Master of Arts in Strategic Communication Management",
+            "Master of Arts in Teaching",
+            "Master of Athletic Training",
+            "Master of Bioinformatics",
+            "Master of Biotechnology",
+            "Master of Business Administration",
+            "Master of Business Administration Management of Technology",
+            "Master of Business",
+            "Master of Business Economics",
+            "Master of Business Engineering",
+            "Master of Business Informatics",
+            "Master of Chemistry",
+            "Master of City Planning",
+            "Master of Commerce",
+            "Master of Community Health",
+            "Master of Computational Finance",
+            "Master of Computer Applications",
+            "Master of Computer Science",
+            "Master of Communication",
+            "Master of Counseling",
+            "Master of Criminal Justice",
+            "Master in Creative Technologies",
+            "Master of Design",
+            "Master of Divinity",
+            "Master of Economics",
+            "Master of Education",
+            "Master of Educational Technology",
+            "Master of Engineering",
+            "Master of Engineering Management",
+            "Master of Enterprise",
+            "Master of European Law",
+            "Master of Finance",
+            "Master of Financial Economics",
+            "Master of Financial Engineering",
+            "Master of Financial Mathematics",
+            "Master of Fine Arts",
+            "Master of Health Administration",
+            "Master of Health Science",
+            "Master of Humanities",
+            "Master of Industrial and Labor Relations",
+            "Master of International Affairs",
+            "Master of International Business",
+            "Master of International Economics",
+            "Master of International Public Policy",
+            "Master of International Studies",
+            "Master of Information",
+            "Master of Information Management",
+            "Master of Information Systems",
+            "Master of Information System Management",
+            "Master of Islamic Studies",
+            "Master of IT",
+            "Master of Jurisprudence",
+            "Master of Laws",
+            "Master of Studies in Law",
+            "Master of Landscape Architecture",
+            "Master of Letters",
+            "Master of Liberal Arts",
+            "Master of Library and Information Science",
+            "Master of Management",
+            "Master of Mass Communication and Journalism",
+            "Master of Mathematical Finance",
+            "Master of Mathematics",
+            "Master of Mathematics and Computer Science",
+            "Master of Mathematics and Philosophy",
+            "Master of Medical Science",
+            "Master of Medicine",
+            "Master of Military Art and Science",
+            "Master of Music",
+            "Master of Network and Communications Management",
+            "Master of Occupational Therapy",
+            "Master of Pharmacy",
+            "Master of Philosophy",
+            "Master of Physician Assistant Studies",
+            "Master of Physics",
+            "Master of Political Science",
+            "Master of Professional Studies",
+            "Master of Psychology",
+            "Master of Public Administration",
+            "Master of Public Affairs",
+            "Master of Public Diplomacy",
+            "Master of Public Health",
+            "Master of Public Management",
+            "Master of Public Policy",
+            "Master of Public Relations",
+            "Master of Public Service",
+            "Master of Quantitative Finance",
+            "Master of Rabbinic Studies",
+            "Master of Real Estate Development",
+            "Master of Religious Education",
+            "Master of Research",
+            "Master of Sacred Music",
+            "Master of Sacred Theology",
+            "Master of Science",
+            "Master of Science in Applied Cognition and Neuroscience",
+            "Master of Science in Athletic Training",
+            "Master of Science in Bioinformatics",
+            "Master of Science in Clinical Epidemiology",
+            "Master of Science in Computing Research",
+            "Master of Science in Cyber Security",
+            "Master of Science in Education",
+            "Master of Science in Engineering",
+            "Master of Science in Development Administration",
+            "Master of Science in Finance",
+            "Master of Science in Governance & Organizational Sciences",
+            "Master of Science in Government Contracts",
+            "Master of Science in Health Informatics",
+            "Master of Science in Human Resource Development",
+            "Master of Science in Information Assurance",
+            "Master of Science in Information Systems",
+            "Master of Science in Information Technology",
+            "Master of Science in Leadership",
+            "Master of Science in Management",
+            "Master of Science in Nursing",
+            "Master of Science in Project Management",
+            "Master of Science in Quality Assurance",
+            "Master of Science in Risk Management",
+            "Master of Science in Supply Chain Management",
+            "Master of Science in Teaching",
+            "Master of Science in Taxation",
+            "Master of Social Science",
+            "Master of Social Work",
+            "Master of Statistics",
+            "Master of Strategic Studies",
+            "Master of Studies",
+            "Master of Surgery",
+            "Master of Theological Studies",
+            "Master of Technology",
+            "Master of Theology",
+            "Master of Urban Planning",
+            "Master of Veterinary Science",
+            "Doctoral degrees",
+            "Doctor of Audiology",
+            "Doctor of Aviation ",
+            "Doctor of Business Administration",
+            "Doctor of Canon Law",
+            "Doctor of Chiropractic",
+            "Doctor of Commerce",
+            "Doctor of Community Health",
+            "Doctor of Dental Surgery",
+            "Doctor of Divinity",
+            "Doctor of Education",
+            "Doctor of Engineering",
+            "Doctor of Health Administration",
+            "Doctor of Health Science",
+            "Doctor of Juridical Science",
+            "Doctor of Law; Legum Doctor",
+            "Doctor of Liberal Studies",
+            "Doctor of Management",
+            "Doctor of Medicine",
+            "Doctor of Ministry",
+            "Doctor of Modern Languages",
+            "Doctor of Musical Arts",
+            "Doctor of Naturopathic Medicine",
+            "Doctor of Optometry",
+            "Doctor of Osteopathic Medicine",
+            "Doctor of Pharmacy",
+            "Doctor of Philosophy",
+            "Doctor of Public Administration",
+            "Doctor of Science",
+            "Doctor of Theology",
+            "Doctor of Veterinary Medicine",
+            "Doctor of Radio oncology"
+        ]
+
+        $("#eduDegree").autocomplete({
+            source: unidegrees
+        });
+
+
+        var jobtitles = [
+            "Account Collector",
+            "Accounting Clerk",
+            "Administrative Assistant",
+            "Administrative Coordinator",
+            "Administrative Director",
+            "Administrative Manager",
+            "Administrative Services Manager",
+            "Administrative Services Officer",
+            "Administrative Specialist",
+            "Administrative Support Manager",
+            "Administrative Support Supervisor",
+            "Administrator",
+            "Assistant Director",
+            "Auditing Clerk",
+            "Bill Collector",
+            "Billing Clerk",
+            "Billing Coordinator",
+            "Bookkeeper",
+            "Chairman",
+            "Client Relations Manager",
+            "Contract Administrator",
+            "Credit Clerk",
+            "Data Entry",
+            "Engineer",
+            "Executive Assistant",
+            "Executive Services Administrator",
+            "Facility Manager",
+            "File Clerk",
+            "Financial Clerk",
+            "General Manager",
+            "General Office Clerk",
+            "Graphic Designer",
+            "Human Resources Administrator",
+            "Information Clerk",
+            "Legal Secretary",
+            "Line Manager",
+            "Mail Clerk",
+            "Mail Clerk Leader",
+            "Managing Director",
+            "Material Recording Clerk",
+            "Media Coodinator",
+            "Medical Secretary",
+            "Network Engineer",
+            "Office Assistant",
+            "Office Clerk",
+            "Office Manager",
+            "Office Support Manager",
+            "Office Support Supervisor",
+            "Program Administrator",
+            "Program Manager",
+            "Programmar",
+            "Receptionist",
+            "Records Management Analyst",
+            "Sales Coodinator",
+            "Sales Manager",
+            "Secretary",
+            "Senior Administrative Analyst",
+            "Senior Administrative Coordinator",
+            "Senior Administrative Services Officer",
+            "Senior Coordinator",
+            "Senior Executive Assistant",
+            "Senior Special Events Coordinator",
+            "Senior Support Assistant",
+            "Senior Support Specialist",
+            "Software Engineer",
+            "Special Events Coordinator",
+            "Special Programs Coordinator",
+            "Staff Assistant",
+            "Supervisor",
+            "Support Assistant",
+            "Support Specialist",
+            "Typist",
+            "Virtual Assistant",
+            "Virtual Receptionist",
+            "Web Developer",
+            "Word Processor"
+        ];
+
+        $("#icm_jobfunction").autocomplete({
+            source: jobtitles
+        });
+
+        $("#wh_jobtitle").autocomplete({
+            source: jobtitles
+        });
+        
+        
+
+        var skillsets = [
+            "Active Directory ",
+            "Adobe In Design",
+            "Aluminium technician",
+            "Analysis",
+            "Apple (Mac)OS",
+            "Application Development",
+            "Arc Welding",
+            "ASP.NET MVC 4",
+            "AutoCAD drawing",
+            "Bank Cheque",
+            "Banking and finance",
+            "Bookkeeping",
+            "Busines Planning",
+            "C#, .ASP.Net, Ajax",
+            "Cash register ",
+            "Communication and Wrinting Skills",
+            "Communication skills",
+            "Complains Handling",
+            "Computer typing skills",
+            "Customer service",
+            "Customer Service",
+            "DAD",
+            "Data entry ",
+            "Dealing With Children Teenager's As A Social Worke",
+            "Develop",
+            "Driving Skills                          -",
+            "E.R.P ",
+            "Email marketing",
+            "Financial understanding",
+            "Front office Operation",
+            "Gas welding  ",
+            "Group Policy",
+            "Handling difficult people",
+            "IT Projects",
+            "IT strategic and Planning",
+            "KPI calculation",
+            "Master CAM",
+            "Merchandise and customer service ",
+            "Microsoft Excel",
+            "Microsoft Office, ",
+            "Microsoft Word, Microsoft PowerPoint, Microsoft Ex",
+            "MS Publisher and Power",
+            "Operations Management",
+            "Organizing skills. ",
+            "Powerpoint",
+            "Radiographic Test",
+            "Sales",
+            "SAP Software",
+            "Secretary/admin/HR",
+            "Self-Management ",
+            "SharePoint",
+            "Site Supervisor",
+            "SolidCAM",
+            "SolidWorks Designer",
+            "Storage Administration",
+            "TALLY ",
+            "Team Work",
+            "Tele marketing",
+            "Telephone skills",
+            "Transport",
+            "Underwriting",
+            "Vray Rendering",
+            "Web design",
+            "Web developing:PHP,ASP,NET,HTML ",
+            "Web programming ( HTML)",
+            "Windows Server",
+            "Windows Servers",
+            "Work confidently within a group"
+        ];
+        $("#skill_add").autocomplete({
+            source: skillsets
+        });
+
+
+        var corplevels = [
+            "Staff Member",
+            "Coordinator",
+            "Manager",
+            "General Manager",
+            "Chief Executive Officer",
+            "Chief Operating Officer",
+            "Chief Financial Officer",
+            "Director",
+            "Chairman"
+        ];
+
+        $("#wh_level").autocomplete({
+            source: corplevels
+        });
+        $("#wh_reportingto").autocomplete({
+            source: corplevels
+        });
+
+
+
+        var languages = [
+            "Mandarin",
+            "Spanish",
+            "English",
+            "Hindi",
+            "Arabic",
+            "Portuguese",
+            "Bangla",
+            "Russian",
+            "Japanese",
+            "Punjabi",
+            "German",
+            "Javanese",
+            "Wu",
+            "Malay",
+            "Telugu",
+            "Vietnamese",
+            "Korean",
+            "French",
+            "Marathi",
+            "Tamil",
+            "Urdu",
+            "Turkish",
+            "Italian",
+            "Yue",
+            "Thai",
+            "Gujarati",
+            "Jin",
+            "Southern Min",
+            "Persian",
+            "Polish",
+            "Pashto",
+            "Kannada",
+            "Xiang",
+            "Malayalam",
+            "Sundanese",
+            "Hausa",
+            "Odia",
+            "Burmese",
+            "Hakka",
+            "Ukrainian",
+            "Bhojpuri",
+            "Tagalog",
+            "Yoruba",
+            "Maithili",
+            "Uzbek",
+            "Sindhi",
+            "Amharic",
+            "Fula",
+            "Romanian",
+            "Oromo",
+            "Igbo",
+            "Azerbaijani",
+            "Awadhi",
+            "Gan Chinese",
+            "Cebuano ",
+            "Dutch",
+            "Kurdish",
+            "Serbo-Croatian",
+            "Malagasy",
+            "Saraiki",
+            "Nepali",
+            "Sinhalese",
+            "Chittagonian",
+            "Zhuang",
+            "Khmer",
+            "Turkmen",
+            "Assamese",
+            "Madurese",
+            "Somali",
+            "Marwari",
+            "Magahi",
+            "Haryanvi",
+            "Hungarian",
+            "Chhattisgarhi",
+            "Greek",
+            "Chewa",
+            "Deccan",
+            "Akan",
+            "Kazakh",
+            "Northern Min ",
+            "Sylheti",
+            "Zulu",
+            "Czech",
+            "Kinyarwanda",
+            "Dhundhari",
+            "Haitian Creole",
+            "Eastern Min ",
+            "Ilocano",
+            "Quechua",
+            "Kirundi",
+            "Swedish",
+            "Hmong",
+            "Shona",
+            "Uyghur",
+            "Hiligaynon ",
+            "Mossi",
+            "Xhosa",
+            "Belarusian",
+            "Balochi",
+            "Konkani"
+        ];
+        $("#acclanguage").autocomplete({
+            source: languages
+        });
+        
+    });
+</script>

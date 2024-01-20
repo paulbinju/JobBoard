@@ -1,0 +1,59 @@
+https://github.com/microsoft/botframework-sdk/issues/2098
+
+https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-webchat-customization?view=azure-bot-service-4.0
+
+https://github.com/microsoft/BotFramework-WebChat
+
+
+redirect to team
+
+https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/bots/bot-conversations/bots-conversations
+
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div id="bot" />
+    </div>
+
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script>
+
+        var user = {
+            id: 'user-id',
+            name: 'Guest'
+        };
+
+        var botConnection = new BotChat.DirectLine({
+            token: 'J9xGmc6KIbM.nsvBlSynqeVxGBDCXk1CbMxZQSbMtPzGz3qxbgLyGg4',
+            user: user
+        });
+
+        BotChat.App({
+            user: user,
+            botConnection: botConnection,
+            bot: { id: 'bot-id', name: 'bot name' },
+            resize: 'detect'
+        }, document.getElementById("bot"));
+
+        botConnection
+            .postActivity({
+                from: user,
+                name: 'requestWelcomeDialog',
+                type: 'event',
+                value: ''
+            })
+            .subscribe(function (id) {
+                console.log('"trigger requestWelcomeDialog" sent');
+            });
+    </script>
+</body>
+</html>

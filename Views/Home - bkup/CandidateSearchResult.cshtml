@@ -1,0 +1,164 @@
+﻿@model List<Jobs4Bahrainis.Models.CandidateSearchResultModel>  
+@{
+    ViewBag.Title = "JobSeeker";
+}
+@Html.Partial("_menu")
+<style>
+    .dashboard-middsec .col-md-12 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+
+                <div class="col-sm-12">
+                  
+                    <div class="dashboard-middsec">
+                        <div class="row">
+                            <div class="homesearchsection wow fade-2 ">
+                                <h1 class="mainpagetitle Padd15">SEARCH <span>RESULTS</span></h1>
+@foreach (var js in Model)
+{
+                                <div class="searchformsec">
+                                    <div class="row" style="font-size:15px;">
+                                        <div class="col-md-12">
+                                            <div class="candidatesearchimage" style="float:left;width:100px">
+                                                <a href="#"><img style="width:100px;height:100px;" src="@ViewBag.TestImg" alt="" onerror="this.src='@Url.Content("~/images/jobseeker.png")';" /></a>
+                                            </div>
+                                            <div class="candidatesearchdet" style="margin-left:120px">
+                                                @*<div class="row">
+    <div class="col-md-8" style="font-size:18px;"><b>@js.ca_FullName</b></div>
+                                                    <div class="col-md-2 postjobntn"><a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a> </div>
+        </div>
+                                                *@
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="font-size:18px;margin-bottom:20px"><b>@js.ca_FullName</b></div>
+                                                         
+                                                            <div class="col-md-4"><b style="font-size:14px">Date of Birth:</b> @(js.ca_DateOfBirth != null ? js.ca_DateOfBirth.GetValueOrDefault().ToString("dd-MM-yyyy") : "")</div>
+                                                            <div class="col-md-4" style="font-size:14px"><b>Phone:</b> @js.ca_PhoneMobile</div>
+                                                            <div class="col-md-4"><b style="font-size:14px">Email:</b> @js.ca_EmailAddress</div>
+
+                                                            <div class="col-md-4"><b style="font-size:14px">Gender:</b> @js.ca_Gender</div>
+                                                            <div class="col-md-4"><b style="font-size:14px">Education Level:</b> @js.EducationLevel</div>
+                                                            <div class="col-md-4"><b style="font-size:14px">Current Salary:</b> BHD @js.ca_SalaryFrom</div>
+                                                            <div class="col-md-12"><b style="font-size:14px">Interested Sectors:</b> @js.Interest</div>
+                                                            <div class="col-md-12"><b style="font-size:14px">Profile Summary:</b> @js.ca_Profile</div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+        }
+                                    </div>
+                                    @*<div class="col-md-8">
+                                        <div class="dashboardwhiteboxshadow tabacc-sec wow fade-2">
+                                          
+
+                                    <div class="tab-content">
+                                        <div class="vacancieslist">
+                                            <ul>
+
+                                                @foreach (var js in Model)
+                                                {
+
+                                                    <li>
+                                                        <div class="vacanciestuserimg"><a href="#"><img style="width:100px;height:100px;" src="@ViewBag.TestImg" alt="" onerror="this.src='@Url.Content("~/images/jobseeker.png")';" /></a></div>
+                                                        <div class="vacanciestdet">
+                                                            <h4><a href="#">@js.ca_FullName</a></h4>
+                                                            <span>@js.ca_EmailAddress</span> @js.ca_PhoneMobile<br />
+                                                            Gender: @js.ca_Gender &nbsp;&nbsp;&nbsp;Age: @js.ca_Age
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>*@
+                            @*<div class="col-md-4">
+                                    <div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3" style="padding:10px">
+                                        <h1 class="mainpagetitle Padd15"><span>FEATURED</span> SECTORS</h1>
+                                        <div class="feturlist">
+                                           <ul>
+                                                @{ count = 0;}
+                                                @foreach (var jsc in ViewBag.lstjobsectorcount)
+                                                {
+                                                    if (count < 18)
+                                                    {
+                                                        <li><a href="@Url.Content("~/SectorJobs/"+jsc.SectorID+"/"+jsc.SectorURL)">@jsc.Sector</a></li>
+                                                    }
+                                                    count++;
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+            <h1 class="mainpagetitle Padd15">Top <span>EMPLOYERS</span></h1>
+            <div class="topemp-carousel centertext wow fade-1-5">
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-3.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-4.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-5.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-6.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-3.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-4.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-5.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-6.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

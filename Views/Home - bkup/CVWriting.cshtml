@@ -1,0 +1,145 @@
+﻿
+
+@{
+    ViewBag.Title = "CV Writing";
+}
+
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="images/logo.png" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/JobSeekerProfile")">PROFILE</a></li>
+                                <li><a href="@Url.Content("~/JobSeeker")">JOBS</a></li>
+                                <li class="active has-sub">
+                                    <a href="#">Career Services</a>
+                                    <ul>
+                                        <li><a href="@Url.Content("~/CVChecklist")">CV Checklist</a></li>
+                                        <li><a href="@Url.Content("~/CVTips")">CV Tips</a></li>
+                                        <li><a href="@Url.Content("~/CVWriting")">CV Writing Tips</a></li>
+                                    </ul>
+                                </li>
+
+                               
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_candidatelogin")
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+      
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 fade-1 dashboardwhiteboxshadow">
+                <h1 class="mainpagetitle Padd15">CV <span>WRITING TIPS</span></h1>
+                <br />
+                <div class="col-md-12">
+
+                    <div class="col-md-12 fade-1">
+                        <b>Creating a professional CV.</b><br />
+                       
+                        <p>
+
+                            Your curriculum vitae is an extremely important tool and the only tool that you as a candidate have to initially impress a potential employer. You can’t get the dream job that you have always been seeking without a resume that is going to get noticed.
+                        </p>
+                        <p>
+                            First impressions are everything and studies show that you have between 15 & 30 seconds to make an initial impression. You don’t get a second chance to make a first impression so your CV has to be clear, concise and its paramount that your profile is relevant to the job you are applying for to avoid being dismissed. As this is your professional introduction your CV format should looks its professional best. There is no universally accepted format for a CV however a resume should be between 2-3 pages maximum no matter the depth of your experience.
+                        </p>
+                        <p>
+                            Your CV is like your own personal advert or brochure- It’s a chance for you to show off the depth of your skill set as well as all display all of your key attributes that make you an attractive option for an employer. The purpose of your CV is not to land you the job upon submission but to ultimately get you an interview with a potential employer.
+                        </p>
+                        <br />
+                        <h1 class="mainpagetitle fade-1"> <span>CV</span> Structure</h1>
+                        <br />
+
+                        <b>Personal Summary:</b>
+
+                        <p>This is an opportunity to briefly sell yourself- Use this as a platform to summarize yourself, your skills and your career aspirations.</p>
+
+
+                        <b>Personal Information:</b>
+
+                        <p>Keep this section brief but accurate- Include your full name, nationality, date of birth, marital status, Linked In profile, email address, phone number and postal address. Make sure that these details are clearly presented.</p>
+
+
+                        <b>Educational Experience:</b>
+
+                        <p>Don’t over complicate this section- Keep it clear and concise. List the qualification obtained along with the year it was completed and the institution and location your studied at.</p>
+
+                        <b>Professional Work Experience:</b>
+
+                        <p>This is the most important section of all and will be the focus of an employer or a recruiters’ attention. The information needs to be inputted in reverse chronologic order beginning with your most recent employment.</p>
+
+                        <p>Make sure to include employer names and your designation held, length of employment (Months and Years) as well as your primary responsibilities. If you worked abroad also include the location of your employment.</p>
+
+                        <p>Try and include your reasons for leaving each position.</p>
+
+                        <p>It is important to have no unexplained gaps in your CV so make sure you highlight if you took on temporary work, had a sabbatical for a year or were on maternity leave etc. If you do leave gaps employers will come up with their own conclusions and this could be detrimental to your candidature.</p>
+
+                        <p>If you are a student or fresh graduate, you should include all part-time work or internships undertaken even if they are unrelated to the position you are applying for. Employers expect to see indicators that you are responsible and organized and that you have gained skills and knowledge in one form or another from your work experience.</p>
+
+                        <b>Skills and Qualifications:</b>
+
+                        <p>Use this section to highlight any additional vocational skills that have not been mentioned in your CV such as IT skills, certifications etc.</p>
+
+                        <b>Languages:</b>
+
+                        <p>You should include any languages you speak and the level of proficiency that you speak them. E.g; Bilingual in Arabic and English and conversational in French.</p>
+
+                        <b>Interests and Activities:</b>
+
+                        <p>Be selective in this area and consider the role that you are applying for. For example, an interest in sport, such as rugby or football evidences your capability to work in a team. Resist any interests that can lead to an instant bad judgement.</p>
+
+                        <b>References:</b>
+
+                        <p>In this section, you should include reference details for 2-3 references such as former employers. If you are a fresh graduate with no previous work experience, then it is a good idea to include a reference from your University. Ideally your references should be people that you have directly reported to as they can speak about both your professional and personal attributes.</p>
+
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+

@@ -1,0 +1,285 @@
+﻿@{ 
+    common cmn = new common();
+
+}
+
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+    .combydata span {
+        color: #606163;
+    }
+    .blackspan span {
+        color: #606163;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu ">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/ManageVacancies")">VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREERS RESOURCES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardsection MT30 ">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec  fade-1">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="margin-top:6%" /></a>
+
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon"><span style="font-size:18px;">@ViewBag.Company</span></div>
+                            <div class="uercon">
+                                @ViewBag.Name @ViewBag.SurName
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="dashboardwhiteboxshadow paynowpostjob ">
+                        <div class="paynowjoblist">
+                            <ul>
+                                <li><a href="@Url.Content("~/UserActivityReport")">User Activity Report </a> <a href="@Url.Content("~/UserActivityReport")" class="editiconcat"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                @*<li>Recruitment Activity Report<a href="@Url.Content("~/RecruitmentActivityReport")" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>*@
+
+                            </ul>
+                        </div>
+                        <div class="postjobntn"> <a href="@Url.Content("~/Packages")" class="graybtn">PACKAGES</a> <a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a> </div>
+                    </div>
+                    <br />
+                    <div class="ingrambox dashboardwhiteboxshadow  ">
+                        <!-- InstaWidget -->
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-9">
+
+                <div class="dashboard-middsec">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboardwhiteboxshadow tabacc-sec ">
+                                <ul class="accordion-tabs-minimal">
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>JOB</span> DESCRIPTION</a>
+                                        <div class="tab-content">
+
+                                            <div class="row">
+                                                @foreach (var lj in ViewBag.JobDetails)
+                                                {
+
+                                                    <div class="col-md-12">
+                                                        <br />
+                                                        <div class="col-md-1  pull-right">
+                                                            <a href="@Url.Content("~/JobEdit/" + lj.vc_Id)"><i class="fa fa-edit" style="color:red;font-size:18px" title="Edit Vacancy"></i></a>
+                                                        </div>
+
+                                                        <div class="col-md-12 combydata">
+
+                                                            <h3 style="font-size:30px;font-weight:bold"><a href="#">@lj.vc_Title</a></h3>
+                                                            <div class="listtimelocation">
+                                                                <ul>
+                                                                    <li><img src="@Url.Content("~/images/latestjob-icon-1.png")" alt=""> @lj.postedsince</li>
+                                                                    <li><img src="@Url.Content("~/images/latestjob-icon-2.png")" alt=""> @lj.co_Name</li>
+                                                                    <li><img src="@Url.Content("~/images/latestjob-icon-3.png")" alt=""> @lj.JobLocation</li>
+                                                                    <li><img src="@Url.Content("~/images/latestjob-icon-4.png")" alt=""> @lj.JobType</li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <br />
+                                                            <br /> <b>Job Description</b><br style="clear:both" />
+                                                            <div style="font-size:16px;margin-top:10px">@Html.Raw(lj.vc_Description)</div>
+                                                            <br /><b>Job Requirements</b><br style="clear:both" />
+                                                            <div style="font-size:16px;margin-top:10px">@Html.Raw(lj.vc_JobRequirements)</div>
+                                                            <br /> <b>Company Details</b><br style="clear:both" />
+                                                            <div style="font-size:16px;margin-top:10px">@Html.Raw(lj.vc_CompanyDetails)</div>
+                                                            <br style="clear:both" />
+                                                            <ul style="list-style:square;font-size:16px;margin-top:15px">
+                                                                <li><b>Industry</b>: @lj.Industry</li>
+                                                                <li><b>Function</b>: @lj.Functions</li>
+                                                                <li><b>Experience</b>: @lj.Experience</li>
+                                                                <li><b>Qualification</b>: @lj.Qualification</li>
+                                                                <li><b>Age Group</b>: @lj.AgeGroup</li>
+                                                                <li><b>Salary Range</b>: @lj.SalaryRange</li>
+                                                                <li><b>Contact Type</b>: @lj.JobType</li>
+                                                                <li><b>Reserved for Disabled</b>: @(lj.vc_Disabled == false ? "NO":"YES")</li>
+                                                            </ul>
+                                                            <br />
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                    break;
+                                                }
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>JOB</span> APPLICANTS</a>
+                                        <div class="tab-content">
+
+
+                                            @foreach (var ja in ViewBag.jbapplicants)
+                                            {
+                                                <div class="row" style="font-size:13px;padding:10px;border-bottom:1px solid #eee;margin:0 3px">
+                                                    <div class="col-md-2">
+                                                            <img src="@Url.Content("~/" + cmn.canprofilepic(ja.ca_GUID, ja.ca_PhotoExtension))" style="width:113px;height:125px;cursor:pointer" onclick='window.open("@Url.Content("~/Home/CandidateSearchDetail2?ca_id=" + ja.ca_id + "&vid=" + ViewBag.VacancyID)", "Candidate Profile", "width=900")'   />
+                                                        <div style="background-color:#808080;color:white;text-align:center">Applied On<br />@ja.app_created.ToString("dd-MM-yyyy")</div>
+                                                    </div>
+                                                    <div class="col-md-10 blackspan">
+                                                        <div class="col-md-3 pull-right">
+                                                            <select class="form-control" onchange="updateappstatus(@ja.app_id)" id="ddappstatus-@ja.app_id">
+                                                                @foreach (var apptype in ViewBag.ListTypeIDs)
+                                                                {
+                                                                    <option @(ja.app_st_ShortlistStatusId == apptype.lm_Id ? "selected" : "") value="@apptype.lm_Id">@apptype.lm_Value</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-9" style="font-size:16px;cursor:pointer" onclick='window.open("@Url.Content("~/Home/CandidateSearchDetail2?ca_id=" + ja.ca_id + "&vid=" + ViewBag.VacancyID)", "Candidate Profile", "width=900")' ><b>@ja.ca_FirstName @ja.ca_Surname</b></div>
+                                                        <div class="col-md-6"><b>Current Location: </b>@ja.CurrentCountry</div>
+                                                        <div class="col-md-6"><b>Education Level: </b>@ja.educationlevel</div>
+                                                        <div class="col-md-6"><b>Gender: </b>@(ja.ca_Gender == "M" ? "Male" : "Female")</div>
+                                                        <div class="col-md-6"><b>Date of Birth: </b>@ja.ca_DateOfBirth.ToString("dd-MM-yyyy")</div>
+                                                        <div class="col-md-6"><b>Marital Status: </b>@ja.ca_maritalstatus</div>
+                                                        <div class="col-md-6"><b>Function Title: </b>@ja.functiontitle</div>
+                                                        <div class="col-md-6"><b>Current Job Title: </b>@ja.CurrentJobTitle</div>
+                                                        <div class="col-md-6"><b>Total Experience: </b>@ja.TotalRelevantExperience </div>
+                                                        <div class="col-md-12">
+                                                            <b>Profile</b><br />
+                                                            @Html.Raw(cmn.StripHTMLExceptsometags(ja.ca_Profile))
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (ViewBag.jbapplicants.Count == 0)
+                                            {
+                                                <div class="col-md-12" style="font-size:16px; height:500px;">
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    No applicants yet!
+                                                </div>
+                                            }
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>SHORT</span>LISTED</a>
+                                        <div class="tab-content">
+                                            @*@{
+                                                Html.RenderAction("JobApplicantsUpdated", "Home", new { jobid = ViewBag.VacancyID });
+                                            }*@
+
+                                            <div id="JobApplicantsShortlisted"></div>
+
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>RE</span>JECTED</a>
+                                        <div class="tab-content">
+                                            <div id="JobApplicantsRejected"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    filltabshortlisted();
+    filltabrejected();
+
+
+
+
+
+    function updateappstatus(app_id) {
+        $.ajax({
+            method: "GET",
+            url: "@Url.Content("~/Updateappstatus/")" + app_id + "/" + $("#ddappstatus-" + app_id).val(),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                filltabshortlisted();
+                filltabrejected();
+                alert('Status successfully updated.');
+                location.reload();
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function filltabshortlisted() {
+        $.ajax({
+            url: '@Url.Action("JobApplicantsUpdated", "Home")',
+            dataType: 'html',
+            data: { jobid:@ViewBag.VacancyID, typeid: 16012 },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#JobApplicantsShortlisted").html(content);
+            }
+        });
+    }
+
+
+    function filltabrejected() {
+        $.ajax({
+            url: '@Url.Action("JobApplicantsUpdated", "Home")',
+            dataType: 'html',
+            data: { jobid:@ViewBag.VacancyID, typeid: 16013 },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#JobApplicantsRejected").html(content);
+            }
+        });
+    }
+
+</script>

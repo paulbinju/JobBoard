@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Jobs4Bahrainis.Models.ListsMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_Guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_LastUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_us_UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_lt_ListTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_lm_ParentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_Ordinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_Ranking)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_Deleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lm_ValueEncoded)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_Guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_LastUpdated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_us_UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_lt_ListTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_lm_ParentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_Ordinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_Ranking)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_Deleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lm_ValueEncoded)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.lm_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.lm_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.lm_Id })
+        </td>
+    </tr>
+}
+
+</table>

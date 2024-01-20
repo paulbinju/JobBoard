@@ -1,0 +1,1439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{368597A5-F3F7-4669-BDFB-F81DDF6E0536}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jobs4Bahrainis</RootNamespace>
+    <AssemblyName>Jobs4Bahrainis</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="App_Code.i8rvvfex">
+      <HintPath>C:\Users\binjup\AppData\Local\Temp\Temporary ASP.NET Files\root\2a521f33\_shadow\48ecad72\8212\App_Code.i8rvvfex.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.DataGates.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Korzh.EasyQuery.Core.3.8.0.35\lib\net45\Korzh.EasyQuery.DataGates.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.Db.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Korzh.EasyQuery.Core.3.8.0.35\lib\net45\Korzh.EasyQuery.Db.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.EF5.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyQuery.Mvc.Scaffolding.3.8.0.35\lib\net45\Korzh.EasyQuery.EF5.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.EF6.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyQuery.Mvc.Scaffolding.3.8.0.35\lib\net45\Korzh.EasyQuery.EF6.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.Mvc.NET45, Version=3.8.0.36, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyQuery.Mvc.Scaffolding.3.8.0.35\lib\net45\Korzh.EasyQuery.Mvc.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Korzh.EasyQuery.Core.3.8.0.35\lib\net45\Korzh.EasyQuery.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.EasyQuery.Services.Db.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Korzh.EasyQuery.Core.3.8.0.35\lib\net45\Korzh.EasyQuery.Services.Db.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Korzh.Utils.Db.NET45, Version=3.8.0.35, Culture=neutral, PublicKeyToken=fb0d7039c576491c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Korzh.EasyQuery.Core.3.8.0.35\lib\net45\Korzh.Utils.Db.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.10.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.10.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdvancedSearchController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListsMastersController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Core\common.cs" />
+    <Compile Include="Core\Connection.cs" />
+    <Compile Include="Core\dbOperations.cs" />
+    <Compile Include="Core\Merchant.cs" />
+    <Compile Include="Core\SqlConDirDev.cs" />
+    <Compile Include="Core\SqlCon.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminStatisticsByUser.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Application.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplicationAdminList_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Attribute.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeData.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeList.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses0.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses1.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses2.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses3.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses4.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses5.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses6.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses7.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses8.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeResponses9.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributesGetByRecordId_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttributeType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuditActionType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Banner.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BannerBrandType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BannerPage.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BannerType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingRequest.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Brand.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BrandCollaboration.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BrandsAdminListGet_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BrandsAuthorisedListGet_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Candidate.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateCertification.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateCertification_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateDocument.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateEducation.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateEducation_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateEmployer_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateExperience.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateHonour.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateIdealCareerMove.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateIdealCareerMove_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateInBox.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateInterest.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateInterestType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateLanguage.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateLanguage_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateOtherSkill_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\candidates18oct2018.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\candidates2.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateSearch.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateSearchLocation.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateSearchModel.cs" />
+    <Compile Include="Models\CandidateSearchSector.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateSearchShortlist.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateSkill.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateSkill_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateWorkHistory_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CandidateWorkHistory_Tbkp11nov2018.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CareerServices_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CollaborationType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companies05022019.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companiesbkp.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companiesBKP14052019.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companiesBkp210519.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompaniesWithVacanciesArabic.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompaniesWithVacanciesEnglish.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyFollowers_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyManagement_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyMaster_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyMedia_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyPackage.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyPhotoGallery_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanySector.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyStatistic.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyTestimonials_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyVideo_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Complaint.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contact.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contacts05022019.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactsAdminList_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contactsBKP14052019.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contactsBkp210519.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Content.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContentReplace.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CounterAdvSrchCompany_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CounterAdvSrchKeywords_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CounterAdvSrchQualification_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CounterAdvSrchSectors_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSCredits_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSCreditType_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSCreditUsage_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSPackage_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSSubscription_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSVouchers_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CsvToInt_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataCache.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Division.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dtproperty.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dt_getpropertiesbyid_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dt_getpropertiesbyid_u_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailContent.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailContentReplace.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailLog.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeViewModel.cs" />
+    <Compile Include="Models\EmployerActivationCode_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployerActivationCode_Told.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployerComingSoon_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployerPackages_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployerPackageTransactions_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EY_Candidates_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EY_CVDownloads_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EY_Employer_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FeaturedCompany.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImageResource.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImageResourceType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\J4B.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>J4B.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\J4B.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\J4B.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>J4B.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\J4Bmodels.cs" />
+    <Compile Include="Models\JobFair_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRoleEquivalence.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRoleEquivalenceGroup.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRoleProfile.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSearch.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSearchJobType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSearchLocation.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSearchRecruiterType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSearchSector.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Link.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LinkType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListBrandAssociation.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListsBrand.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListsBrandGrouping.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListsMaster.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListsMasterGrouping.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagementReport.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagementReportGroup.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mapping.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menu.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MenuItem.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Microsite.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MicrositeContent.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MicrositeMenuItem.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MicrositeTemplate.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MicrositeTemplateAttribute.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MicrositeVacancy.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsArticle.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsArticleBrand.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsletterSubscribers_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoiseWord.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Note_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderLine.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PackagePrice.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PackageType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaymentType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopUpCompany_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ppaCharge.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_CandidateSearchInterest_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_CandidateSearch_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_JobSearch_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Recommendation.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecommendationJobRole.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecruiterStatisticsByCompany.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report12_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report15_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report16_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report17_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report19_Result.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportsStandard.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportType_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_V.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Resource.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResourceBrand.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResourceType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SalaryRanx.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SavedJob_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SearchScope.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SearchScopeType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Settings_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Statistic.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatisticType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Status.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\status_T.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Synonym.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SynonymGroup.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaJ4bFeedMap.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblJ4B_Cards_Types.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblJ4B_Payments.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblJ4B_Payments_Methods.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserBrand.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRight.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserType.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vacancies070119.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vacancies2.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vacanciesbackup11oct2018.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VacanciesBkp.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vacancy.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VacancyBrand.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VacancyLocation.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VacancySector.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VacancyShortlistLog.cs">
+      <DependentUpon>J4B.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.min.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.standalone.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="bootstrapdatepicker\js\bootstrap-datepicker.js" />
+    <Content Include="bootstrapdatepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.en-AU.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="bootstrapdatepicker\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="css\bootstrap-datepicker.css" />
+    <Content Include="css\bootstrap-datepicker3.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\fonts\fontawesome-webfont.svg" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\graphcircle.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\media-queries.css" />
+    <Content Include="css\menu-styles.css" />
+    <Content Include="css\old_bootstrap.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\popup-style.css" />
+    <Content Include="css\select2.css" />
+    <Content Include="css\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\author-img-1.jpg" />
+    <Content Include="images\author-img-2.jpg" />
+    <Content Include="images\author-img-3.jpg" />
+    <Content Include="images\banner-1.jpg" />
+    <Content Include="images\banner-2.jpg" />
+    <Content Include="images\client_leftarrow.png" />
+    <Content Include="images\client_rightarrow.png" />
+    <Content Include="images\email-icon.png" />
+    <Content Include="images\emp-logo-1.jpg" />
+    <Content Include="images\emp-logo-2.jpg" />
+    <Content Include="images\emp-logo-3.jpg" />
+    <Content Include="images\emp-logo-4.jpg" />
+    <Content Include="images\emp-logo-5.jpg" />
+    <Content Include="images\emp-logo-6.jpg" />
+    <Content Include="images\emp-logo-7.jpg" />
+    <Content Include="images\emp-logo-8.jpg" />
+    <Content Include="images\follow-btn.png" />
+    <Content Include="images\follow-job4-img.jpg" />
+    <Content Include="images\gray-edit-icon.png" />
+    <Content Include="images\homemainbannerbg.jpg" />
+    <Content Include="images\ico\favicon.png" />
+    <Content Include="images\ico\file.png" />
+    <Content Include="images\ico\Qsearch.png" />
+    <Content Include="images\joblogo-1.jpg" />
+    <Content Include="images\joblogo-2.jpg" />
+    <Content Include="images\joblogo-3.jpg" />
+    <Content Include="images\latestjob-icon-1.png" />
+    <Content Include="images\latestjob-icon-2.png" />
+    <Content Include="images\latestjob-icon-3.png" />
+    <Content Include="images\latestjob-icon-4.png" />
+    <Content Include="images\loaderarrows.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\money-transfer-img.jpg" />
+    <Content Include="images\notification-icon.png" />
+    <Content Include="images\partner-logo-1.jpg" />
+    <Content Include="images\partner-logo-2.jpg" />
+    <Content Include="images\partner-logo-3.jpg" />
+    <Content Include="images\partner-logo-4.jpg" />
+    <Content Include="images\partner-logo-5.jpg" />
+    <Content Include="images\select-downarrow.png" />
+    <Content Include="images\send-icon.png" />
+    <Content Include="images\service-icon-1.png" />
+    <Content Include="images\service-icon-2.png" />
+    <Content Include="images\service-icon-3.png" />
+    <Content Include="images\setting-icon.png" />
+    <Content Include="images\submenu-toparrow.png" />
+    <Content Include="images\top-google-add.jpg" />
+    <Content Include="images\topemployers-logo-1.png" />
+    <Content Include="images\topemployers-logo-2.png" />
+    <Content Include="images\topemployers-logo-3.png" />
+    <Content Include="images\topemployers-logo-4.png" />
+    <Content Include="images\topemployers-logo-5.png" />
+    <Content Include="images\topemployers-logo-6.png" />
+    <Content Include="images\userimg-1.jpg" />
+    <Content Include="images\userimg-2.jpg" />
+    <Content Include="images\vacanciest-user-img-1.jpg" />
+    <Content Include="images\vacanciest-user-img-2.jpg" />
+    <Content Include="images\vacanciest-user-img-3.jpg" />
+    <Content Include="images\vacanciest-user-img-4.jpg" />
+    <Content Include="images\white-edit-icon.png" />
+    <Content Include="InstallationDummyFile.txt" />
+    <Content Include="js\autocompletevalues.js" />
+    <Content Include="js\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="js\bootstrap-datepicker.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\common.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\magnific.js" />
+    <Content Include="js\owl.carousel.js" />
+    <Content Include="js\script.js" />
+    <Content Include="js\select2.js" />
+    <Content Include="js\sticky-header.js" />
+    <Content Include="js\wow.js" />
+    <Content Include="LICENSE.txt" />
+    <Content Include="Models\J4B.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>J4B.edmx</DependentUpon>
+      <LastGenOutput>J4B.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\J4B.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>J4B.edmx</DependentUpon>
+      <LastGenOutput>J4B.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config" />
+    <Content Include="css\fonts\fontawesome-webfont.eot" />
+    <Content Include="css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="css\fonts\fontawesome-webfont.woff" />
+    <Content Include="css\fonts\fontawesome-webfont.woff2" />
+    <Content Include="css\fonts\FontAwesome.otf" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.min.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker.standalone.min.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.min.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="bootstrapdatepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <EntityDeploy Include="Models\J4B.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>J4B.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\J4B.edmx.diagram">
+      <DependentUpon>J4B.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\css\dialog.css" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\buttons.png" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\icons.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\items.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_arrow.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_check.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\progress.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\tabs.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\editable_selects.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\form_utils.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\mctabs.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\validate.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\help\img\logo.png" />
+    <Content Include="Scripts\tinymce\plugins\help\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\help\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.mobile.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.mobile.min.css" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.js" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Scripts\tinymce\themes\mobile\theme.js" />
+    <Content Include="Scripts\tinymce\themes\mobile\theme.min.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Templates\CandiateVerifiedEmail.html" />
+    <Content Include="Templates\CandidateActivation.html" />
+    <Content Include="Templates\Completeyourprofile.html" />
+    <Content Include="Templates\ApplicationReceived.html" />
+    <Content Include="Templates\EmployerActivation.html" />
+    <Content Include="Templates\EmployerVerifiedEmail.html" />
+    <Content Include="Templates\J4BProfileactivatedRecruiter.html" />
+    <Content Include="Templates\Receipt.html" />
+    <Content Include="Templates\Invoice.html" />
+    <Content Include="Templates\J4BProfileactivated.html" />
+    <Content Include="Templates\J4BThankYouEmail.html" />
+    <Content Include="Views\Home\CandidateSearchResult.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ListsMasters\Create.cshtml" />
+    <Content Include="Views\ListsMasters\Delete.cshtml" />
+    <Content Include="Views\ListsMasters\Details.cshtml" />
+    <Content Include="Views\ListsMasters\Edit.cshtml" />
+    <Content Include="Views\ListsMasters\Index.cshtml" />
+    <Content Include="Views\Home\Recruiter.cshtml" />
+    <Content Include="Views\Home\JobSeeker.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\Shared\_partners.cshtml" />
+    <Content Include="Views\Home\MediaCenter.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\JobSeekerProfile.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\JobDescription.cshtml" />
+    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Home\RecruiterRegistration.cshtml" />
+    <Content Include="Views\Home\PaymentSuccess.cshtml" />
+    <Content Include="Views\Home\PostAJob.cshtml" />
+    <Content Include="Views\Home\PostedJob.cshtml" />
+    <Content Include="Views\Shared\_recruitermenu.cshtml" />
+    <Content Include="Views\Home\ManageVacancies.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\CVChecklist.cshtml" />
+    <Content Include="Views\Home\CVTips.cshtml" />
+    <Content Include="Views\Home\CVWriting.cshtml" />
+    <Content Include="Views\Home\LatestJobs.cshtml" />
+    <Content Include="Views\Home\RecruiterContact.cshtml" />
+    <Content Include="Views\Home\RecruiterAlert.cshtml" />
+    <Content Include="Views\Home\RecruiterLogout.cshtml" />
+    <Content Include="Views\Home\SectorJobs.cshtml" />
+    <Content Include="Views\Home\JobseekerRegistration.cshtml" />
+    <Content Include="Views\Home\JobSearch.cshtml" />
+    <Content Include="Views\Shared\_topemployers.cshtml" />
+    <Content Include="Views\Shared\_candidatelogin.cshtml" />
+    <Content Include="Views\Home\Signout.cshtml" />
+    <Content Include="Views\Shared\_recruiterlogin.cshtml" />
+    <Content Include="Views\Home\menulogin.cshtml" />
+    <Content Include="Views\Home\Search2.cshtml" />
+    <Content Include="Views\Home\RegisterJobseekerLogin.cshtml" />
+    <Content Include="Views\Home\JobSearchDetail.cshtml" />
+    <Content Include="Views\Home\RegisterEmployerLogin.cshtml" />
+    <Content Include="Views\Home\CandidateSearch.cshtml" />
+    <Content Include="Views\Home\CandidateSearchDetail.cshtml" />
+    <Content Include="Views\Home\JobSearchResult.cshtml" />
+    <Content Include="Views\Home\Packages.cshtml" />
+    <Content Include="Views\Home\CandidateSearch2.cshtml" />
+    <Content Include="Views\Home\JobseekerRegistration - Copy.cshtml" />
+    <Content Include="Views\Home\SuccessfullPayment.cshtml" />
+    <Content Include="Views\Home\CandidateSearchDetail2.cshtml" />
+    <Content Include="Views\Home\NoValidSubscription.cshtml" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Home\JobEdit.cshtml" />
+    <Content Include="Views\Home\UserActivityReport.cshtml" />
+    <Content Include="Views\Home\RecruitmentActivityReport.cshtml" />
+    <Content Include="Views\Home\Employer.cshtml" />
+    <Content Include="Views\Home\CanRegProfileSummary.cshtml" />
+    <Content Include="Views\Home\CanRegEducation.cshtml" />
+    <Content Include="Views\Home\CanRegWorkHistory.cshtml" />
+    <Content Include="Views\Home\CanRegITSkills.cshtml" />
+    <Content Include="Views\Home\CanRegAccomplishments.cshtml" />
+    <Content Include="Views\Home\CanRegIdealCareerMove.cshtml" />
+    <Content Include="Views\Shared\_CanRegTabs.cshtml" />
+    <Content Include="Views\Home\NonActivated.cshtml" />
+    <Content Include="Views\Home\CandidateCareerServices.cshtml" />
+    <Content Include="Views\Home\CCareerServicesDetails.cshtml" />
+    <Content Include="Views\Home\EmployerCareerServices.cshtml" />
+    <Content Include="Views\Home\CandidateSearchResult2.cshtml" />
+    <Content Include="Views\Home\CandidateSearchDetail2 - Copy.cshtml" />
+    <Content Include="Views\Home\CareerServices.cshtml" />
+    <Content Include="Views\Home\ECareerServicesDetails.cshtml" />
+    <Content Include="Views\Home\VacancySectorz.cshtml" />
+    <Content Include="Views\Home\CVViewer.cshtml" />
+    <Content Include="Views\Home\JobDescEmployer.cshtml" />
+    <Content Include="Views\Home\SearchDashboard.cshtml" />
+    <Content Include="Views\Home\MailChecker.cshtml" />
+    <Content Include="Views\Home\ActivateCandidate.cshtml" />
+    <Content Include="Views\Home\CandidateSearchDetail2 - 30092018.cshtml" />
+    <Content Include="Views\Home\JobSearch2.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\JobSearch3.cshtml" />
+    <Content Include="Views\Home\JobSeekerProfile - Copy %283%29.cshtml" />
+    <Content Include="Views\Home\BackOfficeJobSeekerProfile.cshtml" />
+    <Content Include="Views\Home\QuickSearch.cshtml" />
+    <Content Include="Views\Home\CandidateSearch3.cshtml" />
+    <Content Include="Views\Home\PasswordReset.cshtml" />
+    <Content Include="Views\Home\EmployerComingSoon.cshtml" />
+    <Content Include="Views\Home\EmployerCSThanks.cshtml" />
+    <Content Include="Views\Home\NewsletterSubscription.cshtml" />
+    <Content Include="Views\Home\BackOfficeLogin.cshtml" />
+    <Content Include="Views\Home\BackOfficeNonActivatedCandiates.cshtml" />
+    <Content Include="Views\Home\BackOfficeActivatedCandiates.cshtml" />
+    <Content Include="Views\Home\NonCompletedRegistrations.cshtml" />
+    <Content Include="Views\Home\BackOfficeRegistrationProgressCandiates.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersTemp.cshtml" />
+    <Content Include="Views\Home\Recruiter - Copy.cshtml" />
+    <Content Include="Views\Home\PaymentMode.cshtml" />
+    <Content Include="Views\Home\PaymentModeSelected.cshtml" />
+    <Content Include="Views\Home\ManageVacancies - Copy.cshtml" />
+    <Content Include="Views\Home\JobApplicantsUpdated.cshtml" />
+    <Content Include="Views\Home\CandidateSearchRefine.cshtml" />
+    <Content Include="Views\Home\NoPermission.cshtml" />
+    <Content Include="Views\Home\SubscriptionThanks.cshtml" />
+    <Content Include="Views\Home\CreditCardPayment.cshtml" />
+    <Content Include="Views\Home\PaymentFailed.cshtml" />
+    <Content Include="Views\Shared\_BOmenu.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersAssignPackage.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersAssignedPackage.cshtml" />
+    <Content Include="Views\Home\Reports.cshtml" />
+    <Content Include="Views\Home\RecruiterRegistration - Copy.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersActivate.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersActivate2.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersActivated.cshtml" />
+    <Content Include="Views\Home\ActivateEmployer.cshtml" />
+    <Content Include="Views\Home\TermsandConditions.cshtml" />
+    <Content Include="Views\Home\TermsandConditionsUsers.cshtml" />
+    <Content Include="Views\Home\TermsandConditionsJobSeeker.cshtml" />
+    <Content Include="Views\Home\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Home\CompanyJobs.cshtml" />
+    <Content Include="Views\Home\PostAJob - Copy.cshtml" />
+    <Content Include="Views\Home\RecruiterBA.cshtml" />
+    <Content Include="Views\Home\EmployerRegSuccess.cshtml" />
+    <Content Include="Views\Home\MyCompanies.cshtml" />
+    <Content Include="Views\Home\BOEmpActivationResend.cshtml" />
+    <Content Include="Views\Home\BackOfficeEmployersEmailNonActivated.cshtml" />
+    <Content Include="Views\Home\ResendCandidateActivationMail.cshtml" />
+    <Content Include="Views\Home\JobFair.cshtml" />
+    <Content Include="Views\Home\BackOfficeVacancies.cshtml" />
+    <Content Include="Views\Home\BackOfficeJobFair.cshtml" />
+    <Content Include="Views\Home\CanRegProfileSummary - Copy.cshtml" />
+    <Content Include="Views\Home\CanRegWorkHistory - Copy.cshtml" />
+    <Content Include="Views\Home\CanRegSuccess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\AdvancedSearch\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57021</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57021/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

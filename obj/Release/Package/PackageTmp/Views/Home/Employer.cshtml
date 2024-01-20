@@ -1,0 +1,532 @@
+﻿
+@{
+    ViewBag.Title = "Bahrain Jobs for Bahrainis";
+
+    Html.RenderAction("menulogin");
+
+
+}
+
+
+
+@Html.Partial("_menu")
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec  fade-1">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@Url.Content("~/")@ViewBag.Logo" alt="" style="margin-top:20%" /></a>
+
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon"><b>@ViewBag.Company</b></div>
+                            <div class="uercon">
+                                @ViewBag.Name @ViewBag.SurName
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                         InstaWidget  
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+
+                    </div>*@
+                </div>
+            </div>
+
+
+
+
+            <div class="col-sm-9">
+
+
+
+
+                @if (ViewBag.HeaderPic != null)
+                {
+                    <div class="row" style="max-height:325px;overflow:hidden">
+                        <div class="col-md-12">
+                            <img class="img-responsive" src="@Url.Content("~/" + ViewBag.HeaderPic)" />
+                        </div>
+
+                    </div>
+                        <br style="clear:both" />
+                }
+
+
+                <div class="homesearchsection  fade-1">
+
+
+                    <h1 class="mainpagetitle Padd15">COMPANY <span>OVERVIEW</span></h1>
+                    <br style="clear:both" />
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-12" style="font-size:20px;font-weight:bold;margin:0 0 15px 0">About Us</div>
+                            <br style="clear:both" />
+
+                            <div class="col-md-12">
+                                <h4>@ViewBag.Company</h4>
+                            </div>
+                            <div>
+
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Company Size:</span> @ViewBag.ThisCompanySize
+                                </div>
+
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Business Activities:</span>
+                                    @{ int x = 0; }
+                                    @foreach (var ba in ViewBag.CompanyBA)
+                                    {
+                                        if (x == 0)
+                                        {
+                                            <span>@ba.lm_Value</span>
+                                        }
+                                        else
+                                        {
+                                            <span>, @ba.lm_Value</span>
+                                        }
+                                        x++;
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Address:</span> @ViewBag.PostalAddress
+                                </div>
+                                <div class="col-md-6">
+                                    <span style="font-weight:bold">Last Updated:</span> @ViewBag.LastUpdated.ToString("dd-MMM-yyyy")
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <br style="clear:both" /><br style="clear:both" />
+                </div>
+
+@if (ViewBag.co_ProfilePublished == true)
+{
+
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">COMPANY <span>PROFILE</span></h1>
+                    <div class="searchformsec">
+
+                        <div class="row">
+                            @if (ViewBag.ProfileTitle1 != null && ViewBag.ProfileTitle1 != "")
+                            {
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic1" onerror="this.onerror=null;this.src='@Url.Content("~/images/blankprofilepic.png")';"/></div>
+                                    <div class="col-md-6">
+                                        <h4>@ViewBag.ProfileTitle1</h4>
+                                        @Html.Raw(ViewBag.CompanyProfile)
+                                    </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-12">
+                                    @Html.Raw(ViewBag.CompanyProfile)
+                                </div>
+                            }
+
+
+                            <br style="clear:both" />
+                            @if (ViewBag.ProfileTitle2 != null && ViewBag.ProfileTitle2 != "")
+                            {
+                                <br style="clear:both" />
+                                <div class="col-md-6">
+                                    <h4>@ViewBag.ProfileTitle2</h4>
+                                    @Html.Raw(ViewBag.CompanyProfile2)
+
+
+                                </div>
+                                    <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic2"  onerror="this.onerror=null;this.src='@Url.Content("~/images/blankprofilepic.png")';" /></div>
+                                    <br style="clear:both" />
+                            }
+                            @if (ViewBag.ProfileTitle3 != null && ViewBag.ProfileTitle3 != "")
+                            {
+                                <br style="clear:both" />
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic3" onerror="this.onerror=null;this.src='@Url.Content("~/images/blankprofilepic.png")';" /></div>
+                                    <div class="col-md-6">
+                                        <h4>@ViewBag.ProfileTitle3</h4>
+
+                                        @Html.Raw(ViewBag.CompanyProfile3)
+
+                                    </div>
+                                    <br style="clear:both" />
+
+                            }
+
+
+
+
+                            @if (ViewBag.ProfileTitle4 != null && ViewBag.ProfileTitle4 != "")
+                            {
+                                <br style="clear:both" />
+                                <div class="col-md-6">
+                                    <h4>@ViewBag.ProfileTitle4</h4>
+                                    @Html.Raw(ViewBag.CompanyProfile4)
+                                </div>
+                                    <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic4" onerror="this.onerror=null;this.src='@Url.Content("~/images/blankprofilepic.png")';" /></div>
+
+                                    <br style="clear:both" />
+
+
+                            }
+
+                            @if (ViewBag.ProfileTitle5 != null && ViewBag.ProfileTitle5 != "")
+                            {
+                                <br style="clear:both" />
+
+                                <div class="col-md-6" style="max-height:320px;overflow:hidden"><img class="img-responsive" src="@Url.Content("~/")@ViewBag.co_ProfilePic5" onerror="this.onerror=null;this.src='@Url.Content("~/images/blankprofilepic.png")';" /></div>
+                                    <div class="col-md-6">
+                                        <h4>@ViewBag.ProfileTitle5</h4>
+                                        @Html.Raw(ViewBag.CompanyProfile5)
+
+
+                                    </div>
+                                    <br style="clear:both" />
+                                    <br style="clear:both" />
+
+                            }
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+}
+
+
+
+                @if (ViewBag.CompanyManagement.Count != 0)
+                {
+
+                    <div class="homesearchsection  fade-1">
+
+                        <h1 class="mainpagetitle Padd15">TOP <span>MANAGEMENT</span></h1>
+                        <div class="searchformsec">
+
+                            <div class="row">
+
+
+                                @foreach (var cm in ViewBag.CompanyManagement)
+                                {
+                                    if (cm.Name != "" && cm.Name != null)
+                                    {
+                                    <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                        <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                            <img  style="height:190px;width:204px;"    src="@Url.Content("~/")@cm.Extn" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                        </div>
+                                        <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                            <b>@cm.Name</b>
+                                            <br />
+                                            @cm.Position
+                                        </div>
+                                    </div>
+                                    }
+                                    if (cm.Name2 != "" && cm.Name2 != null)
+                                    {
+                                            <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                                <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                                    <img  style="height:190px;width:204px;"    src="@Url.Content("~/")@cm.Extn2" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                                </div>
+                                                <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                                    <b>@cm.Name2</b>
+                                                    <br />
+                                                    @cm.Position2
+                                                </div>
+                                            </div>
+                                    }
+                                    if (cm.Name3 != "" && cm.Name3 != null)
+                                    {
+                                            <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                                <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                                    <img  style="height:190px;width:204px;"    src="@Url.Content("~/")@cm.Extn3" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                                </div>
+                                                <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                                    <b>@cm.Name3</b>
+                                                    <br />
+                                                    @cm.Position3
+                                                </div>
+                                            </div>
+                                    }
+                                    if (cm.Name4 != "" && cm.Name4 != null)
+                                    {
+                                            <div style="padding:0 8px 20px 8px;width:220px;float:left;">
+                                                <div style="height:190px;overflow:hidden;background-color:#ccc">
+                                                    <img  style="height:190px;width:204px;"   src="@Url.Content("~/")@cm.Extn4" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                                </div>
+                                                <div style="background-color:#444;color:white;padding:3px;text-align:center;height:48px;">
+                                                    <b>@cm.Name4</b>
+                                                    <br />
+                                                    @cm.Position4
+                                                </div>
+                                            </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                }
+
+@if (ViewBag.co_VideoPublished == true)
+{
+
+            if (ViewBag.videourls.Count > 0)
+                {
+
+                    <style>
+                        .video-container {
+                            position: relative;
+                            padding-bottom: 56.25%;
+                            padding-top: 30px;
+                            height: 0;
+                            overflow: hidden;
+                        }
+
+                            .video-container iframe,
+                            .video-container object,
+                            .video-container embed {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                            }
+                    </style>
+
+                    <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">COMPANY <span>VIDEO</span></h1>
+                    <div class="searchformsec">
+
+                    <div class="row">
+
+                    @foreach (var v in ViewBag.videourls)
+                    {
+                        <div class="col-md-4">
+
+                        <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/@v.VideoURL" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        </div>
+                    }
+
+                    </div>
+                    </div>
+                    </div>
+
+                }
+}
+                @{
+                    int countpg = 0;
+
+                }
+
+
+@if (ViewBag.co_GalleryPublished == true)
+{
+
+                if (ViewBag.photogallery.Count > 0)
+                {
+
+                    <div class="homesearchsection  fade-1">
+
+                        <h1 class="mainpagetitle Padd15">PHOTO <span>GALLERY</span></h1>
+                        <div class="searchformsec">
+
+                            <div class="row">
+
+                                @foreach (var pg in ViewBag.photogallery)
+                                {
+
+                                    <div class="col-md-4">
+                                        <a target="_blank" href="@Url.Content("~/" + pg.ImagePath)">
+
+                                            <img class="img-responsive" src="@Url.Content("~/" + pg.ImagePath)" />
+
+                                        </a>
+                                    </div>
+                                    countpg++;
+                                    if (countpg == 3 || countpg == 6 || countpg == 9)
+                                    {
+                                        <br style="clear:both" />
+                                            <br style="clear:both" />
+
+                                    }
+
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+}
+@if (ViewBag.co_TestimonialsPublished == true)
+{
+
+                if (ViewBag.testimonials.Count != 0)
+                {
+
+                    <div class="homesearchsection  fade-1">
+
+                        <h1 class="mainpagetitle Padd15">
+                            TESTI<span>MONIALS</span>
+
+                        </h1>
+                        <div class="searchformsec">
+
+                            <div class="row">
+
+                                @foreach (var ct in ViewBag.testimonials)
+                                {
+
+                                    <div class="col-md-4">
+                                        <a target="_blank" href="@Url.Content("~/" + ct.CTPicExtension)">
+                                            <img class="img-responsive" src="@Url.Content("~/")@ct.CTPicExtension" />
+                                            <br style="clear:both" />
+
+                                            <div>@Html.Raw(ct.CTDetails)</div>
+                                        </a>
+                                    </div>
+                                    countpg++;
+                                    if (countpg == 3 || countpg == 6 || countpg == 9)
+                                    {
+                                        <br style="clear:both" />
+                                            <br style="clear:both" />
+
+                                    }
+
+                                }
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+}
+@if (ViewBag.co_MediaPublished == true)
+{
+    if (ViewBag.medias.Count != 0)
+    {
+                    <div class="homesearchsection  fade-1">
+
+                        <h1 class="mainpagetitle Padd15">
+                            MED<span>IA</span>
+
+                        </h1>
+                        <div class="searchformsec">
+
+                            <div class="row">
+
+                                @foreach (var cmedia in ViewBag.medias)
+                                {
+
+                                    <div class="col-md-12">
+
+                                        <a target="_blank" href="@Url.Content("~/" + cmedia.CMPicExtension)">
+                                            <div>@Html.Raw(cmedia.CMTitle)</div>
+                                        </a>
+                                    </div>
+                                        <br style="clear:both" />
+
+                                }
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+    }
+}
+                <div class="homesearchsection  fade-1">
+
+                    <h1 class="mainpagetitle Padd15">JOB <span> VACANCIES</span></h1>
+
+
+
+
+                    @foreach (var lj in ViewBag.LatestJobs)
+                    {
+
+                        <div class="listwhitebox tablistsec">
+
+                            <div class="jobcomnamelogo">
+                                <div class="row">
+                                    <div class="col-md-3 col-md-push-9">
+                                        <div class="comlogo"><a href="#"><img src="@Url.Content("~/")@lj.LogoURL" alt=""></a></div>
+                                    </div>
+                                    <div class="col-md-9 col-md-pull-3">
+                                        <div class="combydata">
+                                            <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                            <div class="comdet"> @Html.Raw(lj.vc_Description) ... </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="listtimelocation">
+                                <ul>
+                                    <li><img src="@Url.Content("~/")images/latestjob-icon-1.png" alt="" /> @lj.postedsince</li>
+                                    @*<li><img src="@Url.Content("~/")images/latestjob-icon-2.png" alt="" /><a data-toggle="modal" data-target="#profilePicModal">@lj.co_Name</a></li>*@
+                                    <li><img src="@Url.Content("~/")images/latestjob-icon-3.png" alt="" /> @lj.vc_Location</li>
+                                    <li><img src="@Url.Content("~/")images/latestjob-icon-4.png" alt="" /> Full Time</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    }
+
+                    @if (ViewBag.LatestJobs.Count == 0)
+                    {
+
+                        <br class="clearfix" />
+
+                            <div class="col-md-12">No active jobs!</div>
+                            <br class="clearfix" />
+                            <br class="clearfix" />
+                            <br class="clearfix" />
+                    }
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+

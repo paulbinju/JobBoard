@@ -1,0 +1,958 @@
+﻿@model Jobs4Bahrainis.Models.CandidateSkills
+
+
+@{
+    ViewBag.Title = "JobSeeker";
+}
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-7 pull-left">
+
+                        <div id="cssmenu">
+                            <ul>
+                                <li><a href="@Url.Content("~/JobSeekerProfile")">PROFILE</a></li>
+                                <li class="active"><a href="@Url.Content("~/JobSeeker")">JOBS</a></li>
+                                <li><a href="@Url.Content("~/CandidateCareerServices")">Career Services</a></li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_candidatelogin")
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+ 
+           <div class="col-md-12">
+               <div class="col-sm-12">
+                   <div class="dashboardwhiteboxshadow">
+@using (Html.BeginForm("JobSearchResult", "Home", FormMethod.Get))
+{
+                       <div class="col-md-12">
+                           <br />
+                           <h1 class="mainpagetitle Padd15 centertext">JOB <span>SEARCH</span></h1>
+                           <div class="searchformsec">
+                               <div class="row">
+                                   <div class="col-md-12">
+                                       @*<input name="keyword" type="text" placeholder="Keyword">*@
+                                       <input name="keyword" type="text" placeholder="Search keyword" id="keyword" class="skill-search-icon">
+                                   </div>
+                               </div>
+                              
+
+
+
+                           </div>
+
+                           <div class="col-md-12">
+
+
+
+
+                               <div class="col-md-6">
+
+                                   <div style="font-size:16px;color:#999">Industry / Sector</div>
+
+                                   <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; margin-left:-10px ">
+                                       <div class="col-sm-12">
+                                           <input type="checkbox" id="chksector" name="chksector" value="*" /> <span style="font-size:15px;color:gray">All</span>
+                                       </div>
+
+                                       @foreach (var s in ViewBag.Sectors)
+                                       {
+                                           <div class="col-sm-12">
+                                               <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                           </div>
+                                       }
+
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+
+                                   <div style="font-size:16px;color:#999">Function / Title</div>
+
+                                   <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; ">
+                                       <div class="col-sm-12">
+                                           <input type="checkbox" id="chksector" name="chksector" value="*" /> <span style="font-size:15px;color:gray">All</span>
+                                       </div>
+
+                                       @foreach (var s in ViewBag.FunctionalTitles)
+                                       {
+                                           <div class="col-sm-12">
+                                               <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:15px;color:gray">@s.lm_Value</span>
+                                           </div>
+                                       }
+
+                                   </div>
+                               </div>
+
+                           </div>
+
+
+                           <br class="clear" />
+                           <div class="searchformsec">
+                               <div class="row">
+                                   <div class="col-md-12">
+                                       <select name="salary">
+                                           <option value="">Salary</option>
+                                           <option value="*">All</option>
+                                           <option value="0:200">0-200</option>
+                                           <option value="200:400">200-400</option>
+                                           <option value="400:600">400-600</option>
+                                           <option value="600:800">600-800</option>
+                                           <option value="800:1000">800-1000</option>.
+                                           <option value="-1:1000">>1000</option>
+
+                                       </select>
+                                   </div>
+                                   @*<div class="col-md-6">
+                                       <select name="Qualification">
+                                           <option>Qualification</option>
+                                           <option value="HND">Higher National Diploma</option>
+                                           <option value="BSC">Bachelor's degree</option>
+                                           <option value="MSC">Master's degree</option>
+                                           <option value="DOC">Doctoral degree</option>
+
+                                       </select>
+                                   </div>*@
+                                
+
+
+                               </div>
+
+                               <br class="clear" />
+
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <select name="qualification">
+                                           <option value="">Qualification</option>
+                                           <option value="*">All</option>
+                                           <option value="1">Higher National Diploma</option>
+                                           <option value="2">Bachelor's degree</option>
+                                           <option value="3">Master's degree</option>
+                                           <option value="4">Doctoral degree</option>
+
+                                       </select>
+        </div>
+                                   <div class="col-md-6">
+                                       <select name="experience">
+                                           <option value="">Years of Experience</option>
+                                           <option value="*">All</option>
+                                           <option value="0:1">0-1</option>
+                                           <option value="1:3">1-3</option>
+                                           <option value="3:6">3-6</option>
+                                           <option value="6:8">6-8</option>
+                                           <option value="8:10">8-10</option>
+                                           <option value="-1:10">>10</option>
+
+                                       </select>
+                                   </div>
+
+
+
+                               </div>
+                           </div>
+                           <br class="clear" />
+
+                           <hr />
+
+                           <div class="searchformsec">
+                               <div class="row">
+
+                                   <div class="col-md-2 pull-right">
+                                       <input name="" type="submit" value="Search">
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <br style="clear:both" />
+}
+                   </div>
+                 
+               </div>
+
+           </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    .modal-lg {
+        margin: 15% auto;
+    }
+</style>
+
+@foreach (var c in ViewBag.CandiateProfile)
+{
+    <div id="candidateModal" class="modal fade" role="dialog">
+        <div class="modal-lg center-block">
+            <div class="registerformbox">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="mainpagetitle">JOBSEEKER <span>PROFILE</span></h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @*<input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />*@
+                                    <label>First Name *</label>
+                                    <input class="form-control" id="FirstName" name="First Name" placeholder="First Name" type="text" value="@ViewBag.fName">
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input class="form-control" id="LastName" name="Last Name" placeholder="Last Name" type="text" value="@ViewBag.lName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Date of Birth *</label>
+                                    <input class="form-control datepicker" id="dateofbirth" name="dateofbirth" placeholder="Date / Month / Year" type="text" value="@ViewBag.DOB">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="gender">Gender *</label>
+                                    @Html.DropDownList("ddlGender", (SelectList)ViewBag.Genders, "--Select--", new { @class = "form-control", @id = "Gender" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Phone *</label>
+                                    <input class="form-control" name="Phone" id="Phone" placeholder="Phone" type="text" value="@ViewBag.Phone">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input class="form-control" name="Email" id="Email" placeholder="Email" type="text" value="@ViewBag.Email">
+                                </div>
+                            </div>
+                            @foreach (var ca in ViewBag.CandiateProfile)
+                            {
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="currentposition">Education Level *</label>
+                                        <input class="form-control" name="Education Level" id="EducationLevel" placeholder="Education Level" type="text" value="@ca.lm_value">
+                                        @*<div class="form-check">
+                                                <input class="form-check-input" id="freshgraduate" type="checkbox">
+                                                <label class="form-check-label" for="freshgraduate">Fresh graduate</label>
+                                            </div>*@
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label>Current Salary (BHD) *</label>
+                                            <input class="form-control" name="Current Salary" id="CurrentSalary" placeholder="Current Salary" type="text" value="@ca.ca_SalaryFrom">
+
+                                        </div>
+                                        @*<label for="highesteducation">Highest Level of Education *</label>
+                                            <select class="form-control" id="highesteducation">
+                                                <option>Education 1</option>
+                                                <option>Education 2</option>
+                                                <option>Education 3</option>
+                                                <option>Education 4</option>
+                                                <option>Education 5</option>
+                                            </select>*@
+                                    </div>
+                                </div>
+                                @*<div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>High School/University *</label>
+                                            <input class="form-control" name="University" placeholder="High School/University" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="country">Country *</label>
+                                            <select class="form-control" id="country">
+                                                <option>Country 1</option>
+                                                <option>Country 2</option>
+                                                <option>Country 3</option>
+                                                <option>Country 4</option>
+                                                <option>Country 5</option>
+                                            </select>
+                                        </div>
+                                    </div>*@
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="summary">Profile Summary</label>
+                                        <textarea class="form-control" name="Summary" id="summary" placeholder="Summary">@ca.ca_Profile</textarea>
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-sm-12">
+                                <div class="form-group formbtn text-right">
+                                    <input name="save" id="btnProfileSummary" type="submit" value="SAVE">
+                                </div>
+                            </div>
+                        </div>
+                        <br style="clear:both" />
+                        <br style="clear:both" />
+
+
+                    </div>
+                    @*<div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>*@
+                </div>
+
+            </div>
+        </div>
+        @*<div class="modal-lg center-block">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="mainpagetitle">JOBSEEKER <span>PROFILE</span></h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="searchformsec">
+                            <div class="col-md-3">Name:<br /><input type="text" class="form-control" value="@ViewBag.Name" /></div>
+                            <div class="col-md-3">Email:<br /><input type="text" class="form-control" value="@ViewBag.Email" /></div>
+                            <div class="col-md-3">Phone:<br /><input type="text" class="form-control" value="@ViewBag.Phone" /></div>
+                            <div class="col-md-3">Date of Birth:<br /><input type="text" class="form-control" value="@ViewBag.DOB" /></div>
+                        </div>
+                        <br style="clear:both" />
+                        <br style="clear:both" />
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>*@
+
+    </div>
+}
+
+
+<div id="skillsModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>SKILLS</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form id="myForm">
+
+
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Skills</th>
+                                        <th>Skill Level</th>
+                                        <th>Action</th>
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.Skills)
+                                    {
+
+                                        <tr>
+                                            <td>@e.Skills</td>
+                                            <td>@e.SkillLevel</td>
+                                            @*<td><input type="reset" value="Delete" class="btn btn-danger" id="btnSubmitx" /><i class="fa fa-trash-o" style="color:red"></i></td>*@
+                                            <td style="text-align:center"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" title="Delete Skill" onclick="delskill(@e.CaSkillID)"></i></td>
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />
+                                            <input required type="text" id="Skills" class="form-control" />
+                                        </td>
+
+                                        @*<td>@Html.TextBoxFor(model => model.Skills, new { @class = "form-control", @placeholder = "Skill" })</td>*@
+                                        @*<td>@Html.DropDownListFor(model => model.SkillLevel, (SelectList)ViewBag.Skill_level, "--Select--", new { @class = "form-control" })</td>*@
+                                        <td>@Html.DropDownListFor(model => model.SkillLevel, (SelectList)ViewBag.Skill_level, "--Select--", new { @class = "form-control", @id = "SkillLevel" })</td>
+                                        @*<td><input type="reset" value="Add" class="btn btn-success" id="btnSubmit" /> <i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px"></i></td>*@
+                                        <td style="text-align:center"><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px;font-size:20px;cursor:pointer" title="Add Skill" id="btnskills"></i></td>
+
+
+
+
+
+
+
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group formbtn text-right">
+
+                                <input name="close" type="submit" data-dismiss="modal" value="Close">
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>SKILLS</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+
+
+
+<div id="workhistoryModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">WORK <span>HISTORY</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Company</th>
+                                    <th>Experience</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.Experience)
+                                {
+
+                                    <tr>
+                                        <td>@e.JobTitle</td>
+                                        <td>@e.Company</td>
+                                        <td>@e.TotalExp year(s)</td>
+                                        <td>@e.City</td>
+                                        <td>@e.Country</td>
+                                        <td style="text-align:center"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" title="Delete Experince" onclick="delExperince(@e.CaExpID)"></i></td>
+
+                                    </tr>
+                                }
+                                <tr>
+                                    @*<td><input class="form-control" name="Job Title	" placeholder="Job Title" type="text" /></td>
+                                        <td><input class="form-control" name="Company" placeholder="Company" type="text" /></td>
+                                        <td><input class="form-control" name="Experience" placeholder="Experience" type="text" /></td>
+                                        <td><input class="form-control" name="City" placeholder="City" type="text" /></td>
+                                        <td><input class="form-control" name="Country" placeholder="Country" type="text" /></td>
+
+                                        <td><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px"></i></td>*@
+
+                                    <td>
+                                        <input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />
+                                        <input required type="text" id="JobTitle" placeholder="Job Title" class="form-control" />
+
+                                    </td>
+
+                                    <td><input class="form-control" id="Company" placeholder="Company" type="text" /></td>
+                                    <td><input class="form-control" id="Experience" placeholder="Experience" type="text" /></td>
+                                    <td><input class="form-control" id="City" placeholder="City" type="text" /></td>
+                                    <td><input class="form-control" id="Country" placeholder="Country" type="text" /></td>
+
+                                    @*<td>@Html.DropDownListFor(model => model.SkillLevel, (SelectList)ViewBag.Skill_level, "--Select--", new { @class = "form-control", @id = "SkillLevel" })</td>*@
+
+                                    <td style="text-align:center"><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px;font-size:20px;cursor:pointer" title="Add Experince" id="btnexperince"></i></td>
+
+
+
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group formbtn text-right">
+
+                                <input name="close" type="submit" data-dismiss="modal" value="Close">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">WORK <span>HISTORY</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+
+
+
+
+
+<div id="educationModal" class="modal fade" role="dialog">
+
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Degree</th>
+                                    <th>Major</th>
+                                    <th>Institute</th>
+                                    <th>Grade</th>
+                                    <th>State</th>
+                                    <th>Country</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.Education)
+                                {
+
+                                    <tr>
+                                        <td>@e.DegreeLevel</td>
+                                        <td>@e.MajorSubject</td>
+                                        <td>@e.Institute</td>
+                                        <td>@e.Grade</td>
+                                        <td>@e.State</td>
+                                        <td>@e.Country</td>
+                                        @*<td><i class="fa fa-trash-o" style="color:red"></i></td>*@
+                                        <td style="text-align:center"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" title="Delete Degree" onclick="delDegree(@e.CaEdu_ID)"></i></td>
+
+                                    </tr>
+                                }
+                                <tr>
+                                    @*<td><input class="form-control" name="Degree" placeholder="Degree" type="text" /></td>
+                                        <td><input class="form-control" name="Major" placeholder="Major" type="text" /></td>
+                                        <td><input class="form-control" name="Institute" placeholder="Institute" type="text" /></td>
+                                        <td><input class="form-control" name="Grade" placeholder="Grade" type="text" /></td>
+                                        <td><input class="form-control" name="State" placeholder="State" type="text" /></td>
+                                        <td><input class="form-control" name="Country" placeholder="Country" type="text" /></td>
+                                        <td><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px"></i></td>*@
+
+
+                                    <td>
+                                        <input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />
+                                        <input required type="text" id="Degree" placeholder="Degree" class="form-control" />
+
+                                    </td>
+
+                                    <td><input class="form-control" id="Major" placeholder="Major" type="text" /></td>
+                                    <td><input class="form-control" id="Institute" placeholder="Institute" type="text" /></td>
+                                    <td><input class="form-control" id="Grade" placeholder="Grade" type="text" /></td>
+                                    <td><input class="form-control" id="State" placeholder="State" type="text" /></td>
+                                    <td><input class="form-control" id="c" placeholder="Country" type="text" /></td>
+                                    <td style="text-align:center"><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px;font-size:20px;cursor:pointer" title="Add Degree" id="btndegree"></i></td>
+
+                                </tr>
+
+
+
+                            </table>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group formbtn text-right">
+
+                                <input name="close" type="submit" data-dismiss="modal" value="Close">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+<div id="alertModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle">JOB <span>ALERTS</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+ <div id="profilePicModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>PROFILE</span> PIC</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("CandidatePhoto", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-md-8"><input class="form-control" id="file" name="file" placeholder="Attach Logo" type="file" required></div>
+                        <div class="col-md-4"><input name="save" type="submit" value="Upload"></div>
+                    }
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    //$(document).ready(function () {
+
+
+    //    $("#btnSubmit").click(function () {
+    //        alert('jhi');
+    //        $("#loaderDiv").show();
+
+    //        var myformdata = $("#myForm").serialize();
+
+    //        $.ajax({
+
+    //            type: "POST",
+    //            url: "/Home/JobSeekerProfile",
+    //            data: myformdata,
+    //            success: function () {
+    //                $("#loaderDiv").hide();
+    //                $("#myModal").modal("hide");
+
+    //            }
+
+    //        })
+    //    })
+
+    //})
+
+    $(document).ready(function () {
+
+
+        //$("#btnskills").click(function () {
+
+        //    if ($("#Skills").val() != "" && $("#SkillLevel").val() != "") {
+
+        //        urlx = "AddCandidateSkill/" + $("#Ca_ID").val() + "/" + $("#Skills").val() + "/" + $("#SkillLevel").val() + "/"
+
+        //        $.ajax({
+        //            type: 'GET',
+        //            url: urlx,
+        //            dataType: "json",
+        //            success: function (data) {
+        //                window.location.href = "JobSeekerProfile";
+        //            },
+        //            error: function () {
+        //                alert("Sorry unable to add!");
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        alert("Skills and Skill Levels are mandatory");
+        //    }
+        //});
+
+        $("#btnskills").click(function () {
+            if ($("#Skills").val() != "" && $("#SkillLevel").val() != "") {
+                $.ajax({
+                    method: "POST",
+                    url: "AddCandidateSkill2",
+                    data: { Ca_ID: $("#Ca_ID").val(), Skills: $("#Skills").val(), SkillLevel: $("#SkillLevel").val() },
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to add!");
+                    }
+                })
+
+            }
+            else {
+                alert("Skills and Skill Levels are mandatory");
+            }
+        });
+
+
+
+
+    });
+
+    $("#btnexperince").click(function () {
+        if ($("#JobTitle").val() != "" && $("#Experience").val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "AddCandidateWorkHistory",
+                data: { Ca_ID: $("#Ca_ID").val(), JobTitle: $("#JobTitle").val(), Company: $("#Company").val(), Experience: $("#Experience").val(), City: $("#City").val(), Country: $("#Country").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("JobTitle and Experience are mandatory");
+        }
+    });
+
+
+    $("#btndegree").click(function () {
+        if ($("#Degree").val() != "" && $("#Major").val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "AddCandidateDegree",
+                data: { Ca_ID: $("#Ca_ID").val(), DegreeLevel: $("#Degree").val(), MajorSubject: $("#Major").val(), Institute: $("#Institute").val(), Grade: $("#Grade").val(), State: $("#State").val(), c: $("#c").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("Degree and Major are mandatory");
+        }
+    });
+
+    $("#btnProfileSummary").click(function () {
+        if ($("#FirstName").val() != "" && $("#LastName").val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "UpdateCandidateProfileSummary",
+                data: { Ca_ID: $("#Ca_ID").val(), ca_FirstName: $("#FirstName").val(), ca_Surname: $("#LastName").val(), ca_DateOfBirth: $("#dateofbirth").val(), ca_Gender: $("#Gender").val(), ca_PhoneMobile: $("#Phone").val(), ca_EmailAddress: $("#Email").val(), ca_lm_EducationLevel: $("#EducationLevel").val(), ca_SalaryFrom: $("#CurrentSalary").val(), ca_Profile: $("#summary").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("Degree and Major are mandatory");
+        }
+    });
+
+
+    function delskill(caskillid) {
+
+        var r = confirm("Are you sure to delete the skill");
+
+        if (r == true) {
+            urlx = "DeleteCandidateSkill/" + caskillid + "/"
+
+            $.ajax({
+                type: 'GET',
+                url: urlx,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to delete!");
+                }
+            });
+        }
+    }
+
+
+
+    function delExperince(caExperince) {
+
+        var r = confirm("Are you sure to delete this work experince");
+
+        if (r == true) {
+            urlx = "DeleteCandidateExperince/" + caExperince + "/"
+
+            $.ajax({
+                type: 'GET',
+                url: urlx,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to delete!");
+                }
+            });
+        }
+    }
+
+    function delDegree(CaEdu_ID) {
+
+        var r = confirm("Are you sure to delete this Degree");
+
+        if (r == true) {
+            urlx = "DeleteCandidateDegree/" + CaEdu_ID + "/"
+
+            $.ajax({
+                type: 'GET',
+                url: urlx,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to delete!");
+                }
+            });
+        }
+    }
+
+
+</script>
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>

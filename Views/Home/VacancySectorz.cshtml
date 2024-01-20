@@ -1,0 +1,28 @@
+﻿
+<div class="col-md-4">
+    <div class="feturedsectors-list dashboardwhiteboxshadow   fade-2">
+        <h1 class="mainpagetitle Padd15"><span>FEATURED</span> SECTORS</h1>
+        <div class="feturlist">
+            <ul>
+
+                @foreach (var jsc in ViewBag.VacancySectorlist)
+                {
+                    <li><a href="@Url.Content("~/SectorJobs/" + jsc.lm_Id + "/" + jsc.SectorURL)">@jsc.lm_Value</a></li>
+                }
+
+
+            </ul>
+
+        </div>
+    </div>
+
+
+    @*<div class="insta dashboardwhiteboxshadow fade-1 " style="text-align:center; padding:5px 0 0 0">
+
+         InstaWidget  
+        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-6f791e26072db0287584f483de815ff803aa7ee2068bb7b5c74deb0de17cb442">@@jobs4bahrainis</a>
+        <script src="https://instawidget.net/js/instawidget.js?u=6f791e26072db0287584f483de815ff803aa7ee2068bb7b5c74deb0de17cb442&width=350px"></script>
+    </div>*@
+
+</div>
+

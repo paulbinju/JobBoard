@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "About Us";
+    Html.RenderAction("menulogin");
+}
+
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li><a href="@Url.Content("~/")">Home</a></li>
+                            <li class="active"><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li><a href="@Url.Content("~/CareerServices")">Careers Resources</a></li>
+                            <li><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="padding:0px;">
+                <h1 class="mainpagetitle Padd15"><span>ABOUT </span>US</h1>
+                 
+                <div class="col-md-12 fade-1">
+                    <br />
+
+                    <p>
+                        Jobs4Bahrainis.com is a unique interactive job portal providing employers with access to Bahraini talent and enabling Bahrain nationals to search for job opportunities within their specialized or preferred employment sectors.
+                    </p><p>
+                        J4B is a joint venture between Gulf Connexions, one of the most established executive search and selection firms in the GCC and Al Hilal Group, the Kingdom’s leading publishing and marketing organization.
+                    </p><p>
+                        J4B is an excellent vehicle to encourage broader employer-employee matchmaking. It serves as a showcase to consolidate many other initiatives in Human Capital Development such as professional and vocational training, employment initiatives and training on work readiness skills.
+                    </p><p>
+                        The unique Jobs4Bahrainis.com community offers job seekers- from fresh graduates to experienced professionals, a wealth of career related information on one easy to navigate platform from the latest job vacancies to value added career guidance services with dedicated pages on CV writing tips and CV templates, interview techniques and much more.
+                    </p><p>
+                        With a core mission to get Bahrainis into the workforce, Jobs4Bahrainis.com enjoys support from the Kingdoms leading local and international companies. Jobs4Bahrainis has become the most comprehensive CV database of graduates and experienced professional Bahraini talent, and remains an unrivalled recruitment resource which has been developed by Gulf Connexions over the past 8 years.
+
+                    </p>
+
+                    <br />
+
+                </div>
+
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+

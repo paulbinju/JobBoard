@@ -1,0 +1,124 @@
+﻿
+
+@{
+    ViewBag.Title = "Login";
+    Html.RenderAction("menulogin");
+}
+@Html.Partial("_menu")
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+
+
+
+            <div class="col-md-12 fade-2 ">
+
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="col-md-12" style="font-size:23px;font-weight:bold;text-align:center">Dear Employer, welcome to <span style="color:red">Jobs4Bahrainis.com</span>!</div>
+                    <br />
+                    <br />
+                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                @*<label class="pull-left">Email ID <span>*</span></label>*@
+                                <div id="emailloader" style="float:right;color:red;font-size:11px">Checking if email already registered .... <img src="@Url.Content("~/images/loading2.gif")" width="25" /></div>
+                                <input placeholder="Email ID" class="form-control" onblur="checkemail()" name="EmailID" id="EmailID" type="email" pattern="^[\w]{1,}[\w.+-]{0,}@(Html.Raw("@"))[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" required title="Invalid Email">
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                @*<label class="pull-left">Password <span>*</span></label>*@
+                                <input class="form-control" name="Password" type="password" placeholder="Password" required pattern=".{6,10}" title="6 to 10 characters">
+                                <div class="pull-right" style="font-size:13px;color:gray">(6 to 10 characters)</div>
+                            </div>
+                        </div>
+                            <br style="clear:both" />
+                            <br style="clear:both" />
+                            <div class="col-md-12">
+                                <input type="checkbox" required oninvalid="this.setCustomValidity('Please agree to Terms of Service and Privacy Policy')" oninput="setCustomValidity('')" /> By joining, you agree to the Jobs4bahrainis.com <a style="color:red" target="_blank" href="@Url.Content("~/TermsandConditionsUsers")">Terms of Service</a> and <a style="color:red" target="_blank" href="@Url.Content("~/PrivacyPolicy")">Privacy Policy</a> as well as to receive occasional emails from us.
+                            </div>
+                                <br style="clear:both" /><br />
+                                        <div class="col-md-9" style="font-size:12px">
+
+                                        </div>
+                                        <div class="col-md-3 pull-right searchformsec">
+                                            <input name="" type="submit" value="Register">
+                                        </div>
+                                        <br style="clear:both" /><br />
+
+                                        <div class="col-md-12" style="color:red">
+                                            @ViewBag.LoggedIn
+                                            <p>@ViewBag.message</p>
+                                        </div>
+
+                    }
+
+                    <br />
+
+                </div>
+
+                <br />
+
+
+                <br style="clear:both" />
+                <br />
+                <br />
+                <br />
+
+
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_partners")
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#emailloader').hide();
+    });
+
+    function checkemail() {
+
+        $('#emailloader').show();
+        $("input,select,submit").prop('disabled', true);
+
+        $.ajax({
+            method: "GET",
+            url: "@Url.Content("~/EmailCheckerEMP/")" + $('#EmailID').val() + "/",
+            success: function (data) {
+                if (data == "YES") {
+                    alert("Email ID already exists! Try forgot password");
+                    window.location.href = "@Url.Content("~/RegisterEmployerLogin/")";
+                }
+                $("input,select,submit").prop('disabled', false);
+                $('#emailloader').hide();
+            },
+            error: function () {
+                window.location.href = "@Url.Content("~/RegisterEmployerLogin/")";
+            }
+        });
+
+    }
+</script>
+
+

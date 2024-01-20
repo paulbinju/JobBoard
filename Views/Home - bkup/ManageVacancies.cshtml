@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Manage Vacancies";
+}
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li class="active"><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardsection MT30 fade-1">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec ">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="max-height:40%;margin-top:20%" /></a>
+                            <div class="userpronamerec"> <span>@ViewBag.Name</span> @ViewBag.Company </div>
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon">+973 @ViewBag.Phone </div>
+                            <div class="uercon">
+                                <a href="mailto:@ViewBag.Email">@ViewBag.Email</a>
+                                @*<div class="proediticon"><a href="#"><img src="@Url.Content("~/images/white-edit-icon.png")" alt="" /></a></div>*@
+                            </div>
+                        </div>
+                    </div>
+     
+                    <div class="moneytran-img wow fade-3"> <a href="#"><img src="@Url.Content("~/images/money-transfer-img.jpg")" alt="" /></a> </div>
+              
+                </div>
+            </div>
+            <div class="col-sm-9">
+         
+                <div class="dashboard-middsec">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboardwhiteboxshadow tabacc-sec ">
+                                <ul class="accordion-tabs-minimal">
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link is-active">NEW <span>VACANCIES</span></a>
+                                        <div class="tab-content">
+
+                                            @foreach (var lj in ViewBag.LatestJobs)
+                                            {
+
+                                                <div class="listwhitebox tablistsec">
+
+                                                    <div class="jobcomnamelogo">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-md-push-8">
+                                                                <div class="comlogo"><a href="#"><img src="@lj.LogoURL" alt=""></a></div>
+                                                            </div>
+                                                            <div class="col-md-8 col-md-pull-4">
+                                                                <div class="combydata">
+                                                                    <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                                                    <div class="comdet"> @lj.vc_Description ... </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listtimelocation">
+                                                        <ul>
+                                                            <li><img src="images/latestjob-icon-1.png" alt=""> @lj.postedsince days ago</li>
+                                                            <li><i class="fa fa-eye"></i> View Applications</li>
+                                                            <li><i class="fa fa-pencil"></i> Edit</li>
+                                                            <li><i class="fa fa-trash"></i> Delete</li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                            }
+
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>ARCHIVED</span> VACANCIES</a>
+                                        <div class="tab-content">
+
+                                            @foreach (var lj in ViewBag.LatestJobs)
+                                            {
+
+                                                <div class="listwhitebox tablistsec">
+
+                                                    <div class="jobcomnamelogo">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-md-push-8">
+                                                                <div class="comlogo"><a href="#"><img src="@lj.LogoURL" alt=""></a></div>
+                                                            </div>
+                                                            <div class="col-md-8 col-md-pull-4">
+                                                                <div class="combydata">
+                                                                    <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                                                    <div class="comdet"> @lj.vc_Description ... </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listtimelocation">
+                                                        <ul>
+                                                            <li><img src="images/latestjob-icon-1.png" alt=""> @lj.postedsince days ago</li>
+                                                            <li><img src="images/latestjob-icon-2.png" alt=""> @lj.co_Name</li>
+                                                            <li><img src="images/latestjob-icon-3.png" alt=""> @lj.vc_Location</li>
+                                                            <li><img src="images/latestjob-icon-4.png" alt=""> Full Time</li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                            }
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

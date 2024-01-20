@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "JobSeeker";
+
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/")images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-11">
+
+    @Html.Partial("_BOmenu")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+            <h1 class="mainpagetitle Padd15 centertext"> <span>REGISTRATION</span> IN PROGRESS</h1>
+
+
+
+            <div class="col-md-12 centertext fade-2 searchformsec">
+
+                <table class="table-bordered text-left" style="width:100%;padding:2px 5px;font-size:12px">
+                    <tr>
+                        <th style="padding:2px 5px">No.</th>
+                        <th style="padding:2px 5px">First Name</th>
+                        <th style="padding:2px 5px">Last Name</th>
+                        <th style="padding:2px 5px">Email Address</th>
+                        <th style="padding:2px 5px">Phone No.</th>
+                        <th style="padding:2px 5px">Created On</th>
+                        <th style="padding:2px 5px">Updated On</th>
+
+                    </tr>
+                    @{ int count = 0; }
+                    @foreach (var can in ViewBag.candidates)
+                    {
+                        count++;
+                        <tr>
+                            <td style="padding:2px 5px">@count</td>
+                            <td style="padding:2px 5px"><a target="_blank" href="@Url.Content("~/BackOfficeJobSeekerProfile/" + can.ca_GUID)">@can.ca_FirstName</a></td>
+                            <td style="padding:2px 5px">@can.ca_Surname</td>
+                            <td style="padding:2px 5px">@can.ca_EmailAddress</td>
+                            <td style="padding:2px 5px">@can.ca_PhoneMobile</td>
+                            <td style="padding:2px 5px">@can.ca_created.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td style="padding:2px 5px">@can.ca_lastupdated.ToString("dd/MM/yyyy HH:mm")</td>
+
+
+                        </tr>
+                    }
+                </table>
+
+
+
+            </div>
+
+            <br />
+            <hr />
+
+            <br />
+            <br />
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Careers Resources";
+    common cmn = new common();
+    Html.RenderAction("menulogin");
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+ 
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li><a href="@Url.Content("~/")">Home</a></li>
+                            <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li class="active"><a href="@Url.Content("~/CareerServices")">Careers Resources</a></li>
+                            <li><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row">
+
+                <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="padding:0px;">
+                    <h1 class="mainpagetitle Padd15"><span>CAREER </span>SERVICES</h1>
+
+                    <div class="col-md-12 fade-1">
+                        <br />
+
+
+
+                        @if (ViewBag.CareerService.Count != 0)
+                        {
+                            foreach (var cs in ViewBag.CareerService)
+                            {
+
+                                <img class="img-responsive" src="@Url.Content("~/images/ccareerservices" + cs.ID + ".jpg")?12" />
+                                    <br style="clear:both" />
+                                    <br style="clear:both" />
+
+
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10 text-justify">
+                                        <h4>@cs.Title</h4>
+                                        @Html.Raw(cs.Article)
+                                    </div>
+                                    <br style="clear:both" />                                    <br style="clear:both" />                                    <br style="clear:both" />
+                            }
+
+                        }
+                        else
+                        {
+                            <div class="col-md-12">
+                                <br style="clear:both" />
+                                <br style="clear:both" /><p>Coming Soon!</p>
+                                <br style="clear:both" />
+                                <br style="clear:both" /><br style="clear:both" />
+                                <br style="clear:both" /><br style="clear:both" />
+                                <br style="clear:both" /><br style="clear:both" />
+                                <br style="clear:both" />
+                            </div>
+                        }
+
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

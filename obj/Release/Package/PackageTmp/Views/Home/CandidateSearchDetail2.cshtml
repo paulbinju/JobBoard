@@ -1,0 +1,2219 @@
+﻿@{
+    ViewBag.Title = "JobSeeker";
+    common cmn = new common();
+}
+
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li class="active"><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+                <div class="col-sm-3">
+                    <div class="leftpanelsec">
+ 
+                        <div class="userproimgsec  fade-1">
+                            <div class="userimg">
+                                <a href="#"><img src="@Url.Content("~/")@ViewBag.Profilepic" alt="" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" /></a>
+                            </div>
+
+                            <div class="usernamegraybg">
+                                <div class="uercon"> <span>@ViewBag.CName</span> Bahrain</div>
+                      
+                            </div>
+                        </div>
+   
+
+<br />
+                        <div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                            <!-- InstaWidget -->
+                            <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                            <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="homesearchsection  ">
+                        <h1 class="mainpagetitle Padd15"><span>JOBSEEKER </span>PROFILE
+@if (ViewBag.Redeemed == false && ViewBag.applicantalready.Count == 0)
+{
+<div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i title="Contact Candidate" class="fa fa-envelope" style="color:red;font-size:20px;cursor:pointer" data-toggle="modal" data-target="#redeemModal"></i></div>
+}
+else
+{
+<div class="pull-right" style="width:15px;margin:10px 10px 0 0"><a href="mailto:@ViewBag.Email"><i class="fa fa-envelope" style="color:red;font-size:20px;cursor:pointer"></i></a></div>
+
+}
+<div class="pull-right" style="width:15px;margin:10px 10px 0 0"><i title="Print profile" class="fa fa-print" style="color:red;font-size:20px;cursor:pointer" onclick='printDiv();'></i></div>
+<div class="pull-right" style="width:15px;margin:10px 10px 0 0"><a href="#noteblock"><i title="Add Notes" class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer"></i></a></div>
+
+                        </h1>
+                        <div class="searchformsec">
+                            <div class="row" style="font-size:15px;padding:0 5px">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-8" style="font-size:22px;"><b>@ViewBag.CName</b></div>
+                                </div>
+                                <br />
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6"><b style="font-size:14px">Date of Birth:</b> @ViewBag.DOB</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Gender:</b> @(ViewBag.ca_Gender == "M" ? "Male" : "Female")</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Marital Status:</b> @ViewBag.MaritalStatus</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Nationality:</b> @ViewBag.Nationality</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Current Location:</b> @ViewBag.CurrentLocation</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Education Level:</b> @ViewBag.HighestEducation</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Name of University:</b> @ViewBag.University2</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Current Job Function:</b> @ViewBag.FunctionTitle</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Current Job Title:</b> @ViewBag.CurrentJobTitle</div>
+                                    <div class="col-md-6"><b style="font-size:14px">Total Experience:</b> @ViewBag.TotalExperience</div>
+                                    <div class="col-md-12" style="padding-top: 15px;"><b style="font-size:14px">Profile Summary:</b> @Html.Raw(ViewBag.ca_Profile)</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (ViewBag.Redeemed == false && ViewBag.applicantalready.Count == 0)
+                    {
+                        <div class="homesearchsection">
+                          
+                            <h1 class="mainpagetitle Padd15">
+                                <span><a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal"><i class="fa fa-lock"></i>  Contact</a></span>
+
+                            </h1>
+                            <div class="searchformsec">
+                                <p style="font-size: 14px;" id="divContactLock">
+                                   
+                                    <a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal">  Please click here to view contact details (1 Credit will be redeemed)</a>
+                                </p>
+                                <div id="divContactUnlock" style="display:none">
+
+
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>CV</th>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td>@ViewBag.Email</td>
+                                            <td>@ViewBag.Phone</td>
+                                            <td>
+                                                <div class="postjobntn" style="padding:0px">
+
+
+                                                    <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="homesearchsection">
+                            
+                            <h1 class="mainpagetitle Padd15">
+                                <span><i class="fa fa-unlock" style="color: green;"></i>  Contact</span>
+                            </h1>
+                            <div class="searchformsec">
+                                <div id="divContactUnlock">
+
+
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>CV</th>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td><a href="mailto:@ViewBag.Email">@ViewBag.Email</a></td>
+                                            <td><a href="tel:@ViewBag.Phone">@ViewBag.Phone</a></td>
+                                            <td>
+                                                <div class="postjobntn" style="padding:0px">
+
+
+                                                    <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @{
+                        int workcount = 0;
+                    }
+                    @if (ViewBag.Experience2.Count != 0)
+                    {
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>WORK </span>HISTORY</h1>
+                        <div class="searchformsec">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Job</th>
+                                    <th>Company</th>
+
+
+
+                                </tr>
+                              
+                                @foreach (var e in ViewBag.Experience2)
+                                {
+                                    workcount++;
+                                    <tr>
+                                        <td>
+                                            <b>@e.JobTitle</b>
+                                            <br />
+                                            <b>Job Level:</b> @e.JobLevel<br />
+                                            <b>Industry:</b> @e.Industry<br />
+                                            <b>Function:</b> @e.JobFunction<br />
+                                            <b>Reporting to:</b> @e.ReportingTo
+                                        </td>
+                                        <td>
+                                            <b>@e.Company</b><br />
+                                            @if (e.CurrentlyWorkingHere == false)
+                                            {
+                                                <span>
+                                                    <b>Period:</b> @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear <br />
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <b>Currently working here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                </span>
+                                            }
+                                            <b>Location:</b> @e.JobLocation <br />
+                                            <b>Salary:</b> BHD @e.Salary
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><b>Activities:</b> @Html.Raw(e.Description)</td>
+
+
+
+                                    </tr>
+
+
+                                    <div id="whmodal-@e.CaWorkHistory_ID" class="modal fade" role="dialog">
+                                        <div class="modal-lg center-block">
+                                            <div class="registerformbox">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h1 class="mainpagetitle"><span>WORK </span>HISTORY</h1>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+
+                                                                <div class="registerformbox">
+                                                                    <div class="row" style="min-height:500px;">
+                                                                        <form method="post" action="@Url.Content("~/JobSeekerWorkHistoryUpdate")" name="whformz">
+                                                                            <div id="whform">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Job Title <span>*</span></label>
+
+                                                                                        <select class="form-control" id="wh_jobtitle" name="wh_jobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.JobTitle)
+                                                                                            {
+                                                                                                <option @(e.JobTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group   ui-front">
+                                                                                        <label>Company / Organization <span>*</span></label>
+                                                                                        <input value="@e.Company" class="form-control" id="wh_company" name="wh_company" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company is mandatory')" oninput="setCustomValidity('')">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Level (within the organization) <span>*</span></label>
+
+
+                                                                                        <select class="form-control" id="wh_level" name="wh_level" required oninvalid="this.setCustomValidity('Job Level is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.JobLevel)
+                                                                                            {
+                                                                                                <option @(e.JobLevelID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="gender">Reporting to <span>*</span></label>
+
+
+                                                                                        <select class="form-control" id="wh_reportingto" name="wh_reportingto" required oninvalid="this.setCustomValidity('Job Level is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.Reportingto)
+                                                                                            {
+                                                                                                <option @(e.ReportingToID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Industry <span>*</span></label>
+
+                                                                                        <select class="form-control" name="wh_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var ind in ViewBag.Sectors)
+                                                                                            {
+                                                                                                <option @(e.IndustryID == ind.lm_Id ? "selected" : "") value="@ind.lm_Id">@ind.lm_Value</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="currentposition">Function <span>*</span></label>
+                                                                                        <select class="form-control" name="wh_function" required oninvalid="this.setCustomValidity('Function is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                                                            {
+                                                                                                <option @(e.FunctionID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>From <span>*</span></label>
+                                                                                        <select class="form-control" id="wh_frommonth" name="wh_frommonth">
+                                                                                            <option value="">Month</option>
+                                                                                            <option @(e.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                            <option @(e.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                            <option @(e.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                            <option @(e.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                            <option @(e.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                            <option @(e.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                            <option @(e.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                            <option @(e.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                            <option @(e.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                            <option @(e.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                            <option @(e.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                            <option @(e.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>&nbsp;</label>
+                                                                                        <select class="form-control" id="wh_fromyear" name="wh_fromyear" onchange="settoyear()">
+                                                                                            <option value="">Select</option>
+                                                                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                            {
+                                                                                                <option @(e.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                            }
+
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>To <span>*</span></label>
+                                                                                        <select class="form-control" id="wh_tomonth" name="wh_tomonth" @(e.CurrentlyWorkingHere == true ? "disabled" : "")>
+                                                                                            <option value="">Month</option>
+                                                                                            <option @(e.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                            <option @(e.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                            <option @(e.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                            <option @(e.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                            <option @(e.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                            <option @(e.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                            <option @(e.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                            <option @(e.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                            <option @(e.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                            <option @(e.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                            <option @(e.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                            <option @(e.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>&nbsp;</label>
+                                                                                        <select class="form-control" id="wh_toyear" name="wh_toyear" @(e.CurrentlyWorkingHere == true ? "disabled" : "")>
+                                                                                            <option value="">Select</option>
+                                                                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                            {
+                                                                                                <option @(e.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                            }
+
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+
+
+                                                                                        <div class="form-check">
+                                                                                            <input class="form-check-input" id="wh_currentlywork" name="wh_currentlywork" onchange="wh_currentlyworkchange()" type="checkbox" value="True" @(e.CurrentlyWorkingHere == true ? "checked" : "")>
+                                                                                            <label class="form-check-label">Currently working here</label>
+
+                                                                                            <input type="hidden" name="wh_tomonth" id="wh_tomonth1" value="0" />
+                                                                                            <input type="hidden" name="wh_toyear" id="wh_toyear1" value="0" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+
+                                                                                        <label>Job Location <span>*</span></label>
+                                                                                        <select class="form-control" id="wh_location" name="wh_location" required oninvalid="this.setCustomValidity('Gender is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var con in ViewBag.Country)
+                                                                                            {
+                                                                                                <option @(e.JobLocationID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="currentposition">Salary <span>*</span></label>
+
+                                                                                        <select class="form-control" id="wh_salary" name="wh_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var con in ViewBag.Salary)
+                                                                                            {
+                                                                                                <option @(e.SalaryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="summary">Description</label>
+                                                                                        <textarea class="form-control" name="description" id="wh_description" placeholder="Job description, skills used at work etc">@e.Description</textarea>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group formbtn ">
+                                                                                        @if (workcount >= 2)
+                                                                                        {
+                                                                                            <div class="text-left   pull-left">
+                                                                                                <input type="button" value="Delete" class="graybtn" onclick="delWH(@e.CaWorkHistory_ID)">
+                                                                                            </div>
+                                                                                        }
+                                                                                        <input type="hidden" value="@e.CaWorkHistory_ID" name="CaWorkHistory_ID" />
+                                                                                        <input name="save" type="submit" value="SAVE" class="pull-right btnsubmit" style="width:100px">
+                                                                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                }
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                    }
+@if (ViewBag.Education1.Count != 0)
+{
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>EDUCATION </span></h1>
+                        <div class="searchformsec">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Degree</th>
+                                    <th>University / School</th>
+                                    <th>Period</th>
+
+
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.Education1)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @e.Degree
+                                            <br />
+                                            <b>Specialization:</b>
+                                            @e.Specialization
+                                        </td>
+                                        <td>
+                                            @e.University<br />
+                                            <b>Country:</b> @e.UniCountry
+                                        </td>
+                                        <td>
+                                            @if (e.CurrentlyStudyHere == false)
+                                            {
+                                                <span>
+                                                    @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <b>Currently studying here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                </span>
+                                            }
+
+                                        </td>
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><b>Activities:</b> @Html.Raw(e.Activities)</td>
+
+
+
+                                    </tr>
+
+
+
+
+                                        <div id="edumodal-@e.CaEdu_ID" class="modal fade" role="dialog">
+
+                                            <div class="modal-lg center-block">
+                                                <div class="registerformbox">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+
+                                                                    <form method="post" enctype="multipart/form-data" action="@Url.Content("~/CandidateEducationUpdate")">
+
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label>School / University <span>*</span></label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="eduSchool" name="eduSchool" required oninvalid="this.setCustomValidity('Name of High School / University')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach (var uni in ViewBag.University)
+                                                                                    {
+                                                                                        <option @(e.UniversityID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                    }
+                                                                                </select>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label>Country of School / University <span>*</span></label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="eduSchoolcountry" name="eduSchoolcountry" required oninvalid="this.setCustomValidity('School / University Country is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach (var con in ViewBag.Country)
+                                                                                    {
+                                                                                        <option @(e.UniCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                                                    }
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Degree <span>*</span></label>
+
+                                                                                <select style="width:100%" class="form-control searchableselect" id="eduDegree" name="eduDegree" required oninvalid="this.setCustomValidity('Degree is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach (var uni in ViewBag.Degree)
+                                                                                    {
+                                                                                        <option @(e.DegreeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                    }
+                                                                                </select>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-8">
+                                                                            <div class="form-group">
+                                                                                <label>Field of Study / Specialization <span>*</span></label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="eduField" name="eduField" required oninvalid="this.setCustomValidity('Field of Study / Specialization is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach (var uni in ViewBag.Specialization)
+                                                                                    {
+                                                                                        <option @(e.SpecializationID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                    }
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                            <div class="form-group">
+                                                                                <label>Grade <span>*</span></label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="eduGrade" name="eduGrade" required oninvalid="this.setCustomValidity('Grade is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach (var uni in ViewBag.Grade)
+                                                                                    {
+                                                                                        <option @(e.GradeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                    }
+
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div id="curstudyhere">
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label>From <span>*</span></label>
+                                                                                    <select style="width:100%" class="form-control searchableselect" id="edufrommonth" name="edufrommonth" required oninvalid="this.setCustomValidity('From month is mandatory')" onchange="setCustomValidity('')">
+                                                                                        <option value="">Month</option>
+                                                                                        <option @(e.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                        <option @(e.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                        <option @(e.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                        <option @(e.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                        <option @(e.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                        <option @(e.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                        <option @(e.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                        <option @(e.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                        <option @(e.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                        <option @(e.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                        <option @(e.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                        <option @(e.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label>&nbsp;</label>
+                                                                                    <select style="width:100%" class="form-control searchableselect" id="edufromyear" name="edufromyear" required oninvalid="this.setCustomValidity('From year is mandatory')" onchange="setCustomValidity('');settoyear()">
+                                                                                        <option value="">Year</option>
+                                                                                        @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                        {
+                                                                                            <option @(e.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                        }
+
+
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label>To <span>*</span></label>
+                                                                                    <select style="width:100%" class="form-control searchableselect" id="edutomonth" name="edutomonth" required oninvalid="this.setCustomValidity('To month is mandatory')" onchange="setCustomValidity('')">
+                                                                                        <option value="">Month</option>
+                                                                                        <option @(e.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                        <option @(e.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                        <option @(e.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                        <option @(e.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                        <option @(e.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                        <option @(e.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                        <option @(e.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                        <option @(e.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                        <option @(e.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                        <option @(e.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                        <option @(e.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                        <option @(e.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label>&nbsp;</label>
+                                                                                    <select style="width:100%" class="form-control searchableselect" id="edutoyear" name="edutoyear" required oninvalid="this.setCustomValidity('To year is mandatory')" onchange="setCustomValidity('')">
+                                                                                        <option value="">Year</option>
+                                                                                        @if (ViewBag.ToYear != 0)
+                                                                                        {
+                                                                                            for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                            {
+                                                                                                <option @(e.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                            }
+                                                                                        }
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <div class="form-check" style="vertical-align:middle">
+                                                                                    <input class="form-check-input" id="educurrentlystudy" name="educurrentlystudy" type="checkbox" value="True" style="float:left" @(e.CurrentlyStudyHere == true ? "checked" : "")>
+                                                                                    <div class="form-check-label" for="educurrentlystudy" style="float:left;font-size:16px;margin-top:18px">Currently Studying here</div>
+
+
+                                                                                    <input type="hidden" name="edutomonth" id="edutomonth1" value="0" />
+                                                                                    <input type="hidden" name="edutoyear" id="edutoyear1" value="0" />
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label for="summary">Activities / Society Affiliations</label>
+                                                                                <textarea class="form-control" name="eduActivities" id="eduActivities" placeholder="For example : Toastmasters, Manama Football Club etc">@ViewBag.Activities</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            @if (ViewBag.candidatemedia == "")
+                                                                            {
+                                                                                <label class="pull-left">Media  <span style="color:#cccccc">(Proof of completion ie Academic certificate)</span></label><br style="clear:both" />
+                                                                                <label class="custom-file-uploadcer">
+                                                                                    <input type="file" name="uploadmedia" id="uploadmedia" onchange="showuploadcer()" />
+                                                                                    <div id="lbluploadmedia">Upload</div>
+                                                                                </label>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <div class=""><b>Uploaded Media:</b> @ViewBag.candidatemedia<br style="clear:both" /><br /></div>
+                                                                            }
+
+
+
+
+                                                                            <script>
+                                                                                $("#uploadmedia").hide();
+                                                                                function showuploadcer() {
+                                                                                    $("#uploadmedia").show();
+                                                                                    $("#lbluploadmedia").hide();
+                                                                                };
+                                                                            </script>
+                                                                        </div>
+
+                                                                        <br style="clear:both" />
+
+
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group formbtn ">
+                                                                                @if (ViewBag.Education.Count >= 2)
+                                                                                {
+                                                                                    <div class="text-left   pull-left">
+                                                                                        <input type="button" value="Delete" class="graybtn" onclick="delEDU(@e.CaEdu_ID)">
+                                                                                    </div>
+                                                                                }
+                                                                                <input type="hidden" value="@e.CaEdu_ID" name="CaEdu_ID" />
+                                                                                <input name="save" type="submit" value="SAVE" class="pull-right btnsubmit" style="width:100px">
+                                                                                <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </form>
+
+
+
+
+
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+}
+
+                    @if (ViewBag.CandidateSkill.Count != 0) { 
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>IT </span>SKILLS</h1>
+                        <div class="searchformsec">
+
+
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>IT Skill</th>
+                                    <th>Skill Level</th>
+                                    
+                                </tr>
+
+                                @foreach (var e in ViewBag.CandidateSkill)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @e.Skills<br />
+                                        </td>
+                                        <td>@e.SkillLevel</td>
+                                         
+                                    </tr>
+                                }
+                            </table>
+
+                        </div>
+                    </div>
+                    }
+
+
+@if (ViewBag.CandidateOSkill.Count != 0) { 
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>OTHER </span>SKILLS</h1>
+                        <div class="searchformsec">
+
+
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Other Skill</th>
+                                    <th>Skill Level</th>
+                                   
+                                </tr>
+
+                                @foreach (var e in ViewBag.CandidateOSkill)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @e.Skills<br />
+                                        </td>
+                                        <td>@e.SkillLevel</td>
+                                        
+                                    </tr>
+
+                                  
+
+
+                                }
+                            </table>
+
+                        </div>
+                    </div>
+}
+
+@if (ViewBag.CandidateCertifications.Count != 0) { 
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>CERTIFICATIONS  </span>& AWARDS</h1>
+                        <div class="searchformsec">
+
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Certification</th>
+                                    <th>Autority</th>
+                                    <th>Validity</th>
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.CandidateCertifications)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @e.Certification<br />
+
+                                        </td>
+                                        <td>@e.Authority</td>
+                                        <td>
+                                            @if (e.DoNotExpire == false)
+                                            {
+                                                <span>
+                                                    From @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    From @cmn.GetMonthName(e.FromMonth) @e.FromYear (does not expire) <br />
+                                                </span>
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                }
+                            </table>
+
+
+
+                        </div>
+                    </div>
+}
+@if (ViewBag.CandidateLanguage.Count != 0)
+{
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>LANGUAGES </span></h1>
+                        <div class="searchformsec">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Language</th>
+                                    <th>Proficiency</th>
+                                     
+                                </tr>
+
+                                @foreach (var e in ViewBag.CandidateLanguage)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @e.Language<br />
+                                        </td>
+                                        <td>@e.Proficiency</td>
+                                        
+                                    </tr>
+
+
+                                }
+                            </table>
+
+                        </div>
+                    </div>
+}
+
+                    @if (ViewBag.IdealCareerMove.Count != 0) { 
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span>IDEAL </span>CAREER MOVE</h1>
+                        <div class="searchformsec">
+
+
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Job Function</th>
+                                    <th>Industry</th>
+                                    <th>Salary (BD)</th>
+                                    <th>Experience</th>
+
+
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.IdealCareerMove)
+                                {
+
+                                    <tr>
+                                        <td>@e.JobTitle</td>
+                                        <td>@e.JobFunction</td>
+                                        <td>@e.Industry</td>
+                                        <td>@e.ExpectedSalary </td>
+                                        <td>@e.Experience</td>
+
+                                    </tr>
+                                }
+                            </table>
+
+
+
+                        </div>
+                    </div>
+                    }
+
+                    @if (ViewBag.applicantalready.Count != 0)
+                    {
+
+                        <div class="homesearchsection">
+                            <h1 class="mainpagetitle Padd15"><span>CANDIDATE </span>HISTORY</h1>
+                            <div class="searchformsec">
+
+
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Applied On</th>
+                                        <th>Job Title</th>
+                                        <th>Status</th>
+
+
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.applicantalready)
+                                    {
+
+                                        <tr>
+                                            <td class="col-md-2">@e.app_created.ToString("dd-MMM-yyyy")</td>
+                                            <td class="col-md-8">@e.vc_Title</td>
+                                            <td class="col-md-2">@e.lm_Value</td>
+                                        </tr>
+                                    }
+                                </table>
+
+
+
+                            </div>
+                        </div>
+                    }
+
+                    
+
+
+                    <div class="homesearchsection">
+                        <h1 class="mainpagetitle Padd15"><span id="noteblock">NOTES </span>
+                            <div class="pull-right" style="cursor:pointer" data-toggle="modal" data-target="#NoteModal"><i class="fa fa-plus-square-o" style="color:red;font-size:20px;cursor:pointer"></i></div>
+                        </h1>
+                        <div class="searchformsec">
+
+                            @if (ViewBag.canotes.Count != 0) { 
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Added by</th>
+                                    <th>Note</th>
+
+
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.canotes)
+                                {
+
+                                    <tr>
+                                        <td class="col-md-2">@e.notedate.ToString("dd-MMM-yyyy")</td>
+                                        <td class="col-md-2">@e.ct_Forename @e.ct_Surname</td>
+                                        <td class="col-md-8">@e.notedetails</td>
+                                    </tr>
+                                }
+                            </table>
+
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+ 
+ <script>
+                                                                                function printDiv() {
+
+                                                                                    var divToPrint = document.getElementById('DivIdToPrint');
+
+                                                                                    var newWin = window.open('', 'Print-Window');
+
+                                                                                    newWin.document.open();
+
+                                                                                    newWin.document.write('<html>');
+                                                                                    newWin.document.write('<link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">');
+                                                                                    newWin.document.write('<link href="@Url.Content("~/css/style.css")?v=1.7" rel="stylesheet">');
+                                                                                    newWin.document.write('<body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+                                                                                    newWin.document.write('</body></html>');
+                                                                                    newWin.document.close();
+
+                                                                                    //setTimeout(function () { newWin.close(); }, 10);
+
+                                                                                }
+ </script>
+
+
+<!--
+print area    
+-->
+
+
+
+<div id='DivIdToPrint' style="display:none">
+
+    
+    
+    <div style="width:800px;" >
+
+        <div class="pull-right">www.jobs4bahrainis.com</div>
+        <img src="@Url.Content("~/images/jobs4bahrainislogo.png")" />
+        <br style="clear:both" />
+        <br style="clear:both" />
+        <br style="clear:both" />
+        <br />
+        
+
+        <div class="homesearchsection">
+
+            @foreach (var e in ViewBag.applicantalready)
+            {
+                if (ViewBag.vid == e.vc_Id)
+                {
+                <h1 class="mainpagetitle">
+                    @e.vc_Title
+                </h1>
+                }
+            }
+
+
+
+            <h1 class="mainpagetitle">
+                <span>JOBSEEKER </span>PROFILE
+
+            </h1>
+            <div class="searchformsec">
+                <div class="row" style="font-size:15px;padding:0 5px">
+
+
+                    <div class="row">
+
+                             <img style="width:180px;height:200px;float:right;border:1px solid #888888" src="@Url.Content("~/")@ViewBag.Profilepic" alt="" onerror="this.onerror=null;this.src='@Url.Content("~/images/jobseeker.png")';" />
+
+                        <div class="col-md-8" style="font-size:22px;"><b>@ViewBag.CName</b></div>
+                 <br />
+
+
+                        <div class="col-md-6"><b style="font-size:14px">Date of Birth:</b> @ViewBag.DOB</div>
+                        <div class="col-md-6"><b style="font-size:14px">Gender:</b> @(ViewBag.ca_Gender == "M" ? "Male" : "Female")</div>
+                        <div class="col-md-6"><b style="font-size:14px">Marital Status:</b> @ViewBag.MaritalStatus</div>
+                        <div class="col-md-6"><b style="font-size:14px">Nationality:</b> @ViewBag.Nationality</div>
+                        <div class="col-md-6"><b style="font-size:14px">Current Location:</b> @ViewBag.CurrentLocation</div>
+                        <div class="col-md-6"><b style="font-size:14px">Education Level:</b> @ViewBag.HighestEducation</div>
+                        <div class="col-md-6"><b style="font-size:14px">Name of University:</b> @ViewBag.University2</div>
+                        <div class="col-md-6"><b style="font-size:14px">Current Job Function:</b> @ViewBag.FunctionTitle</div>
+                        <div class="col-md-6"><b style="font-size:14px">Current Job Title:</b> @ViewBag.CurrentJobTitle</div>
+                        <div class="col-md-6"><b style="font-size:14px">Total Experience:</b> @ViewBag.TotalExperience</div>
+                        <div class="col-md-12" style="padding-top: 15px;"><b style="font-size:14px">Profile Summary:</b> @Html.Raw(ViewBag.ca_Profile)</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+  
+            @*<div class="homesearchsection">
+                <br />
+                <h1 class="mainpagetitle">
+                    <span>Contact</span>
+                </h1>
+                <div class="searchformsec">
+                    <div id="divContactUnlock">
+
+
+                        <table class="table table-bordered table-responsive" style="font-size:15px;">
+                            <tr>
+
+                                <th>Email</th>
+                                <th>Phone</th>
+                                 
+                            </tr>
+
+
+
+                            <tr>
+                                <td>@ViewBag.Email</td>
+                                <td>@ViewBag.Phone</td>
+                                
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>*@
+        
+        @if (ViewBag.Experience2.Count != 0)
+        {
+
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>WORK </span>HISTORY</h1>
+                <div class="searchformsec">
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>Job</th>
+                            <th>Company</th>
+
+
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.Experience2)
+                        {
+                            workcount++;
+                            <tr>
+                                <td>
+                                    <b>@e.JobTitle</b>
+                                    <br />
+                                    <b>Job Level:</b> @e.JobLevel<br />
+                                    <b>Industry:</b> @e.Industry<br />
+                                    <b>Function:</b> @e.JobFunction<br />
+                                    <b>Reporting to:</b> @e.ReportingTo
+                                </td>
+                                <td>
+                                    <b>@e.Company</b><br />
+                                    @if (e.CurrentlyWorkingHere == false)
+                                    {
+                                        <span>
+                                            <b>Period:</b> @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear <br />
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            <b>Currently working here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                        </span>
+                                    }
+                                    <b>Location:</b> @e.JobLocation <br />
+                                    <b>Salary:</b> BHD @e.Salary
+                                </td>
+
+                            </tr>
+                                    <tr>
+                                        <td colspan="2"><b>Activities:</b> @Html.Raw(e.Description)</td>
+
+
+
+                                    </tr>
+
+
+                                    <div id="whmodal-@e.CaWorkHistory_ID" class="modal fade" role="dialog">
+                                        <div class="modal-lg center-block">
+                                            <div class="registerformbox">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h1 class="mainpagetitle"><span>WORK </span>HISTORY</h1>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+
+                                                                <div class="registerformbox">
+                                                                    <div class="row" style="min-height:500px;">
+                                                                        <form method="post" action="@Url.Content("~/JobSeekerWorkHistoryUpdate")" name="whformz">
+                                                                            <div id="whform">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Job Title <span>*</span></label>
+
+                                                                                        <select class="form-control" id="wh_jobtitle" name="wh_jobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.JobTitle)
+                                                                                            {
+                                                                                                <option @(e.JobTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group   ui-front">
+                                                                                        <label>Company / Organization <span>*</span></label>
+                                                                                        <input value="@e.Company" class="form-control" id="wh_company" name="wh_company" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company is mandatory')" oninput="setCustomValidity('')">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Level (within the organization) <span>*</span></label>
+
+
+                                                                                        <select class="form-control" id="wh_level" name="wh_level" required oninvalid="this.setCustomValidity('Job Level is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.JobLevel)
+                                                                                            {
+                                                                                                <option @(e.JobLevelID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="gender">Reporting to <span>*</span></label>
+
+
+                                                                                        <select class="form-control" id="wh_reportingto" name="wh_reportingto" required oninvalid="this.setCustomValidity('Job Level is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.Reportingto)
+                                                                                            {
+                                                                                                <option @(e.ReportingToID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Industry <span>*</span></label>
+
+                                                                                        <select class="form-control" name="wh_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var ind in ViewBag.Sectors)
+                                                                                            {
+                                                                                                <option @(e.IndustryID == ind.lm_Id ? "selected" : "") value="@ind.lm_Id">@ind.lm_Value</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="currentposition">Function <span>*</span></label>
+                                                                                        <select class="form-control" name="wh_function" required oninvalid="this.setCustomValidity('Function is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                                                            {
+                                                                                                <option @(e.FunctionID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                                                            }
+
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>From <span>*</span></label>
+                                                                                        <select class="form-control" id="wh_frommonth" name="wh_frommonth">
+                                                                                            <option value="">Month</option>
+                                                                                            <option @(e.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                            <option @(e.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                            <option @(e.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                            <option @(e.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                            <option @(e.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                            <option @(e.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                            <option @(e.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                            <option @(e.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                            <option @(e.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                            <option @(e.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                            <option @(e.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                            <option @(e.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>&nbsp;</label>
+                                                                                        <select class="form-control" id="wh_fromyear" name="wh_fromyear" onchange="settoyear()">
+                                                                                            <option value="">Select</option>
+                                                                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                            {
+                                                                                                <option @(e.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                            }
+
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>To <span>*</span></label>
+                                                                                        <select class="form-control" id="wh_tomonth" name="wh_tomonth" @(e.CurrentlyWorkingHere == true ? "disabled" : "")>
+                                                                                            <option value="">Month</option>
+                                                                                            <option @(e.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                            <option @(e.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                            <option @(e.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                            <option @(e.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                            <option @(e.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                            <option @(e.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                            <option @(e.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                            <option @(e.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                            <option @(e.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                            <option @(e.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                            <option @(e.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                            <option @(e.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label>&nbsp;</label>
+                                                                                        <select class="form-control" id="wh_toyear" name="wh_toyear" @(e.CurrentlyWorkingHere == true ? "disabled" : "")>
+                                                                                            <option value="">Select</option>
+                                                                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                            {
+                                                                                                <option @(e.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                            }
+
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+
+
+                                                                                        <div class="form-check">
+                                                                                            <input class="form-check-input" id="wh_currentlywork" name="wh_currentlywork" onchange="wh_currentlyworkchange()" type="checkbox" value="True" @(e.CurrentlyWorkingHere == true ? "checked" : "")>
+                                                                                            <label class="form-check-label">Currently working here</label>
+
+                                                                                            <input type="hidden" name="wh_tomonth" id="wh_tomonth1" value="0" />
+                                                                                            <input type="hidden" name="wh_toyear" id="wh_toyear1" value="0" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+
+                                                                                        <label>Job Location <span>*</span></label>
+                                                                                        <select class="form-control" id="wh_location" name="wh_location" required oninvalid="this.setCustomValidity('Gender is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var con in ViewBag.Country)
+                                                                                            {
+                                                                                                <option @(e.JobLocationID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="currentposition">Salary <span>*</span></label>
+
+                                                                                        <select class="form-control" id="wh_salary" name="wh_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" oninput="setCustomValidity('')">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach (var con in ViewBag.Salary)
+                                                                                            {
+                                                                                                <option @(e.SalaryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="summary">Description</label>
+                                                                                        <textarea class="form-control" name="description" id="wh_description" placeholder="Job description, skills used at work etc">@e.Description</textarea>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group formbtn ">
+                                                                                        @if (workcount >= 2)
+                                                                                        {
+                                                                                            <div class="text-left   pull-left">
+                                                                                                <input type="button" value="Delete" class="graybtn" onclick="delWH(@e.CaWorkHistory_ID)">
+                                                                                            </div>
+                                                                                        }
+                                                                                        <input type="hidden" value="@e.CaWorkHistory_ID" name="CaWorkHistory_ID" />
+                                                                                        <input name="save" type="submit" value="SAVE" class="pull-right btnsubmit" style="width:100px">
+                                                                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                        }
+                    </table>
+                </div>
+
+
+
+            </div>
+        }
+        @if (ViewBag.Education1.Count != 0)
+        {
+
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>EDUCATION </span></h1>
+                <div class="searchformsec">
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>Degree</th>
+                            <th>University / School</th>
+                            <th>Period</th>
+
+
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.Education1)
+                        {
+
+                            <tr>
+                                <td>
+                                    @e.Degree
+                                    <br />
+                                    <b>Specialization:</b>
+                                    @e.Specialization
+                                </td>
+                                <td>
+                                    @e.University<br />
+                                    <b>Country:</b> @e.UniCountry
+                                </td>
+                                <td>
+                                    @if (e.CurrentlyStudyHere == false)
+                                    {
+                                        <span>
+                                            @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            <b>Currently studying here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                        </span>
+                                    }
+
+                                </td>
+
+
+
+                            </tr>
+                                    <tr>
+                                        <td colspan="3"><b>Activities:</b> @Html.Raw(e.Activities)</td>
+
+
+
+                                    </tr>
+
+
+
+
+                                    <div id="edumodal-@e.CaEdu_ID" class="modal fade" role="dialog">
+
+                                        <div class="modal-lg center-block">
+                                            <div class="registerformbox">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+
+                                                                <form method="post" enctype="multipart/form-data" action="@Url.Content("~/CandidateEducationUpdate")">
+
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label>School / University <span>*</span></label>
+                                                                            <select style="width:100%" class="form-control searchableselect" id="eduSchool" name="eduSchool" required oninvalid="this.setCustomValidity('Name of High School / University')" onchange="setCustomValidity('')">
+                                                                                <option value="">Select</option>
+                                                                                @foreach (var uni in ViewBag.University)
+                                                                                {
+                                                                                    <option @(e.UniversityID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                }
+                                                                            </select>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label>Country of School / University <span>*</span></label>
+                                                                            <select style="width:100%" class="form-control searchableselect" id="eduSchoolcountry" name="eduSchoolcountry" required oninvalid="this.setCustomValidity('School / University Country is mandatory')" onchange="setCustomValidity('')">
+                                                                                <option value="">Select</option>
+                                                                                @foreach (var con in ViewBag.Country)
+                                                                                {
+                                                                                    <option @(e.UniCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label>Degree <span>*</span></label>
+
+                                                                            <select style="width:100%" class="form-control searchableselect" id="eduDegree" name="eduDegree" required oninvalid="this.setCustomValidity('Degree is mandatory')" onchange="setCustomValidity('')">
+                                                                                <option value="">Select</option>
+                                                                                @foreach (var uni in ViewBag.Degree)
+                                                                                {
+                                                                                    <option @(e.DegreeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                }
+                                                                            </select>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
+                                                                            <label>Field of Study / Specialization <span>*</span></label>
+                                                                            <select style="width:100%" class="form-control searchableselect" id="eduField" name="eduField" required oninvalid="this.setCustomValidity('Field of Study / Specialization is mandatory')" onchange="setCustomValidity('')">
+                                                                                <option value="">Select</option>
+                                                                                @foreach (var uni in ViewBag.Specialization)
+                                                                                {
+                                                                                    <option @(e.SpecializationID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <label>Grade <span>*</span></label>
+                                                                            <select style="width:100%" class="form-control searchableselect" id="eduGrade" name="eduGrade" required oninvalid="this.setCustomValidity('Grade is mandatory')" onchange="setCustomValidity('')">
+                                                                                <option value="">Select</option>
+                                                                                @foreach (var uni in ViewBag.Grade)
+                                                                                {
+                                                                                    <option @(e.GradeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                                                }
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div id="curstudyhere">
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>From <span>*</span></label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="edufrommonth" name="edufrommonth" required oninvalid="this.setCustomValidity('From month is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Month</option>
+                                                                                    <option @(e.FromMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                    <option @(e.FromMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                    <option @(e.FromMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                    <option @(e.FromMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                    <option @(e.FromMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                    <option @(e.FromMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                    <option @(e.FromMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                    <option @(e.FromMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                    <option @(e.FromMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                    <option @(e.FromMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                    <option @(e.FromMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                    <option @(e.FromMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>&nbsp;</label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="edufromyear" name="edufromyear" required oninvalid="this.setCustomValidity('From year is mandatory')" onchange="setCustomValidity('');settoyear()">
+                                                                                    <option value="">Year</option>
+                                                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                    {
+                                                                                        <option @(e.FromYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                    }
+
+
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>To <span>*</span></label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="edutomonth" name="edutomonth" required oninvalid="this.setCustomValidity('To month is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Month</option>
+                                                                                    <option @(e.ToMonth == 1 ? "selected" : "") value="1">January</option>
+                                                                                    <option @(e.ToMonth == 2 ? "selected" : "") value="2">February</option>
+                                                                                    <option @(e.ToMonth == 3 ? "selected" : "") value="3">March</option>
+                                                                                    <option @(e.ToMonth == 4 ? "selected" : "") value="4">April</option>
+                                                                                    <option @(e.ToMonth == 5 ? "selected" : "") value="5">May</option>
+                                                                                    <option @(e.ToMonth == 6 ? "selected" : "") value="6">June</option>
+                                                                                    <option @(e.ToMonth == 7 ? "selected" : "") value="7">July</option>
+                                                                                    <option @(e.ToMonth == 8 ? "selected" : "") value="8">August</option>
+                                                                                    <option @(e.ToMonth == 9 ? "selected" : "") value="9">September</option>
+                                                                                    <option @(e.ToMonth == 10 ? "selected" : "") value="10">October</option>
+                                                                                    <option @(e.ToMonth == 11 ? "selected" : "") value="11">November</option>
+                                                                                    <option @(e.ToMonth == 12 ? "selected" : "") value="12">December</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>&nbsp;</label>
+                                                                                <select style="width:100%" class="form-control searchableselect" id="edutoyear" name="edutoyear" required oninvalid="this.setCustomValidity('To year is mandatory')" onchange="setCustomValidity('')">
+                                                                                    <option value="">Year</option>
+                                                                                    @if (ViewBag.ToYear != 0)
+                                                                                    {
+                                                                                        for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                                        {
+                                                                                            <option @(e.ToYear == x ? "selected" : "") value="@x">@x</option>
+                                                                                        }
+                                                                                    }
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <div class="form-check" style="vertical-align:middle">
+                                                                                <input class="form-check-input" id="educurrentlystudy" name="educurrentlystudy" type="checkbox" value="True" style="float:left" @(e.CurrentlyStudyHere == true ? "checked" : "")>
+                                                                                <div class="form-check-label" for="educurrentlystudy" style="float:left;font-size:16px;margin-top:18px">Currently Studying here</div>
+
+
+                                                                                <input type="hidden" name="edutomonth" id="edutomonth1" value="0" />
+                                                                                <input type="hidden" name="edutoyear" id="edutoyear1" value="0" />
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label for="summary">Activities / Society Affiliations</label>
+                                                                            <textarea class="form-control" name="eduActivities" id="eduActivities" placeholder="For example : Toastmasters, Manama Football Club etc">@ViewBag.Activities</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        @if (ViewBag.candidatemedia == "")
+                                                                        {
+                                                                            <label class="pull-left">Media  <span style="color:#cccccc">(Proof of completion ie Academic certificate)</span></label><br style="clear:both" />
+                                                                                <label class="custom-file-uploadcer">
+                                                                                    <input type="file" name="uploadmedia" id="uploadmedia" onchange="showuploadcer()" />
+                                                                                    <div id="lbluploadmedia">Upload</div>
+                                                                                </label>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div class=""><b>Uploaded Media:</b> @ViewBag.candidatemedia<br style="clear:both" /><br /></div>
+                                                                        }
+
+
+
+
+                                                                        <script>
+                                                                            $("#uploadmedia").hide();
+                                                                            function showuploadcer() {
+                                                                                $("#uploadmedia").show();
+                                                                                $("#lbluploadmedia").hide();
+                                                                            };
+                                                                        </script>
+                                                                    </div>
+
+                                                                    <br style="clear:both" />
+
+
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group formbtn ">
+                                                                            @if (ViewBag.Education.Count >= 2)
+                                                                            {
+                                                                                <div class="text-left   pull-left">
+                                                                                    <input type="button" value="Delete" class="graybtn" onclick="delEDU(@e.CaEdu_ID)">
+                                                                                </div>
+                                                                            }
+                                                                            <input type="hidden" value="@e.CaEdu_ID" name="CaEdu_ID" />
+                                                                            <input name="save" type="submit" value="SAVE" class="pull-right btnsubmit" style="width:100px">
+                                                                            <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </form>
+
+
+
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.CandidateSkill.Count != 0)
+        {
+
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>IT </span>SKILLS</h1>
+                <div class="searchformsec">
+
+
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>IT Skill</th>
+                            <th>Skill Level</th>
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.CandidateSkill)
+                        {
+
+                            <tr>
+                                <td>
+                                    @e.Skills<br />
+                                </td>
+                                <td>@e.SkillLevel</td>
+
+                            </tr>
+                        }
+                    </table>
+
+                </div>
+            </div>
+        }
+
+
+        @if (ViewBag.CandidateOSkill.Count != 0)
+        {
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>OTHER </span>SKILLS</h1>
+                <div class="searchformsec">
+
+
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>Other Skill</th>
+                            <th>Skill Level</th>
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.CandidateOSkill)
+                        {
+
+                            <tr>
+                                <td>
+                                    @e.Skills<br />
+                                </td>
+                                <td>@e.SkillLevel</td>
+
+                            </tr>
+
+
+
+
+                        }
+                    </table>
+
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.CandidateCertifications.Count != 0)
+        {
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>CERTIFICATIONS  </span>& AWARDS</h1>
+                <div class="searchformsec">
+
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>Certification</th>
+                            <th>Autority</th>
+                            <th>Validity</th>
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.CandidateCertifications)
+                        {
+
+                            <tr>
+                                <td>
+                                    @e.Certification<br />
+
+                                </td>
+                                <td>@e.Authority</td>
+                                <td>
+                                    @if (e.DoNotExpire == false)
+                                    {
+                                        <span>
+                                            From @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            From @cmn.GetMonthName(e.FromMonth) @e.FromYear (does not expire) <br />
+                                        </span>
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                        }
+                    </table>
+
+
+
+                </div>
+            </div>
+        }
+        @if (ViewBag.CandidateLanguage.Count != 0)
+        {
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>LANGUAGES </span></h1>
+                <div class="searchformsec">
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>Language</th>
+                            <th>Proficiency</th>
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.CandidateLanguage)
+                        {
+
+                            <tr>
+                                <td>
+                                    @e.Language<br />
+                                </td>
+                                <td>@e.Proficiency</td>
+
+                            </tr>
+
+
+                        }
+                    </table>
+
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.IdealCareerMove.Count != 0)
+        {
+
+            <div class="homesearchsection">
+                <h1 class="mainpagetitle Padd15"><span>IDEAL </span>CAREER MOVE</h1>
+                <div class="searchformsec">
+
+
+                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Job Function</th>
+                            <th>Industry</th>
+                            <th>Salary (BD)</th>
+                            <th>Experience</th>
+
+
+
+                        </tr>
+
+                        @foreach (var e in ViewBag.IdealCareerMove)
+                        {
+
+                            <tr>
+                                <td>@e.JobTitle</td>
+                                <td>@e.JobFunction</td>
+                                <td>@e.Industry</td>
+                                <td>@e.ExpectedSalary </td>
+                                <td>@e.Experience</td>
+
+                            </tr>
+                        }
+                    </table>
+
+
+
+                </div>
+            </div>
+        }
+
+        <br style="clear:both" />
+        <br />
+        <br />
+        <img src="@Url.Content("~/images/jobs4bahrainislogo.png")" />
+        <div class="pull-right">www.jobs4bahrainis.com</div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+ 
+ 
+
+ 
+
+<div id="NoteModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle">ADD <span>NOTE</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+
+                    <form id="formnote" method="post" >
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="pull-left">Note <span class="mandatory">*</span></label>
+                                <textarea class="form-control" id="notes" name="notes"></textarea>
+                            </div>
+                        </div>
+ 
+                        <input type="hidden" name="ca_id" value="@ViewBag.Candidateid" />
+
+                        <div class="pull-right col-md-2">
+                            <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+                        </div>
+                    </form>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#formnote").submit(function (e) {
+                                e.preventDefault();
+                                var formdata = new FormData(this);
+                                $.ajax({
+                                    method: "POST",
+                                    url: "@Url.Content("~/Home/CandidateNote")",
+                                    data: formdata,
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        alert('Successfully added!');
+                                        window.location.href = "@Url.Content("~/Home/CandidateSearchDetail2?ca_id="+ ViewBag.Candidateid)";
+                                    },
+                                    error: function () {
+                                        alert("Couldn't Save, check the input values!");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+ 
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+<style>
+    .ui-autocomplete {
+        z-index: 100;
+    }
+</style>
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<div id="redeemModal" class="modal fade" role="dialog">
+
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>Credit</span> REDEMPTION</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div>
+                            <p style="text-align:center">Are you sure you want to redeem 1 credit to unlock the candidate contact?</p>
+                            <div class="postjobntn">
+
+                                <a id="btnNo" data-dismiss="modal" blank" href="#" style="float:right" class="graybtn right">CANCEL</a>
+                                <a id="btnYes" href="#" class="redbgbtn" style="float:right">CONFIRM</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+ 
+
+
+ 
+<script>
+    $("#btnYes").click(function (e) {
+        e.preventDefault();
+       // alert('Yes clicked');
+        $.ajax({
+            method: "POST",
+            url:  "@Url.Action("RedeemCredit", "Home")",
+            data: { Ca_ID: $("#Ca_ID").val() },
+            success: function (data) {
+                    $('#divContactLock').fadeOut();
+                    $('#divContactUnlock').fadeIn();
+                    $('#btnUnlock').html('<i  class="fa fa-unlock"></i>  Contact');
+                    $('#redeemModal').modal('hide');
+                    location.reload();
+                },
+            error: function () {
+                    alert("Sorry unable to redeem contact!");
+                }
+            })
+
+
+    });
+
+</script>

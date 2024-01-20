@@ -1,0 +1,100 @@
+﻿
+
+@{
+    ViewBag.Title = "About Us";
+}
+
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="images/logo.png" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/JobSeekerProfile")">PROFILE</a></li>
+                                <li><a href="@Url.Content("~/JobSeeker")">JOBS</a></li>
+                                <li class="active has-sub">
+                                    <a href="#">Career Services</a>
+                                    <ul>
+                                        <li><a href="@Url.Content("~/CVChecklist")">CV Checklist</a></li>
+                                        <li><a href="@Url.Content("~/CVTips")">CV Tips</a></li>
+                                        <li><a href="@Url.Content("~/CVWriting")">CV Writing Tips</a></li>
+                                    </ul>
+                                </li>
+
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_candidatelogin")
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 fade-1 dashboardwhiteboxshadow">
+                <h1 class="mainpagetitle Padd15">CV <span>TIPS</span></h1>
+                <br />
+                <div class="col-md-12">
+
+                    <div class="col-md-12 fade-1">
+                        <b>Always double check your CV!</b><br />
+                        <ol>
+
+                            <li>Present your CV in a clear and structured way.</li>
+                            <li>Be concise and to the point. Information that shows you are an ideal candidate for the job should be placed towards the top.</li>
+                            <li>Do not use generic phrases such as ‘team player’, ‘hard working’ and ‘multitasker’.</li>
+                            <li>Keep your CV simple and uncluttered-Remove all irrelevant information from your resume.</li>
+                            <li>Personalize and tailor your CV to each particular job that you are applying for.</li>
+                            <li>Always have your CV format in chronological order.</li>
+                            <li>Address any obvious gaps in your work history by writing a brief explanation where appropriate.</li>
+                            <li>Avoid embellishments and never lie on your CV.</li>
+                            <li>Make sure all of your personal details are up to date and you are easily contactable.</li>
+                            <li>Always double check your CV to make sure that there is no grammar or spelling mistakes throughout your resume. A tidy, mistake free CV shows that you are professional, thorough and care about how you come across.</li>
+
+                        </ol>
+                        <br />
+                        <br />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+

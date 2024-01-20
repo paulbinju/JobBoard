@@ -1,0 +1,206 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Login";
+                Html.RenderAction("menulogin");
+}
+@Html.Partial("_menu")
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+<script>
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+    });
+</script>
+
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class=" fade-1 dashboardwhiteboxshadow" style="min-height:400px;">
+
+
+
+
+            <div class="  fade-2  ">
+                <br style="clear:both" />
+
+
+                <div class="col-sm-12" style="font-size:23px;font-weight:bold;text-align:center">Dear Job Seeker, welcome to <span style="color:red">Jobs4Bahrainis.com</span>, register for free.</div>
+                <h1 class="mainpagetitle Padd15"><br style="clear:both" /> </h1>
+                <br style="clear:both" />
+
+
+
+                <form name="myForm" onsubmit="return validateForm()" method="post" action="@Url.Content("~/RegisterJobseekerLogin")" enctype="multipart/form-data">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">First Name <span class="mandatory">*</span></label>
+                            <input class="form-control" name="firstname" type="text" placeholder="Enter Text" required oninvalid="this.setCustomValidity('First Name is mandatory')" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Last Name <span class="mandatory">*</span></label>
+                            <input class="form-control" name="surname" type="text" placeholder="Enter Text" required oninvalid="this.setCustomValidity('Last Name is mandatory')" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Nationality <span class="mandatory">*</span></label>
+                            <select class="form-control searchableselect col-md-12" id="countryid" name="countryid" placeholder="Select" required oninvalid="this.setCustomValidity('Nationality is mandatory')" onchange="setCustomValidity('')">
+                                <option value="">Select</option>
+                                @foreach (var con in ViewBag.Country)
+                                {
+                                    <option value="@con.lm_Id">@con.lm_Value</option>
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Contact Number <span class="mandatory">*</span></label>
+                            <input class="form-control" name="Phone" type="text" required placeholder="Enter Number" pattern="\d{8,13}" title="Numbers only">
+                        </div>
+                    </div>
+                    <br style="clear:both" />
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Email <span class="mandatory">*</span></label><div id="emailloader" style="float:right;color:red;font-size:11px">Checking if email already registered .... <img src="@Url.Content("~/images/loading2.gif")" width="25" /></div>
+                            <input class="form-control" onblur="checkemail()" name="EmailID" id="EmailID" type="email" pattern="^[\w]{1,}[\w.+-]{0,}@(Html.Raw("@"))[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" required title="Invalid Email">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Confirm Email <span class="mandatory">*</span></label>
+                            <input class="form-control" name="EmailID2" id="EmailID2" type="email" pattern="^[\w]{1,}[\w.+-]{0,}@(Html.Raw("@"))[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" required title="Invalid Email">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Password (6 to 10 characters) <span class="mandatory">*</span></label>
+                            <input class="form-control" name="Password" id="Password" type="password" placeholder="Enter password" required pattern=".{6,10}" title="6 to 10 characters">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="pull-left">Confirm Password <span class="mandatory">*</span></label>
+                            <input class="form-control" name="PasswordCon" id="PasswordCon" type="password" placeholder="Enter password" required pattern=".{6,10}" title="6 to 10 characters">
+
+                        </div>
+                    </div>
+
+                    <br style="clear:both" />
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <table>
+                                <tr>
+                                    <td><input type="checkbox" id="ca_IsFresher" name="ca_IsFresher" value="yes" class="form-control" style="width:20px;float:left;margin:0px 0 0 0" /></td>
+                                    <td><label for="summary" style="float:left;margin:0px 0 0 10px">Fresh Graduate / No work experience</label></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+
+                    <h1 class="mainpagetitle Padd15"><br style="clear:both" /> </h1>
+                    <br style="clear:both" />
+                    <div class="col-md-9">
+                        <input type="checkbox" required oninvalid="this.setCustomValidity('Please agree to Terms of Service and Privacy Policy')" oninput="setCustomValidity('')" /> By joining, you agree to the Jobs4bahrainis.com <a style="color:red" target="_blank" href="@Url.Content("~/TermsandConditionsJobseeker")">Terms of Service</a> and <a style="color:red" target="_blank" href="@Url.Content("~/PrivacyPolicy")">Privacy Policy</a> as well as to receive occasional emails from us.
+                    </div>
+
+                    <div class="col-md-3 pull-right">
+                        <input type="submit" value="Register" class="registerbtn2 pull-right" onclick="showuploadcpr();" />
+                        <img src="@Url.Content("~/images/loader.gif")" class="pull-right" id="loader" style="width:50px;" />
+                    </div>
+                    <br style="clear:both" />
+
+                    <div class="col-md-12" style="color:red">
+                        @ViewBag.LoggedIn
+                    </div>
+
+                </form>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#emailloader').hide();
+                    });
+
+
+
+                    function validateForm() {
+                        if ($('#EmailID').val() !== $('#EmailID2').val()) {
+                            alert('Email and confirm Email should match!');
+                            $('#Password').focus();
+                            return false;
+                        }
+
+                        if ($('#Password').val() !== $('#PasswordCon').val()) {
+                            alert('Password and confirm password should match!');
+                            $('#Password').focus();
+                            return false;
+                        }
+
+                        if ($("#countryid").val() != '523') {
+
+                            //alert($("#countryid").val());
+                            alert('Only Bahrainis can join!');
+                            return false;
+                        }
+
+                        $("#loader").show();
+                    }
+
+
+
+
+
+
+                    $("#loader").hide();
+
+
+
+
+                            function checkemail() {
+                                $('#emailloader').show();
+                                $("input,select").prop('disabled', true);
+
+                                $.ajax({
+                                    method: "GET",
+                                    url: "@Url.Content("~/EmailChecker/")" + $('#EmailID').val() + "/",
+                                    success: function (data) {
+                                        if (data == "YES") {
+
+                                            alert("Email ID already exists! Try forgot password");
+
+                                            $('#EmailID').val("");
+                                        }
+                                        $("input,select").prop('disabled', false);
+                                        $('#emailloader').hide();
+                                    },
+                                    error: function () {
+                                        $('#emailloader').hide();
+                                    }
+                                });
+
+                            }
+
+                </script>
+
+                <br style="clear:both" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_partners")
+

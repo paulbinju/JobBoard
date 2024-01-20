@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Html.RenderAction("menulogin");
+}
+<style>
+    label span {
+        color: red;
+    }
+</style>
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li><a href="@Url.Content("~/")">Home</a></li>
+                            <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li><a href="@Url.Content("~/CareerServices")">Careers Resources</a></li>
+                            <li class="active"><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="padding:0px;">
+                <h1 class="mainpagetitle Padd15"><span>CONTACT</span> US</h1>
+                <br />
+                <div id="formdiv">
+
+                    <form method="post" id="contactform">
+                        <div class="searchformsec">
+                            <div class="">
+                                <label>Name <span>*</span></label>
+                                <input name="Name" type="text" placeholder="Enter text" required>
+                            </div>
+                            <br style="clear:both" />
+                            <div class="">
+                                <label>Email <span>*</span></label>
+                                <input name="Email" type="email" placeholder="Enter text" required>
+                            </div>
+                            <br style="clear:both" />
+                            <div class="">
+                                <label>Phone <span>*</span></label>
+                                <input name="Phone" type="text" placeholder="Enter text" required>
+                            </div>
+                            <br style="clear:both" />
+                            <div class="">
+                                <label>Comments <span>*</span></label>
+                                <br style="clear:both" />
+                                <textarea name="Comments" placeholder="Enter text" class="form-control col-md-12" required></textarea>
+                            </div>
+                            <br style="clear:both" />
+                         
+
+                            <img src="@Url.Content("~/images/loader.gif")" class="pull-right" id="loader" style="width:50px;" />
+                        </div>
+
+                        <div class="form-group col-md-12 formbtn ">
+                            <input type="submit" value="SEND" class="btnsubmit pull-right">
+                            <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div id="msgdiv" class="col-md-12" style="padding:50px">Thank you for your feedback, we'll get back to you soon!
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+<script>
+    $("#loader,#msgdiv").hide();
+    
+    $("#contactform").submit(function (e) {
+        e.preventDefault();
+       
+        $("#loader").show();
+        var edudata = new FormData(this);
+        $.ajax({
+            method: "POST",
+            url: "@Url.Content("~/ContactUs")",
+            data: edudata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                $("#loader,#formdiv").hide();
+                $("#msgdiv").show();
+            },
+            error: function () {
+                
+            }
+        });
+    });
+</script>
+
+
+@Html.Partial("_partners")

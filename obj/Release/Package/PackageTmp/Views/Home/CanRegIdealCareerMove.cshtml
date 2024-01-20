@@ -1,0 +1,273 @@
+﻿@{
+    Html.RenderAction("menulogin");
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext   fade-1"> <span>JOB SEEKER</span> REGISTRATION</h1>
+
+
+        <div class="dashboardwhiteboxshadow tabacc-sec   fadeInUp" >
+            @Html.Partial("_CanRegTabs")
+            <br style="clear:both" />
+            <br style="clear:both" />
+            <div class="tabboxpadd   " data--delay="0.1s" data--duration="0.5s">
+                <div class="registerformbox">
+                    <div class="row" style="min-height:500px;">
+                        
+                        <form id="formicm" method="post">
+                            <div id="icmform">
+                                <div class="col-md-12" style="height:500px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Job Title <span>*</span></label>
+
+
+                                            <select style="width:100%" class="form-control searchableselect" id="ic_currentjobtitle" name="JobTitleID" required oninvalid="this.setCustomValidity('Job Title is mandatory')" onchange="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.JobTitle)
+                                            {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Job Function / Title <span>*</span></label>
+
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_jobfunction" name="FunctionID" required oninvalid="this.setCustomValidity('Job Function is mandatory')" onchange="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.FunctionalTitles)
+                                            {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Industry / Sector <span>*</span></label>
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_industry" name="IndustryID" required oninvalid="this.setCustomValidity('Industry is mandatory')" onchange="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var ind in ViewBag.Sectors)
+                                            {
+                                                    <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                            }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Year of experience <span>*</span></label>
+
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_experience" name="ExperienceID" required oninvalid="this.setCustomValidity('Experience is mandatory')" onchange="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Experience)
+                                            {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Salary Expected <span>*</span></label>
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_salary" name="ExpectedSalaryID" required oninvalid="this.setCustomValidity('Salary is mandatory')" onchange="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Salary)
+                                            {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <br style="clear:both" />
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Attach ID <span>*</span></label>
+
+                                            <table>
+                                                <tr>
+                                                    <td style="vertical-align:top"><div style=" background-color:#ec2027;padding:1px 11px;color:white;margin:0 0 0 0;width:120px;"><i class="fa fa-cloud-upload"></i> Attach ID </div></td>
+                                                    <td style="vertical-align:top"><input type="file" id="uploadcpr" name="uploadcpr" onchange="showuploadcpr()" required /></td>
+
+                                                </tr>
+                                            </table>
+
+                                            
+                                            <br style="clear:both" />
+
+                                            (Please attach proof of Bahraini Nationality ie Driver's License, CPR etc)
+                                        </div>
+                                    </div>
+
+
+      
+                                    <br style="clear:both" />
+                                    <br style="clear:both" />
+                                </div>
+                                <br style="clear:both" />
+                                <br style="clear:both" />
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12 formbtn ">
+                                        <br style="clear:both" />
+                                        <br style="clear:both" />
+                                        <input id="icm_save" type="submit" value="SAVE" class="btnsubmit pull-right">
+
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+                                <br style="clear:both" /><br style="clear:both" />
+                            </div>
+                        </form>
+
+                        <div id="icmform2" class="col-md-12" style="text-align:center;font-weight:500">
+                            <br />
+                            <br />
+                            <br />
+
+                            <p>You've successfully completed the registration, please check your email for activation!</p>
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+<div class="col-md-12" style="text-align:center"><img src="@Url.Content("~/images/greentick.png")"  /></div>
+                            <br />
+                            <br />
+                            <br />
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12 formbtn ">
+
+                                    <a href="@Url.Content("~/")"   class="btnsubmit pull-right">FINISH</a>
+ 
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+        <br style="clear:both" />
+        
+        <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i> Completed tabs
+    </div>
+</div>
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+<script>
+
+
+
+    $('#uploadcpr').bind('change', function () {
+        var extension = $('#uploadcpr').val().split('.').pop().toLowerCase();
+        if ($.inArray(extension, ['pdf', 'jpg', 'png', 'jpeg']) == -1) {
+            alert('Only .jpg, .jpeg, .png, .pdf are allowed');
+            $('#uploadcpr').val("");
+            return false;
+        }
+
+
+        if (this.files[0].size > 1500000) {
+            alert('ID File size is too big, attach a smaller file (less than 2mb) !');
+            $('#uploadcpr').val("");
+        }
+    });
+
+
+
+
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+        $("#icmform2").hide();
+
+        $("#formicm").submit(function (e) {
+
+            e.preventDefault();
+
+            if ($('#uploadcpr').val() == "") {
+                alert("ID is mandatory");
+            }
+
+ 
+
+
+
+            var edudata = new FormData(this);
+            $.ajax({
+                method: "POST",
+                url: "@Url.Content("~/JobseekerCareerMove")",
+                data: edudata,
+                mimeTypes: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $("#icmform").hide();
+                    $("#icmform2").show();
+                },
+                error: function () {
+
+                    $("#loader").hide();
+                }
+            });
+
+
+
+
+        });
+    });
+</script>
+
+
+
+<style>
+    .registerformbox input, .registerformbox textarea, .registerformbox select {
+        height: 50px;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+

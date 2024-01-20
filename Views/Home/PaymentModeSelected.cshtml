@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "PaymentMode";
+    Html.RenderAction("menulogin");
+}
+
+<div class="topheaderbg sticky">
+    <div class="toplogosection fade-1 dashboardmenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                </div>
+                <div class="col-sm-10 pull-right">
+                    <div id="cssmenu" class="menupadd">
+                        <ul>
+                            <li><a href="@Url.Content("~/")">Home</a></li>
+                            <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+                            <li><a href="@Url.Content("~/MediaCenter")">Media Center</a></li>
+                            <li class="active"><a href="@Url.Content("~/Packages")">Pricing</a></li>
+                            <li><a href="@Url.Content("~/CareerServices")">Career Services</a></li>
+                            <li><a href="@Url.Content("~/ContactUs")">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="fade-1 dashboardwhiteboxshadow" style="height:1280px">
+                <h1 class="mainpagetitle Padd15 centertext">INV<span>OICE</span>
+                <i class="fa fa-print pull-right" style="font-size:20px;color:red;cursor:pointer" onclick="printDiv()"></i>
+                </h1>
+                <br />
+
+
+                <div class=" centertext fade-2">
+       
+                @Html.Raw(ViewBag.HtmlInvoice)
+
+                    <br class="clear" />
+
+
+                    
+
+                </div>
+
+
+               
+                <br class="clear" />
+                <br class="clear" />
+                
+
+                <div class="form-group formbtn ">
+                    <div class="col-md-12">
+                        <a href="@("SubscriptionThanks")" class="pull-right btnsubmit">NEXT</a>
+                        <a class="pull-right graybtn" style="padding:10px 35px;color:white;margin-right:10px;"  onclick="printDiv()">PRINT</a>
+                    </div>
+                </div>
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@Html.Partial("_partners")
+
+
+<script>
+                                                                                function printDiv() {
+
+                                                                                    var divToPrint = document.getElementById('DivIdToPrint');
+
+                                                                                    var newWin = window.open('', 'Print-Window');
+
+                                                                                    newWin.document.open();
+
+                                                                                    newWin.document.write('<html>');
+                                                                                    newWin.document.write('<link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">');
+                                                                                    newWin.document.write('<link href="@Url.Content("~/css/style.css")?v=1.7" rel="stylesheet">');
+                                                                                    newWin.document.write('<body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+                                                                                    newWin.document.write('</body></html>');
+                                                                                    newWin.document.close();
+
+                                                                                    //setTimeout(function () { newWin.close(); }, 10);
+
+                                                                                }
+</script>
+
+<div id='DivIdToPrint' style="display:none">
+
+
+    @Html.Raw(ViewBag.HtmlInvoice)
+</div>

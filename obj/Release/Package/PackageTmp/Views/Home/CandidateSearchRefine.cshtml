@@ -1,0 +1,993 @@
+﻿@model Jobs4Bahrainis.Models.CandidateSearchModel
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+@*<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li class="active"><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+
+            <div class="col-md-12">
+                <div class="col-sm-12">
+                    @*<div class="dashboardwhiteboxshadow">*@
+                    @using (Html.BeginForm("CandidateSearchResult2", "Home", FormMethod.Get))
+                    {
+                        <div class="col-md-12">
+                           
+                            <h1 class="mainpagetitle Padd15 centertext">CV <span>ADVANCED SEARCH</span></h1>
+                            @*<div class="searchformsec">*@
+                            @*<div class="row">*@
+
+                            @*<div class="col-md-12">*@
+
+                            @*<input name="keyword" type="text" placeholder="Search keyword" id="keyword" class="skill-search-icon">*@
+                            @*<input name="ac_jobtitle" type="text" placeholder="Search keyword" id="ac_jobtitle" class="skill-search-icon">*@
+                            @*<input class="form-control" id="ac_jobtitle" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Gender is mandatory')" oninput="setCustomValidity('')">*@
+                            @*<input class="form-control" name="keyword" id="keyword" placeholder="Select" type="text" >*@
+
+                            @*</div>*@
+                            @*</div>*@
+                            @*<br class="clear" />*@
+                            @*<div class="row">
+                                    <div class="col-md-6">
+                                        <input name="fname" type="text" placeholder="First Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input name="lname" type="text" placeholder="Last Name">
+                                    </div>
+
+                                </div>*@
+
+                            @*<br class="clear" />*@
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span> Candidate Details</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+                                        @*<div class="col-md-12">*@
+                                            @*<input name="keyword" type="text" id="keyword" placeholder="Keyword">*@
+                                            @*<input name="keyword" type="text" placeholder="Search keyword" id="keyword" class="skill-search-icon">*@
+                                        @*</div>*@
+                                        
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Gender </label>
+                                            <select name="gender">
+                                                @{ var selectedGender = Request.QueryString["gender"];
+                                                    var Genders = new SelectList(new List<SelectListItem> { new SelectListItem { Text = "Select", Value = "" }, new SelectListItem { Text = "Male", Value = "M" }, new SelectListItem { Text = "Female", Value = "F" }, }, "Value", "Text", selectedGender);
+                                                }
+                                                @foreach (var g in Genders)
+                                                {
+                                                    <option @( selectedGender == g.Value ? "selected" : "") value="@g.Value">@g.Text</option>
+                                                }
+
+                                            </select>
+</div>
+                                        <div class="col-md-6">
+                                            <label>Age </label>
+                                            <select class="form-control searchableselect" id="vc_AgeGroupID" name="vc_AgeGroupID">
+                                                <option value="">Select</option>
+                                                @{ var selectedAge = Request.QueryString["vc_AgeGroupID"];}
+                                                @foreach (var con in ViewBag.Agegroup)
+                                                {
+                                                    @*<option value="@con.lm_Id">@con.lm_Value</option>*@
+                                                if (selectedAge != "")
+                                                {
+                                                    <option @(Convert.ToInt32(selectedAge) == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Location </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="ca_lm_CountryId" name="ca_lm_CountryId" >
+                                                <option value="">Select</option>
+                                                @{ var selectedLocation = Request.QueryString["ca_lm_CountryId"];}
+                                                @foreach (var con in ViewBag.Country)
+                                                {
+                                                    if (selectedLocation != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedLocation) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option @(ViewBag.Ca_CurrentCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                                @*@foreach (var con in ViewBag.Country) 
+                                                {
+                                                    <option @(ViewBag.Ca_CurrentCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                }*@
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Language </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="acclanguage" name="acclanguage" multiple="multiple">
+<option value="">Select</option>
+@{ var selectedLang = Request.QueryString["acclanguage"];}
+@foreach (var con in ViewBag.Languages)
+{
+    if (selectedLang != "")
+    {
+        <option @(Convert.ToInt32(selectedLang) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+    }
+    else
+    {
+        <option value="@con.lm_Id">@con.lm_Value</option>
+    }
+
+
+}
+
+
+@*<option value="">Select</option>
+    @foreach (var jfn in ViewBag.Languages)
+    {
+        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+    }*@
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+                                       
+
+                                        <div class="col-md-6">
+                                            <label>Notice Period</label>
+                                            @*<select name="notice_period">
+                                                <option value="">Select</option>
+                                                <option value="">1 Week</option>
+                                                <option value="">2 Weeks</option>
+                                                <option value="">1 Months</option>
+                                                <option value="">2 Months</option>
+                                                <option value="">3 Months</option>
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="notice_period" name="notice_period" >
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.notice_period)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+
+                                                }*@
+
+                                                @{ var selectedNPeriod = Request.QueryString["notice_period"];}
+                                                @foreach (var con in ViewBag.notice_period)
+                                                {
+                                                    if (selectedNPeriod != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedNPeriod) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employment Status </label>
+                                            <select name="employment_status">
+                                                
+
+                                                @{ var selectedEmpStatus = Request.QueryString["employment_status"];
+                                                    var EmpStatus = new SelectList(new List<SelectListItem> { new SelectListItem { Text = "Select", Value = "" }, new SelectListItem { Text = "Fresh graduate", Value = "1" }, new SelectListItem { Text = "Not fresh graduate", Value = "0" }, }, "Value", "Text", selectedEmpStatus);
+                                                }
+                                                @foreach (var e in EmpStatus)
+                                                {
+                                                    <option @( selectedEmpStatus == e.Value ? "selected" : "") value="@e.Value">@e.Text</option>
+                                                }
+                                                
+                                                
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Experience</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+                                        <div class="col-md-6">
+                                            <label>Current Job Title </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="wh_jobtitle" name="wh_jobtitle">
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.JobTitle)
+                                                {
+                                                    <option @(ViewBag.JobTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+
+                                                @{ var selectedCurrentJobTitle = Request.QueryString["wh_jobtitle"];}
+                                                @foreach (var con in ViewBag.JobTitle)
+                                                {
+                                                    if (selectedCurrentJobTitle != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedCurrentJobTitle) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Current Employer </label>
+                                            <input value="" class="form-control" id="wh_company" name="wh_company" placeholder="Select and begin typing" type="text">
+                                        </div>
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Years Of Experience </label>
+                                            @*<select name="experience">
+                                                <option value="">Years of Experience</option>
+                                                <option value="0:1">0-1</option>
+                                                <option value="1:3">1-3</option>
+                                                <option value="3:6">3-6</option>
+                                                <option value="6:8">6-8</option>
+                                                <option value="8:10">8-10</option>
+                                                <option value="-1:10">>10</option>
+
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="ca_TotalRelavantExperience" name="ca_TotalRelavantExperience">
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.Experience)
+                                                {
+                                                    <option @(ViewBag.ca_TotalRelavantExperience == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedYearOfExperience = Request.QueryString["ca_TotalRelavantExperience"];}
+                                                @foreach (var con in ViewBag.Experience)
+                                                {
+                                                    if (selectedYearOfExperience != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedYearOfExperience) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Seniority </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="wh_level" name="wh_level" >
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.JobLevel)
+                                                {
+                                                    <option @(ViewBag.JobLevelID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedSeniority = Request.QueryString["wh_level"];}
+                                                @foreach (var con in ViewBag.JobLevel)
+                                                {
+                                                    if (selectedSeniority != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedSeniority) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    @*<br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Notice Period </label>
+                                            <select name="location"></select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employment Status </label>
+                                            <select name="Languages"></select>
+                                        </div>
+
+
+                                    </div>*@
+                                </div>
+                                <br class="clear" />
+
+
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+
+                                        <div style="font-size:16px;color:#999">Industry / Sector</div>
+
+                                        <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; margin-left:-10px ">
+
+
+                                            @foreach (var s in ViewBag.Sectors)
+                                            {
+                                                <div class="col-sm-12">
+                                                    <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div style="font-size:16px;color:#999">Function / Title</div>
+
+                                        <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; ">
+
+
+                                            @foreach (var f in ViewBag.FunctionalTitles)
+                                            {
+                                                <div class="col-sm-12">
+                                                    <input type="checkbox" id="chksector2" name="chksector2" value="@f.lm_Id" /> <span style="font-size:15px;color:gray">@f.lm_Value</span>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br class="clear" />
+                                <div class="row">
+
+
+
+                                </div>
+                                <br class="clear" />
+
+                            </div>
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Education</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+
+                                        <div class="col-md-6">
+                                            <label>University/Institute</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="eduSchool" name="eduSchool" >
+                                                <option value="">Select</option>
+                                                @*@foreach (var uni in ViewBag.University)
+                                                {
+                                                    <option @(ViewBag.UniversityID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedUniversity = Request.QueryString["eduSchool"];}
+                                                @foreach (var con in ViewBag.University)
+                                                {
+                                                    if (selectedUniversity != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedUniversity) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Education Level </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="ca_lm_EducationLevel" name="ca_lm_EducationLevel" >
+                                                <option value="">Select</option>
+                                                @*@foreach (var edu in ViewBag.EducationLevel)
+                                                {
+                                                    <option @(ViewBag.ca_lm_EducationLevel == edu.lm_Id ? "selected" : "") value="@edu.lm_Id">@edu.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedEducationLevel = Request.QueryString["ca_lm_EducationLevel"];}
+                                                @foreach (var con in ViewBag.EducationLevel)
+                                                {
+                                                    if (selectedEducationLevel != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedEducationLevel) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Degree Subject</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="eduDegree" name="eduDegree">
+                                                <option value="">Select</option>
+                                                @*@foreach (var uni in ViewBag.Degree)
+                                                {
+                                                    <option @(ViewBag.DegreeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedDegreeSubject = Request.QueryString["eduDegree"];}
+                                                @foreach (var con in ViewBag.Degree)
+                                                {
+                                                    if (selectedDegreeSubject != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedDegreeSubject) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Field Of Study </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="eduField" name="eduField" >
+                                                <option value="">Select</option>
+                                                @*@foreach (var uni in ViewBag.Specialization)
+                                                {
+                                                    <option @(ViewBag.SpecializationID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedFieldOfStudy = Request.QueryString["eduField"];}
+                                                @foreach (var con in ViewBag.Specialization)
+                                                {
+                                                    if (selectedFieldOfStudy != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedFieldOfStudy) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Skills</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+                                        <div class="col-md-6">
+                                            <label>Skills</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="skill_add" name="skill_add" placeholder="Add Skill" multiple="multiple">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Skill)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                      
+
+                                    </div>
+                                    <br class="clear" />
+                                   
+                                </div>
+
+                            </div>
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Candidates Target Move</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+                                        <div class="col-md-6">
+                                            <label>Job Title</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="ic_currentjobtitle" name="ic_currentjobtitle">
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.JobTitle)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+
+                                                @{ var selectedJobTitle = Request.QueryString["ic_currentjobtitle"];}
+                                                @foreach (var con in ViewBag.JobTitle)
+                                                {
+                                                    if (selectedJobTitle != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedJobTitle) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Industry/Sector </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_industry" name="icm_industry">
+                                                <option value="">Select</option>
+                                                @*@foreach (var ind in ViewBag.Sectors1)
+                                                {
+                                                    <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedIndustry = Request.QueryString["icm_industry"];}
+                                                @foreach (var con in ViewBag.Sectors1)
+                                                {
+                                                    if (selectedIndustry != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedIndustry) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Desired Salary</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_salary" name="icm_salary">
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.Salary)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedSalary = Request.QueryString["icm_salary"];}
+                                                @foreach (var con in ViewBag.Salary)
+                                                {
+                                                    if (selectedSalary != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedSalary) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employment Type </label>
+                                            @*<select name="employment_type">
+                                                <option value="">Select</option>
+                                                <option value="">Full time</option>
+                                                <option value="">Part time</option>
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="employment_type" name="employment_type">
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.employment_type)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedEmploymentType = Request.QueryString["employment_type"];}
+                                                @foreach (var con in ViewBag.employment_type)
+                                                {
+                                                    if (selectedEmploymentType != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedEmploymentType) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Active Within</label>
+                                            @*<select name="last_login">
+                                                <option value="">Select</option>
+                                                <option value="Today">Today</option>
+                                                <option value="1 Week">1 Week</option> 
+                                                <option value="2 Weeks">2 Weeks</option> 
+                                                <option value="1 Month">1 Month</option> 
+                                                <option value="3 Months">3 Months</option> 
+                                                <option value="6 Months">6 Months</option> 
+                                                <option value="1 Year">1 Year</option> 
+                                                <option value="2 Years">2 Years</option> 
+
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="last_login" name="last_login">
+                                                <option value="">Select</option>
+                                                @*@foreach (var jfn in ViewBag.last_login)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }*@
+
+                                                @{ var selectedActiveWithin = Request.QueryString["last_login"];}
+                                                @foreach (var con in ViewBag.last_login)
+                                                {
+                                                    if (selectedActiveWithin != "")
+                                                    {
+                                                        <option @(Convert.ToInt32(selectedActiveWithin) == con.lm_Id ? "selected" : "" ) value="@con.lm_Id">@con.lm_Value</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                        </div>
+                                        
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @*</div>*@
+
+                        @*<div class="col-md-12">
+
+
+
+
+                            <div class="col-md-6">
+
+                                <div style="font-size:16px;color:#999">Industry / Sector</div>
+
+                                <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; margin-left:-10px ">
+
+
+                                    @foreach (var s in ViewBag.Sectors)
+                                    {
+                                        <div class="col-sm-12">
+                                            <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div style="font-size:16px;color:#999">Function / Title</div>
+
+                                <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; ">
+
+
+                                    @foreach (var f in ViewBag.FunctionalTitles)
+                                    {
+                                        <div class="col-sm-12">
+                                            <input type="checkbox" id="chksector2" name="chksector2" value="@f.lm_Id" /> <span style="font-size:15px;color:gray">@f.lm_Value</span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>*@
+                        
+
+                        @*<br class="clear" />
+                        <div class="searchformsec">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="qualification">
+                                        <option value="">Qualification</option>
+                                        <option value="1">Higher National Diploma</option>
+                                        <option value="2">Bachelor's degree</option>
+                                        <option value="3">Master's degree</option>
+                                        <option value="4">Doctoral degree</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select name="salary">
+                                        <option value="">Salary</option>
+                                        <option value="0:200">0-200</option>
+                                        <option value="200:400">200-400</option>
+                                        <option value="400:600">400-600</option>
+                                        <option value="600:800">600-800</option>
+                                        <option value="800:1000">800-1000</option>.
+                                        <option value="-1:1000">>1000</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <br class="clear" />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="experience">
+                                        <option value="">Years of Experience</option>
+                                        <option value="0:1">0-1</option>
+                                        <option value="1:3">1-3</option>
+                                        <option value="3:6">3-6</option>
+                                        <option value="6:8">6-8</option>
+                                        <option value="8:10">8-10</option>
+                                        <option value="-1:10">>10</option>
+
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <br class="clear" />*@
+
+                        <hr />
+
+                        <div class="searchformsec">
+                            <div class="row">
+
+                                <div class="col-md-2 pull-right">
+                                    <input name="" type="submit" value="Search">
+                                </div>
+                            </div>
+                        </div>
+                        @*</div>*@
+                        <br style="clear:both" />
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+@*<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@*<script>
+        $(function () {
+
+
+
+
+            $("#ac_jobtitle").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "getWorkExperinceJobTitle/" + request.term,
+                        success: function (data) {
+                            var transformed = $.map(data, function (el) {
+                                return {
+                                    label: el.JobTitle
+
+
+                                };
+                            });
+                            response(transformed);
+                        },
+                        error: function () {
+                            response([]);
+                        }
+                    });
+                }
+            });
+        })
+    </script>*@
+
+<script>
+    $(function () {
+        $('.searchableselect').select2();
+
+
+
+        $("#keyword").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "getWorkExperinceJobTitle/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.JobTitle
+
+
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+    })
+</script>
+<script>
+    $(function () {
+
+
+        $("#wh_company").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Content("~/getABCcompanies")/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.Company,
+                                id: el.id
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+
+
+
+    });
+</script>
+
+@*<script src="@Url.Content("~/js/autocompletevalues.js")"></script>*@

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d5a8af9ae64048dd9981953ddccca64e" Name="Diagram1">
+        <EntityTypeShape EntityType="J4BNEWModel.AdminStatisticsByUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Application" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeData" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeList" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses0" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses1" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses2" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses3" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses4" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses5" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses6" Width="1.5" PointX="5.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses7" Width="1.5" PointX="5.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses8" Width="1.5" PointX="5.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeResponses9" Width="1.5" PointX="5.25" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Attribute" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AttributeType" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.AuditActionType" Width="1.5" PointX="7.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.BannerBrandType" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.BannerPage" Width="1.5" PointX="11.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Banner" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.BannerType" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.BookingRequest" Width="1.5" PointX="16.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.BrandCollaboration" Width="1.5" PointX="10" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Brand" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateCertification" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateCertification_T" Width="1.5" PointX="7.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateDocument" Width="1.5" PointX="9.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateEducation" Width="1.5" PointX="11.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateEducation_T" Width="1.5" PointX="13.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateEmployer_T" Width="1.5" PointX="17.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateExperience" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateHonour" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateIdealCareerMove" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateIdealCareerMove_T" Width="1.5" PointX="19.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateInBox" Width="1.5" PointX="18.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateInterest" Width="1.5" PointX="20.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateInterestType" Width="1.5" PointX="20.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateLanguage" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateLanguage_T" Width="1.5" PointX="15.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateOtherSkill_T" Width="1.5" PointX="20.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Candidate" Width="1.5" PointX="7.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateSearch" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateSearchLocation" Width="1.5" PointX="21.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateSearchSector" Width="1.5" PointX="20.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateSearchShortlist" Width="1.5" PointX="22.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateSkill_T" Width="1.5" PointX="9.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateSkill" Width="1.5" PointX="11.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateWorkHistory_T" Width="1.5" PointX="22.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CareerServices_T" Width="1.5" PointX="22.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CollaborationType" Width="1.5" PointX="7.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Company" Width="1.5" PointX="22.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyFollowers_T" Width="1.5" PointX="23.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyManagement_T" Width="1.5" PointX="0.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyMaster_T" Width="1.5" PointX="23.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyMedia_T" Width="1.5" PointX="13.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyPackage" Width="1.5" PointX="15.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyPhotoGallery_T" Width="1.5" PointX="24.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanySector" Width="1.5" PointX="24.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyStatistic" Width="1.5" PointX="24.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyTestimonials_T" Width="1.5" PointX="24.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompanyVideo_T" Width="1.5" PointX="17.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Complaint" Width="1.5" PointX="24.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Contact" Width="1.5" PointX="19.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Content" Width="1.5" PointX="24.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ContentReplace" Width="1.5" PointX="25.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CounterAdvSrchCompany_T" Width="1.5" PointX="25.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CounterAdvSrchKeywords_T" Width="1.5" PointX="9.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CounterAdvSrchQualification_T" Width="1.5" PointX="26.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CounterAdvSrchSectors_T" Width="1.5" PointX="26.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CSCredits_T" Width="1.5" PointX="11.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CSCreditType_T" Width="1.5" PointX="26.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CSCreditUsage_T" Width="1.5" PointX="26.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CSPackage_T" Width="1.5" PointX="26.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CSSubscription_T" Width="1.5" PointX="26.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CSVouchers_T" Width="1.5" PointX="26.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.DataCache" Width="1.5" PointX="27.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Division" Width="1.5" PointX="13.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.DocumentType" Width="1.5" PointX="27.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.dtproperty" Width="1.5" PointX="15.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmailContent" Width="1.5" PointX="0.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmailContentReplace" Width="1.5" PointX="28.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmailLog" Width="1.5" PointX="28.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmployerComingSoon_T" Width="1.5" PointX="28.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmployerPackages_T" Width="1.5" PointX="28.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmployerPackageTransactions_T" Width="1.5" PointX="28.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Entity" Width="1.5" PointX="28.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EY_Candidates_T" Width="1.5" PointX="28.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EY_CVDownloads_T" Width="1.5" PointX="29.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EY_Employer_T" Width="1.5" PointX="9.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ImageResource" Width="1.5" PointX="30.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ImageResourceType" Width="1.5" PointX="30.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobFair_T" Width="1.5" PointX="30.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobRoleEquivalenceGroup" Width="1.5" PointX="30.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobRoleEquivalence" Width="1.5" PointX="17.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobRoleProfile" Width="1.5" PointX="30.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobSearch" Width="1.5" PointX="19.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobSearchJobType" Width="1.5" PointX="30.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobSearchLocation" Width="1.5" PointX="24.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobSearchRecruiterType" Width="1.5" PointX="30.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.JobSearchSector" Width="1.5" PointX="30.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Link" Width="1.5" PointX="11.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.LinkType" Width="1.5" PointX="31.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ListBrandAssociation" Width="1.5" PointX="13.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ListsBrand" Width="1.5" PointX="26.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ListsBrandGrouping" Width="1.5" PointX="32.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ListsMaster" Width="1.5" PointX="32.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ListsMasterGrouping" Width="1.5" PointX="32.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ListType" Width="1.5" PointX="32.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ManagementReportGroup" Width="1.5" PointX="32.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ManagementReport" Width="1.5" PointX="32.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Mapping" Width="1.5" PointX="32.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Menu" Width="1.5" PointX="32.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.MenuItem" Width="1.5" PointX="21.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Microsite" Width="1.5" PointX="14.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.MicrositeContent" Width="1.5" PointX="23.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.MicrositeMenuItem" Width="1.5" PointX="33.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.MicrositeTemplate" Width="1.5" PointX="28.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.MicrositeTemplateAttribute" Width="1.5" PointX="0.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.MicrositeVacancy" Width="1.5" PointX="17" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.NewsArticleBrand" Width="1.5" PointX="34.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.NewsArticle" Width="1.5" PointX="34.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.NewsletterSubscribers_T" Width="1.5" PointX="7.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.NoiseWord" Width="1.5" PointX="34.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Note_T" Width="1.5" PointX="13.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Order_T" Width="1.5" PointX="34.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.OrderLine" Width="1.5" PointX="15.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Order" Width="1.5" PointX="34.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.PackagePrice" Width="1.5" PointX="34.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.PackageType" Width="1.5" PointX="34.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Payment" Width="1.5" PointX="34.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.PaymentType" Width="1.5" PointX="35.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.PopUpCompany_T" Width="1.5" PointX="30.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ppaCharge" Width="1.5" PointX="36.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.RecommendationJobRole" Width="1.5" PointX="36.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Recommendation" Width="1.5" PointX="36.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.RecruiterStatisticsByCompany" Width="1.5" PointX="36.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Report_T" Width="1.5" PointX="36.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Report" Width="1.5" PointX="17.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ReportsStandard" Width="1.5" PointX="36.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ReportType_T" Width="1.5" PointX="36.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Resource" Width="1.5" PointX="25.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ResourceBrand" Width="1.5" PointX="36.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.ResourceType" Width="1.5" PointX="27.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.SalaryRanx" Width="1.5" PointX="36.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.SavedJob_T" Width="1.5" PointX="36.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.SearchScope" Width="1.5" PointX="36.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.SearchScopeType" Width="1.5" PointX="37.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Settings_T" Width="1.5" PointX="7.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Statistic" Width="1.5" PointX="9.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.StatisticType" Width="1.5" PointX="11.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.status_T" Width="1.5" PointX="0.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Status" Width="1.5" PointX="38.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.SynonymGroup" Width="1.5" PointX="38.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Synonym" Width="1.5" PointX="38.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.sysdiagram" Width="1.5" PointX="13.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.TaJ4bFeedMap" Width="1.5" PointX="38.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.tblJ4B_Cards_Types" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.tblJ4B_Payments" Width="1.5" PointX="12" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.tblJ4B_Payments_Methods" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.UserBrand" Width="1.5" PointX="38.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.UserRight" Width="1.5" PointX="38.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.User" Width="1.5" PointX="15" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.UserType" Width="1.5" PointX="12.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Vacancy" Width="1.5" PointX="38.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.VacancyBrand" Width="1.5" PointX="29.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.VacancyLocation" Width="1.5" PointX="31.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.VacancySector" Width="1.5" PointX="38.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.VacancyShortlistLog" Width="1.5" PointX="39.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.candidates18oct2018" Width="1.5" PointX="2.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.candidates2" Width="1.5" PointX="4.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CandidateWorkHistory_Tbkp11nov2018" Width="1.5" PointX="19.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.companies05022019" Width="1.5" PointX="21.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.companiesbkp" Width="1.5" PointX="33.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.companiesBKP14052019" Width="1.5" PointX="35.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.companiesBkp210519" Width="1.5" PointX="37.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.contacts05022019" Width="1.5" PointX="39.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.contactsBKP14052019" Width="1.5" PointX="40.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.contactsBkp210519" Width="1.5" PointX="6.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmployerActivationCode_T" Width="1.5" PointX="40.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.EmployerActivationCode_Told" Width="1.5" PointX="40.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.vacancies070119" Width="1.5" PointX="40.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.vacancies2" Width="1.5" PointX="15.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.vacanciesbackup11oct2018" Width="1.5" PointX="40.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.VacanciesBkp" Width="1.5" PointX="8.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompaniesWithVacanciesArabic" Width="1.5" PointX="10.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.CompaniesWithVacanciesEnglish" Width="1.5" PointX="12.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.FeaturedCompany" Width="1.5" PointX="41.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="J4BNEWModel.Report_V" Width="1.5" PointX="23.75" PointY="41.75" IsExpanded="true" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses0_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses1_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses2_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses3_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses4_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses5_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses6_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses7_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses8_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_AttributeResponses9_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_Attributes_AttributeTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_BrandCollaborations_Brands" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_BrandCollaborations_Brands1" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_BrandCollaborations_Brands2" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_BrandCollaborations_CollaborationTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK__Microsite__Micro__5A3A55A2" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_tblJ4B_Payments_tblJ4B_Cards_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_tblJ4B_Payments_tblJ4B_Payments_Methods" ManuallyRouted="false" />
+        <AssociationConnector Association="J4BNEWModel.FK_Users_UserTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

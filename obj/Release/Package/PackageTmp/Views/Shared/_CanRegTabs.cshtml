@@ -1,0 +1,154 @@
+﻿@if (ViewBag.curtabno >= 1)
+{
+    <div class="col-md-2" style="@(ViewBag.curtabno == 1 ? "background-color:#ffffff;border-right:1px solid #e6e5e6;":"background-color:#e6e5e6;")border-top:1px #e6e5e6 solid;padding:15px;text-align:center;font-size:15px;font-weight:500">
+        <a href="@Url.Content("~/CanRegProfileSummary/tabupdate")">PROFILE SUMMARY</a>
+        @if (ViewBag.tabno != 0)
+        {
+            <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i>
+        }
+    </div>
+}
+
+
+
+@if (ViewBag.curtabno >= 2)
+{
+    <div class="col-md-2" style="@(ViewBag.curtabno == 2 ? "background-color:#ffffff;border-right:1px solid #e6e5e6;":"background-color:#e6e5e6;")border-top:1px #e6e5e6 solid;padding:15px;text-align:center;font-size:15px;font-weight:500">
+        <a href="@Url.Content("~/CanRegEducation/tabupdate")">EDUCATION</a>
+        @if (ViewBag.tabno != 1)
+        {
+            <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i>
+        }
+    </div>
+}
+
+
+
+@if (ViewBag.curtabno >= 3)
+{
+    <div class="col-md-2" style="@(ViewBag.curtabno == 3 ? "background-color:#ffffff;border-right:1px solid #e6e5e6;":"background-color:#e6e5e6;")border-top:1px #e6e5e6 solid;padding:15px;text-align:center;font-size:15px;font-weight:500">
+        <a href="@Url.Content("~/CanRegWorkHistory/tabupdate")">WORK HISTORY</a>
+        @if (ViewBag.tabno != 2)
+        {
+            <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i>
+        }
+    </div>
+}
+
+
+
+@if (ViewBag.curtabno >= 4)
+{
+    <div class="col-md-2" style="@(ViewBag.curtabno == 4 ? "background-color:#ffffff;border-right:1px solid #e6e5e6;":"background-color:#e6e5e6;")border-top:1px #e6e5e6 solid;padding:15px;text-align:center;font-size:15px;font-weight:500">
+        <a href="@Url.Content("~/CanRegITSkills/tabupdate")">SKILLS</a>
+        @if (ViewBag.tabno != 3)
+        {
+            <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i>
+        }
+    </div>
+}
+
+
+
+@if (ViewBag.curtabno >= 5)
+{
+    <div class="col-md-2" style="@(ViewBag.curtabno == 5 ? "background-color:#ffffff;border-right:1px solid #e6e5e6;":"background-color:#e6e5e6;")border-top:1px #e6e5e6 solid;padding:15px;text-align:center;font-size:15px;font-weight:500">
+        <a href="@Url.Content("~/CanRegAccomplishments/tabupdate")">ACCOMPLISHMENTS</a>
+        @if (ViewBag.tabno != 4)
+        {
+            <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i>
+        }
+    </div>
+}
+
+
+
+
+@if (ViewBag.curtabno >= 6)
+{
+    <div class="col-md-2" style="@(ViewBag.curtabno == 6 ? "background-color:#ffffff;border-right:1px solid #e6e5e6;":"background-color:#e6e5e6;")border-top:1px #e6e5e6 solid;padding:15px;text-align:center;font-size:15px;font-weight:500">
+        <a href="@Url.Content("~/CanRegIdealCareerMove/tabupdate")">IDEAL CAREER MOVE</a>
+        @if (ViewBag.tabno != 5)
+        {
+            <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i>
+        }
+    </div>
+}
+
+
+@switch (ViewBag.tabno)
+{
+    case 0:
+        {
+            <div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        10% of registration is completed
+                    </div>
+                </div>
+            </div>
+            break;
+        }
+    case 1:
+        {
+            <div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        20% of registration is completed
+                    </div>
+                </div>
+            </div>
+            break;
+        }
+    case 2:
+        {
+            <div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        40% of registration is completed
+                    </div>
+                </div>
+            </div>
+            break;
+        }
+    case 3:
+        {
+            <div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        60% of registration is completed
+                    </div>
+                </div>
+            </div>
+            break;
+        }
+    case 4:
+        {
+            <div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        80% completed
+                    </div>
+                </div>
+            </div>
+            break;
+        }
+    case 5:
+        {
+            <div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        90% of registration is completed
+                    </div>
+                </div>
+            </div>
+            break;
+        }
+}
+

@@ -1,0 +1,732 @@
+﻿@model Jobs4Bahrainis.Models.CandidateSearchModel
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+@*<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li class="active"><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li><a href="@Url.Content("~/ManageVacancies")">VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREERS RESOURCES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+
+            <div class="col-md-12">
+                <div class="col-sm-12">
+                    @*<div class="dashboardwhiteboxshadow">*@
+                    @using (Html.BeginForm("CandidateSearchResult2", "Home", FormMethod.Get))
+                    {
+                        <div class="col-md-12">
+                           
+                            <h1 class="mainpagetitle Padd15 centertext">CV <span>ADVANCED SEARCH</span></h1>
+                            @*<div class="searchformsec">*@
+                            @*<div class="row">*@
+
+                            @*<div class="col-md-12">*@
+
+                            @*<input name="keyword" type="text" placeholder="Search keyword" id="keyword" class="skill-search-icon">*@
+                            @*<input name="ac_jobtitle" type="text" placeholder="Search keyword" id="ac_jobtitle" class="skill-search-icon">*@
+                            @*<input class="form-control" id="ac_jobtitle" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Gender is mandatory')" oninput="setCustomValidity('')">*@
+                            @*<input class="form-control" name="keyword" id="keyword" placeholder="Select" type="text" >*@
+
+                            @*</div>*@
+                            @*</div>*@
+                            @*<br class="clear" />*@
+                            @*<div class="row">
+                                    <div class="col-md-6">
+                                        <input name="fname" type="text" placeholder="First Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input name="lname" type="text" placeholder="Last Name">
+                                    </div>
+
+                                </div>*@
+
+                            @*<br class="clear" />*@
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span> Candidate Details</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+                                        @*<div class="col-md-12">*@
+                                            @*<input name="keyword" type="text" id="keyword" placeholder="Keyword">*@
+                                            @*<input name="keyword" type="text" placeholder="Search keyword" id="keyword" class="skill-search-icon">*@
+                                        @*</div>*@
+                                        
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Gender </label>
+                                            <select name="gender">
+                                                <option value="">Select</option>
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Age </label>
+                                            <select class="form-control searchableselect" id="vc_AgeGroupID" name="vc_AgeGroupID">
+                                                <option value="">Select</option>
+                                                @foreach (var con in ViewBag.Agegroup)
+                                                {
+                                                    <option value="@con.lm_Id">@con.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Location </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="ca_lm_CountryId" name="ca_lm_CountryId" >
+                                                <option value="">Select</option>
+                                                @foreach (var con in ViewBag.Country)
+                                                {
+                                                    <option @(ViewBag.Ca_CurrentCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Language </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="acclanguage" name="acclanguage" multiple="multiple">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Languages)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+                                       
+
+                                        <div class="col-md-6">
+                                            <label>Notice Period</label>
+                                            @*<select name="notice_period">
+                                                <option value="">Select</option>
+                                                <option value="">1 Week</option>
+                                                <option value="">2 Weeks</option>
+                                                <option value="">1 Months</option>
+                                                <option value="">2 Months</option>
+                                                <option value="">3 Months</option>
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="notice_period" name="notice_period" >
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.notice_period)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employment Status </label>
+                                            <select name="employment_status">
+                                                <option value="">Select</option>
+
+                                                <option value="0">Employed</option>
+                                                <option value="1">Unemployed</option>
+                                                <option value="2">Self-Employed</option>
+                                                
+
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Experience</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+                                        <div class="col-md-6">
+                                            <label>Current Job Title </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="wh_jobtitle" name="wh_jobtitle">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.JobTitle)
+                                                {
+                                                    <option @(ViewBag.JobTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Current Employer </label>
+                                            <input value="" class="form-control" id="wh_company" name="wh_company" placeholder="Select and begin typing" type="text">
+                                        </div>
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Years Of Experience </label>
+                                            @*<select name="experience">
+                                                <option value="">Years of Experience</option>
+                                                <option value="0:1">0-1</option>
+                                                <option value="1:3">1-3</option>
+                                                <option value="3:6">3-6</option>
+                                                <option value="6:8">6-8</option>
+                                                <option value="8:10">8-10</option>
+                                                <option value="-1:10">>10</option>
+
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="ca_TotalRelavantExperience" name="ca_TotalRelavantExperience">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Experience)
+                                                {
+                                                    <option @(ViewBag.ca_TotalRelavantExperience == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Seniority </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="wh_level" name="wh_level" >
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.JobLevel)
+                                                {
+                                                    <option @(ViewBag.JobLevelID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    @*<br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Notice Period </label>
+                                            <select name="location"></select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employment Status </label>
+                                            <select name="Languages"></select>
+                                        </div>
+
+
+                                    </div>*@
+                                </div>
+                                <br class="clear" />
+
+
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+
+                                        <div style="font-size:16px;color:#999">Industry / Sector</div>
+
+                                        <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; margin-left:-10px ">
+
+
+                                            @foreach (var s in ViewBag.Sectors)
+                                            {
+                                                <div class="col-sm-12">
+                                                    <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div style="font-size:16px;color:#999">Function / Title</div>
+
+                                        <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; ">
+
+
+                                            @foreach (var f in ViewBag.FunctionalTitles)
+                                            {
+                                                <div class="col-sm-12">
+                                                    <input type="checkbox" id="chksector2" name="chksector2" value="@f.lm_Id" /> <span style="font-size:15px;color:gray">@f.lm_Value</span>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br class="clear" />
+                                <div class="row">
+
+
+
+                                </div>
+                                <br class="clear" />
+
+                            </div>
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Education</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+
+                                        <div class="col-md-6">
+                                            <label>University/Institute</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="eduSchool" name="eduSchool" >
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.University)
+                                                {
+                                                    <option @(ViewBag.UniversityID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Education Level </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="ca_lm_EducationLevel" name="ca_lm_EducationLevel" >
+                                                <option value="">Select</option>
+                                                @foreach (var edu in ViewBag.EducationLevel)
+                                                {
+                                                    <option @(ViewBag.ca_lm_EducationLevel == edu.lm_Id ? "selected" : "") value="@edu.lm_Id">@edu.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Degree Subject</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="eduDegree" name="eduDegree">
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.Degree)
+                                                {
+                                                    <option @(ViewBag.DegreeID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Field Of Study </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="eduField" name="eduField" >
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.Specialization)
+                                                {
+                                                    <option @(ViewBag.SpecializationID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Skills</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+                                        <div class="col-md-6">
+                                            <label>Skills</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="skill_add" name="skill_add" placeholder="Add Skill" multiple="multiple">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Skill)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                      
+
+                                    </div>
+                                    <br class="clear" />
+                                   
+                                </div>
+
+                            </div>
+                            <div class="homesearchsection  ">
+                                <div class="searchformsec">
+                                    <div class="row">
+                                        <h1 class="mainpagetitle Padd15"><span>Candidates Target Move</span></h1>
+
+                                        @*<div style="font-size:16px;color:#000000">CANDIDATE DETAILS</div>*@
+
+                                        <div class="col-md-6">
+                                            <label>Job Title</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="ic_currentjobtitle" name="ic_currentjobtitle">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.JobTitle)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Industry/Sector </label>
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_industry" name="icm_industry">
+                                                <option value="">Select</option>
+                                                @foreach (var ind in ViewBag.Sectors1)
+                                                {
+                                                    <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Desired Salary</label>
+                                            <select style="width:100%" class="form-control searchableselect" id="icm_salary" name="icm_salary">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.Salary)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employment Type </label>
+                                            @*<select name="employment_type">
+                                                <option value="">Select</option>
+                                                <option value="">Full time</option>
+                                                <option value="">Part time</option>
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="employment_type" name="employment_type">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.employment_type)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <br class="clear" />
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <label>Active Within</label>
+                                            @*<select name="last_login">
+                                                <option value="">Select</option>
+                                                <option value="Today">Today</option>
+                                                <option value="1 Week">1 Week</option> 
+                                                <option value="2 Weeks">2 Weeks</option> 
+                                                <option value="1 Month">1 Month</option> 
+                                                <option value="3 Months">3 Months</option> 
+                                                <option value="6 Months">6 Months</option> 
+                                                <option value="1 Year">1 Year</option> 
+                                                <option value="2 Years">2 Years</option> 
+
+                                            </select>*@
+                                            <select style="width:100%" class="form-control searchableselect" id="last_login" name="last_login">
+                                                <option value="">Select</option>
+                                                @foreach (var jfn in ViewBag.last_login)
+                                                {
+                                                    <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @*</div>*@
+
+                        @*<div class="col-md-12">
+
+
+
+
+                            <div class="col-md-6">
+
+                                <div style="font-size:16px;color:#999">Industry / Sector</div>
+
+                                <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; margin-left:-10px ">
+
+
+                                    @foreach (var s in ViewBag.Sectors)
+                                    {
+                                        <div class="col-sm-12">
+                                            <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div style="font-size:16px;color:#999">Function / Title</div>
+
+                                <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; ">
+
+
+                                    @foreach (var f in ViewBag.FunctionalTitles)
+                                    {
+                                        <div class="col-sm-12">
+                                            <input type="checkbox" id="chksector2" name="chksector2" value="@f.lm_Id" /> <span style="font-size:15px;color:gray">@f.lm_Value</span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>*@
+                        
+
+                        @*<br class="clear" />
+                        <div class="searchformsec">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="qualification">
+                                        <option value="">Qualification</option>
+                                        <option value="1">Higher National Diploma</option>
+                                        <option value="2">Bachelor's degree</option>
+                                        <option value="3">Master's degree</option>
+                                        <option value="4">Doctoral degree</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select name="salary">
+                                        <option value="">Salary</option>
+                                        <option value="0:200">0-200</option>
+                                        <option value="200:400">200-400</option>
+                                        <option value="400:600">400-600</option>
+                                        <option value="600:800">600-800</option>
+                                        <option value="800:1000">800-1000</option>.
+                                        <option value="-1:1000">>1000</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <br class="clear" />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="experience">
+                                        <option value="">Years of Experience</option>
+                                        <option value="0:1">0-1</option>
+                                        <option value="1:3">1-3</option>
+                                        <option value="3:6">3-6</option>
+                                        <option value="6:8">6-8</option>
+                                        <option value="8:10">8-10</option>
+                                        <option value="-1:10">>10</option>
+
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <br class="clear" />*@
+
+                        <hr />
+
+                        <div class="searchformsec">
+                            <div class="row">
+
+                                <div class="col-md-2 pull-right">
+                                    <input name="" type="submit" value="Search">
+                                </div>
+                            </div>
+                        </div>
+                        @*</div>*@
+                        <br style="clear:both" />
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+@*<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@*<script>
+        $(function () {
+
+
+
+
+            $("#ac_jobtitle").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "getWorkExperinceJobTitle/" + request.term,
+                        success: function (data) {
+                            var transformed = $.map(data, function (el) {
+                                return {
+                                    label: el.JobTitle
+
+
+                                };
+                            });
+                            response(transformed);
+                        },
+                        error: function () {
+                            response([]);
+                        }
+                    });
+                }
+            });
+        })
+    </script>*@
+
+<script>
+    $(function () {
+        $('.searchableselect').select2();
+
+
+
+        $("#keyword").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "getWorkExperinceJobTitle/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.JobTitle
+
+
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+    })
+</script>
+<script>
+    $(function () {
+
+
+        $("#wh_company").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Content("~/getABCcompanies")/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.Company,
+                                id: el.id
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+
+
+
+    });
+</script>
+
+@*<script src="@Url.Content("~/js/autocompletevalues.js")"></script>*@

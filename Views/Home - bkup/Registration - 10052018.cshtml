@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+   
+}
+@{
+    ViewBag.Title = "Bahrain Jobs for Bahrainis";
+
+}
+@Html.Partial("_menu")
+
+<div class="registerformsec MTB30">
+    <div class="container">
+        <h1>Registration</h1>
+        <div class="dashboardwhiteboxshadow tabacc-sec wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1s">
+            <ul class="accordion-tabs-minimal">
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link is-active">PROFILE SUMMARY</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>First Name *</label>
+                                            <input class="form-control" name="First Name" placeholder="First Name" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Last Name *</label>
+                                            <input class="form-control" name="Last Name" placeholder="First Name" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Date of Birth *</label>
+                                            <input class="form-control datepicker" name="dateofbirth" placeholder="Date / Month / Year" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender *</label>
+                                            <select class="form-control" id="gender">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Marital Status *</label>
+                                            <input class="form-control" name="Marital Status" placeholder="Marital Status" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Current Company *</label>
+                                            <input class="form-control" name="Current Company" placeholder="Current Company" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="currentposition">Current Position *</label>
+                                            <select class="form-control" id="currentposition">
+                                                <option>Current Position 1</option>
+                                                <option>Current Position 2</option>
+                                                <option>Current Position 3</option>
+                                                <option>Current Position 4</option>
+                                                <option>Current Position 5</option>
+                                            </select>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="freshgraduate" type="checkbox">
+                                                <label class="form-check-label" for="freshgraduate">Fresh graduate</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="highesteducation">Highest Level of Education *</label>
+                                            <select class="form-control" id="highesteducation">
+                                                <option>Education 1</option>
+                                                <option>Education 2</option>
+                                                <option>Education 3</option>
+                                                <option>Education 4</option>
+                                                <option>Education 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>High School/University *</label>
+                                            <input class="form-control" name="University" placeholder="High School/University" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="country">Country *</label>
+                                            <select class="form-control" id="country">
+                                                <option>Country 1</option>
+                                                <option>Country 2</option>
+                                                <option>Country 3</option>
+                                                <option>Country 4</option>
+                                                <option>Country 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="summary">Summary</label>
+                                            <textarea class="form-control" name="Summary" id="summary" placeholder="Summary"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group formbtn text-right">
+                                            <input name="save" type="submit" value="SAVE">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                @*<li class="tab-header-and-content">
+                    <a href="#" class="tab-link">EDUCATION</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">SKILLS</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">WORK HISTORY</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">ACCOMPLISHMENTS</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link">IDEAL CAREER MOVE</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                    </div>
+                </li>*@
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,425 @@
+﻿@{
+    Html.RenderAction("menulogin");
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+<style>
+    label span{
+        color:red;
+    }
+</style>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext   fade-1"> <span>JOB SEEKER</span> REGISTRATION</h1>
+
+
+        <div class="dashboardwhiteboxshadow tabacc-sec   fadeInUp"  >
+            @Html.Partial("_CanRegTabs")
+            <br style="clear:both" />
+            <br style="clear:both" />
+            <div class="tabboxpadd   " >
+                <div class="registerformbox">
+                    <div class="row" style="min-height:500px;">
+
+
+
+                        <div class="col-md-12">
+                            <div class="form-check col-md-12">
+                                <input style="float:left;font-size:18px" class="form-check-input" id="noitskills" type="checkbox" value="True">
+                                <label class="form-check-label" for="noitskills" style="float:left;font-size:16px;margin-top:18px"> No IT Skills</label>
+                            </div>
+                        </div>
+                        <div id="skillform">
+
+
+
+
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Add IT Skill <span>*</span></label>
+
+
+                                        <select style="width:100%" class="form-control searchableselect" id="skill_add" placeholder="Add Skill" required oninvalid="this.setCustomValidity('Skill is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Skill)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Level <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="skill_level" required oninvalid="this.setCustomValidity('Skill level is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.SkillLevel)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-12" style="min-height:140px;padding:10px 30px">
+                                <div id="SkillsAdded"></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group formbtn ">
+                                    <div class="col-md-12">
+                                        <input id="skill_addmore" type="button" value="+ ADD MORE IT SKILLS" class="jsaddmore pull-left">
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br style="clear:both" />
+                            <br />
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-check col-md-12">
+                                <input style="float:left;font-size:18px" class="form-check-input" id="nootherskills" type="checkbox" value="True">
+                                <label class="form-check-label" for="noitskills" style="float:left;font-size:16px;margin-top:18px"> No Other Skills</label>
+                            </div>
+                        </div>
+                        <div id="otherskillform">
+
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Add Other Skill <span>*</span></label>
+
+
+                                        <select style="width:100%" class="form-control searchableselect" id="oskill_add" placeholder="Add Skill" required oninvalid="this.setCustomValidity('Skill is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.OtherSkill)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Level <span>*</span></label>
+                                        <select style="width:100%" class="form-control searchableselect" id="oskill_level" required oninvalid="this.setCustomValidity('Skill level is mandatory')" onchange="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.SkillLevel)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-12" style="min-height:140px;padding:10px 30px">
+                                <div id="OSkillsAdded"></div>
+                                <input type="hidden" id="oskillatleastone" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <input id="oskill_addmore" type="button" value="+ ADD MORE SKILLS" class="jsaddmore pull-left">
+                                </div>
+                            </div>
+                        </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group formbtn ">
+                                        <div class="col-md-12">
+                                            
+
+                                            <input id="oskill_save" type="submit" value="SAVE / NEXT" class="btnsubmit pull-right">
+                                            <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span><label><span>*</span></label> Mandatory Fields</span></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                           
+                       
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+        <br style="clear:both" />
+       
+        <i style="color:green" class="fa fa-check-circle" aria-hidden="true"></i> Completed tabs
+    </div>
+</div>
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+<script>
+
+
+    $("#noitskills").click(function () {
+        $("#skillform").toggle();
+    });
+    $("#nootherskills").click(function () {
+        $("#otherskillform").toggle();
+    });
+
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+
+        getCandidateSkills();
+        getCandidateOSkills();
+
+        $("#skill_addmore").click(function () {
+            $("#save").hide();
+            $("#loader").show();
+            addskill();
+            $('#skill_add').val("").change();;
+            $("#skill_level").val("").change();
+            $("#save").show();
+            $("#loader").hide();
+        });
+        $("#skill_save").click(function () {
+            $("#save").hide();
+            $("#loader").show();
+            addskill()
+            $("#save").show();
+            $("#loader").hide();
+
+
+        });
+
+        $("#oskill_addmore").click(function () {
+            $("#save").hide();
+            $("#loader").show();
+            addOskill();
+            $('#oskill_add').val("").change();;
+            $("#oskill_level").val("").change();
+            $("#save").show();
+            $("#loader").hide();
+        });
+
+        $("#oskill_save").click(function () {
+            $("#save").hide();
+            $("#loader").show();
+
+
+
+
+
+
+            if ($("#nootherskills").is(":checked")) {
+
+                $.ajax({
+                    url: "@Url.Content("~/NoOtherSkillAdd")",
+                    success: function (data) {
+
+                    },
+                    error: function () {
+
+                    }
+                });
+
+                window.location.href = "@Url.Content("~/CanRegAccomplishments")";
+            }
+            else {
+
+                if ($('#oskillatleastone').val() == "1") {
+                    window.location.href = "@Url.Content("~/CanRegAccomplishments")";
+                }
+                else {
+                    alert("All Other Skill fields are mandatory!");
+                }
+
+                if ($('#oskill_add').val() != "" && $('#oskill_level').val() != "") {
+                    addOskill();
+                    window.location.href = "@Url.Content("~/CanRegAccomplishments")";
+                }
+                
+
+            }
+
+            $("#save").show();
+            $("#loader").hide();
+
+
+
+        });
+
+
+
+    });
+
+    function addskill() {
+        if ($('#skill_add').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "@Url.Content("~/JobseekerSkills")",
+                data: { SkillID: $('#skill_add').val(), SkillLevelID: $('#skill_level').val() },
+                success: function (data) {
+
+                    getCandidateSkills();
+
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+
+                }
+            });
+
+        }
+        else {
+            alert('All IT Skill fields are mandatory');
+        }
+    }
+
+
+    function addOskill() {
+
+        var notrequ = "YES";
+        if ($("#nootherskills").is(":checked")) {
+            notrequ = "YES";
+        }
+        else {
+            notrequ = "NO";
+        }
+
+        $.ajax({
+            method: "POST",
+            url: "@Url.Content("~/JobseekerOSkills")",
+            data: { OSkillID: $('#oskill_add').val(), OSkillLevelID: $('#oskill_level').val(), notrequ: notrequ },
+            success: function (data) {
+                getCandidateOSkills();
+            },
+            error: function () {
+                alert("Couldn't Save, check the input values!");
+            }
+        });
+
+    }
+
+
+
+    function getCandidateSkills() {
+        var contenthtml = '';
+        $.ajax({
+            url: "@Url.Content("~/getJobSeekerSkills/" + Session["Ca_ID"] + "")",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Skills + '</div><div class="skillleveltags">' + data[key].SkillLevel + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsSkills(' + data[key].CaSkillID + ')" class="fa fa-minus-circle"></i></div></div>';
+                });
+                $('#SkillsAdded').html(contenthtml);
+            },
+            error: function () {
+                alert('No skills added yet!');
+            }
+        });
+
+    }
+
+
+    function getCandidateOSkills() {
+        var contenthtml = '';
+        $.ajax({
+            url: "@Url.Content("~/getJobSeekerOSkills/" + Session["Ca_ID"] + "")",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Skills + '</div><div class="skillleveltags">' + data[key].SkillLevel + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsOSkills(' + data[key].CaSkillID + ')" class="fa fa-minus-circle"></i></div></div>';
+                    $('#oskillatleastone').val("1");
+                });
+                $('#OSkillsAdded').html(contenthtml);
+
+            },
+            error: function () {
+                alert('No oskills added yet!');
+                $('#oskillatleastone').val("0");
+            }
+        });
+
+    }
+
+
+    function deletejsSkills(CaSkillID) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteCandidateSkill/")" + CaSkillID,
+            success: function (data) {
+                alert('Skill deleted!');
+                getCandidateSkills();
+            },
+            error: function () {
+                alert('No skills to delete!');
+            }
+        });
+    }
+
+
+    function deletejsOSkills(OCaSkillID) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteCandidateOSkill/")" + OCaSkillID,
+            success: function (data) {
+                alert('Other Skill deleted!');
+                getCandidateOSkills();
+            },
+            error: function () {
+                alert('No other skills to delete!');
+            }
+        });
+    }
+
+</script>
+
+
+
+<style>
+    .registerformbox input, .registerformbox textarea, .registerformbox select {
+        height: 50px;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+

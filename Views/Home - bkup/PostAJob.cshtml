@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "PostAJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li class="active"><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <div class="dashboardwhiteboxshadow">
+            <br />
+            <h1 class="mainpagetitle centertext wow fade-1"> POST A <span>JOB</span></h1>
+            <div class="row">
+
+                <form method="post" action="@Url.Content("~/PostedJob")" onsubmit="return validateForm()">
+                    <div class="col-md-12">
+                        <div class="searchformsec">
+                            <div class="col-md-12">
+                                <input name="jobtitle" type="text" placeholder="Job Title" required>
+                            </div>
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <input name="referencecode" type="text" placeholder="Employers Reference Code" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="location" type="text" placeholder="Location" required>
+                            </div>
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <select class="form-control" name="contracttype" required>
+                                    <option value="">Job Type</option>
+                                    <option value="26">Permanant</option>
+                                    <option value="27">Contract</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="duration" type="text" placeholder="Contract Duration">
+                            </div>
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <input name="experience" type="text" placeholder="Experience" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="qualification" type="text" placeholder="Qualification" required>
+                            </div>
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <input name="salaryfrom" type="number" placeholder="Salary From (BHD)" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="salaryto" type="number" placeholder="Salary To (BHD)" required>
+                            </div>
+
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <input name="commission" type="text" placeholder="Commission" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="benefits" type="text" placeholder="Benefits" required>
+                            </div>
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <input name="agegroup" type="text" placeholder="Age Group" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="reserved">
+                                    <option value="">Reserved for Disabled</option>
+                                    <option value="True">Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <br style="clear:both" /><br />
+                            <div class="col-md-6">
+                                <input name="applicationemailid" type="email" placeholder="Application Email ID 1" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="applicationemailid2" type="email" placeholder="Application Email ID 2 (optional)">
+                            </div>
+
+                        </div>
+                        <br style="clear:both" /><br />
+                        <div class="col-md-6">
+                            <div class="col-md-12" style="height:225px;overflow-y:scroll;background-color:white;border:1px solid #ccc;padding:10px 40px;">
+                                <div style="font-size:14px;margin-bottom:12px;margin-left:-10px;color:#808080">Select Job Sector(s)</div>
+
+                                @foreach (var s in ViewBag.Sectors)
+                            {
+                                    <div class="col-sm-12">
+                                        <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:black">@s.Sector</span>
+                                    </div>
+                            }
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <textarea name="description" rows="10" style="width:100%;border:1px solid #ccc;font-size:14px; padding:10px;" placeholder="Job Description" required></textarea>
+                        </div>
+
+
+
+
+                        <br style="clear:both" /><br />
+
+                        <div class="searchformsec">
+                            <div class="col-md-2 pull-right">
+                                <input name="" type="submit" value="Post">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <br />
+            <br />
+
+            </div>
+        </div>
+</div>
+
+<script>
+    function validateForm() {
+        if ($("[name=chksector]:checked").length < 2) {
+            alert('Select atleast two Job Sectors!');
+            return false;
+        }
+    }
+
+</script>
+

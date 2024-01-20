@@ -1,0 +1,282 @@
+﻿@model Jobs4Bahrainis.Models.Candidate
+@{
+    ViewBag.Title = "Registration";
+
+}
+@{
+    ViewBag.Title = "Bahrain Jobs for Bahrainis";
+
+}
+@Html.Partial("_menu")
+
+
+<div class="homesearchsection mainlightgraybg PTb60">
+
+    <div class="container">
+        <h1 class="mainpagetitle centertext wow fade-1"> <span>JOB SEEKER</span> REGISTRATION</h1>
+        <div class="dashboardwhiteboxshadow tabacc-sec wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1s">
+            <ul class="accordion-tabs-minimal">
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link is-active">PROFILE SUMMARY</a>
+                    <div class="tab-content">
+                        <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                            <div class="registerformbox">
+                                @*@using (Html.BeginForm())*@
+                                @*@using (Html.BeginForm("RegisterCandidate", "Home"))*@
+                                @using (Html.BeginForm("RegisterCandidate", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>First Name *</label>
+                                            <input class="form-control" name="FirstName" placeholder="First Name" type="text" required>
+                                            @*@Html.EditorFor(model => model.ca_FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Last Name *</label>
+                                            <input class="form-control" name="LastName" placeholder="Last Name" type="text" required>
+                                            @*@Html.EditorFor(model => model.ca_Surname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Date of Birth *</label>
+                                            @*<input type="text" class="form-control" id="dtpicker">*@
+                                            @*@Html.EditorFor(model => model.ca_DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+
+
+                                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                                            <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
+                                            <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+                                            <input id="datepicker" name="dateofbirth" class="form-control" placeholder="Date / Month / Year" />
+                                            <script>
+                                                        $('#datepicker').datepicker({
+                                                            uiLibrary: 'bootstrap'
+                                                        });
+                                            </script>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender *</label>
+                                            @*<select class="form-control" id="gender">
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>*@
+                                            @Html.DropDownList("gender", (SelectList)ViewBag.Genders, "--Select--", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Phone Number*</label>
+                                            <input class="form-control" name="PhoneNumber" placeholder="Phone Number" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="country">Nationality *</label>
+                                            @*<select class="form-control" id="country">
+                                                    <option>Country 1</option>
+                                                    <option>Country 2</option>
+                                                    <option>Country 3</option>
+                                                    <option>Country 4</option>
+                                                    <option>Country 5</option>
+
+                                                </select>*@
+                                            @Html.DropDownList("country", ViewBag.nationality as SelectList, "--Select--", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Email*</label>
+                                            <input class="form-control" name="Email" placeholder="Email" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Password*</label>
+                                            <input class="form-control" name="Password" placeholder="Password" type="password" required>
+                                            @*@Html.EditorFor(model => model.ca_Password, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Confirm Password*</label>
+                                            <input class="form-control" name="ConfirmPassword" placeholder="Confirm Password" type="password" required>
+
+                                        </div>
+                                    </div>
+
+                                    @*<div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Marital Status *</label>
+                                                <input class="form-control" name="Marital Status" placeholder="Marital Status" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Current Company *</label>
+                                                <input class="form-control" name="Current Company" placeholder="Current Company" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="currentposition">Current Position *</label>
+                                                <select class="form-control" id="currentposition">
+                                                    <option>Current Position 1</option>
+                                                    <option>Current Position 2</option>
+                                                    <option>Current Position 3</option>
+                                                    <option>Current Position 4</option>
+                                                    <option>Current Position 5</option>
+                                                </select>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="freshgraduate" type="checkbox">
+                                                    <label class="form-check-label" for="freshgraduate">Fresh graduate</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="highesteducation">Highest Level of Education *</label>
+                                                <select class="form-control" id="highesteducation">
+                                                    <option>Education 1</option>
+                                                    <option>Education 2</option>
+                                                    <option>Education 3</option>
+                                                    <option>Education 4</option>
+                                                    <option>Education 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label>High School/University *</label>
+                                                <input class="form-control" name="University" placeholder="High School/University" type="text">
+                                            </div>
+                                        </div>*@
+
+                                    @*<div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="summary">Summary</label>
+                                                <textarea class="form-control" name="Summary" id="summary" placeholder="Summary"></textarea>
+                                            </div>
+                                        </div>*@
+                                    @*@using (Html.BeginForm("UploadCv", "Home",
+                                        FormMethod.Post,
+                                        new { enctype = "multipart/form-data" }))
+                                                                          {
+                                                                           <label for="file">Upload Image:</label>
+                                                                           <input type="file" name="file" id="file" /><br><br>
+                                                                           <input type="submit" value="Upload Image" />
+                                                                           <br><br>
+                                                                           @ViewBag.Message
+                                                                          }*@
+
+
+                                    <div class="col-sm-12">
+                                        @*<div class="col-md-2 postjobntn"><a target="_blank" href="#" class="redbgbtn">Upload CV</a> </div>*@
+
+                                        <div class="form-group">
+                                            <label>Upload CV <span>(pdf or docx with file size less than 500kb)</span></label>
+                                            <input class="form-control" id="file" name="file" placeholder="Upload CV" type="file" required>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-check col-md-12">
+                                        <input class="form-check-input" id="privacypolicy" type="checkbox" required style="float:left">
+                                        <div style="float:left;margin-top:16px;" class="form-check-label" for="privacypolicy">Yes I Agree To The Privacy Policy *</div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group formbtn text-right">
+                                            <input name="save" type="submit" value="Register">
+                                            @*<input name="save" id="btnRegister" type="submit" value="Register">*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+
+                @*<li class="tab-header-and-content">
+                        <a href="#" class="tab-link">EDUCATION</a>
+                        <div class="tab-content">
+                            <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                        </div>
+                    </li>
+                    <li class="tab-header-and-content">
+                        <a href="#" class="tab-link">SKILLS</a>
+                        <div class="tab-content">
+                            <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                        </div>
+                    </li>
+                    <li class="tab-header-and-content">
+                        <a href="#" class="tab-link">WORK HISTORY</a>
+                        <div class="tab-content">
+                            <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                        </div>
+                    </li>
+                    <li class="tab-header-and-content">
+                        <a href="#" class="tab-link">ACCOMPLISHMENTS</a>
+                        <div class="tab-content">
+                            <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                        </div>
+                    </li>
+                    <li class="tab-header-and-content">
+                        <a href="#" class="tab-link">IDEAL CAREER MOVE</a>
+                        <div class="tab-content">
+                            <div class="tabboxpadd wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s"> Coming Soon </div>
+                        </div>
+                    </li>*@
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    $("#btnRegister").click(function () {
+        if ($("#privacypolicy").prop('checked') == true ){
+            $.ajax({
+                method: "POST",
+                url: "UpdateCandidateProfileSummary",
+                data: { Ca_ID: $("#Ca_ID").val(), ca_FirstName: $("#FirstName").val(), ca_Surname: $("#LastName").val(), ca_DateOfBirth: $("#dateofbirth").val(), ca_Gender: $("#Gender").val(), ca_PhoneMobile: $("#Phone").val(), ca_EmailAddress: $("#Email").val(), ca_lm_EducationLevel: $("#EducationLevel").val(), ca_SalaryFrom: $("#CurrentSalary").val(), ca_Profile: $("#summary").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("Please Accept Privacy Policy to proceed");
+        }
+    });
+
+
+</script>
+
+
+
+<style>
+    .registerformbox input, .registerformbox textarea, .registerformbox select {
+        height: 50px;
+    }
+</style>

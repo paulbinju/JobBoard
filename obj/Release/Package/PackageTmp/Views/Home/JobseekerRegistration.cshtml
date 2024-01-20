@@ -1,0 +1,1821 @@
+﻿@{
+    Html.RenderAction("menulogin");
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+
+
+
+<br /><br />
+<div class=" ">
+    <div class="container">
+        <h1 class="mainpagetitle centertext fade-1">JOB SEEKER <span>REGISTRATION</span></h1>
+        <div class="dashboardwhiteboxshadow tabacc-sec  fadeInUp" data--delay="0.1s" data--duration="1s">
+            <ul class="accordion-tabs-minimal">
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link " id="tablinkprofile">PROFILE SUMMARY</a>
+                    <div class="tab-content" id="tabcontentprofile">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox" id="registerformbox">
+                                <form id="mainform" method="post" enctype="multipart/form-data">
+                                    <div class="row" style="min-height:500px;padding:0 15px;">
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Date of Birth <span>*</span></label>
+
+
+
+
+
+                                                <input class="form-control" id="ca_DateOfBirth" name="ca_DateOfBirth" placeholder="Date / Month / Year" type="text" onkeydown="return false;" required>
+
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        var options = $.extend({},
+                                                            $.datepicker.regional["ja"], {
+                                                                dateFormat: "yy/mm/dd",
+                                                                changeMonth: true,
+                                                                changeYear: true,
+                                                                yearRange: "1955:2015"
+                                                            }
+                                                        );
+                                                        $("#ca_DateOfBirth").datepicker(options);
+                                                    });
+
+                                                </script>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="gender">Gender <span>*</span></label>
+                                                <select class="form-control " id="ca_Gender" name="ca_Gender" required oninvalid="this.setCustomValidity('Gender is mandatory')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    <option value="M">Male</option>
+                                                    <option value="F">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Marital Status <span>*</span></label>
+                                                <select class="form-control" id="ca_MaritalStatus" name="ca_MaritalStatus" required oninvalid="this.setCustomValidity('Marital Status is mandatory')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Married">Married</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Current Location <span>*</span></label>
+                                                <select style="width:100%" class="form-control searchableselect" id="ca_lm_CountryId" name="ca_lm_CountryId" required oninvalid="this.setCustomValidity('Current Location is mandatory')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var con in ViewBag.Country)
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="highesteducation">Highest Level of Education <span>*</span></label>
+                                                <select style="width:100%" class="form-control searchableselect" id="ca_lm_EducationLevel" name="ca_lm_EducationLevel" required oninvalid="this.setCustomValidity('Highest level of education is mandatory')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var edu in ViewBag.EducationLevel)
+                                                    {
+                                                        <option value="@edu.lm_Id">@edu.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Name of High School / University </label>
+                                                <select style="width:100%" class="form-control searchableselect" id="proUniversity" name="proUniversity" required oninvalid="this.setCustomValidity('Name of High School / University')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var uni in ViewBag.University)
+                                                    {
+                                                        <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div id="freshcheck">
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="currentposition">Current Job Function </label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="ca_FunctionTitleID" name="ca_FunctionTitleID" required oninvalid="this.setCustomValidity('Current Job Function is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Current Job Title</label>
+
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="ca_CurrentJobTitle" name="ca_CurrentJobTitle" required oninvalid="this.setCustomValidity('Current Job Title is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.JobTitle)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Total Experience (Years) <span>*</span></label>
+
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="ca_TotalRelavantExperience" name="ca_TotalRelavantExperience" required oninvalid="this.setCustomValidity('Experience is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.Experience)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="summary">Summary</label>
+                                                <textarea class="form-control" name="ca_Profile" id="ca_Profile"></textarea>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div style="clear:both;margin-top:5px;">
+                                            <div class="form-group formbtn ">
+                                                <div class="col-md-12">
+                                                    <label class="custom-file-upload">
+                                                        <input type="file" id="uploadcv" name="uploadcv" onchange="showuploadcv()" />
+                                                        <div id="lbluploadcv">+ UPLOAD CV</div>
+                                                    </label>
+
+                                                    <input id="save" name="save" type="submit" value="NEXT" class="pull-right btnsubmit">
+                                                    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+
+                                                    <script>
+                                                        $("#uploadcv").hide();
+                                                        function showuploadcv() {
+                                                            $("#uploadcv").show();
+                                                            $("#lbluploadcv").hide();
+
+
+                                                        };
+
+
+                                                        $(document).ready(function () {
+                                                            $('#save').click(function () {
+                                                                showuploadcv();
+                                                            });
+                                                        });
+
+                                                        $('#uploadcv').bind('change', function () {
+                                                            if (this.files[0].size > 1500000) {
+                                                                alert('File size is too big, attach a smaller file!');
+                                                                $('#uploadcv').val("")
+                                                            }
+                                                        });
+
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="registerformbox2" style="min-height:500px;">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <span><br /><br />You've successfully saved the Profile, proceed to the next tab!</span>
+                                    </div>
+                                    <div class="pull-right" style="margin-top:200px;">
+                                        <input id="profile_next" onclick="edutab()" type="button" value="NEXT" class="btnsubmit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+                <li class="tab-header-and-content ">
+                    <a href="#" class="tab-link" id="tablinkedu">EDUCATION</a>
+                    <div class="tab-content disabled" id="tabcontentedu">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+                                    <div id="eduform">
+                                        <form id="educationform" method="post" enctype="multipart/form-data">
+                                            <div class="col-md-12">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>School / University <span>*</span></label>
+                                                        <select style="width:100%" class="form-control searchableselect" id="eduSchool" name="eduSchool" required oninvalid="this.setCustomValidity('Name of High School / University')" onchange="setCustomValidity('')">
+                                                            <option value="">Select</option>
+                                                            @foreach (var uni in ViewBag.University)
+                                                            {
+                                                                <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                            }
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Country of School / University <span>*</span></label>
+                                                        <select style="width:100%" class="form-control searchableselect" id="eduSchoolcountry" name="eduSchoolcountry" required oninvalid="this.setCustomValidity('School / University Country is mandatory')" onchange="setCustomValidity('')">
+                                                            <option value="">Select</option>
+                                                            @foreach (var con in ViewBag.Country)
+                                                            {
+                                                                <option value="@con.lm_Id">@con.lm_Value</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Degree <span>*</span></label>
+
+                                                        <select style="width:100%" class="form-control searchableselect" id="eduDegree" name="eduDegree" required oninvalid="this.setCustomValidity('Degree is mandatory')" onchange="setCustomValidity('')">
+                                                            <option value="">Select</option>
+                                                            @foreach (var uni in ViewBag.Degree)
+                                                            {
+                                                                <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                            }
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label>Field of Study / Specialization <span>*</span></label>
+                                                        <select style="width:100%" class="form-control searchableselect" id="eduField" name="eduField" required oninvalid="this.setCustomValidity('Field of Study / Specialization is mandatory')" onchange="setCustomValidity('')">
+                                                            <option value="">Select</option>
+                                                            @foreach (var uni in ViewBag.Specialization)
+                                                            {
+                                                                <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Grade <span>*</span></label>
+                                                        <select style="width:100%" class="form-control searchableselect" id="eduGrade" name="eduGrade" required oninvalid="this.setCustomValidity('Grade is mandatory')" onchange="setCustomValidity('')">
+                                                            <option value="">Select</option>
+                                                            @foreach (var uni in ViewBag.Grade)
+                                                            {
+                                                                <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                            }
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div id="curstudyhere">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label>From <span>*</span></label>
+                                                            <select style="width:100%" class="form-control searchableselect" id="edufrommonth" name="edufrommonth" required oninvalid="this.setCustomValidity('From month is mandatory')" onchange="setCustomValidity('')">
+                                                                <option value="">Month</option>
+                                                                <option value="1">January</option>
+                                                                <option value="2">February</option>
+                                                                <option value="3">March</option>
+                                                                <option value="4">April</option>
+                                                                <option value="5">May</option>
+                                                                <option value="6">June</option>
+                                                                <option value="7">July</option>
+                                                                <option value="8">August</option>
+                                                                <option value="9">September</option>
+                                                                <option value="10">October</option>
+                                                                <option value="11">November</option>
+                                                                <option value="12">December</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label>&nbsp;</label>
+                                                            <select style="width:100%" class="form-control searchableselect" id="edufromyear" name="edufromyear" required oninvalid="this.setCustomValidity('From year is mandatory')" onchange="setCustomValidity('')">
+                                                                <option value="">Year</option>
+                                                                @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                {
+                                                                    <option value="@x">@x</option>
+                                                                }
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label>To <span>*</span></label>
+                                                            <select style="width:100%" class="form-control searchableselect" id="edutomonth" name="edutomonth" required oninvalid="this.setCustomValidity('To month is mandatory')" onchange="setCustomValidity('')">
+                                                                <option value="">Month</option>
+                                                                <option value="">Month</option>
+                                                                <option value="1">January</option>
+                                                                <option value="2">February</option>
+                                                                <option value="3">March</option>
+                                                                <option value="4">April</option>
+                                                                <option value="5">May</option>
+                                                                <option value="6">June</option>
+                                                                <option value="7">July</option>
+                                                                <option value="8">August</option>
+                                                                <option value="9">September</option>
+                                                                <option value="10">October</option>
+                                                                <option value="11">November</option>
+                                                                <option value="12">December</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label>&nbsp;</label>
+                                                            <select style="width:100%" class="form-control searchableselect" id="edutoyear" name="edutoyear" required oninvalid="this.setCustomValidity('To year is mandatory')" onchange="setCustomValidity('')">
+                                                                <option value="">Year</option>
+                                                                @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                                {
+                                                                    <option value="@x">@x</option>
+                                                                }
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="educurrentlystudy" name="educurrentlystudy" type="checkbox" value="True">
+                                                            <label class="form-check-label" for="educurrentlystudy">Currently Studying here</label>
+
+                                                            <input type="hidden" name="edufrommonth" id="edufrommonth1" value="1" />
+                                                            <input type="hidden" name="edufromyear" id="edufromyear1" value="2018" />
+                                                            <input type="hidden" name="edutomonth" id="edutomonth1" value="12" />
+                                                            <input type="hidden" name="edutoyear" id="edutoyear1" value="2018" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="summary">Activities / Society Affiliations</label>
+                                                        <textarea class="form-control" name="eduActivities" id="eduActivities" placeholder="For example : Toastmasters, Manama Football Club etc"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+
+
+                                                    <label class="pull-left">Media  <span style="color:#cccccc">(Proof of completion ie Academic certificate)</span></label><br style="clear:both" />
+                                                    <label class="custom-file-uploadcer">
+                                                        <input type="file" name="uploadmedia" id="uploadmedia" onchange="showuploadcer()" />
+                                                        <div id="lbluploadmedia">Upload</div>
+                                                    </label>
+
+
+                                                    <script>
+                                                        $("#uploadmedia").hide();
+                                                        function showuploadcer() {
+                                                            $("#uploadmedia").show();
+                                                            $("#lbluploadmedia").hide();
+                                                        };
+                                                    </script>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12" style="clear:both;margin-top:5px;">
+                                                <div class="form-group formbtn ">
+                                                    <div class="col-md-12">
+
+                                                        <input name="eduaddmore" id="eduaddmore" type="submit" value="+ ADD" class="jsaddmore pull-left">
+
+
+                                                        <input name="save" type="submit" value="NEXT" id="edusave" class="btnsubmit pull-right">
+
+                                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </form>
+
+
+                                    </div>
+                                    <div id="eduform2" style="min-height:500px;">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span><br /><br />You've successfully saved the Education details, proceed to the next tab!</span>
+                                            </div>
+                                            <div class="pull-right" style="margin-top:200px;">
+                                                <input id="profile_next" onclick="whtab()" type="button" value="NEXT" class="btnsubmit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link" id="tablinkwkhistory">WORK HISTORY</a>
+                    <div class="tab-content" id="tabcontentwkhistory">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+
+                                    <div id="whform">
+                                        <div class="col-md-12">
+
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Job Title <span>*</span></label>
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_jobtitle" name="wh_jobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.JobTitle)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Company / Organization <span>*</span></label>
+                                                    <input class="form-control" id="wh_company" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company is mandatory')" oninput="setCustomValidity('')">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Level (within the organization) <span>*</span></label>
+
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_level" name="wh_level" required oninvalid="this.setCustomValidity('Job Level is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.JobLevel)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="gender">Reporting to <span>*</span></label>
+
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_reportingto" name="wh_reportingto" required oninvalid="this.setCustomValidity('Job Level is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.Reportingto)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Industry / Sector <span>*</span></label>
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var ind in ViewBag.Sectors)
+                                                        {
+                                                            <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="currentposition">Function / Title <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_function" required oninvalid="this.setCustomValidity('Function is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>From <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_frommonth">
+                                                        <option value="">Month</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp;</label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_fromyear">
+                                                        <option value="">Select</option>
+                                                        @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                        {
+                                                            <option value="@x">@x</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>To <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_tomonth">
+                                                        <option value="">Month</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp;</label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_toyear">
+                                                        <option value="">Select</option>
+                                                        @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                        {
+                                                            <option value="@x">@x</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+
+
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="wh_currentlywork" type="checkbox" value="True">
+                                                        <label class="form-check-label" for="wh_currentlywork">Currently working here</label>
+                                                        <input type="hidden" name="wh_frommonth" id="wh_frommonth1" value="1" />
+                                                        <input type="hidden" name="wh_fromyear" id="wh_fromyear1" value="2018" />
+                                                        <input type="hidden" name="wh_tomonth" id="wh_tomonth1" value="12" />
+                                                        <input type="hidden" name="wh_toyear" id="wh_toyear1" value="2018" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+
+                                                    <label>Job Location <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_location" required oninvalid="this.setCustomValidity('Job Location is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var con in ViewBag.Country)
+                                                        {
+                                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="currentposition">Salary <span>*</span></label>
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="wh_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var con in ViewBag.Salary)
+                                                        {
+                                                            <option value="@con.lm_Id">@con.lm_Value</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="summary">Description</label>
+                                                    <textarea class="form-control" name="description" id="wh_description" placeholder="Job description, skills used at work etc"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="col-md-12">
+                                                    <input id="whaddmore" type="button" value="+ ADD" class="jsaddmore pull-left">
+
+
+                                                    <input name="save" type="submit" value="NEXT" id="whsave" class="pull-right btnsubmit">
+                                                    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="whform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span>You've successfully saved Work History!</span>
+                                            </div>
+                                            <div class="pull-right" style="margin-top:200px;">
+                                                <input id="profile_next" onclick="ittab()" type="button" value="NEXT" class="btnsubmit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link" id="tablinkitskills">IT SKILLS</a>
+                    <div class="tab-content" id="tabcontentitskills">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+                                    <div id="skillform">
+                                        <div class="col-md-12">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Add Skill <span>*</span></label>
+
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="skill_add" placeholder="Add Skill" required oninvalid="this.setCustomValidity('Skill is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.Skill)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Level <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="skill_level" required oninvalid="this.setCustomValidity('Skill level is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.SkillLevel)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-12" style="min-height:350px;padding:10px 30px">
+                                            <div id="SkillsAdded"></div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="col-md-12">
+                                                    <input id="skill_addmore" type="button" value="+ ADD" class="jsaddmore pull-left">
+
+                                                    <input id="skill_save" type="submit" value="NEXT" class="btnsubmit pull-right">
+                                                    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="skillform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span><br /><br /><br />You've successfully saved the Skill, proceed to the next tab!</span>
+
+                                                <div class="pull-right" style="margin-top:50px;">
+                                                    <input onclick="acctab()" type="button" value="NEXT" class="btnsubmit">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link" id="tablinkaccomplishments">ACCOMPLISHMENTS</a>
+                    <div class="tab-content" id="tabcontentaccomplishments">
+                         
+
+
+
+
+                            <div class="registerformbox">
+                                <div class="row">
+
+
+                                    <div id="cert_form">
+                                        <div class="col-md-12">
+                                            <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">CERTIFICATIONS & AWARDS</div><br /><br />
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Certification / Award Name <span>*</span></label>
+
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="cert_title" required oninvalid="this.setCustomValidity('Certification is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.Certification)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Certification Authority <span>*</span></label>
+
+                                                    <select style="width:100%" class="form-control searchableselect" id="cert_auth" required oninvalid="this.setCustomValidity('Authority is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Select</option>
+                                                        @foreach (var jfn in ViewBag.Authority)
+                                                        {
+                                                            <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>From <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="cert_frommonth" required oninvalid="this.setCustomValidity('Month from is mandatory')" onchange="setCustomValidity('')">
+
+                                                        <option value="">Month</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp;</label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="cert_fromyear" required oninvalid="this.setCustomValidity('Year from is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Year</option>
+                                                        @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                        {
+                                                            <option value="@x">@x</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>To <span>*</span></label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="cert_tomonth" required oninvalid="this.setCustomValidity('Month is mandatory')" onchange="setCustomValidity('')">
+
+                                                        <option value="">Month</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp;</label>
+                                                    <select style="width:100%" class="form-control searchableselect" id="cert_toyear" required oninvalid="this.setCustomValidity('Year is mandatory')" onchange="setCustomValidity('')">
+                                                        <option value="">Year</option>
+                                                        @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                        {
+                                                            <option value="@x">@x</option>
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <br style="clear:both" />
+                                            <div class="col-md-12">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="cert_noexpiry" type="checkbox" value="True">
+
+                                                    <label class="form-check-label" for="cert_noexpiry">This certification does not expire.</label>
+
+                                                    <input type="hidden" name="cert_frommonth" id="cert_frommonth1" value="1" />
+                                                    <input type="hidden" name="cert_fromyear" id="cert_fromyear1" value="2018" />
+                                                    <input type="hidden" name="cert_tomonth" id="cert_tomonth1" value="12" />
+                                                    <input type="hidden" name="cert_toyear" id="cert_toyear1" value="2018" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br style="clear:both" />
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn col-md-12">
+
+                                                <input id="cert_addmore" type="button" value="+ ADD" class="jsaddmore pull-left">
+
+                                                <input id="cert_save" type="submit" value="NEXT" class="btnsubmit pull-right">
+                                                <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cert_form2" class="col-md-12">
+                                    <span>You've successfully saved Certification, please proceed to add Languages!</span>
+
+                                </div>
+
+                            </div>
+                       
+
+
+
+
+                        <div class="registerformbox">
+                            <div class="row" style="min-height:350px;">
+                                <br />
+                                <br />
+
+                             
+                                <div id="lnform">
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-sm-12" style="font-weight:bold;text-decoration:underline">LANGUAGES</div><br /><br />
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Language <span>*</span></label>
+
+                                                <select style="width:100%" class="form-control searchableselect" id="acclanguage" required oninvalid="this.setCustomValidity('Language is mandatory')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.Languages)
+                                                    {
+                                                        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Proficiency <span>*</span></label>
+                                                <select style="width:100%" class="form-control searchableselect" id="accProficiency" required oninvalid="this.setCustomValidity('Profeciency is mandatory')" onchange="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.SkillLevel)
+                                                    {
+                                                        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-12" id="LanguagesAdded"></div>
+                                    </div>
+                                    <br style="clear:both" />
+                                    <div class="col-sm-12">
+                                        <div class="form-group formbtn ">
+<div class="col-md-12">
+
+    <input id="lang_addmore" type="button" value="+ ADD" class="jsaddmore pull-left">
+
+    <input id="lang_save" type="submit" value="NEXT" class="btnsubmit pull-right">
+    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+</div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div id="lnform2" class="col-md-12">
+                                        <span>You've successfully saved Language, please proceed!</span>
+                                        <div class="pull-right" style="margin-top:250px;">
+                                            <input type="button" value="NEXT" class="btnsubmit" onclick="idmtab()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab-header-and-content">
+                    <a href="#" class="tab-link" id="tablinkidm">IDEAL CAREER MOVE</a>
+                    <div class="tab-content" id="tabcontentidm">
+                        <div class="tabboxpadd  fadeInUp" data--delay="0.1s" data--duration="0.5s">
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+                                    <div id="icmform">
+                                       <div class="col-md-12" style="height:500px;">
+                                           <div class="col-sm-6">
+                                               <div class="form-group">
+                                                   <label>Job Title <span>*</span></label>
+
+
+                                                   <select style="width:100%" class="form-control searchableselect" id="ic_currentjobtitle" name="ic_currentjobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" onchange="setCustomValidity('')">
+                                                       <option value="">Select</option>
+                                                       @foreach (var jfn in ViewBag.JobTitle)
+                                                       {
+                                                           <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                       }
+
+                                                   </select>
+
+                                               </div>
+                                           </div>
+
+                                           <div class="col-sm-6">
+                                               <div class="form-group">
+                                                   <label>Job Function / Title <span>*</span></label>
+
+                                                   <select style="width:100%" class="form-control searchableselect" id="icm_jobfunction" name="icm_jobfunction" required oninvalid="this.setCustomValidity('Job Function is mandatory')" onchange="setCustomValidity('')">
+                                                       <option value="">Select</option>
+                                                       @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                       {
+                                                           <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                       }
+
+                                                   </select>
+
+
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-6">
+                                               <div class="form-group">
+                                                   <label>Industry / Sector <span>*</span></label>
+                                                   <select style="width:100%" class="form-control searchableselect" id="icm_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" onchange="setCustomValidity('')">
+                                                       <option value="">Select</option>
+                                                       @foreach (var ind in ViewBag.Sectors)
+                                                       {
+                                                           <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                                       }
+                                                   </select>
+                                               </div>
+                                           </div>
+
+                                           <div class="col-sm-6">
+                                               <div class="form-group">
+                                                   <label>Year of experience <span>*</span></label>
+
+                                                   <select style="width:100%" class="form-control searchableselect" id="icm_experience" name="icm_experience" required oninvalid="this.setCustomValidity('Experience is mandatory')" onchange="setCustomValidity('')">
+                                                       <option value="">Select</option>
+                                                       @foreach (var jfn in ViewBag.Experience)
+                                                       {
+                                                           <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                       }
+
+                                                   </select>
+
+
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-6">
+                                               <div class="form-group">
+                                                   <label>Salary Expected <span>*</span></label>
+                                                   <select style="width:100%" class="form-control searchableselect" id="icm_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" onchange="setCustomValidity('')">
+                                                       <option value="">Select</option>
+                                                       @foreach (var jfn in ViewBag.Salary)
+                                                       {
+                                                           <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                       }
+                                                   </select>
+                                               </div>
+                                           </div>
+                                       </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group col-md-12 formbtn ">
+                                                 
+                                                    <input id="icm_save" type="submit" value="SAVE" class="btnsubmit pull-right">
+                                                 
+                                                <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="icmform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <br />
+                                                <span>You've successfully saved Ideal Career Move!, Click FINISH to activate your profile.</span>
+
+                                                <div class="pull-right" style="margin-top:410px;">
+                                                    <input onclick="finishreg()" type="button" value="FINISH" class="btnsubmit">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <input type="hidden" id="ot_profilesummary" value="FALSE" />
+            <input type="hidden" id="ot_education" value="FALSE" />
+            <input type="hidden" id="ot_itskills" value="FALSE" />
+            <input type="hidden" id="ot_accomplishment" value="FALSE" />
+            <input type="hidden" id="ot_icm" value="FALSE" />
+
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+
+
+
+
+<script>
+    /*jQuery to save all form values<span>*/
+
+
+                                                   $(document).ready(function () {
+
+
+                                                       getCandidateSkills();
+                                                       getJobSeekerLanguages();
+
+                                                       $("#mainform").submit(function (e) {
+                                                           e.preventDefault();
+                                                           var formdata = new FormData(this);
+
+
+
+                                                           $.ajax({
+                                                               method: "POST",
+                                                               url: "RegisterCandidate",
+                                                               data: formdata,
+                                                               mimeTypes: "multipart/form-data",
+                                                               contentType: false,
+                                                               cache: false,
+                                                               processData: false,
+                                                               success: function (data) {
+                                                                   alert('Successfully added!');
+                                                                   //$("#registerformbox").hide();
+                                                                   //$("#registerformbox2").show();
+                                                                   $("#ot_profilesummary").val('TRUE');
+                                                                   edutab();
+                                                               },
+                                                               error: function () {
+                                                                   alert("Couldn't Save, check the input values!");
+                                                               }
+                                                           });
+                                                       });
+
+
+                                                       $("#educationform").submit(function (e) {
+                                                           e.preventDefault();
+
+
+                                                           var edudata = new FormData(this);
+
+
+
+                                                           $.ajax({
+                                                               method: "POST",
+                                                               url: "JobSeekerEducation",
+                                                               data: edudata,
+                                                               mimeTypes: "multipart/form-data",
+                                                               contentType: false,
+                                                               cache: false,
+                                                               processData: false,
+                                                               success: function (data) {
+                                                                   alert('Successfully added!');
+
+                                                                   if ($(document.activeElement).attr('id') == 'eduaddmore') {
+
+
+                                                                       $("#eduSchool").val("").change();
+                                                                       $("#eduSchoolcountry").val("").change();
+                                                                       $("#eduDegree").val("").change();
+                                                                       $("#eduField").val("").change();
+                                                                       $("#eduGrade").val("").change();
+                                                                       $("#eduDescription").val("").change();
+                                                                       $("#eduActivities").val("").change();
+                                                                       $("#edufrommonth").val("").change();
+                                                                       $("#edutomonth").val("").change();
+                                                                       $("#edufromyear").val("").change();
+                                                                       $("#edutoyear").val("").change();
+                                                                       $("#uploadmedia").val("").change();
+                                                                   }
+                                                                   else {
+                                                                       //$("#eduform").hide();
+                                                                       //$("#eduform2").show();
+                                                                      
+                                                                       whtab();
+                                                                   }
+                                                                   $("#ot_education").val('TRUE');
+
+                                                               },
+                                                               error: function () {
+                                                                   alert("Couldn't Save, check the input values!");
+                                                               }
+                                                           });
+                                                       });
+
+
+
+
+
+
+
+
+                                                       $("#registerformbox2,#skillform2,#icmform2,#eduform2,#whform2,#lnform2,#hoform2,#cert_form2").hide();
+
+
+
+
+                                                       $("#educurrentlystudy").click(function () {
+                                                           if ($("#educurrentlystudy").is(":checked")) {
+                                                               $("#edufrommonth,#edutomonth,#edufromyear,#edutoyear").prop("disabled", true);
+                                                               $("#edufrommonth1,#edutomonth1,#edufromyear1,#edutoyear1").prop("disabled", false);
+                                                               $("#edufrommonth,#edutomonth,#edufromyear,#edutoyear").val("").change();
+                                                           }
+                                                           else {
+                                                               $("#edufrommonth,#edutomonth,#edufromyear,#edutoyear").prop("disabled", false);
+                                                               $("#edufrommonth1,#edutomonth1,#edufromyear1,#edutoyear1").prop("disabled", true);
+                                                           }
+                                                       });
+
+                                                       $("#wh_currentlywork").click(function () {
+                                                           if ($("#wh_currentlywork").is(":checked")) {
+                                                               $("#wh_frommonth,#wh_fromyear,#wh_tomonth,#wh_toyear").prop("disabled", true);
+                                                               $("#wh_frommonth1,#wh_fromyear1,#wh_tomonth1,#wh_toyear1").prop("disabled", false);
+                                                               $("#wh_frommonth,#wh_fromyear,#wh_tomonth,#wh_toyear").val("").change();
+                                                           }
+                                                           else {
+                                                               $("#wh_frommonth,#wh_fromyear,#wh_tomonth,#wh_toyear").prop("disabled", false);
+                                                               $("#wh_frommonth1,#wh_fromyear1,#wh_tomonth1,#wh_toyear1").prop("disabled", true);
+                                                           }
+                                                       });
+
+                                                       $("#cert_noexpiry").click(function () {
+                                                           if ($("#cert_noexpiry").is(":checked")) {
+                                                               $("#cert_frommonth,#cert_fromyear,#cert_tomonth,#cert_toyear").prop("disabled", true);
+                                                               $("#cert_frommonth1,#cert_fromyear1,#cert_tomonth1,#cert_toyear1").prop("disabled", false);
+                                                               $("#cert_frommonth,#cert_fromyear,#cert_tomonth,#cert_toyear").val("").change();
+                                                           }
+                                                           else {
+                                                               $("#cert_frommonth,#cert_fromyear,#cert_tomonth,#cert_toyear").prop("disabled", false);
+                                                               $("#cert_frommonth1,#cert_fromyear1,#cert_tomonth1,#cert_toyear1").prop("disabled", true);
+                                                           }
+                                                       });
+
+
+
+
+                                                       $("#freshgraduate").click(function () {
+                                                           if ($("#freshgraduate").is(":checked")) {
+                                                               $("#freshcheck").hide();
+                                                           }
+                                                           else {
+                                                               $("#freshcheck").show();
+                                                           }
+                                                       });
+
+
+
+                                                       $("#cert_addmore").click(function () {
+
+                                                           if ($('#cert_title').val() != "" && $('#cert_auth').val() != "" && ($('#cert_frommonth').val() != "" || $('#cert_frommonth1').val() != "") && ($('#cert_fromyear').val() != "" || $('#cert_fromyear1').val() != "") && ($('#cert_tomonth').val() != "" || $('#cert_tomonth1').val() != "") && ($('#cert_toyear').val() != "" || $('#cert_toyear1').val() != "")) {
+                                                               addCertification();
+                                                               $('#cert_title').val("").change();
+                                                               $('#cert_auth').val("").change();
+                                                               $("#cert_frommonth").val("").change();
+                                                               $("#cert_fromyear").val("").change();
+                                                               $("#cert_tomonth").val("").change();
+                                                               $("#cert_toyear").val("").change();
+
+
+                                                               
+                                                           }
+                                                           else {
+                                                               alert('All fields are mandatory');
+                                                           }
+
+                                                       });
+                                                       $("#cert_save").click(function () {
+
+                                                           if ($('#cert_title').val() != "" && $('#cert_auth').val() != "" && ($('#cert_frommonth').val() != "" || $('#cert_frommonth1').val() != "") && ($('#cert_fromyear').val() != "" || $('#cert_fromyear1').val() != "") && ($('#cert_tomonth').val() != "" || $('#cert_tomonth1').val() != "") && ($('#cert_toyear').val() != "" || $('#cert_toyear1').val() != "")) {
+                                                               addCertification();
+
+                                                           }
+                                                           else {
+                                                               
+                                                               //$("#cert_form").hide();
+                                                               //$("#cert_form2").show();
+                                                               alert('All fields are mandatory');
+                                                           }
+
+                                                       });
+
+
+
+
+                                                       $("#ho_addmore").click(function () {
+                                                           addHonours();
+                                                           $('#ho_title').val('');
+                                                           $('#ho_assowith').val('');
+                                                           $('#ho_description').val('');
+                                                           $('#ho_issuer').val('');
+                                                           $("#ho_month").val('January');
+                                                           $("#ho_year").val('@DateTime.Now.Year');
+
+                                                       });
+                                                       $("#ho_save").click(function () {
+                                                           $("#hoform").hide();
+                                                           $("#hoform2").show();
+                                                           addHonours();
+                                                       });
+
+                                                       $("#lang_addmore").click(function () {
+                                                           addLanguages();
+                                                           $('#acclanguage').val('').change();
+                                                           $('#accProficiency').val('').change();
+
+                                                       });
+                                                       $("#lang_save").click(function () {
+                                                           //$("#lnform").hide();
+                                                           //$("#lnform2").show();
+                                                           addLanguages();
+                                                           idmtab();
+                                                       });
+
+                                                       $("#whaddmore").click(function () {
+                                                           if ($('#wh_jobtitle').val() != "" && $('#wh_company').val() != "" && $('#wh_level').val() != "" && $('#wh_reportingto').val() != "" && $('#wh_industry').val() != "" && $('#wh_function').val() != "" && ($('#wh_frommonth').val() != "" || $('#wh_frommonth1').val() != "") && ($('#wh_fromyear').val() != "" || $('#wh_fromyear1').val() != "") && ($('#wh_tomonth').val() != "" || $('#wh_tomonth1').val() != "") && ($('#wh_toyear').val() != "" || $('#wh_toyear1').val() != "") && $('#wh_currentlywork').val() != "" && $('#wh_location').val() != "" && $('#wh_salary').val() != "") {
+                                                               addWorkHistory();
+                                                               $('#wh_jobtitle').val("").change();
+                                                               $('#wh_company').val("").change();
+                                                               $('#wh_location').val("").change();
+                                                               $('#wh_level').val("").change();
+                                                               $('#wh_reportingto').val("").change();
+                                                               $("#wh_frommonth").val("").change();
+                                                               $("#wh_tomonth").val("").change();
+                                                               $("#wh_fromyear").val("").change();
+                                                               $("#wh_toyear").val("").change();
+                                                               $('#wh_description').val("").change();
+                                                               $('#wh_salary').val("").change();
+                                                               $('#wh_industry').val("").change();
+                                                               $('#wh_function').val("").change();
+                                                               $('#currentposition').val("").change();
+                                                           }
+                                                           else {
+                                                               alert('All fields are mandatory');
+
+                                                           }
+                                                       });
+                                                       $("#whsave").click(function () {
+                                                           //$("#whform").hide();
+                                                           //$("#whform2").show();
+                                                           if ($('#wh_jobtitle').val() != "" && $('#wh_company').val() != "" && $('#wh_level').val() != "" && $('#wh_reportingto').val() != "" && $('#wh_industry').val() != "" && $('#wh_function').val() != "" && ($('#wh_frommonth').val() != "" || $('#wh_frommonth1').val() != "") && ($('#wh_fromyear').val() != "" || $('#wh_fromyear1').val() != "") && ($('#wh_tomonth').val() != "" || $('#wh_tomonth1').val() != "") && ($('#wh_toyear').val() != "" || $('#wh_toyear1').val() != "") && $('#wh_currentlywork').val() != "" && $('#wh_location').val() != "" && $('#wh_salary').val() != "") {
+                                                               addWorkHistory();
+                                                               ittab();
+                                                           }
+                                                           else {
+                                                               alert('All fields are mandatory');
+
+                                                           }
+
+                                                       });
+
+
+
+
+                                                       $("#skill_addmore").click(function () {
+                                                           addskill();
+                                                           $('#skill_add').val("");
+
+                                                       });
+                                                       $("#skill_save").click(function () {
+                                                           addskill()
+                                                           //$("#skillform").hide();
+                                                           //$("#skillform2").show();
+                                                           acctab();
+
+                                                       });
+                                                       $("#icm_addmore").click(function () {
+                                                           idelcareermove();
+
+                                                           $('#icm_salary').val("").select();
+                                                           $('#icm_industry').val("").select();
+                                                           $('#icm_jobfunction').val("").select();
+                                                           $('#icm_experience').val("").select();
+                                                       });
+                                                       $("#icm_save").click(function () {
+                                                           if ($('#icm_jobfunction').val() != "") {
+                                                               idelcareermove();
+                                                               $("#icmform").hide();
+                                                               $("#icmform2").show();
+                                                           }
+                                                           else {
+                                                               alert('Job function is mandatory');
+                                                           }
+
+                                                       });
+                                                   });
+
+                                                   function getCandidateSkills() {
+                                                       var contenthtml = '';
+                                                       $.ajax({
+                                                           url: "@Url.Content("~/getJobSeekerSkills/" + Session["Ca_ID"] + "")",
+                                                           success: function (data) {
+                                                               $.each(data, function (key, value) {
+                                                                   contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Skills + '</div><div class="skillleveltags">' + data[key].SkillLevel + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsSkills(' + data[key].CaSkillID + ')" class="fa fa-minus-circle"></i></div></div>';
+                                                               });
+                                                               $('#SkillsAdded').html(contenthtml);
+                                                           },
+                                                           error: function () {
+                                                               alert('No skills added yet!');
+                                                           }
+                                                       });
+
+                                                   }
+
+                                                   function deletejsSkills(CaSkillID) {
+
+
+                                                       $.ajax({
+                                                           url: "@Url.Content("~/DeleteCandidateSkill/")" + CaSkillID,
+                                                           success: function (data) {
+                                                               alert('Skill deleted!');
+                                                               getCandidateSkills();
+                                                           },
+                                                           error: function () {
+                                                               alert('No skills to delete!');
+                                                           }
+                                                       });
+                                                   }
+
+                                                   function edutab() {
+                                                       $("#tablinkedu").addClass("is-active");
+                                                       $("#tabcontentedu").addClass("is-open");
+                                                       $("#tabcontentedu").css("display", "block");
+
+                                                       $("#tablinkprofile").removeClass("is-active");
+                                                       $("#tabcontentprofile").removeClass("is-open");
+                                                       $("#tabcontentprofile").css("display", "none");
+                                                   }
+                                                   function whtab() {
+                                                       $("#tablinkwkhistory").addClass("is-active");
+                                                       $("#tabcontentwkhistory").addClass("is-open");
+                                                       $("#tabcontentwkhistory").css("display", "block");
+
+                                                       $("#tablinkedu").removeClass("is-active");
+                                                       $("#tabcontentedu").removeClass("is-open");
+                                                       $("#tabcontentedu").css("display", "none");
+                                                   }
+                                                   function ittab() {
+                                                       $("#tablinkitskills").addClass("is-active");
+                                                       $("#tabcontentitskills").addClass("is-open");
+                                                       $("#tabcontentitskills").css("display", "block");
+
+                                                       $("#tablinkwkhistory").removeClass("is-active");
+                                                       $("#tabcontentwkhistory").removeClass("is-open");
+                                                       $("#tabcontentwkhistory").css("display", "none");
+                                                   }
+
+                                                   function acctab() {
+                                                       $("#tablinkaccomplishments").addClass("is-active");
+                                                       $("#tabcontentaccomplishments").addClass("is-open");
+                                                       $("#tabcontentaccomplishments").css("display", "block");
+
+                                                       $("#tablinkitskills").removeClass("is-active");
+                                                       $("#tabcontentitskills").removeClass("is-open");
+                                                       $("#tabcontentitskills").css("display", "none");
+                                                   }
+
+                                                   function idmtab() {
+                                                       $("#tablinkidm").addClass("is-active");
+                                                       $("#tabcontentidm").addClass("is-open");
+                                                       $("#tabcontentidm").css("display", "block");
+
+                                                       $("#tablinkaccomplishments").removeClass("is-active");
+                                                       $("#tabcontentaccomplishments").removeClass("is-open");
+                                                       $("#tabcontentaccomplishments").css("display", "none");
+                                                   }
+                                                   function finishreg() {
+                                                       if ($("#ot_accomplishment").val() == 'TRUE' && $("#ot_education").val() == 'TRUE' && $("#ot_profilesummary").val() == 'TRUE' && $("#ot_itskills").val() == 'TRUE' && $("#ot_icm").val() == 'TRUE') {
+                                                           window.location.href = '@Url.Content("~/CandidateActivate")';
+                                                       }
+                                                       else {
+                                                           alert('Please finish all the tabs!');
+                                                       }
+                                                   }
+
+
+
+    function idelcareermove() {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobseekerCareerMove",
+                data: { IndustryID: $('#icm_industry').val(), JobTitleID: $('#ic_currentjobtitle').val(), FunctionID: $('#icm_jobfunction').val(), ExpectedSalaryID: $('#icm_salary').val(), ExperienceID: $('#icm_experience').val() },
+                success: function (data) {
+                    $("#ot_icm").val('TRUE');
+                    alert('Successfully added!');
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                    $("#ot_icm").val('FALSE');
+                }
+            });
+
+
+    }
+
+
+    function addskill() {
+        if ($('#skill_add').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobseekerSkills",
+                data: { SkillID: $('#skill_add').val(), SkillLevelID: $('#skill_level').val()},
+                success: function (data) {
+                    $("#ot_itskills").val('TRUE');
+                    getCandidateSkills();
+                   // alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+
+                }
+            });
+
+        }
+        else {
+            alert('Skill is mandatory');
+        }
+    }
+
+
+
+    function addWorkHistory() {
+
+        if ($("#wh_currentlywork").is(":checked")) {
+
+            var FromMonth = $('#wh_frommonth1').val();
+            var FromYear = $('#wh_fromyear1').val();
+            var ToMonth = $('#wh_tomonth1').val()
+            var ToYear= $('#wh_toyear1').val();
+
+        }
+        else {
+            var FromMonth = $('#wh_frommonth').val();
+            var FromYear = $('#wh_fromyear').val();
+            var ToMonth = $('#wh_tomonth').val()
+            var ToYear = $('#wh_toyear').val();
+
+        }
+        
+
+        
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerWorkHistory",
+                data: {
+                    JobTitleID: $('#wh_jobtitle').val(), Company: $('#wh_company').val(), JobLevelID: $('#wh_level').val(), ReportingToID: $('#wh_reportingto').val(), IndustryID: $('#wh_industry').val(), FunctionID: $('#wh_function').val(), FromMonth: FromMonth, FromYear: FromYear, ToMonth: ToMonth, ToYear: ToYear, CurrentlyWorkingHere: $('#wh_currentlywork').val(), JobLocationID: $('#wh_location').val(), SalaryID: $('#wh_salary').val(), Description: $('#wh_description').val()
+                },
+                success: function (data) {
+                    alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+      
+    }
+
+
+    function getJobSeekerLanguages() {
+        var contenthtml = '';
+        $.ajax({
+            url: "@Url.Content("~/getJobSeekerLanguages/" + Session["Ca_ID"] + "")",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Language + '</div><div class="skillleveltags">' + data[key].Proficiency + '&nbsp;&nbsp;<i style="cursor:pointer" onclick="deletejsLanguage(' + data[key].Caln_ID + ')" class="fa fa-minus-circle"></i></div></div>';
+                });
+                $('#LanguagesAdded').html(contenthtml);
+            },
+            error: function () {
+                alert('No skills added yet!');
+            }
+        });
+
+    }
+    function addLanguages() {
+        if ($('#acclanguage').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerLanguage",
+                data: {LanguageID: $('#acclanguage').val(), ProficiencyID: $('#accProficiency').val()},
+                success: function (data) {
+                    $("#ot_accomplishment").val('TRUE');
+                    //alert('Successfully added!');
+                    getJobSeekerLanguages();
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#lnform2").hide();
+            $("#lnform").show();
+        }
+
+    }
+
+    function deletejsLanguage(Caln_ID) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteCandidateLanguage/")" + Caln_ID,
+            success: function (data) {
+                alert('Language deleted!');
+                getJobSeekerLanguages();
+            },
+            error: function () {
+                alert('No Language to delete!');
+            }
+        });
+    }
+
+
+    function addHonours() {
+        if ($('#ho_title').val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerHonours",
+                data: { Ca_ID:  @Convert.ToDecimal(Session["Ca_ID"]), Title: $('#ho_title').val(), Associatedwith: $('#ho_assowith').val(), Issuer: $('#ho_issuer').val(), Issuedon: $('#ho_month').val() + ' ' + $('#ho_year').val(), Description: $('#ho_description').val() },
+                success: function (data) {
+                    alert('Successfully added!');
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#hoform2").hide();
+            $("#hoform").show();
+        }
+    }
+
+    function addCertification() {
+
+        $("#cert_noexpiry").val()
+
+
+        var cert_noexpiry = "";
+        if ($("#cert_noexpiry").is(':checked')) {
+           // alert('  selected');
+            cert_noexpiry = "true";
+
+            var FromMonth = $('#cert_frommonth1').val();
+            var FromYear = $('#cert_fromyear1').val();
+            var ToMonth = $('#cert_tomonth1').val()
+            var ToYear = $('#wh_toyear1').val();
+        }
+        else {
+           // alert('not selected');
+            cert_noexpiry = "false";
+
+            var FromMonth = $('#cert_frommonth').val();
+            var FromYear = $('#cert_fromyear').val();
+            var ToMonth = $('#cert_tomonth').val()
+            var ToYear = $('#cert_toyear').val();
+        }
+
+        $.ajax({
+            method: "POST",
+            url: "JobSeekerCertification",
+            data: {
+                CertificationID: $('#cert_title').val(), AuthorityID: $('#cert_auth').val(), FromMonth: FromMonth, FromYear: FromYear, ToMonth: ToMonth, ToYear: ToYear, DoNotExpire: cert_noexpiry
+            },
+            success: function (data) {
+                alert('Successfully added!');
+            },
+            error: function () {
+                alert("Couldn't Save, check the input values!");
+            }
+        });
+
+    }
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+<script>
+    $(function () {
+
+
+        $("#wh_company").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "getABCcompanies/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.Company,
+                                id: el.id
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+
+        $("#ac_jobtitle").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "getWorkExperinceJobTitle/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.JobTitle,
+
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+
+
+
+
+
+        $("#eduSchool,#profile_University,#proUniversity").autocomplete({
+            source: availableTags
+        });
+
+        $("#eduDegree").autocomplete({
+            source: unidegrees
+        });
+
+        $("#eduField").autocomplete({
+            source: eduspecialities
+        });
+
+        $("#icm_jobfunction").autocomplete({
+            source: jobtitles
+        });
+
+        $("#wh_jobtitle,#ca_CurrentJobTitle,#ic_currentjobtitle").autocomplete({
+            source: jobtitles
+        });
+
+        $("#skill_add").autocomplete({
+            source: skillsets
+        });
+
+        $("#wh_level").autocomplete({
+            source: corplevels
+        });
+        $("#wh_reportingto").autocomplete({
+            source: corplevels
+        });
+
+        $("#acclanguage").autocomplete({
+            source: languages
+        });
+
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+    });
+</script>

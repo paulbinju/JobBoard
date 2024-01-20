@@ -1,0 +1,1133 @@
+﻿@model Jobs4Bahrainis.Models.CandidateSkills
+
+
+@{
+    ViewBag.Title = "JobSeeker";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+                <div class="col-sm-3">
+                    <div class="leftpanelsec">
+                        <div class="userproimgsec wow fade-1">
+                            <div class="userimg">
+                                <a href="#"><img src="@ViewBag.Profilepic" alt="" /></a>
+                                @*<div class="userproname"> <span>@ViewBag.CName</span> Bahrain</div>*@
+
+                            </div>
+                          
+                            <div class="usernamegraybg">
+                                <div class="uercon"> <span>@ViewBag.CName</span> Bahrain</div>
+                                @*<div class="uercon">
+                                    @ViewBag.Phone
+
+                                </div>
+                                <div class="uercon">
+                                    <a href="mailto:matt.do@tradearabia.net">@ViewBag.Email</a>
+
+                                </div>*@
+                            </div>
+                        </div>
+                        @*<div class="dashboardwhiteboxshadow paynowpostjob wow fade-2">
+                            <div class="paynowjoblist">
+                                <ul>
+                                    <li>Profile summary</li>
+                                    <li>Skills</li>
+                                    <li>Work History</li>
+                                    <li>Education</li>
+                                </ul>
+                            </div>
+                            <div class="postjobntn"> <a href="#" class="greenbgbtn" data-toggle="modal" data-target="#candidateModal">EDIT PROFILE</a> <a href="#" class="redbgbtn">UPLOAD CV</a> </div>
+                        </div>*@
+                        <div class="moneytran-img wow fade-3"> <a href="#"><img src="images/money-transfer-img.jpg" alt="" /></a> </div>
+                        <div class="ingrambox wow fade-1">
+
+                            <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1">@@jobs4bahrainis</a>
+                            <script src="https://instawidget.net/js/instawidget.js?u=37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1&width=285px"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="homesearchsection wow fade-2 ">
+                        <h1 class="mainpagetitle Padd15">JOBSEEKER <span>PROFILE</span></h1>
+                        <div class="searchformsec">
+                            <div class="row" style="font-size:15px;">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-8" style="font-size:18px;"><b>@ViewBag.CName</b></div>
+                                        @*<div class="col-md-2 postjobntn"><a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a> </div>*@
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6"><b style="font-size:14px">Date of Birth:</b> @ViewBag.DOB</div>
+                                        @*<div class="col-md-4" style="font-size:14px"><b>Phone:</b> @ViewBag.Phone</div>
+                                        <div class="col-md-4"><b style="font-size:14px">Email:</b> @ViewBag.Email</div>*@
+                                        @foreach (var c in ViewBag.CandiateProfile)
+                                        {
+                                            <div class="col-md-6"><b style="font-size:14px">Gender:</b> @(c.ca_Gender == "M" ? "Male" : "Female")</div>
+                                            <div class="col-md-6"><b style="font-size:14px">Education Level:</b> @c.lm_value</div>
+                                            <div class="col-md-6"><b style="font-size:14px">Current Salary:</b> BHD @c.ca_SalaryFrom</div>
+                                            <div class="col-md-12"><b style="font-size:14px">Interested Sectors:</b> @ViewBag.Interests</div>
+                                            <div class="col-md-12"><b style="font-size:14px">Profile Summary:</b> @c.ca_Profile</div>
+
+
+
+
+
+                                        }
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-middsec" style="padding:0 10px">
+
+                        <div class="row">
+
+
+
+
+                            @*<div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+                                <br />
+                               <h1 class="mainpagetitle Padd15" style="font-size:16px"><i class="fa fa-lock" style="color:red;font-size:20px;cursor:pointer" title="Delete Degree" onclick="delDegree(13997)"></i><span> CONTACT</span></h1>
+                                
+                               
+
+
+
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>CV</th>
+
+                                    </tr>
+
+                                   
+
+                                        <tr>
+                                            <td style="vertical-align: middle;">@ViewBag.Phone</td>
+                                            <td style="vertical-align: middle;">@ViewBag.Email</td>
+                                            <td>
+                                                <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn" style="display: inline-block;margin: 0px 5px;color: #fff;text-transform: uppercase;padding: 10px 10px;font-size: 16px;max-width: 122px;width: 100%;text-align: center;">VIEW CV</a>
+                                            </td>
+
+                                        </tr>
+                                   
+                                </table>
+
+                            </div>*@
+
+                            <div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+                                <br />
+                                <h1 class="mainpagetitle Padd15" style="font-size:16px">
+                                    <span><a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal"><i class="fa fa-lock"></i>  Contact</a></span>
+                                </h1>
+                                <p style="font-size: 14px;" id="divContactLock">
+                                    @*Please click here to view contact details (1 Credit will be redeemed)*@
+                                    <a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal">  Please click here to view contact details (1 Credit will be redeemed)</a>
+                                </p>
+                                <div id="divContactUnlock" style="display:none">
+
+
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>CV</th>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td>@ViewBag.Email</td>
+                                            <td>@ViewBag.Phone</td>
+                                            <td>
+                                                <div class="postjobntn" style="padding:0px">
+
+
+                                                    <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <br />
+
+                        <div class="row">
+
+
+
+
+                            <div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+                                <br />
+                                <h1 class="mainpagetitle Padd15" style="font-size:16px"><span>SKILLS</span></h1>
+
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Skills</th>
+                                        <th>Skill Level</th>
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.Skills)
+                                    {
+
+                                        <tr>
+                                            <td>@e.Skills</td>
+                                            <td>@e.SkillLevel</td>
+
+                                        </tr>
+                                    }
+                                </table>
+
+                            </div>
+
+
+
+                        </div>
+                        <br />
+
+                        <div class="row">
+
+
+
+
+                            <div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+                                <br />
+                                <h1 class="mainpagetitle Padd15" style="font-size:16px"><span>WORK HISTORY</span></h1>
+
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Job Title</th>
+                                        <th>Company</th>
+                                        <th>Experience</th>
+                                        <th>City</th>
+                                        <th>Country</th>
+
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.Experience)
+            {
+
+                                        <tr>
+                                            <td>@e.JobTitle</td>
+                                            <td>@e.Company</td>
+                                            <td>@e.TotalExp year(s)</td>
+                                            <td>@e.City</td>
+                                            <td>@e.Country</td>
+                                        </tr>
+                                    }
+                                </table>
+
+                            </div>
+
+
+                        </div>
+                        <br />
+                        <div class="row">
+
+
+
+
+                            <div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+                                <br />
+                                <h1 class="mainpagetitle Padd15" style="font-size:16px"><span>EDUCATION</span></h1>
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Degree</th>
+                                        <th>Major</th>
+                                        <th>Institute</th>
+                                        <th>Grade</th>
+                                        <th>State</th>
+                                        <th>Country</th>
+
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.Education)
+                                    {
+
+                                        <tr>
+                                            <td>@e.DegreeLevel</td>
+                                            <td>@e.MajorSubject</td>
+                                            <td>@e.Institute</td>
+                                            <td>@e.Grade</td>
+                                            <td>@e.State</td>
+                                            <td>@e.Country</td>
+                                        </tr>
+                                    }
+                                </table>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="employerssec  dashboardwhiteboxshadow">
+            <div class="container">
+                <h1 class="mainpagetitle centertext ">Top <span>EMPLOYERS</span></h1>
+                <div class="emplogosec wow fade-2">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.diyar.bh/"><img src="@Url.Content("~/")images/emp-logo-1.jpg" alt="" /></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://firstbahrain.com/"><img src="@Url.Content("~/")images/emp-logo-2.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.hajihassan.com/"><img src="@Url.Content("~/")images/emp-logo-3.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.oriental-press.com/main.php"><img src="@Url.Content("~/")images/emp-logo-4.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="https://www.tamkeen.bh"><img src="@Url.Content("~/")images/emp-logo-5.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="https://www.bbkonline.com/Pages/default.aspx"><img src="@Url.Content("~/")images/emp-logo-6.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.bapco.net/en-us"><img src="@Url.Content("~/")images/emp-logo-7.jpg" alt=""></a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="emp-logo"><a target="_blank" href="http://www.almoayyed.com/"><img src="@Url.Content("~/")images/emp-logo-8.jpg" alt=""></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+
+
+
+<style>
+    .modal-lg {
+        margin: 15% auto;
+    }
+</style>
+
+@foreach (var c in ViewBag.CandiateProfile)
+{
+    <div id="candidateModal" class="modal fade" role="dialog">
+        <div class="modal-lg center-block">
+            <div class="registerformbox">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="mainpagetitle">JOBSEEKER <span>PROFILE</span></h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @*<input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />*@
+                                    <label>First Name *</label>
+                                    <input class="form-control" id="FirstName" name="First Name" placeholder="First Name" type="text" value="@ViewBag.fName">
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input class="form-control" id="LastName" name="Last Name" placeholder="Last Name" type="text" value="@ViewBag.lName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Date of Birth *</label>
+                                    <input class="form-control datepicker" id="dateofbirth" name="dateofbirth" placeholder="Date / Month / Year" type="text" value="@ViewBag.DOB">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="gender">Gender *</label>
+                                    @Html.DropDownList("ddlGender", (SelectList)ViewBag.Genders, "--Select--", new { @class = "form-control", @id = "Gender" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Phone *</label>
+                                    <input class="form-control" name="Phone" id="Phone" placeholder="Phone" type="text" value="@ViewBag.Phone">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input class="form-control" name="Email" id="Email" placeholder="Email" type="text" value="@ViewBag.Email">
+                                </div>
+                            </div>
+                            @foreach (var ca in ViewBag.CandiateProfile)
+                            {
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="currentposition">Education Level *</label>
+                                        <input class="form-control" name="Education Level" id="EducationLevel" placeholder="Education Level" type="text" value="@ca.lm_value">
+                                        @*<div class="form-check">
+                                                <input class="form-check-input" id="freshgraduate" type="checkbox">
+                                                <label class="form-check-label" for="freshgraduate">Fresh graduate</label>
+                                            </div>*@
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label>Current Salary (BHD) *</label>
+                                            <input class="form-control" name="Current Salary" id="CurrentSalary" placeholder="Current Salary" type="text" value="@ca.ca_SalaryFrom">
+
+                                        </div>
+                                        @*<label for="highesteducation">Highest Level of Education *</label>
+                                            <select class="form-control" id="highesteducation">
+                                                <option>Education 1</option>
+                                                <option>Education 2</option>
+                                                <option>Education 3</option>
+                                                <option>Education 4</option>
+                                                <option>Education 5</option>
+                                            </select>*@
+                                    </div>
+                                </div>
+                                @*<div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>High School/University *</label>
+                                            <input class="form-control" name="University" placeholder="High School/University" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="country">Country *</label>
+                                            <select class="form-control" id="country">
+                                                <option>Country 1</option>
+                                                <option>Country 2</option>
+                                                <option>Country 3</option>
+                                                <option>Country 4</option>
+                                                <option>Country 5</option>
+                                            </select>
+                                        </div>
+                                    </div>*@
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="summary">Profile Summary</label>
+                                        <textarea class="form-control" name="Summary" id="summary" placeholder="Summary">@ca.ca_Profile</textarea>
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-sm-12">
+                                <div class="form-group formbtn text-right">
+                                    <input name="save" id="btnProfileSummary" type="submit" value="SAVE">
+                                </div>
+                            </div>
+                        </div>
+                        <br style="clear:both" />
+                        <br style="clear:both" />
+
+
+                    </div>
+                    @*<div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>*@
+                </div>
+
+            </div>
+        </div>
+        @*<div class="modal-lg center-block">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="mainpagetitle">JOBSEEKER <span>PROFILE</span></h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="searchformsec">
+                            <div class="col-md-3">Name:<br /><input type="text" class="form-control" value="@ViewBag.Name" /></div>
+                            <div class="col-md-3">Email:<br /><input type="text" class="form-control" value="@ViewBag.Email" /></div>
+                            <div class="col-md-3">Phone:<br /><input type="text" class="form-control" value="@ViewBag.Phone" /></div>
+                            <div class="col-md-3">Date of Birth:<br /><input type="text" class="form-control" value="@ViewBag.DOB" /></div>
+                        </div>
+                        <br style="clear:both" />
+                        <br style="clear:both" />
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>*@
+
+    </div>
+}
+
+
+<div id="skillsModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>SKILLS</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form id="myForm">
+
+
+                                <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                    <tr>
+                                        <th>Skills</th>
+                                        <th>Skill Level</th>
+                                        <th>Action</th>
+
+                                    </tr>
+
+                                    @foreach (var e in ViewBag.Skills)
+                                    {
+
+                                        <tr>
+                                            <td>@e.Skills</td>
+                                            <td>@e.SkillLevel</td>
+                                            @*<td><input type="reset" value="Delete" class="btn btn-danger" id="btnSubmitx" /><i class="fa fa-trash-o" style="color:red"></i></td>*@
+                                            <td style="text-align:center"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" title="Delete Skill" onclick="delskill(@e.CaSkillID)"></i></td>
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />
+                                            <input required type="text" id="Skills" class="form-control" />
+                                        </td>
+
+                                        @*<td>@Html.TextBoxFor(model => model.Skills, new { @class = "form-control", @placeholder = "Skill" })</td>*@
+                                        @*<td>@Html.DropDownListFor(model => model.SkillLevel, (SelectList)ViewBag.Skill_level, "--Select--", new { @class = "form-control" })</td>*@
+                                        <td>@Html.DropDownListFor(model => model.SkillLevel, (SelectList)ViewBag.Skill_level, "--Select--", new { @class = "form-control", @id = "SkillLevel" })</td>
+                                        @*<td><input type="reset" value="Add" class="btn btn-success" id="btnSubmit" /> <i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px"></i></td>*@
+                                        <td style="text-align:center"><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px;font-size:20px;cursor:pointer" title="Add Skill" id="btnskills"></i></td>
+
+
+
+
+
+
+
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group formbtn text-right">
+
+                                <input name="close" type="submit" data-dismiss="modal" value="Close">
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>SKILLS</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+
+
+
+<div id="workhistoryModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">WORK <span>HISTORY</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Company</th>
+                                    <th>Experience</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.Experience)
+                                {
+
+                                    <tr>
+                                        <td>@e.JobTitle</td>
+                                        <td>@e.Company</td>
+                                        <td>@e.TotalExp year(s)</td>
+                                        <td>@e.City</td>
+                                        <td>@e.Country</td>
+                                        <td style="text-align:center"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" title="Delete Experince" onclick="delExperince(@e.CaExpID)"></i></td>
+
+                                    </tr>
+                                }
+                                <tr>
+                                    @*<td><input class="form-control" name="Job Title	" placeholder="Job Title" type="text" /></td>
+                                        <td><input class="form-control" name="Company" placeholder="Company" type="text" /></td>
+                                        <td><input class="form-control" name="Experience" placeholder="Experience" type="text" /></td>
+                                        <td><input class="form-control" name="City" placeholder="City" type="text" /></td>
+                                        <td><input class="form-control" name="Country" placeholder="Country" type="text" /></td>
+
+                                        <td><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px"></i></td>*@
+
+                                    <td>
+                                        <input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />
+                                        <input required type="text" id="JobTitle" placeholder="Job Title" class="form-control" />
+
+                                    </td>
+
+                                    <td><input class="form-control" id="Company" placeholder="Company" type="text" /></td>
+                                    <td><input class="form-control" id="Experience" placeholder="Experience" type="text" /></td>
+                                    <td><input class="form-control" id="City" placeholder="City" type="text" /></td>
+                                    <td><input class="form-control" id="Country" placeholder="Country" type="text" /></td>
+
+                                    @*<td>@Html.DropDownListFor(model => model.SkillLevel, (SelectList)ViewBag.Skill_level, "--Select--", new { @class = "form-control", @id = "SkillLevel" })</td>*@
+
+                                    <td style="text-align:center"><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px;font-size:20px;cursor:pointer" title="Add Experince" id="btnexperince"></i></td>
+
+
+
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group formbtn text-right">
+
+                                <input name="close" type="submit" data-dismiss="modal" value="Close">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">WORK <span>HISTORY</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+
+
+
+
+
+<div id="educationModal" class="modal fade" role="dialog">
+
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                <tr>
+                                    <th>Degree</th>
+                                    <th>Major</th>
+                                    <th>Institute</th>
+                                    <th>Grade</th>
+                                    <th>State</th>
+                                    <th>Country</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                                @foreach (var e in ViewBag.Education)
+                                {
+
+                                    <tr>
+                                        <td>@e.DegreeLevel</td>
+                                        <td>@e.MajorSubject</td>
+                                        <td>@e.Institute</td>
+                                        <td>@e.Grade</td>
+                                        <td>@e.State</td>
+                                        <td>@e.Country</td>
+                                        @*<td><i class="fa fa-trash-o" style="color:red"></i></td>*@
+                                        <td style="text-align:center"><i class="fa fa-trash-o" style="color:red;font-size:20px;cursor:pointer" title="Delete Degree" onclick="delDegree(@e.CaEdu_ID)"></i></td>
+
+                                    </tr>
+                                }
+                                <tr>
+                                    @*<td><input class="form-control" name="Degree" placeholder="Degree" type="text" /></td>
+                                        <td><input class="form-control" name="Major" placeholder="Major" type="text" /></td>
+                                        <td><input class="form-control" name="Institute" placeholder="Institute" type="text" /></td>
+                                        <td><input class="form-control" name="Grade" placeholder="Grade" type="text" /></td>
+                                        <td><input class="form-control" name="State" placeholder="State" type="text" /></td>
+                                        <td><input class="form-control" name="Country" placeholder="Country" type="text" /></td>
+                                        <td><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px"></i></td>*@
+
+
+                                    <td>
+                                        <input type="hidden" value="@ViewBag.Candidateid" id="Ca_ID" />
+                                        <input required type="text" id="Degree" placeholder="Degree" class="form-control" />
+
+                                    </td>
+
+                                    <td><input class="form-control" id="Major" placeholder="Major" type="text" /></td>
+                                    <td><input class="form-control" id="Institute" placeholder="Institute" type="text" /></td>
+                                    <td><input class="form-control" id="Grade" placeholder="Grade" type="text" /></td>
+                                    <td><input class="form-control" id="State" placeholder="State" type="text" /></td>
+                                    <td><input class="form-control" id="c" placeholder="Country" type="text" /></td>
+                                    <td style="text-align:center"><i class="fa fa-plus" style="color:#8c8c3f;padding-top:12px;font-size:20px;cursor:pointer" title="Add Degree" id="btndegree"></i></td>
+
+                                </tr>
+
+
+
+                            </table>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group formbtn text-right">
+
+                                <input name="close" type="submit" data-dismiss="modal" value="Close">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+<div id="alertModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle">JOB <span>ALERTS</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="redeemModal" class="modal fade" role="dialog">
+
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>Credit REDEMPTION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div>
+                            <p>Are you sure you want to redeem 1 credit to unlock the candidate contact?</p>
+                            <div class="postjobntn">
+                                <a id="btnYes" href="#" class="redbgbtn">YES</a>
+                                <a id="btnNo" data-dismiss="modal" blank" href="#" style="float:right" class="redbgbtn right">NO</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    //$(document).ready(function () {
+
+
+    //    $("#btnSubmit").click(function () {
+    //        alert('jhi');
+    //        $("#loaderDiv").show();
+
+    //        var myformdata = $("#myForm").serialize();
+
+    //        $.ajax({
+
+    //            type: "POST",
+    //            url: "/Home/JobSeekerProfile",
+    //            data: myformdata,
+    //            success: function () {
+    //                $("#loaderDiv").hide();
+    //                $("#myModal").modal("hide");
+
+    //            }
+
+    //        })
+    //    })
+
+    //})
+
+    $(document).ready(function () {
+
+
+        //$("#btnskills").click(function () {
+
+        //    if ($("#Skills").val() != "" && $("#SkillLevel").val() != "") {
+
+        //        urlx = "AddCandidateSkill/" + $("#Ca_ID").val() + "/" + $("#Skills").val() + "/" + $("#SkillLevel").val() + "/"
+
+        //        $.ajax({
+        //            type: 'GET',
+        //            url: urlx,
+        //            dataType: "json",
+        //            success: function (data) {
+        //                window.location.href = "JobSeekerProfile";
+        //            },
+        //            error: function () {
+        //                alert("Sorry unable to add!");
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        alert("Skills and Skill Levels are mandatory");
+        //    }
+        //});
+
+        $("#btnskills").click(function () {
+            if ($("#Skills").val() != "" && $("#SkillLevel").val() != "") {
+                $.ajax({
+                    method: "POST",
+                    url: "AddCandidateSkill2",
+                    data: { Ca_ID: $("#Ca_ID").val(), Skills: $("#Skills").val(), SkillLevel: $("#SkillLevel").val() },
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to add!");
+                    }
+                })
+
+            }
+            else {
+                alert("Skills and Skill Levels are mandatory");
+            }
+        });
+
+
+
+
+    });
+
+    $("#btnexperince").click(function () {
+        if ($("#JobTitle").val() != "" && $("#Experience").val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "AddCandidateWorkHistory",
+                data: { Ca_ID: $("#Ca_ID").val(), JobTitle: $("#JobTitle").val(), Company: $("#Company").val(), Experience: $("#Experience").val(), City: $("#City").val(), Country: $("#Country").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("JobTitle and Experience are mandatory");
+        }
+    });
+
+
+    $("#btndegree").click(function () {
+        if ($("#Degree").val() != "" && $("#Major").val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "AddCandidateDegree",
+                data: { Ca_ID: $("#Ca_ID").val(), DegreeLevel: $("#Degree").val(), MajorSubject: $("#Major").val(), Institute: $("#Institute").val(), Grade: $("#Grade").val(), State: $("#State").val(), c: $("#c").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("Degree and Major are mandatory");
+        }
+    });
+
+    $("#btnProfileSummary").click(function () {
+        if ($("#FirstName").val() != "" && $("#LastName").val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "UpdateCandidateProfileSummary",
+                data: { Ca_ID: $("#Ca_ID").val(), ca_FirstName: $("#FirstName").val(), ca_Surname: $("#LastName").val(), ca_DateOfBirth: $("#dateofbirth").val(), ca_Gender: $("#Gender").val(), ca_PhoneMobile: $("#Phone").val(), ca_EmailAddress: $("#Email").val(), ca_lm_EducationLevel: $("#EducationLevel").val(), ca_SalaryFrom: $("#CurrentSalary").val(), ca_Profile : $("#summary").val() },
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to add!");
+                }
+            })
+
+        }
+        else {
+            alert("Degree and Major are mandatory");
+        }
+    });
+
+
+    function delskill(caskillid) {
+
+        var r = confirm("Are you sure to delete the skill");
+
+        if (r == true) {
+            urlx = "DeleteCandidateSkill/" + caskillid + "/"
+
+            $.ajax({
+                type: 'GET',
+                url: urlx,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to delete!");
+                }
+            });
+        }
+    }
+
+
+
+    function delExperince(caExperince) {
+
+        var r = confirm("Are you sure to delete this work experince");
+
+        if (r == true) {
+            urlx = "DeleteCandidateExperince/" + caExperince + "/"
+
+            $.ajax({
+                type: 'GET',
+                url: urlx,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to delete!");
+                }
+            });
+        }
+    }
+
+    function delDegree(CaEdu_ID) {
+
+        var r = confirm("Are you sure to delete this Degree");
+
+        if (r == true) {
+            urlx = "DeleteCandidateDegree/" + CaEdu_ID + "/"
+
+            $.ajax({
+                type: 'GET',
+                url: urlx,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Sorry unable to delete!");
+                }
+            });
+        }
+    }
+      $("#btnYes").click(function (e) {
+        e.preventDefault();
+       // alert('Yes clicked');
+        $.ajax({
+            method: "POST",
+            url:  "@Url.Action("RedeemCredit", "Home")",
+            data: { Ca_ID: $("#Ca_ID").val() },
+            success: function (data) {
+                   // console.log(JSON.stringify(data));
+                    // window.location.href = "JobSeekerProfile";
+                    $('#divContactLock').fadeOut();
+                    $('#divContactUnlock').fadeIn();
+                    $('#btnUnlock').html('<i  class="fa fa-unlock" style="color: green;"></i>  Contact');
+                    $('#redeemModal').modal('hide');
+                },
+            error: function () {
+                    alert("Sorry unable to redeem contact!");
+                }
+            })
+
+
+    });
+
+</script>
+
+

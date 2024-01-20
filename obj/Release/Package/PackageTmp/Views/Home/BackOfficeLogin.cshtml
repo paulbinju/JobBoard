@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Html.RenderAction("menulogin");
+}
+
+@Html.Partial("_menu")
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+            <h1 class="mainpagetitle Padd15 centertext"> <span>SIGN IN </span> TO BACKOFFICE</h1>
+            <br />
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <div class="col-md-12 centertext fade-2 searchformsec">
+                    @using (Html.BeginForm("BackOfficeLogin", "Home"))
+                    {
+                        <div class="col-md-12">
+                            <input name="emailid" type="email" placeholder="Email ID">
+                        </div>
+                        <br style="clear:both" /><br />
+
+
+                        <div class="col-md-12">
+                            <input name="password" type="password" placeholder="Password">
+                        </div>
+                        <br style="clear:both" /><br />
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <input name="" type="submit" value="Login">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <br style="clear:both" /><br />
+
+                        <div class="col-md-12" style="color:red">
+                            @ViewBag.Message
+                        </div>
+                        <input type="hidden" value="@ViewBag.returnurl" name="returnurl" />
+                    }
+
+                    <br />
+
+
+
+                </div>
+
+                <br />
+                <hr />
+                
+                <br />
+                <br />
+
+
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+

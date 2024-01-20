@@ -1,0 +1,360 @@
+﻿@{
+    ViewBag.Title = "Bahrain Jobs for Bahrainis";
+
+    Html.RenderAction("menulogin");
+}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <div class="homebannerbgimg ">
+        <div class="container fullhight">
+            <div class="bannercontable">
+                <div class="bannertablecell leftcon">
+                    <div class="bannercon  fade-2">
+                        <h2>I AM A JOB SEEKER!</h2>
+                        <div class="bannertext">
+                            <p>
+                                Are you a Bahraini national looking for a new opportunity?
+                                <br />
+                                Register your profile for free with Jobs4bahrainis for now and leave the rest to us.  Hundreds of professionals and fresh graduates are being contacted every week by employers in the Kingdom looking to enhance their workforce with Bahraini talent.
+                                <br />
+                                Don’t miss out…. Your dream job could be next!
+
+                            </p>
+                        </div>
+                        <table style="width:80%;" align="center">
+                            <tr>
+                                <td><div class="jobsbtn"><a href="@Url.Content("~/LatestJobs")">BROWSE JOBS</a></div></td>
+                                <td><a href="@Url.Content("~/Registration")"><div class="candidatehomejoin">JOIN NOW</div></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="bannertablecell rightcon">
+                    <div class="bannercon  fade-2">
+                        <h2>I AM AN EMPLOYER!</h2>
+                        <div class="bannertext">
+                            <p>
+                                Jobs4Bahrainis is the first choice if you are looking to recruit Bahraini’s to enhance your workforce. J4B provides employers with easy and direct access to thousands of talented Bahraini nationals through a unique interactive job portal which is the most comprehensive CV database of graduates and experienced professional Bahraini talent.
+                            </p>
+                                <p>Save money and time with Jobs4bahrainis.com</p>
+                            <ul>
+                                <li>Direct search a candidate database of thousands of experienced Bahraini professionals and fresh graduate candidates.</li>
+                                <li>Receive applications directly to your own inbox without logging into the J4B portal.</li>
+                                <li>Post vacancies direct onto the job portal at any time.</li>
+                                <li>Manage the entire recruitment process through your own personalized dashboard.</li>
+                                <li>Market your company.</li>
+                            </ul>
+ 
+
+                          
+                        </div>
+                       
+
+                        <table style="width:80%;" align="center">
+                            <tr>
+                                <td><div class="jobsbtn"><a href="@Url.Content("~/PostAJob")">POST NEW JOB</a></div></td>
+                                <td><a href="@Url.Content("~/RecruiterRegistration")"><div class="employerhomejoin" >JOIN NOW</div></a></td>
+                            </tr>
+                        </table>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="homesearchsection mainlightgraybg PTb60">
+        <div class="container fade-1">
+            <h1 class="mainpagetitle centertext  fade-2">SEARCH YOUR <span>DREAM JOB</span></h1>
+            <div class="searchformsec   fade-2" >
+                <div class="row">
+                    @using (Html.BeginForm("Search","Home"))
+                    {
+
+                    <div class="col-sm-5">
+                        <input name="keywords" type="text" required placeholder="Search keywords" id="keywords" class="skill-search-icon">
+                    </div>
+                    <div class="col-sm-4">
+                        <select name="sector" required>
+                            <option value="0">Any Sector</option>
+                            @foreach (var s in ViewBag.Sectors)
+                            {
+                            <option value="@s.lm_Id">@s.lm_Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select name="jobtype" required>
+                            <option value="0">Any Job type</option>
+                            <option>Permenant</option>
+                            <option>Contract</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <input name="" type="submit" value="Search">
+                        
+                        <div style="margin-top:8px;"><a href="@Url.Content("~/JobSearch")" class="advsearch">Advanced Search</a></div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="careerservices-section PTb6030" style="background-color:white">
+        <div class="container">
+            <h1 class="mainpagetitle centertext wow  fade-2"  ><span>CAREER</span> SERVICES</h1>
+            <div class="service-sec">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="servicebox wow  fade-2">
+                            <div class="serviceicon"><a href="#"><img src="images/service-icon-1.png"  alt="" /></a></div>
+                            <h3><a href="#">Interview Advice</a></h3>
+                            <div class="servdet">
+                                <p>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetuer adipiscing elit, sed diam
+                                    nonummy nibh euismod tincidunt ut
+                                    laoreet dolore magna aliquam erat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="servicebox wow  fade-2">
+                            <div class="serviceicon"><a href="#"><img src="images/service-icon-2.png"  alt="" /></a></div>
+                            <h3><a href="#">CV Writing Tips</a></h3>
+                            <div class="servdet">
+                                <p>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetuer adipiscing elit, sed diam
+                                    nonummy nibh euismod tincidunt ut
+                                    laoreet dolore magna aliquam erat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="servicebox wow fade-2 ">
+                            <div class="serviceicon"><a href="#"><img src="images/service-icon-3.png"  alt="" /></a></div>
+                            <h3><a href="#">Career Training</a></h3>
+                            <div class="servdet">
+                                <p>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetuer adipiscing elit, sed diam
+                                    nonummy nibh euismod tincidunt ut
+                                    laoreet dolore magna aliquam erat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="~/js/jquery.js"></script>
+    <div class="latestjobsection mainlightgraybg PTb6030">
+        <div class="container">
+            <h1 class="mainpagetitle centertext  fade-2"><span>LATEST</span> JobS</h1>
+            <div class="joblistboxsec   fade-2">
+                <div class="row">
+
+                    @foreach (var lj in ViewBag.LatestJobs)
+                    {
+                    <div class="col-sm-6 loadbox">
+                        <div class="listwhitebox">
+                            <div class="jobcomnamelogo">
+                                <div class="row">
+                                    <div class="col-md-4 col-md-push-8">
+                                        <div class="comlogo"><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)"><img src="@lj.LogoURL"  alt="" /></a></div>
+                                    </div>
+                                    <div class="col-md-8 col-md-pull-4">
+                                        <div class="combydata">
+                                            <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                            <div class="comdet"> @lj.vc_Description ... </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="listtimelocation">
+                                <ul>
+                                    <li><img src="images/latestjob-icon-1.png"  alt="" /> @lj.postedsince days ago</li>
+                                    <li><img src="images/latestjob-icon-2.png"  alt="" /> @lj.co_Name</li>
+                                    <li><img src="images/latestjob-icon-3.png"  alt="" /> @lj.vc_Location</li>
+                                    <li><img src="images/latestjob-icon-4.png"  alt="" /> Full Time</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="showmorebtn"><a href="javascript:void(0);" id="loadMore">SHOW MORE</a> <a href="javascript:void(0);" id="showLess">SHOW LESS</a></div>
+            </div>
+        </div>
+    </div>
+     <div class="employerssec PTb6030 dashboardwhiteboxshadow">
+        <div class="container">
+            <h1 class="mainpagetitle centertext wow  fade-2">Top <span>EMPLOYERS</span></h1>
+            <div class="emplogosec wow fade-2">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="http://www.diyar.bh/"><img src="@Url.Content("~/")images/emp-logo-1.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="http://firstbahrain.com/"><img src="@Url.Content("~/")images/emp-logo-2.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="http://www.hajihassan.com/"><img src="@Url.Content("~/")images/emp-logo-3.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="http://www.oriental-press.com/main.php"><img src="@Url.Content("~/")images/emp-logo-4.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="https://www.tamkeen.bh"><img src="@Url.Content("~/")images/emp-logo-5.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="https://www.bbkonline.com/Pages/default.aspx"><img src="@Url.Content("~/")images/emp-logo-6.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="http://www.bapco.net/en-us"><img src="@Url.Content("~/")images/emp-logo-7.jpg" alt=""></a></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="emp-logo"><a target="_blank" href="http://www.almoayyed.com/"><img src="@Url.Content("~/")images/emp-logo-8.jpg" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainlightgraybg PTb60">
+        <div class="container">
+            <h1 class="mainpagetitle centertext  fade-2">OUR <span>TESTIMONIALS</span></h1>
+            <div class="testimoneal-carousel centertext  fade-2"-5">
+                <div class="item">
+                    <div class="testimonialwhitebg">
+                        <div class="testi-det">
+                            <p>
+                                There are lots of places to search for a
+                                candidate, but at jobs4bahrainis.com I
+                                found the perfect comprehensive
+                                platform to list vacancies and find the
+                                right fit for the job.
+                            </p>
+                        </div>
+                        <div class="authornamedet">
+                            <div class="testi-img"><img src="images/author-img-1.jpg" alt="" /></div>
+                            <div class="atuhorname">
+                                <h3>Jane Doe</h3>
+                                <h5>Marketing Manager, Al Hilal Group</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonialwhitebg">
+                        <div class="testi-det">
+                            <p>
+                                Graphic design is my profession.
+                                Thanks to jobs4Bahrainis.com and
+                                Unisono, my carrer aspirartions are
+                                becoming a reality.
+                            </p>
+                        </div>
+                        <div class="authornamedet">
+                            <div class="testi-img"><img src="images/author-img-2.jpg" alt="" /></div>
+                            <div class="atuhorname">
+                                <h3>Matt Do</h3>
+                                <h5>Graphic Designer, Unisono</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonialwhitebg">
+                        <div class="testi-det">
+                            <p>
+                                As a chemical engineer my goal was to
+                                use my professional knowledge in the
+                                process and energy sectors.
+                                jobs4bahrainis.com has been the
+                                catalyst to develop my career.
+                            </p>
+                        </div>
+                        <div class="authornamedet">
+                            <div class="testi-img"><img src="images/author-img-3.jpg" alt="" /></div>
+                            <div class="atuhorname">
+                                <h3>Ron Doet</h3>
+                                <h5>Sr. Engineer, Halder Topsoe</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonialwhitebg">
+                        <div class="testi-det">
+                            <p>
+                                There are lots of places to search for a
+                                candidate, but at jobs4bahrainis.com I
+                                found the perfect comprehensive
+                                platform to list vacancies and find the
+                                right fit for the job.
+                            </p>
+                        </div>
+                        <div class="authornamedet">
+                            <div class="testi-img"><img src="images/author-img-1.jpg" alt="" /></div>
+                            <div class="atuhorname">
+                                <h3>Jane Doe</h3>
+                                <h5>Marketing Manager, Al Hilal Group</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonialwhitebg">
+                        <div class="testi-det">
+                            <p>
+                                Graphic design is my profession.
+                                Thanks to jobs4Bahrainis.com and
+                                Unisono, my carrer aspirartions are
+                                becoming a reality.
+                            </p>
+                        </div>
+                        <div class="authornamedet">
+                            <div class="testi-img"><img src="images/author-img-2.jpg" alt="" /></div>
+                            <div class="atuhorname">
+                                <h3>Matt Do</h3>
+                                <h5>Graphic Designer, Unisono</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonialwhitebg">
+                        <div class="testi-det">
+                            <p>
+                                As a chemical engineer my goal was to
+                                use my professional knowledge in the
+                                process and energy sectors.
+                                jobs4bahrainis.com has been the
+                                catalyst to develop my career.
+                            </p>
+                        </div>
+                        <div class="authornamedet">
+                            <div class="testi-img"><img src="images/author-img-3.jpg" alt="" /></div>
+                            <div class="atuhorname">
+                                <h3>Ron Doet</h3>
+                                <h5>Sr. Engineer, Halder Topsoe</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@Html.Partial("_partners")
+
+
+
+
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>

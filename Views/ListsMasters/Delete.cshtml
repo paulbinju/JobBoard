@@ -1,0 +1,112 @@
+﻿@model Jobs4Bahrainis.Models.ListsMaster
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ListsMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_Guid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_Guid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_LastUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_LastUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_us_UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_us_UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_lt_ListTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_lt_ListTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_lm_ParentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_lm_ParentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_Ordinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_Ordinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_Ranking)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_Ranking)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lm_ValueEncoded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lm_ValueEncoded)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

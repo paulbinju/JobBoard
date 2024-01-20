@@ -1,0 +1,122 @@
+﻿
+
+@{
+    ViewBag.Title = "Employer Career Service";
+    common cmn = new common();
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    span {
+        color: red;
+    }
+
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li class="active"><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row">
+
+                <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="padding:0px;">
+
+                    <div class="col-md-12 fade-1">
+                        <div class="col-md-12">
+                            <br />
+                            <img class="img-responsive" src="@Url.Content("~/images/career1.png")" />
+                            <br style="clear:both" />
+                            <br style="clear:both" />
+
+                            <h4>Resumé keywords to boost your CV</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id ante in lectus commodo laoreet. Etiam viverra, dui tempor bibendum volutpat, felis elit
+                                vestibulum lorem, quis mattis ipsum libero at orci. Morbi venenatis metus ut nisi cursus, finibus mattis diam lobortis. Suspendisse a purus a est bibendum
+                                dictum. Vivamus in mi at magna faucibus consectetur. Sed finibus id massa nec ultricies. Suspendisse ornare sagittis lorem vel aliquam. Morbi in pretium
+                                magna, vel faucibus justo. In lobortis egestas augue, non fermentum urna eleifend sed. Proin non augue a dui ullamcorper condimentum. Sed nec luctus
+                                ipsum. Nunc eget justo tellus. Sed imperdiet mollis vestibulum. Cras in diam nisl. Integer egestas dictum dui, nec pellentesque ante pulvinar et. Mauris eu maximus
+                                magna, iaculis placerat ligula.
+                            </p>
+                            <p>
+                                Sed a hendrerit erat. Morbi pretium lorem diam, et ornare tortor luctus sit amet. Donec tortor massa, maximus eu nulla non, fringilla pharetra metus. Aenean ac
+                                laoreet elit. Sed a cursus diam. Nulla luctus urna turpis, id imperdiet lacus maximus convallis. Fusce fermentum nunc eros, vel fermentum ante aliquam eu.
+                                Morbi luctus, metus vitae tempor convallis, justo lectus dignissim ante, egestas bibendum ante dolor a libero. Quisque tristique quam ex, euismod euismod
+                                libero porta quis. Nullam non fermentum turpis. Ut egestas fringilla diam.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id ante in lectus commodo laoreet. Etiam viverra, dui tempor bibendum volutpat, felis elit
+                                vestibulum lorem, quis mattis ipsum libero at orci. Morbi venenatis metus ut nisi cursus, finibus mattis diam lobortis. Suspendisse a purus a est bibendum
+                                dictum. Vivamus in mi at magna faucibus consectetur. Sed finibus id massa nec ultricies. Suspendisse ornare sagittis lorem vel aliquam. Morbi in pretium
+                                magna, vel faucibus justo. In lobortis egestas augue, non fermentum urna eleifend sed. Proin non augue a dui ullamcorper condimentum. Sed nec luctus
+                                ipsum. Nunc eget justo tellus. Sed imperdiet mollis vestibulum. Cras in diam nisl. Integer egestas dictum dui, nec pellentesque ante pulvinar et. Mauris eu maximus
+                                magna, iaculis placerat ligula.
+                            </p>
+                            <p>
+                                Sed a hendrerit erat. Morbi pretium lorem diam, et ornare tortor luctus sit amet. Donec tortor massa, maximus eu nulla non, fringilla pharetra metus. Aenean ac
+                                laoreet elit. Sed a cursus diam. Nulla luctus urna turpis, id imperdiet lacus maximus convallis. Fusce fermentum nunc eros, vel fermentum ante aliquam eu.
+                                Morbi luctus, metus vitae tempor convallis, justo lectus dignissim ante, egestas bibendum ante dolor a libero. Quisque tristique quam ex, euismod euismod
+                                libero porta quis. Nullam non fermentum turpis. Ut egestas fringilla diam.
+                            </p>
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+

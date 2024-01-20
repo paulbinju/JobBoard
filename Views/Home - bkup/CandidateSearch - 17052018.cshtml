@@ -1,0 +1,253 @@
+﻿<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    <div class="dasdeticon"><a href="@Url.Content("~/RecruiterContact")"><img src="@Url.Content("~/images/email-icon.png")" alt="" /></a> <a href="@Url.Content("~/RecruiterAlert")"><img src="@Url.Content("~/images/notification-icon.png")" alt="" /></a> <a title="Logout" href="@Url.Content("~/RecruiterLogout")"><img src="@Url.Content("~/images/setting-icon.png")" alt="" /></a></div>
+                                </li>
+                                <li>
+                                    <div class="das-userphoto"> <a href="#"><img src="@ViewBag.Logo" alt="" /></a> </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec  fade-1">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="max-height:40%;margin-top:20%" /></a>
+                            <div class="userpronamerec"> <span>@ViewBag.Name</span> @ViewBag.Company </div>
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon">+973 @ViewBag.Phone </div>
+                            <div class="uercon">
+                                <a href="mailto:@ViewBag.Email">@ViewBag.Email</a>
+                                @*<div class="proediticon"><a href="#"><img src="@Url.Content("~/images/white-edit-icon.png")" alt="" /></a></div>*@
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="moneytran-img  fade-3"> <a href="#"><img src="@Url.Content("~/images/money-transfer-img.jpg")" alt="" /></a> </div>
+                    <div class="ingrambox  fade-1">
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1&width=285px"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="dashboardwhiteboxshadow">
+                    <h1 class="mainpagetitle Padd15">CANDIDATE <span>SEARCH</span></h1>
+                    <div class="searchformsec">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="Search keywords" type="text" placeholder="Search keywords">
+                            </div>
+                        </div>
+                        <br class="clear" />
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <select name="gender">
+                                    <option>Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="disabled">
+                                    <option>Disabled</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br class="clear" />
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <input type="text" name="agefrom" placeholder="Age from" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="ageto" placeholder="Age to" class="form-control" />
+                            </div>
+                        </div>
+                        <br class="clear" />
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <input type="text" name="salaryfrom" placeholder="Salary from" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="salaryto" placeholder="Salary to" class="form-control" />
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+                        <hr />
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>Experience</b>
+                            </div>
+                            <br class="clear" />
+                            <div class="col-md-6">
+                                <input type="text" name="jobtitle" placeholder="Job Title" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="company" placeholder="Company" class="form-control" />
+                            </div>
+                        </div>
+                        <br class="clear" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="number" name="yearsofexp" placeholder="Years of Experience" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <select name="country">
+                                    <option>Country</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <br class="clear" />
+                        <hr />
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>Education</b>
+                            </div>
+                            <br class="clear" />
+                            <div class="col-md-6">
+                                <input type="text" name="degree" placeholder="Degree" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="major" placeholder="Major" class="form-control" />
+                            </div>
+                        </div>
+                        <br class="clear" />
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <input type="text" name="institute" placeholder="Institute" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="grade" placeholder="Grade" class="form-control" />
+                            </div>
+                        </div>
+                        <br class="clear" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select name="educationlevel">
+                                    <option>Education Level</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="country">
+                                    <option>Country</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <br class="clear" />
+
+                        <hr />
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>Skills</b>
+                            </div>
+                            <br class="clear" />
+                            <div class="col-md-6">
+                                <input type="text" name="skill" placeholder="Skill" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <select name="skilllevel">
+                                    <option>Skill Level</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                    </div>
+
+                        <div class="row col-md-12">
+                            <div class="col-md-12">
+                                <b>Sectors</b>
+                            </div>
+                            <br class="clear" />
+                            <div class="col-md-12">
+                                @foreach (var s in ViewBag.Sectors)
+                                {
+                                    <div class="col-sm-6"  >
+                                        <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+
+                        <br class="clear" />
+
+                    <hr />
+
+                    <div class="searchformsec">
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <input name="" type="submit" value="Search">
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                <div class="dashboard-middsec">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboardwhiteboxshadow tabacc-sec  fade-2">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

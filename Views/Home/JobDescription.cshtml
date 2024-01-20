@@ -1,0 +1,455 @@
+﻿
+@{
+    ViewBag.Title = "Job Description";
+    Html.RenderAction("menulogin");
+}
+@Html.Partial("_menu")
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bfd580a0db286db"></script>
+
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+
+                <div class="col-sm-12">
+                    <div class="homesearchsection  fade-2">
+                        <h1 class="mainpagetitle Padd15">JOB <span>SEARCH</span></h1>
+                        <div class="searchformsec">
+
+                            @*<div class="row">
+                               
+                                @using (Html.BeginForm("JobSearchResult", "Home", FormMethod.Get))
+                                {
+
+                                    <div class="col-sm-5">
+                                        <input name="keywords" type="text" placeholder="Search job title" id="keywords" class="skill-search-icon">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select name="sector" class="searchableselect" required>
+                                            <option value="0">Any Sector</option>
+                                            @foreach (var jsc in ViewBag.Sectors)
+                                            {
+                                                <option value="@jsc.lm_Id">@jsc.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select name="jobtype" required>
+                                            <option value="0">Any Job type</option>
+                                            <option>Permenant</option>
+                                            <option>Contract</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2 text-center">
+                                        <input name="" type="submit" value="Search">
+
+                                        <div style="margin-top:8px;"><a href="@Url.Content("~/JobSearch3")" class="advsearch">Advanced Search</a></div>
+                                    </div>
+                                }
+
+                            </div>*@
+
+
+                            <div class="row">
+                                @using (Html.BeginForm("Search", "Home"))
+                                {
+
+                                    <div class="col-sm-5">
+                                        <input name="keywords" type="text" placeholder="Search keywords" id="keywords" class="skill-search-icon">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select name="sector"  class="searchableselect" required>
+                                            <option value="0">Any Sector</option>
+                                            @foreach (var s in ViewBag.Sectors)
+                                            {
+                                                <option value="@s.lm_Id">@s.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select name="jobtype" required>
+                                            <option value="0">Any Job type</option>
+                                            <option>Permenant</option>
+                                            <option>Contract</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2 text-center">
+                                        <input name="" type="submit" value="Search">
+
+                                        <div style="margin-top:8px;"><a href="@Url.Content("~/JobSearch3")" class="advsearch">Advanced Search</a></div>
+                                    </div>
+                                }
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="dashboard-middsec">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="dashboardwhiteboxshadow tabacc-sec  fade-2">
+                                    <div class="tab-content" style="min-height:685px">
+
+                                        <h1 class="mainpagetitle Padd15">
+                                            JOB <span>DESCRIPTION</span>
+                                            <div class="pull-right" style="width:200px;margin:10px 10px 0 0">
+                                                <i title="Print or Save as PDF" class="fa fa-print pull-right" style="color:red;font-size:20px;cursor:pointer;margin:0 6px" onclick='printDiv();'></i>
+                                                <a onclick="savejobs()" style="cursor:pointer"><i title="Save job to profile" style="cursor:pointer; color:red;margin:0 6px" class="fa fa-save  pull-right"></i> </a>
+                                            </div>
+                                        </h1>
+
+                                        <div class="listwhitebox tablistsec">
+
+                                            <div class="jobcomnamelogo">
+                                                <div class="row">
+                                                    @foreach (var lj in ViewBag.JobDetails)
+                                                    {
+                                                        <div class="col-md-12">
+
+
+                                                            <div class="col-md-5">
+                                                                @if (Convert.ToString(lj.vc_Confidential) == "True")
+                                                                {
+                                                                    <img class="img-responsive" src="@Url.Content("~/images/ConfidentialLogo.png")" alt="" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a href="@Url.Content("~/Employer/" + lj.vc_co_CompanyId + "/" + lj.co_NameURL)">
+                                                                        <img style="max-width:250px;" src="@Url.Content(lj.LogoURL)" alt="">
+                                                                    </a>
+                                                                }
+
+                                                            </div>
+                                                            <div class="col-md-7 searchformsec pull-right" style="padding:0px;margin:0px;">
+
+
+                                                                <div id="alreadyappl" style="display:none;text-align:right;margin-top:10px;">(You've already applied for this job!)</div>
+                                                                <br style="clear:both" />
+
+                                                                @if (Session["Ca_ID"] != null)
+                                                                {
+
+
+
+                                                                    <a href="#" id="applynowbtn" onclick="applynow()" style="display:none" class="btnsubmit pull-right">APPLY NOW</a>
+
+                                                                    <br />
+                                                                    <br />
+                                                                    <div id="emailloader" style="display:none;float:right;color:red;font-size:11px">
+                                                                        Applying .... <img src="@Url.Content("~/images/loading2.gif")" width="25" />
+                                                                    </div>
+
+                                                                }
+                                                                @if (Convert.ToString(lj.vc_Confidential) == "False")
+                                                                {
+                                                                <br style="clear:both" />
+                                                                <a style="color:white;padding:10px 15px" class="graybtn pull-right" href="@Url.Content("~/CompanyJobs/" + lj.vc_co_CompanyId)">
+                                                                    MORE JOBS FROM THIS COMPANY
+                                                                </a>
+                                                                <br style="clear:both" /><br style="clear:both" />
+                                                                <a style="color:white;padding:10px 15px;cursor:pointer" class="graybtn pull-right" onclick="followcompany()">
+                                                                    FOLLOW THIS COMPANY
+                                                                </a>
+                                                                <br style="clear:both" />
+                                                                }
+                                                            </div>
+                                                            <br style="clear:both" />
+                                                            <br />
+
+
+
+                                                            <br />
+                                                            <div class="col-md-12">
+                                                                <div class="combydata">
+                                                                    <h3 style="font-size:30px;font-weight:bold"><a href="#">@lj.vc_Title</a></h3>
+                                                                    <div class="listtimelocation">
+                                                                        <ul>
+                                                                            <li><img src="@Url.Content("~/images/latestjob-icon-1.png")" alt=""> @lj.postedsince</li>
+                                                                            @*<li><img src="@Url.Content("~/images/latestjob-icon-2.png")" alt=""> @lj.co_Name</li>*@
+                                                                            <li><img src="@Url.Content("~/images/latestjob-icon-3.png")" alt=""> @lj.JobLocation</li>
+                                                                            <li><img src="@Url.Content("~/images/latestjob-icon-4.png")" alt=""> @lj.JobType</li>
+                                                                            <li title="Views"><div class="fa fa-eye"></div> @lj.vc_Views</li>
+                                                                            <li title="Applications"><div class="fa fa-file"></div> @lj.vc_Applications</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <b style="font-size:20px;">Job Description</b>
+                                                                <p style="font-size:15px;">@Html.Raw(lj.vc_Description)</p>
+                                                                <br />
+                                                                <b style="font-size:20px;">Job Requirements</b>
+                                                                <p style="font-size:15px;">@Html.Raw(lj.vc_JobRequirements)</p>
+                                                                <br />
+                                                                <b style="font-size:20px;">Company Details</b>
+                                                                <p style="font-size:15px;">@Html.Raw(lj.vc_CompanyDetails)</p>
+                                                                <ul style="list-style:square">
+                                                                    <li><b>Industry</b>: @lj.Industry</li>
+                                                                    <li><b>Function</b>: @lj.Functions</li>
+                                                                    <li><b>Experience</b>: @lj.Experience</li>
+                                                                    <li><b>Qualification</b>: @lj.Qualification</li>
+                                                                    <li><b>Age Group</b>: @lj.AgeGroup</li>
+                                                                    <li><b>Salary Range</b>: @lj.SalaryRange</li>
+                                                                    <li><b>Contact Type</b>: @lj.JobType</li>
+                                                                    <li><b>Reserved for Disabled</b>: @(lj.vc_Disabled == false ? "NO" : "YES")</li>
+                                                                </ul>
+                                                                <br style="clear:both" />
+                                                                <br style="clear:both" />
+
+                                                            </div>
+                                                        </div>
+                                                        break;
+                                                    }
+
+                                                    <div class="col-md-12">
+
+                                                        <div class="col-md-12">
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            @{
+                                Html.RenderAction("VacancySectorz");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+        $('#emailloader,#alreadyappl,#applynowbtn').hide();
+        checkalreadyapplied();
+    });
+
+
+        function checkalreadyapplied() {
+            $.ajax({
+                method: "GET",
+                url: "@Url.Content("~/AlreadyApplied/")@ViewBag.VacancyID/",
+                success: function (data) {
+                    if (data == "YES") {
+                        $('#applynowbtn').hide();
+                        $('#alreadyappl').show();
+                    }
+                    else {
+                        $('#applynowbtn').show();
+                    }
+                },
+                error: function () {
+
+                }
+            });
+
+    }
+
+        function applynow() {
+            $('#emailloader').show();
+            $('#applynowbtn').hide();
+
+            if (confirm("Are you sure you want to apply for this vacancy?")) {
+
+                $.ajax({
+                    method: "GET",
+                    url: "@Url.Content("~/JobApplication/")@ViewBag.VacancyID/",
+                    success: function (data) {
+                        if (data == "YES") {
+                            alert("You've successfully applied for the job");
+                            $('#emailloader,#applynowbtn').hide();
+                        }
+                    },
+                    error: function () {
+                        $('#emailloader').hide();
+                    }
+                });
+            }
+
+        }
+
+        function savejobs() {
+
+             $.ajax({
+                method: "GET",
+                url: "@Url.Content("~/SaveJob/")@ViewBag.VacancyID/",
+                success: function (data) {
+                    if (data == "OK") {
+                        alert("You've successfully saved the job");
+                    }
+                },
+                error: function () {
+                    alert("This job is already saved in your account!");
+                }
+            });
+        }
+
+
+        function followcompany() {
+            if (confirm("Are you sure you want to follow this company?")) {
+                $.ajax({
+                    method: "GET",
+                    url: "@Url.Content("~/FollowCompany/")@ViewBag.CompanyID/",
+                    success: function (data) {
+                        if (data == "OK") {
+                            alert("You've started following this company!");
+                        }
+                    },
+                    error: function () {
+                        alert("You are already following this company!");
+                    }
+                });
+            }
+        }
+
+
+
+</script>
+
+
+<script>
+                                                                                function printDiv() {
+
+                                                                                    var divToPrint = document.getElementById('DivIdToPrint');
+
+                                                                                    var newWin = window.open('j4b', 'Print-Window');
+
+                                                                                    newWin.document.open();
+                                                                                    newWin.document.write('<html>');
+                                                                                    newWin.document.write('<link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">');
+                                                                                    newWin.document.write('<link href="@Url.Content("~/css/style.css")?v=1.7" rel="stylesheet">');
+                                                                                    newWin.document.write('<body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+                                                                                    newWin.document.write('</body></html>');
+                                                                                    newWin.document.close();
+
+                                                                                    //setTimeout(function () { newWin.close(); }, 10);
+
+                                                                                }
+</script>
+
+
+<!--
+print area
+-->
+
+
+
+<div id='DivIdToPrint' style="display:none">
+
+    <div style="width:800px;">
+        <div class="pull-right">www.jobs4bahrainis.com</div>
+
+ 
+    <img src="@Url.Content("~/images/jobs4bahrainislogo.png")" />
+ 
+
+        <br style="clear:both" />
+        <br style="clear:both" />
+        <br style="clear:both" />
+        <br />
+        <br />
+
+
+        <div class="jobcomnamelogo">
+            <div class="row">
+                @foreach (var lj in ViewBag.JobDetails)
+                {
+                    <div class="col-md-12">
+
+                        <div class="col-md-8">
+                            @if (Convert.ToString(lj.vc_Confidential) == "True")
+                            {
+                                <img class="img-responsive" src="@Url.Content("~/images/ConfidentialLogo.png")" alt="" />
+                            }
+                            else
+                            {
+                            <img style="max-width:250px;" src="@Url.Content(lj.LogoURL)" alt="">
+                            }
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <br />
+                        <div class="col-md-12">
+                            <div class="combydata">
+                                <h3 style="font-size:30px;font-weight:bold"><a href="#">@lj.vc_Title</a></h3>
+                                <div class="listtimelocation">
+                                    <ul>
+                                        <li><img src="@Url.Content("~/images/latestjob-icon-1.png")" alt=""> @lj.postedsince</li>
+                                        <li><img src="@Url.Content("~/images/latestjob-icon-2.png")" alt=""> @lj.co_Name</li>
+                                        <li><img src="@Url.Content("~/images/latestjob-icon-3.png")" alt=""> @lj.JobLocation</li>
+                                        <li><img src="@Url.Content("~/images/latestjob-icon-4.png")" alt=""> @lj.JobType</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br />
+                            <b>Job Description</b>
+                            <p style="font-size:15px;">@Html.Raw(lj.vc_Description.Replace("<br>", "<br><br>"))</p>
+                            <b>Job Requirements</b>
+                            <p style="font-size:15px;">@Html.Raw(lj.vc_JobRequirements.Replace("<br>", "<br><br>"))</p>
+                            <b>Company Details</b>
+                            <p style="font-size:15px;">@Html.Raw(lj.vc_CompanyDetails.Replace("<br>", "<br><br>"))</p>
+                            <ul style="list-style:square">
+                                <li><b>Industry</b>: @lj.Industry</li>
+                                <li><b>Function</b>: @lj.Functions</li>
+                                <li><b>Experience</b>: @lj.Experience</li>
+                                <li><b>Qualification</b>: @lj.Qualification</li>
+                                <li><b>Age Group</b>: @lj.AgeGroup</li>
+                                <li><b>Salary Range</b>: @lj.SalaryRange</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    break;
+                }
+
+                <div class="col-md-12">
+
+                    <div class="col-md-12">
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <br style="clear:both" /><br style="clear:both" />
+        <br style="clear:both" /><hr />
+        <br style="clear:both" /><br style="clear:both" />
+        <img src="@Url.Content("~/images/jobs4bahrainislogo.png")" />
+        <div class="pull-right">www.jobs4bahrainis.com</div>
+
+        <br style="clear:both" />
+
+    </div>
+</div>

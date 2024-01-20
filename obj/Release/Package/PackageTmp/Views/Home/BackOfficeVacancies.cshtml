@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Back Office Vacancies";
+}
+
+
+ 
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/")images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-11 pull-left">
+
+                        @Html.Partial("_BOmenu")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+            <h1 class="mainpagetitle Padd15 centertext">LIVE <span>VACANCIES</span></h1>
+ 
+             
+
+            <div class="col-md-12 centertext fade-2 searchformsec">
+
+                <table class="table-bordered text-left" style="width:100%;padding:2px 5px;font-size:12px">
+                    <tr>
+                        <th style="padding:2px 5px">ID</th>
+                        <th style="padding:2px 5px">Company</th>
+                        <th style="padding:2px 5px">Job Title</th>
+                        <th style="padding:2px 5px">Last Updated</th>
+
+                    </tr>
+                   
+                    @foreach (var can in ViewBag.BOVacancies)
+                    {
+
+                <tr>
+                    <td style="padding:2px 5px">@can.ID</td>
+                    <td style="padding:2px 5px">@can.Company</td>
+                    <td style="padding:2px 5px">@can.Title</td>
+                    <td style="padding:2px 5px">@can.LastUpdated.ToString("dd-MMM-yyyy")</td>
+
+
+                </tr>
+                    }
+                </table>
+            </div>
+
+
+
+
+
+            <hr />
+
+            <br />
+            <br />
+
+
+
+
+
+        </div>
+    </div>
+</div>
+ 

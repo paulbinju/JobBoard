@@ -1,0 +1,419 @@
+﻿
+@{
+    ViewBag.Title = "Recruiter Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_menu")
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="@Url.Content("~/css/select2.css")" rel="stylesheet" />
+<script src="@Url.Content("~/js/select2.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.searchableselect').select2();
+    });
+</script>
+
+
+
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.js")"></script>
+<script type="text/javascript">
+
+  
+
+    tinyMCE.init({
+        mode: "textareas",
+        theme: "modern",
+        theme_advanced_buttons1: "bold,italic,underline,strikethrough",
+        menubar: false,
+        statusbar: true,
+        branding: false,
+        plugins: "wordcount",
+    });
+
+  
+
+</script>
+
+<div class="homesearchsection mainlightgraybg PTb60">
+    <div class="container">
+        <h1 class="mainpagetitle centertext fade-1"> <span>EMPLOYER</span> REGISTRATION</h1>
+        <div class="row">
+
+
+            <div class="registerformsec MTB30">
+                <div class="container">
+
+                    <div class="dashboardwhiteboxshadow tabacc-sec fadeInUp" data-wow-delay="0.1s" data-wow-duration="1s">
+                        <ul class="accordion-tabs-minimal">
+                            <li class="tab-header-and-content">
+                                <a href="#" class="tab-link is-active" id="contact">COMPANY PROFILE</a>
+                                <div class="tab-content" id="contactcontent">
+                                    <div class="tabboxpadd fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                                        <div class="registerformbox">
+                                            <div class="row">
+
+                                             
+                                                    <div class="col-md-12" style="min-height:500px;">
+
+
+
+                                                        @if (Session["Recruiter1"] == null)
+                                                        {
+
+                                                            <form name="signupform" id="signupform" enctype="multipart/form-data" method="post" action="@Url.Content("RecruiterContact")" onsubmit="return validateForm()">
+                                                                <input type="hidden" name="newcontactid" value="@ViewBag.newcontactid" />
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>First Name <span class="red">*</span></label>
+                                                                        <input class="form-control" name="FirstName" placeholder="Enter text" type="text" required oninvalid="this.setCustomValidity('First Name is mandatory')" oninput="setCustomValidity('')">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Last Name <span class="red">*</span></label>
+                                                                        <input class="form-control" name="LastName" placeholder="Enter text" type="text" required oninvalid="this.setCustomValidity('Last Name is mandatory')" oninput="setCustomValidity('')">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Contact Number <span class="red">*</span></label>
+                                                                        <input class="form-control" name="Mobile" placeholder="Enter digits" maxlength="15" pattern="\d*" title="Only digits" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group   ui-front">
+                                                                        <label>Company Name <span class="red">*</span></label>
+                                                                        <input class="form-control" id="companyname" name="CompanyName" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company Name is mandatory')" oninput="setCustomValidity('')">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Company Size <span class="red">*</span></label>
+                                                                        <select style="width:100%" class="form-control searchableselect" id="co_CompanySizeID" name="co_CompanySizeID" required oninvalid="this.setCustomValidity('Company size is mandatory')" onchange="setCustomValidity('')">
+                                                                            <option value="">Select</option>
+                                                                            @foreach (var edu in ViewBag.CompanySize)
+                                                                            {
+                                                                                <option value="@edu.lm_Id">@edu.lm_Value</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Position in Company <span class="red">*</span></label>
+                                                                        <select style="width:100%" class="form-control searchableselect" id="co_PositioninCompanyID" name="co_PositioninCompanyID" required oninvalid="this.setCustomValidity('Position in company is mandatory')" onchange="setCustomValidity('')">
+                                                                            <option value="">Select</option>
+                                                                            @foreach (var edu in ViewBag.Position)
+                                                                            {
+                                                                                <option value="@edu.lm_Id">@edu.lm_Value</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Company Phone Number <span class="red">*</span></label>
+                                                                        <input class="form-control" name="Phone" placeholder="Enter digits" maxlength="15" pattern="\d*" title="Only digits" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Logo <span>*</span> (jpg or png image with file size less than 500kb)</label>
+
+                                                                        <label class="custom-file-upload">
+                                                                            <input type="file" id="uploadlogo" name="uploadlogo" onchange="showuploadlogo()" required oninvalid="this.setCustomValidity('Logo is mandatory')" oninput="setCustomValidity('')" />
+                                                                            <div id="lbluploadlogo">ATTACH LOGO </div>
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label for="summary">Address</label>
+                                                                        <input type="text" class="form-control" name="Address" id="address" placeholder="Enter text" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label for="summary">Company Profile <span class="red">*</span></label>
+                                                                        <textarea onfocus="showuploadlogo()" class="form-control" id="Profile" name="Profile" placeholder="Enter text"></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" name="Registration" value="YES" />
+                                                                        <div class="pull-right">
+                                                                            <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+                                                                        </div>
+                                                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </form>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group  text-right">
+
+                                                                </div>
+                                                            </div>
+                                                                <div class="col-sm-12">
+                                                                    <br />
+                                                                    <br />
+                                                                    <br />
+
+                                                                    <p class="red">You've successfully registered ! please continue to add Business Activities. </p><br />
+                                                                    <div class="form-group text-right">
+                                                                        <br />
+                                                                        <br />
+                                                                        <br />
+                                                                        <br /><br /><br /><br />
+<br />
+<br />
+<br />
+
+                                                                        <input name="next" class="btnsubmit" type="submit" value="NEXT" onclick="getsectortab()">
+                                                                    </div>
+                                                                </div>
+                                                        }
+
+                                                    </div>
+                                                 
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="tab-header-and-content">
+                                <a href="#" class="tab-link" id="sectors">BUSINESS ACTIVITIES</a>
+                                <div class="tab-content" id="sectorscontent">
+                                    <div class="tabboxpadd ">
+                                        <div class="registerformbox">
+                                            <div class="row">
+                                                <div class="col-md-12" style="min-height:500px;">
+                                                    
+                                                    <div class="col-md-12" id="sectorfirst">
+
+ 
+
+                                                        <div class="col-md-12" style="height:550px;overflow-y:scroll;background-color:white; padding:5px 10px;">
+                                                             <span style="font-size:12px;color:#cccccc">(Select maximum 3 Sectors)</span>
+                                                            <br style="clear:both" />
+                                                            @foreach (var s in ViewBag.Sectors)
+                                                            {
+                                                                <div>
+                                                                    <input type="checkbox" id="chksector" name="chksector" value="@s.lm_Id" /> <span style="font-size:15px;color:black">@s.lm_Value</span>
+                                                                </div>
+                                                            }
+
+                                                        </div>
+
+                                                        @if (Session["Recruiter1"] != null)
+                                                        {
+                                                            <br style="clear:both" />
+                                                            <br />
+                                                            <br />
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group text-right">
+                                                                    <input id="savesector" class="btnsubmit" name="save" type="submit" value="SAVE">
+                                                                </div>
+                                                            </div>
+
+                                                        }
+
+                                                    </div>
+                                                    <div id="sectorsecond">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group  text-right">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <br />
+                                                            <br />
+
+                                                            <p class="red">You've successfully finished the registration, we'll get back go you soon!. </p><br />
+                                                            <br />
+                                                            <br />
+                                                            <br /><br />
+<br />
+<br /><br />
+<br />
+<br /><br />
+<br />
+<br /><br />
+<br />
+<br />
+                                                            <div class="form-group  text-right">
+                                                                <input name="next" type="submit" class="btnsubmit" value="CONTINUE" onclick="window.location.href='@Url.Content("~/Recruiter")'">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                      
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+ 
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+<script>
+
+
+    function validateForm() {
+
+        tinyMCE.triggerSave();
+        var profiledesc = $(tinyMCE.get('Profile').getBody()).text();
+
+        var words = profiledesc.split(' ');
+
+        if (words.length < 50) {
+            alert('Company Profile must have more than 50 words!');
+            return false;
+        }
+    }
+
+
+    $(function () {
+
+
+        $("#companyname").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "getABCcompanies/" + request.term,
+                    success: function (data) {
+                        var transformed = $.map(data, function (el) {
+                            return {
+                                label: el.Company,
+                                id: el.id
+                            };
+                        });
+                        response(transformed);
+                    },
+                    error: function () {
+                        response([]);
+                    }
+                });
+            }
+        });
+    });
+
+    $(document).ready(function () {
+
+       
+
+        $("#uploadlogo").hide();
+
+
+
+
+        $(document).ready(function () {
+            $('#signupform').submit(function () {
+                showuploadlogo();
+            });
+        });
+
+        $('#uploadlogo').bind('change', function () {
+            if (this.files[0].size > 1500000) {
+                alert('File size is too big, attach a smaller file!');
+                $('#uploadlogo').val("")
+            }
+        });
+    });
+        </script>
+
+
+
+        <script>
+
+            function showuploadlogo() {
+                $("#uploadlogo").show();
+                $("#lbluploadlogo").hide();
+            };
+
+ 
+
+             
+
+
+    $("#sectorsecond").hide();
+
+            function getsectortab() {
+                $("#contact").removeClass("is-active");
+                $("#contactcontent").hide();
+                $("#sectors").addClass("is-active");
+                $("#sectorscontent").show();
+
+            }
+
+
+            function getprofiletab() {
+                $("#sectors").removeClass("is-active");
+                $("#sectorscontent").hide();
+                $("#profile").addClass("is-active");
+                $("#profilecontent").show();
+            }
+
+            $(document).ready(function () {
+                $("#finalsave").hide();
+
+
+                $("#savesector").click(function (e) {
+                    e.preventDefault();
+
+                    var listCheck = [];
+                    $("input[name='chksector']:checked").each(function () {
+                        listCheck.push($(this).val());
+                    });
+
+                    //    alert(listCheck);
+
+                    var checkeditems = listCheck.join(',');
+                    $.ajax({
+                        method: "POST",
+                        url: "RecruiterSectors2",
+                        data: { checkeditems: checkeditems },
+                        success: function (data) {
+                            $("#sectorfirst").hide();
+                            $("#sectorsecond").show();
+                            $("#finalsave").show();
+
+
+                        },
+                        error: function () {
+                            alert("Sorry unable to add, Select atleast one sector!");
+                        }
+                    });
+
+
+
+
+
+                });
+            });
+</script>

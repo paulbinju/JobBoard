@@ -1,0 +1,199 @@
+﻿<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li class="active"><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    <div class="dasdeticon"><a href="@Url.Content("~/RecruiterContact")"><img src="@Url.Content("~/images/email-icon.png")" alt="" /></a> <a href="@Url.Content("~/RecruiterAlert")"><img src="@Url.Content("~/images/notification-icon.png")" alt="" /></a> <a title="Logout" href="@Url.Content("~/RecruiterLogout")"><img src="@Url.Content("~/images/setting-icon.png")" alt="" /></a></div>
+                                </li>
+                                <li>
+                                    <div class="das-userphoto"> <a href="#"><img src="@ViewBag.Logo" alt="" /></a> </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+ 
+           <div class="col-md-12">
+               <div class="col-sm-12">
+                   <div class="dashboardwhiteboxshadow">
+@using (Html.BeginForm("CandidateSearchResult", "Home"))
+{
+                       <div class="col-md-12">
+                           <br />
+                           <h1 class="mainpagetitle Padd15 centertext">CANDIDATE <span>SEARCH</span></h1>
+                           <div class="searchformsec">
+                               <div class="row">
+                                   <div class="col-md-12">
+                                       @*<input name="keyword" type="text" id="keyword" placeholder="Keyword">*@
+                                       <input name="keywords" id="keywords" type="text" required placeholder="Search keywords" class="skill-search-icon">
+                                   </div>
+                               </div>
+                               <br class="clear" />
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <input name="fname" type="text" placeholder="First Name">
+                                   </div>
+                                   <div class="col-md-6">
+                                       <input name="lname" type="text" placeholder="Last Name">
+                                   </div>
+
+                               </div>
+
+                               <br class="clear" />
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <input type="text" name="age" placeholder="Age" class="form-control" />
+                                   </div>
+                                   <div class="col-md-6">
+                                       <select name="gender">
+                                           <option value="">Gender</option>
+                                           <option value="M">Male</option>
+                                           <option value="F">Female</option>
+                                       </select>
+                                   </div>
+
+                               </div>
+
+
+
+                           </div>
+
+                           <div class="col-md-12">
+
+
+
+
+                               <div class="col-md-6">
+
+                                   <div style="font-size:16px;color:#999">Industry / Sector</div>
+
+                                   <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; margin-left:-10px ">
+
+
+                                       @foreach (var s in ViewBag.Sectors)
+                                       {
+                                           <div class="col-sm-12">
+                                               <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                           </div>
+                                       }
+
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+
+                                   <div style="font-size:16px;color:#999">Function / Title</div>
+
+                                   <div style="height:350px;overflow-y:scroll;background-color:white;border:1px solid #eee;padding:10px; ">
+
+
+                                       @foreach (var s in ViewBag.Sectors)
+                                       {
+                                           <div class="col-sm-12">
+                                               <input type="checkbox" id="chksector" name="chksector" value="@s.SectorID" /> <span style="font-size:15px;color:gray">@s.Sector</span>
+                                           </div>
+                                       }
+
+                                   </div>
+                               </div>
+
+                           </div>
+
+
+                           <br class="clear" />
+                           <div class="searchformsec">
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <select name="qualification">
+                                           <option value="">Qualification</option>
+                                           <option value="1">Higher National Diploma</option>
+                                           <option value="2">Bachelor's degree</option>
+                                           <option value="3">Master's degree</option>
+                                           <option value="4">Doctoral degree</option>
+
+                                       </select>
+                                   </div>
+                                   <div class="col-md-6">
+                                       <select name="salary">
+                                           <option value="">Salary</option>
+                                           <option value="0:200">0-200</option>
+                                           <option value="200:400">200-400</option>
+                                           <option value="400:600">400-600</option>
+                                           <option value="600:800">600-800</option>
+                                           <option value="800:1000">800-1000</option>.
+                                           <option value="-1:1000">>1000</option>
+
+                                       </select>
+                                   </div>
+
+
+                               </div>
+
+                               <br class="clear" />
+
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <select name="experience">
+                                           <option value="">Years of Experience</option>
+                                           <option value="0:1">0-1</option>
+                                           <option value="1:3">1-3</option>
+                                           <option value="3:6">3-6</option>
+                                           <option value="6:8">6-8</option>
+                                           <option value="8:10">8-10</option>
+                                           <option value="-1:10">>10</option>
+
+                                       </select>
+                                   </div>
+
+
+
+                               </div>
+                           </div>
+                           <br class="clear" />
+
+                           <hr />
+
+                           <div class="searchformsec">
+                               <div class="row">
+
+                                   <div class="col-md-2 pull-right">
+                                       <input name="" type="submit" value="Search">
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <br style="clear:both" />
+}
+                   </div>
+                 
+               </div>
+
+           </div>
+        </div>
+    </div>
+</div>
+ <link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>

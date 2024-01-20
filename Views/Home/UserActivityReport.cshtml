@@ -1,0 +1,158 @@
+﻿<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg  ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardsection MT30 fade-1">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec  fade-1">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="margin-top:6%" /></a>
+
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon"><span style="font-size:18px;">@ViewBag.Company</span></div>
+                            <div class="uercon">
+                                @ViewBag.Name @ViewBag.SurName
+                            </div>
+                        </div>
+                    </div>
+    
+
+                    <div class="dashboardwhiteboxshadow paynowpostjob  fade-2">
+                        <div class="paynowjoblist">
+                            <ul>
+                                <li><a href="@Url.Content("~/Reports")">User Activity Report </a> <a href="@Url.Content("~/Reports")" class="editiconcat"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                <li><a href="@Url.Content("~/UserActivityReport")">Recruitment Report </a> <a href="@Url.Content("~/UserActivityReport")" class="editiconcat"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="postjobntn"> <a href="@Url.Content("~/Packages")" class="graybtn">PACKAGES</a> <a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a> </div>
+                    </div>
+
+
+                    <div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                        <!-- InstaWidget -->
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+
+                <div class="dashboard-middsec">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboardwhiteboxshadow tabacc-sec ">
+
+                                <h1 class="mainpagetitle Padd15">RECRUITMENT<span> REPORT</span></h1>
+                                <br />
+                                <br />
+
+                                @*<div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <b>Summary</b>
+                                        <br />
+
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>Contact Name</th>
+                                                <th>Last Logged in</th>
+
+                                            </tr>
+                                            @foreach (var con in ViewBag.Summary)
+                                            {
+                                                <tr>
+                                                    <td>@con.ct_Forename @con.ct_Surname</td>
+                                                    <td>@con.ct_LastLogin.ToString("dd-MM-yyyy HH:mm tt")</td>
+                                                </tr>
+                                            }
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>*@
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>Contact Name</th>
+                                                    <th>Job Title/Candidate Name</th>
+
+                                                    <th>Activity</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                @foreach (var con in ViewBag.Contacts)
+                                                {
+                                                    <tr>
+                                                        <td>@con.ct_Forename @con.ct_Surname</td>
+                                                        <td>@(con.CreditTypeID == 1 ? con.vc_Title : con.ca_FirstName + " " + con.ca_Surname)</td>
+
+                                                        <td>@(con.CreditTypeID == 1 ? "Job Posted On " + con.UsedOn.ToString("dd-MM-yyyy HH:mm tt") : "")@(con.CreditTypeID == 2 ? "CV Opened On " + con.UsedOn.ToString("dd-MM-yyyy HH:mm tt") : "")</td>
+
+                                                        @if (con.CandidateID > 0)
+                                                        {
+                                                            <td><a href="@Url.Action("CandidateSearchDetail2", "Home", new { ca_id = con.CandidateID })">View</a>  </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td><a href="@Url.Content("~/JobDescEmployer/" + con.VacancyID + "/viewVacancy")">View</a> </td>
+                                                        }
+                                                    </tr>
+                                                }
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

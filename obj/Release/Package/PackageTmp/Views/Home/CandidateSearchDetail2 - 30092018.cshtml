@@ -1,0 +1,2687 @@
+﻿@{
+    ViewBag.Title = "JobSeeker";
+    common cmn = new common();
+}
+
+<style>
+    .dashboardmenu #cssmenu > ul > li > a {
+        padding: 59px 12px 48px 12px !important;
+    }
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+@*<div class="menutoprel dashboardmenu">
+        <div class="topheaderbg">
+            <div class="toplogosection fade-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                        <div class="col-md-7 pull-left">
+
+                            <div id="cssmenu">
+                                <ul>
+                                    <li class="active"><a href="@Url.Content("~/JobSeekerProfile")">PROFILE</a></li>
+                                    <li><a href="@Url.Content("~/JobSeeker")">JOBS</a></li>
+                                    <li><a href="@Url.Content("~/CandidateCareerServices")">Career Services</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="notiuserdet">
+                                <ul>
+                                    <li>
+                                        @Html.Partial("_candidatelogin")
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<div class="menutoprel dashboardmenu sticky">
+    <div class="topheaderbg ">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/jobs4bahrainislogo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul style="margin-left: 170px;">
+                                <li><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                @*<li class="active"><a href="@Url.Content("~/CandidateSearch2")">CANDIDATE SEARCH</a></li>*@
+                                <li><a href="@Url.Content("~/SearchDashboard")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                                <li><a href="@Url.Content("~/EmployerCareerServices")">CAREER SERVICES</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+                <div class="col-sm-3">
+                    <div class="leftpanelsec">
+                        @*<div class="userproimgsec ">
+                                <div class="userimg">
+                                    <img src="@ViewBag.Profilepic" alt="" />
+                                    <div class="userproname"><div style="font-size:18px;font-weight:bold">@ViewBag.CName</div>Bahrain</div>
+
+                                </div>
+
+                                <div class="usernamegraybg">
+
+                                    <div class="uercon">
+                                        @ViewBag.CName
+
+
+                                    </div>
+                                    <div class="uercon">
+                                        <a href="mailto:@ViewBag.Email">@ViewBag.Email</a>
+
+                                    </div>
+                                </div>
+
+                            </div>*@
+                        <div class="userproimgsec  fade-1">
+                            <div class="userimg">
+                                <a href="#"><img src="@ViewBag.Profilepic" alt="" /></a>
+                                @*<div class="userproname"> <span>@ViewBag.CName</span> Bahrain</div>*@
+
+                            </div>
+
+                            <div class="usernamegraybg">
+                                <div class="uercon"> <span>@ViewBag.CName</span> Bahrain</div>
+                                @*<div class="uercon">
+                                        @ViewBag.Phone
+
+                                    </div>
+                                    <div class="uercon">
+                                        <a href="mailto:matt.do@tradearabia.net">@ViewBag.Email</a>
+
+                                    </div>*@
+                            </div>
+                        </div>
+                        @*<div class="dashboardwhiteboxshadow paynowpostjob  fade-2">*@
+                        @*<div class="paynowjoblist">
+                                <ul>
+                                    <li>Profile Pic<a href="#" data-toggle="modal" data-target="#profilePicModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Account Info<a href="#" data-toggle="modal" data-target="#AccountModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Profile summary<a href="#" data-toggle="modal" data-target="#candidateModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Education<a href="#" data-toggle="modal" data-target="#educationModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Work History<a href="#" data-toggle="modal" data-target="#workhistoryModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>IT Skills<a href="#" data-toggle="modal" data-target="#skillsModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Certifications<a href="#" data-toggle="modal" data-target="#CertModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Languages<a href="#" data-toggle="modal" data-target="#LanguageModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                                    <li>Ideal Career Move<a href="#" data-toggle="modal" data-target="#idmModal" class="editiconcat"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+
+
+                                </ul>
+                            </div>*@
+                        @*<div class="postjobntn"> <a href="#" class="greenbgbtn" data-toggle="modal" data-target="#candidateModal">EDIT PROFILE</a> <a href="#" data-toggle="modal" data-target="#CVModal" class="redbgbtn">UPLOAD CV</a> </div>*@
+                        @*</div>*@
+
+                        <div class="moneytran-img  dashboardwhiteboxshadow  fade-1" style="padding-bottom:10px"> <a href="#"><img src="images/money-transfer-img.jpg" alt="" /></a> </div>
+                        <div class="ingrambox dashboardwhiteboxshadow  fade-1">
+                            <!-- InstaWidget -->
+                            <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a">@@jobs4bahrainis</a>
+                            <script src="https://instawidget.net/js/instawidget.js?u=b660c32d2a4cc8d4e0535b6a7f91ed8d34c89d205c8a48c58a15aad3f0c1585a&width=250px"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="homesearchsection  ">
+                        <h1 class="mainpagetitle Padd15">JOBSEEKER <span>PROFILE</span></h1>
+                        <div class="searchformsec">
+                            <div class="row" style="font-size:15px;">
+                                <div class="col-md-12">
+                                    @*<div class="col-md-2 pull-right postjobntn"><a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a> </div>*@
+                                    <div class="row">
+                                        <br />
+                                        @*<div class="col-md-8" style="font-size:18px;"><b>@ViewBag.CName</b></div>*@
+                                        <div class="col-md-8" style="font-size:22px;"><b>@ViewBag.CName</b></div>
+
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+
+                                        @*<div class="col-md-6" style="font-size:14px"><b>Phone:</b> @ViewBag.Phone</div>
+                                            <div class="col-md-6"><b style="font-size:14px">Email:</b> @ViewBag.Email</div>*@
+                                        <div class="col-md-6"><b style="font-size:14px">Date of Birth:</b> @ViewBag.DOB</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Gender:</b> @(ViewBag.ca_Gender == "M" ? "Male" : "Female")</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Marital Status:</b> @ViewBag.MaritalStatus</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Nationality:</b> @ViewBag.Nationality</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Current Location:</b> @ViewBag.CurrentLocation</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Education Level:</b> @ViewBag.HighestEducation</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Name of University:</b> @ViewBag.University2</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Current Job Function:</b> @ViewBag.FunctionTitle</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Current Job Title:</b> @ViewBag.CurrentJobTitle</div>
+                                        <div class="col-md-6"><b style="font-size:14px">Total Experience:</b> @ViewBag.TotalExperience</div>
+                                        <div class="col-md-12"><b style="font-size:14px">Profile Summary:</b> @ViewBag.ca_Profile</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-middsec" style="padding:0 10px">
+                        <div class="row">
+
+
+
+
+                            @*<div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+                                    <br />
+                                   <h1 class="mainpagetitle Padd15" style="font-size:16px"><i class="fa fa-lock" style="color:red;font-size:20px;cursor:pointer" title="Delete Degree" onclick="delDegree(13997)"></i><span> CONTACT</span></h1>
+
+
+
+
+
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>CV</th>
+
+                                        </tr>
+
+
+
+                                            <tr>
+                                                <td style="vertical-align: middle;">@ViewBag.Phone</td>
+                                                <td style="vertical-align: middle;">@ViewBag.Email</td>
+                                                <td>
+                                                    <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn" style="display: inline-block;margin: 0px 5px;color: #fff;text-transform: uppercase;padding: 10px 10px;font-size: 16px;max-width: 122px;width: 100%;text-align: center;">VIEW CV</a>
+                                                </td>
+
+                                            </tr>
+
+                                    </table>
+
+                                </div>*@
+
+
+                            @if (ViewBag.Redeemed == false)
+                            {
+                                <div class="homesearchsection">
+                                    <br />
+                                    <h1 class="mainpagetitle Padd15">
+                                        <span><a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal"><i class="fa fa-lock"></i>  Contact</a></span>
+
+                                    </h1>
+                                    <div class="searchformsec">
+                                        <p style="font-size: 14px;" id="divContactLock">
+                                            @*Please click here to view contact details (1 Credit will be redeemed)*@
+                                            <a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal">  Please click here to view contact details (1 Credit will be redeemed)</a>
+                                        </p>
+                                        <div id="divContactUnlock" style="display:none">
+
+
+                                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                                <tr>
+
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>CV</th>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>@ViewBag.Email</td>
+                                                    <td>@ViewBag.Phone</td>
+                                                    <td>
+                                                        <div class="postjobntn" style="padding:0px">
+
+
+                                                            <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                            }
+                            else
+                            {
+                                <div class="homesearchsection">
+                                    <br />
+                                    <h1 class="mainpagetitle Padd15">
+                                        <span><a href="#" id="btnUnlock" data-toggle="modal" data-target="#redeemModal"><i class="fa fa-unlock" style="color: green;"></i>  Contact</a></span>
+                                    </h1>
+                                    <div class="searchformsec">
+                                        <div id="divContactUnlock">
+
+
+                                            <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                                <tr>
+
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>CV</th>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>@ViewBag.Email</td>
+                                                    <td>@ViewBag.Phone</td>
+                                                    <td>
+                                                        <div class="postjobntn" style="padding:0px">
+
+
+                                                            <a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+                        </div>
+                        <br />
+                        <div class="row">
+
+
+
+
+                            @*<div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow  fade-3">*@
+                                @*<br />*@
+                            <div class="homesearchsection">
+                                <h1 class="mainpagetitle Padd15">WORK<span> HISTORY</span></h1>
+                                <div class="searchformsec">
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+                                            <th>Job</th>
+                                            <th>Company</th>
+
+                                            @*<th>Modify</th>*@
+
+
+                                        </tr>
+
+                                        @foreach (var e in ViewBag.Experience2)
+                                    {
+
+                                            <tr>
+                                                <td>
+                                                    <b>@e.JobTitle</b>
+                                                    <br />
+                                                    <b>Job Level:</b> @e.JobLevel<br />
+                                                    <b>Industry:</b> @e.Industry<br />
+                                                    <b>Function:</b> @e.JobFunction<br />
+                                                    <b>Reporting to:</b> @e.ReportingTo
+                                                </td>
+                                                <td>
+                                                    <b>@e.Company</b><br />
+                                                    @if (e.CurrentlyWorkingHere == false)
+                                                {
+                                                        <span>
+                                                            <b>Period:</b> @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear <br />
+                                                        </span>
+                                                }
+                                                else
+                                                {
+                                                        <span>
+                                                            <b>Currently working here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                        </span>
+                                                }
+                                                    <b>Location:</b> @e.JobLocation <br />
+                                                    <b>Salary:</b> BHD @e.Salary
+                                                </td>
+                                                @*<td rowspan="2" style="text-align:center"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" title="Delete Work History" onclick="delWH(@e.CaWorkHistory_ID)"></i></td>*@
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><b>Activities:</b> @e.Description</td>
+
+
+
+                                            </tr>
+                                    }
+                                    </table>
+                                </div>
+                                </div>
+
+
+                        </div>
+                        <br />
+                        <div class="row">
+
+
+
+
+                            <div class="homesearchsection">
+                                <h1 class="mainpagetitle Padd15"><span>EDUCATION</span></h1>
+                                <div class="searchformsec">
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+                                            <th>Degree</th>
+                                            <th>University / School</th>
+                                            <th>Period</th>
+
+                                            @*<th>Modify</th>*@
+
+                                        </tr>
+
+                                        @foreach (var e in ViewBag.Education1)
+                                    {
+
+                                            <tr>
+                                                <td>
+                                                    @e.Degree<br />
+                                                    <b>Specialization:</b> @e.Specialization
+                                                </td>
+                                                <td>
+                                                    @e.University<br />
+                                                    <b>Country:</b> @e.UniCountry
+                                                </td>
+                                                <td>
+                                                    @if (e.CurrentlyStudyHere == false)
+                                                {
+                                                        <span>
+                                                            @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                        </span>
+                                                }
+                                                else
+                                                {
+                                                        <span>
+                                                            <b>Currently studying here:</b> Since @cmn.GetMonthName(e.FromMonth) @e.FromYear <br />
+                                                        </span>
+                                                }
+
+                                                </td>
+
+                                                @*<td rowspan="2" style="text-align:center"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" title="Delete Education" onclick="delEDU(@e.CaEdu_ID)"></i></td>*@
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><b>Activities:</b> @e.Activities</td>
+
+
+
+                                            </tr>
+                                    }
+                                    </table>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <br />
+
+                          
+                                @*<div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow  fade-3">*@
+                                <div class="homesearchsection">
+                                    <div class="searchformsec">
+                                        <h1 class="mainpagetitle Padd15">IT<span> SKILLS</span></h1>
+
+                                        <div class="col-md-12" id="SkillsAdded"></div>
+                                        <br style="clear:both" /><br />
+                                    </div>
+                                </div>
+
+                           
+                        <br />
+
+                        <div class="row">
+
+
+
+
+                            <div class="homesearchsection">
+                                <h1 class="mainpagetitle Padd15">CERTIFICATIONS<span> & AWARDS </span></h1>
+                                <div class="searchformsec">
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+                                            <th>Certification</th>
+                                            <th>Autority</th>
+                                            <th>Validity</th>
+                                            @*<th>Modify</th>*@
+                                        </tr>
+
+                                        @foreach (var e in ViewBag.CandidateCertifications)
+                                    {
+
+                                    <tr>
+                                        <td>
+                                            @e.Certification<br />
+
+                                        </td>
+                                        <td>@e.Authority</td>
+                                        <td>
+                                            @if (e.DoNotExpire == false)
+                                                {
+                                                <span>
+                                                    From @cmn.GetMonthName(e.FromMonth) @e.FromYear to @cmn.GetMonthName(e.ToMonth) @e.ToYear
+                                                </span>
+                                                }
+                                                else
+                                                {
+                                                <span>
+                                                    From @cmn.GetMonthName(e.FromMonth) @e.FromYear (does not expire) <br />
+                                                </span>
+                                                }
+
+                                        </td>
+                                        @*<td style="text-align:center"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" title="Delete Certification" onclick="delCER(@e.CaCertification_ID)"></i></td>*@
+                                    </tr>
+
+                                    }
+                                    </table>
+
+                                </div>
+
+
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            @*<div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow  fade-3">*@
+                            <div class="homesearchsection">
+                                <h1 class="mainpagetitle Padd15" ><span>LANGUAGES</span></h1>
+                                <div class="searchformsec">
+                                    <div class="col-md-12" id="LanguagesAdded"></div>
+                                    <br style="clear:both" /><br />
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+
+
+
+
+                            @*<div class="col-md-12 feturedsectors-list dashboardwhiteboxshadow  fade-3">
+                                <br />*@
+                            <div class="homesearchsection">
+                                <h1 class="mainpagetitle Padd15" >IDEAL<span> CAREER MOVE</span></h1>
+                                <div class="searchformsec">
+                                    <table class="table table-bordered table-responsive" style="font-size:15px;">
+                                        <tr>
+                                            <th>Job Title</th>
+                                            <th>Job Function</th>
+                                            <th>Industry</th>
+                                            <th>Salary (BD)</th>
+                                            <th>Experience</th>
+                                            @*<th>Modify</th>*@
+
+
+                                        </tr>
+
+                                        @foreach (var e in ViewBag.IdealCareerMove)
+                                    {
+
+                                            <tr>
+                                                <td>@e.JobTitle</td>
+                                                <td>@e.JobFunction</td>
+                                                <td>@e.Industry</td>
+                                                <td>@e.ExpectedSalary </td>
+                                                <td>@e.Experience</td>
+                                                @*<td style="text-align:center"><i class="fa fa-edit" style="color:red;font-size:20px;cursor:pointer" title="Delete Ideal Career Move" onclick="delIDC(@e.CaICM_ID)"></i></td>*@
+                                            </tr>
+                                    }
+                                    </table>
+                                </div>
+
+                                </div>
+
+
+                        </div>
+                        <br />
+
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="AccountModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">ACCOUNT <span>INFO</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12 fade-2  ">
+                            <form id="AccountForm" method="post">
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="pull-left">First Name <span class="mandatory">*</span></label>
+                                        <input class="form-control" value="@ViewBag.fName" name="firstname" id="firstname" type="text" required placeholder="Enter Text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="pull-left">Last Name <span class="mandatory">*</span></label>
+                                        <input class="form-control" value="@ViewBag.lName" name="surname" id="surname" type="text" required placeholder="Enter Text">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="pull-left">Nationality <span class="mandatory">*</span></label>
+                                        <select class="form-control" name="countryid" id="countryid" required placeholder="Select">
+                                            <option value="">Select</option>
+                                            @foreach (var con in ViewBag.Country)
+                                            {
+                                                <option @(ViewBag.ca_lm_countryid == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="pull-left">Contact Number <span class="mandatory">*</span></label>
+                                        <input class="form-control" value="@ViewBag.Phone" name="Phone" id="Phone" type="number" required placeholder="Enter Number">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="pull-left">Email <span class="mandatory">*</span></label>
+                                        <input class="form-control" value="@ViewBag.Email" name="EmailID" id="EmailID" type="email" required placeholder="Enter email address">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="pull-left">Password (6 to 10 characters) <span class="mandatory">*</span></label>
+                                        <input class="form-control" name="Password" id="Password" type="password" placeholder="Enter password" required pattern=".{6,10}" title="6 to 10 characters">
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-3 pull-right">
+                                    <input type="submit" value="SAVE" class="registerbtn2 pull-right">
+                                </div>
+
+                            </form>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<div id="candidateModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">JOBSEEKER <span>PROFILE</span></h1>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="registerformbox" id="registerformbox">
+                            <form id="mainform" method="post" enctype="multipart/form-data">
+                                <div class="row" style="min-height:500px;">
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Date of Birth <span>*</span></label>
+
+
+                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+                                            <input value="@ViewBag.DOB" class="form-control" id="ca_DateOfBirth" name="ca_DateOfBirth" placeholder="Date / Month / Year" type="text" onkeydown="return false;" required>
+
+                                            <script>
+                                                $(document).ready(function () {
+                                                    var options = $.extend({},
+                                                        $.datepicker.regional["ja"], {
+                                                            dateFormat: "yy/mm/dd",
+                                                            changeMonth: true,
+                                                            changeYear: true,
+                                                            yearRange: "1950:2015"
+                                                        }
+                                                    );
+                                                    $("#ca_DateOfBirth").datepicker(options);
+                                                });
+
+                                            </script>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender <span>*</span></label>
+                                            <select class="form-control" id="ca_Gender" name="ca_Gender" required oninvalid="this.setCustomValidity('Gender is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                <option @(ViewBag.Gender == "M" ? "selected" : "") value="M">Male</option>
+                                                <option @(ViewBag.Gender == "F" ? "selected" : "") value="F">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Marital Status <span>*</span></label>
+                                            <select class="form-control" id="ca_MaritalStatus" name="ca_MaritalStatus" required oninvalid="this.setCustomValidity('Marital Status is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                <option @(ViewBag.ca_MaritalStatus == "Single" ? "selected" : "") value="Single">Single</option>
+                                                <option @(ViewBag.ca_MaritalStatus == "Married" ? "selected" : "") value="Married">Married</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Current Location <span>*</span></label>
+                                            <select class="form-control" id="ca_lm_CountryId" name="ca_lm_CountryId" required oninvalid="this.setCustomValidity('Current Location is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var con in ViewBag.Country)
+                                                {
+
+                                                    <option @(ViewBag.Ca_CurrentCountryID == con.lm_Id ? "selected" : "") value="@con.lm_Id">@con.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="highesteducation">Highest Level of Education <span>*</span></label>
+                                            <select class="form-control" id="ca_lm_EducationLevel" name="ca_lm_EducationLevel" required oninvalid="this.setCustomValidity('Highest level of education is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var edu in ViewBag.EducationLevel)
+                                                {
+                                                    <option @(ViewBag.ca_lm_EducationLevel == edu.lm_Id ? "selected" : "") value="@edu.lm_Id">@edu.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Name of High School / University </label>
+                                            <select class="form-control" id="proUniversity" name="proUniversity" required oninvalid="this.setCustomValidity('Name of High School / University')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.University)
+                                                {
+                                                    <option @(ViewBag.ca_UniversityID == uni.lm_Id ? "selected" : "") value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="freshcheck">
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="currentposition">Current Job Function </label>
+                                                <select class="form-control" id="ca_FunctionTitleID" name="ca_FunctionTitleID" required oninvalid="this.setCustomValidity('Current Job Function is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                    {
+                                                        <option @(ViewBag.ca_FunctionTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Current Job Title</label>
+
+
+                                                <select class="form-control" id="ca_CurrentJobTitle" name="ca_CurrentJobTitle" required oninvalid="this.setCustomValidity('Current Job Title is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.JobTitle)
+                                                    {
+                                                        <option @(ViewBag.ca_CurrentJobTitleID == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Total Experience (Years) <span>*</span></label>
+
+
+                                                <select class="form-control" id="ca_TotalRelavantExperience" name="ca_TotalRelavantExperience" required oninvalid="this.setCustomValidity('Experience is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.Experience)
+                                                    {
+                                                        <option @(ViewBag.ca_TotalRelavantExperience == jfn.lm_Id ? "selected" : "") value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="summary">Summary</label>
+                                            <textarea class="form-control" name="ca_Profile" id="ca_Profile">@ViewBag.ca_Profile</textarea>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+
+
+
+                                            <input id="save" name="save" type="submit" value="SAVE" class="pull-right btnsubmit">
+                                            <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                            <br />
+                                            <br />
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+                        <div id="registerformbox2" style="min-height:500px;">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <span><br /><br />You've successfully saved the Profile, proceed to the next tab!</span>
+                                </div>
+                                <div class="pull-right" style="margin-top:200px;">
+                                    <input id="profile_next" onclick="edutab()" type="button" value="SAVE" class="btnsubmit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div id="idmModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>IDEAL CAREE MOVE</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div id="icmform">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Job Title <span>*</span></label>
+
+
+                                        <select class="form-control" id="ic_currentjobtitle" name="ic_currentjobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.JobTitle)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Job Function <span>*</span></label>
+
+                                        <select class="form-control" id="icm_jobfunction" name="icm_jobfunction" required oninvalid="this.setCustomValidity('Job Function is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.FunctionalTitles)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Industry <span>*</span></label>
+                                        <select class="form-control" id="icm_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var ind in ViewBag.Sectors)
+                                            {
+                                                <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Year of experience <span>*</span></label>
+
+                                        <select class="form-control" id="icm_experience" name="icm_experience" required oninvalid="this.setCustomValidity('Experience is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Experience)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Salary Expected<span>*</span></label>
+                                        <select class="form-control" id="icm_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Salary)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group formbtn ">
+                                        <div class="text-left" style="float:left">
+
+                                        </div>
+                                        <div class="pull-right">
+                                            <input id="icm_save" type="submit" value="SAVE" class="btnsubmit">
+                                        </div>
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="icmform2">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <br />
+                                        <span>You've successfully saved Ideal Career Move!</span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div id="skillsModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>SKILLS</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="skillform">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Add Skill <span>*</span></label>
+
+
+                                        <select class="form-control" id="skill_add" placeholder="Add Skill" required oninvalid="this.setCustomValidity('Skill is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Skill)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Level <span>*</span></label>
+                                        <select class="form-control" id="skill_level" required oninvalid="this.setCustomValidity('Skill level is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.SkillLevel)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group formbtn ">
+                                        <div class="text-left" style="float:left">
+                                            <input id="skill_addmore" type="button" value="+ Add More" class="jsaddmore">
+                                        </div>
+                                        <div class="pull-right">
+                                            <input id="skill_save" type="submit" value="SAVE" class="btnsubmit">
+                                        </div>
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div id="skillform2">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <span><br /><br /><br />You've successfully saved the Skill!</span>
+
+
+                                    </div>
+                                </div>
+                                <br style="clear:both" /><br /><br />
+                                <div class="pull-right">
+                                    <button type="button" class="btnsubmit" data-dismiss="modal">Close</button>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div id="LanguageModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>LANGUAGES</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="lnform">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Language <span>*</span></label>
+
+                                        <select class="form-control" id="acclanguage" required oninvalid="this.setCustomValidity('Language is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Languages)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Proficiency <span>*</span></label>
+                                        <select class="form-control" id="accProficiency" required oninvalid="this.setCustomValidity('Profeciency is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.SkillLevel)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group formbtn ">
+                                        <div class="text-left" style="float:left">
+                                            <input id="lang_addmore" type="button" value="+ Add More" class="jsaddmore">
+                                        </div>
+                                        <div class="pull-right">
+                                            <input id="lang_save" type="submit" value="SAVE" class="btnsubmit">
+                                        </div>
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="lnform2" class="col-md-12">
+                                <span>You've successfully saved Language!</span>
+                                <div class="pull-right">
+                                    <button type="button" class="btnsubmit" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div id="CertModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>CERTIFICATIONS</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="cert_form">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Certification / Award Name <span>*</span></label>
+
+
+                                        <select class="form-control" id="cert_title" required oninvalid="this.setCustomValidity('Certification is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Certification)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Certification Authority <span>*</span></label>
+
+                                        <select class="form-control" id="cert_auth" required oninvalid="this.setCustomValidity('Authority is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Select</option>
+                                            @foreach (var jfn in ViewBag.Authority)
+                                            {
+                                                <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>From <span>*</span></label>
+                                        <select class="form-control" id="cert_frommonth" required oninvalid="this.setCustomValidity('Month from is mandatory')" oninput="setCustomValidity('')">
+
+                                            <option value="">Month</option>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <select class="form-control" id="cert_fromyear" required oninvalid="this.setCustomValidity('Year from is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Year</option>
+                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                            {
+                                                <option value="@x">@x</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>To <span>*</span></label>
+                                        <select class="form-control" id="cert_tomonth" required oninvalid="this.setCustomValidity('Month is mandatory')" oninput="setCustomValidity('')">
+
+                                            <option value="">Month</option>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <select class="form-control" id="cert_toyear" required oninvalid="this.setCustomValidity('Year is mandatory')" oninput="setCustomValidity('')">
+                                            <option value="">Year</option>
+                                            @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                            {
+                                                <option value="@x">@x</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="cert_noexpiry" type="checkbox" value="True">
+
+                                        <label class="form-check-label" for="cert_noexpiry">This certification does not expire.</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group formbtn ">
+                                        <div class="text-left" style="float:left">
+                                            <input id="cert_addmore" type="button" value="+ Add More" class="jsaddmore">
+                                        </div>
+                                        <div class="pull-right">
+                                            <input id="cert_save" type="submit" value="SAVE" class="btnsubmit">
+                                        </div>
+                                        <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="cert_form2" class="col-md-12">
+                                <span>You've successfully saved Certification, please proceed to add Languages!</span>
+                                <div class="pull-right">
+                                    <button type="button" class="btnsubmit" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<div id="workhistoryModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">WORK <span>HISTORY</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="registerformbox">
+                                <div class="row" style="min-height:500px;">
+
+                                    <div id="whform">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Job Title <span>*</span></label>
+
+                                                <select class="form-control" id="wh_jobtitle" name="wh_jobtitle" required oninvalid="this.setCustomValidity('Job Title is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.JobTitle)
+                                                    {
+                                                        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group   ui-front">
+                                                <label>Company / Organization <span>*</span></label>
+                                                <input class="form-control" id="wh_company" placeholder="Select" type="text" required oninvalid="this.setCustomValidity('Company is mandatory')" oninput="setCustomValidity('')">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Level (within the organization) <span>*</span></label>
+
+
+                                                <select class="form-control" id="wh_level" name="wh_level" required oninvalid="this.setCustomValidity('Job Level is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.JobLevel)
+                                                    {
+                                                        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="gender">Reporting to <span>*</span></label>
+
+
+                                                <select class="form-control" id="wh_reportingto" name="wh_reportingto" required oninvalid="this.setCustomValidity('Job Level is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.Reportingto)
+                                                    {
+                                                        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Industry <span>*</span></label>
+
+                                                <select class="form-control" id="wh_industry" required oninvalid="this.setCustomValidity('Industry is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var ind in ViewBag.Sectors)
+                                                    {
+                                                        <option value="@ind.lm_Id">@ind.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="currentposition">Function <span>*</span></label>
+                                                <select class="form-control" id="wh_function" required oninvalid="this.setCustomValidity('Function is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var jfn in ViewBag.FunctionalTitles)
+                                                    {
+                                                        <option value="@jfn.lm_Id">@jfn.lm_Value</option>
+                                                    }
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>From <span>*</span></label>
+                                                <select class="form-control" id="wh_frommonth">
+                                                    <option value="">Month</option>
+                                                    <option value="1">January</option>
+                                                    <option value="2">February</option>
+                                                    <option value="3">March</option>
+                                                    <option value="4">April</option>
+                                                    <option value="5">May</option>
+                                                    <option value="6">June</option>
+                                                    <option value="7">July</option>
+                                                    <option value="8">August</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">October</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="wh_fromyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>To <span>*</span></label>
+                                                <select class="form-control" id="wh_tomonth">
+                                                    <option value="">Month</option>
+                                                    <option value="1">January</option>
+                                                    <option value="2">February</option>
+                                                    <option value="3">March</option>
+                                                    <option value="4">April</option>
+                                                    <option value="5">May</option>
+                                                    <option value="6">June</option>
+                                                    <option value="7">July</option>
+                                                    <option value="8">August</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">October</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control" id="wh_toyear">
+                                                    @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                    {
+                                                        <option value="@x">@x</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="wh_currentlywork" type="checkbox" value="True">
+                                                    <label class="form-check-label" for="wh_currentlywork">Currently working here</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+
+                                                <label>Job Location <span>*</span></label>
+                                                <select class="form-control" id="wh_location" required oninvalid="this.setCustomValidity('Gender is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var con in ViewBag.Country)
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="currentposition">Salary <span>*</span></label>
+
+                                                <select class="form-control" id="wh_salary" required oninvalid="this.setCustomValidity('Salary is mandatory')" oninput="setCustomValidity('')">
+                                                    <option value="">Select</option>
+                                                    @foreach (var con in ViewBag.Salary)
+                                                    {
+                                                        <option value="@con.lm_Id">@con.lm_Value</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="summary">Description</label>
+                                                <textarea class="form-control" name="description" id="wh_description" placeholder="Job description, skills used at work etc"></textarea>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group formbtn ">
+                                                <div class="text-left   pull-left">
+                                                    <input id="whaddmore" type="button" value="+ Add More" class="jsaddmore">
+                                                </div>
+                                                <div class="pull-right  ">
+
+                                                    <input name="save" type="submit" value="SAVE" id="whsave" class="pull-right btnsubmit">
+                                                    <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="whform2">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span>You've successfully saved Work History!</span>
+                                            </div>
+                                            <div class="pull-right" style="margin-top:200px;">
+                                                <input id="profile_next" onclick="ittab()" type="button" value="SAVE" class="btnsubmit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<div id="educationModal" class="modal fade" role="dialog">
+
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="eduform">
+                                <form id="educationform" method="post" enctype="multipart/form-data">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>School / University <span>*</span></label>
+                                            <select class="form-control" id="eduSchool" name="eduSchool" required oninvalid="this.setCustomValidity('Name of High School / University')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.University)
+                                                {
+                                                    <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Country of School / University <span>*</span></label>
+                                            <select class="form-control" id="eduSchoolcountry" name="eduSchoolcountry" required oninvalid="this.setCustomValidity('School / University Country is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var con in ViewBag.Country)
+                                                {
+                                                    <option value="@con.lm_Id">@con.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Degree <span>*</span></label>
+
+                                            <select class="form-control" id="eduDegree" name="eduDegree" required oninvalid="this.setCustomValidity('Degree is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.Degree)
+                                                {
+                                                    <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Field of Study / Specialization <span>*</span></label>
+                                            <select class="form-control" id="eduField" name="eduField" required oninvalid="this.setCustomValidity('Field of Study / Specialization is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.Specialization)
+                                                {
+                                                    <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Grade <span>*</span></label>
+                                            <select class="form-control" id="eduGrade" name="eduGrade" required oninvalid="this.setCustomValidity('Grade is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Select</option>
+                                                @foreach (var uni in ViewBag.Grade)
+                                                {
+                                                    <option value="@uni.lm_Id">@uni.lm_Value</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>From <span>*</span></label>
+                                            <select class="form-control" id="edufrommonth" name="edufrommonth" required oninvalid="this.setCustomValidity('From month is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <select class="form-control" id="edufromyear" name="edufromyear" required oninvalid="this.setCustomValidity('From year is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Year</option>
+                                                @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                {
+                                                    <option value="@x">@x</option>
+                                                }
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>To <span>*</span></label>
+                                            <select class="form-control" id="edutomonth" name="edutomonth" required oninvalid="this.setCustomValidity('To month is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Month</option>
+                                                <option value="">Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <select class="form-control" id="edutoyear" name="edutoyear" required oninvalid="this.setCustomValidity('To year is mandatory')" oninput="setCustomValidity('')">
+                                                <option value="">Year</option>
+                                                @for (int x = DateTime.Now.Year; x >= 1970; x--)
+                                                {
+                                                    <option value="@x">@x</option>
+                                                }
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="educurrentlystudy" name="educurrentlystudy" type="checkbox" value="True">
+                                                <label class="form-check-label" for="educurrentlystudy">Currently Studying here</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="summary">Activities / Society Affiliations</label>
+                                            <textarea class="form-control" name="eduActivities" id="eduActivities" placeholder="For example : Toastmasters, Manama Football Club etc"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+
+                                            <label class="pull-left">Media  (Proof of completion ie Academic certificate)</label><br style="clear:both" />
+                                            <label class="custom-file-uploadcer">
+                                                <input type="file" name="uploadmedia" id="uploadmedia" onchange="showuploadcer()" />
+                                                <div id="lbluploadmedia">Upload</div>
+                                            </label>
+
+                                        </div>
+                                        <script>
+                                            $("#uploadmedia").hide();
+                                            function showuploadcer() {
+                                                $("#uploadmedia").show();
+                                                $("#lbluploadmedia").hide();
+                                            };
+                                        </script>
+                                    </div>
+
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group formbtn ">
+                                            <div class="text-left" style="float:left">
+                                                <input name="eduaddmore" id="eduaddmore" type="submit" value="+ Add More" class="jsaddmore">
+                                            </div>
+                                            <div class="pull-right">
+                                                <input name="save" type="submit" value="SAVE" id="edusave" class="btnsubmit">
+
+                                            </div>
+                                            <div style="margin:13px 5px 0 0;font-size:13px; float:right"><span>* Mandatory Fields</span></div>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+
+                            <div id="eduform2" style="min-height:500px;">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <span><br /><br />You've successfully saved the Education details!</span>
+                                    </div>
+                                    <div class="pull-right" style="margin-top:200px;">
+
+                                        <input name="close" type="submit" data-dismiss="modal" value="Close" class="btnsubmit">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<div class="modal-lg center-block">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle"><span>EDUCATION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="searchformsec">
+
+                    </div>
+                    <br style="clear:both" />
+                    <br style="clear:both" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>*@
+</div>
+
+<div id="alertModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle">JOB <span>ALERTS</span></h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="profilePicModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>PROFILE</span> PIC</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("CandidatePhoto", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-md-8"><input class="form-control" id="file" name="file" placeholder="Attach Logo" type="file" required></div>
+                        <div class="col-md-4"><input name="save" type="submit" value="Upload"></div>
+                    }
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="CVModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>Curriculum</span> Vitae</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("UploadCV", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-md-8"><input class="form-control" id="uploadcv" name="uploadcv" placeholder="Attach CV" type="file" required></div>
+                        <div class="col-md-4"><input name="save" type="submit" value="Upload"></div>
+                    }
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<style>
+    .ui-autocomplete {
+        z-index: 100;
+    }
+</style>
+
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<div id="redeemModal" class="modal fade" role="dialog">
+
+    <div class="modal-lg center-block">
+        <div class="registerformbox">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="mainpagetitle">Credit <span>REDEMPTION</span></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div>
+                            <p style="text-align:center">Are you sure you want to redeem 1 credit to unlock the candidate contact?</p>
+                            <div class="postjobntn">
+
+                                <a id="btnNo" data-dismiss="modal" blank" href="#" style="float:right" class="graybtn right">CANCEL</a>
+                                <a id="btnYes" href="#" class="redbgbtn" style="float:right">CONFIRM</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>
+
+<script>
+
+    $("#registerformbox2,#skillform2,#icmform2,#eduform2,#whform2,#lnform2,#hoform2,#cert_form2").hide();
+
+
+    $("#icm_jobfunction").autocomplete({
+        source: jobtitles
+    });
+
+    $("#skill_add").autocomplete({
+        source: skillsets
+    });
+
+    $("#wh_jobtitle,#ca_CurrentJobTitle,#ic_currentjobtitle").autocomplete({
+        source: jobtitles
+    });
+
+    $("#acclanguage").autocomplete({
+        source: languages
+    });
+    $("#eduSchool,#profile_University,#proUniversity").autocomplete({
+        source: availableTags
+    });
+
+    $("#eduDegree").autocomplete({
+        source: unidegrees
+    });
+
+    $("#eduField").autocomplete({
+        source: eduspecialities
+    });
+    $("#icm_save").click(function () {
+        idelcareermove();
+        $("#icmform").hide();
+        $("#icmform2").show();
+    });
+    $("#skill_save").click(function () {
+        addskill()
+        $("#skillform").hide();
+        $("#skillform2").show();
+
+    });
+    $("#skill_addmore").click(function () {
+        addskill();
+        $('#skill_add').val("");
+
+    });
+
+    $("#lang_save").click(function () {
+        $("#lnform").hide();
+        $("#lnform2").show();
+        addLanguages();
+
+    });
+    $("#lang_addmore").click(function () {
+        addLanguages();
+        $('#acclanguage').val('');
+        $('#accProficiency').val('Beginner')
+
+    });
+    $("#cert_addmore").click(function () {
+
+        if ($('#cert_title').val() == "" || $('#cert_auth').val() == "" || $('#cert_frommonth').val() == "" || $('#cert_fromyear').val() == "" || $('#cert_tomonth').val() == "" || $('#cert_toyear').val() == "") {
+            alert('All fields are mandatory');
+        }
+        else {
+            addCertification();
+            $('#cert_title').val('');
+            $('#cert_auth').val('');
+            $("#cert_frommonth").val('');
+            $("#cert_fromyear").val('');
+            $("#cert_tomonth").val('');
+            $("#cert_toyear").val('');
+        }
+
+    });
+    $("#cert_save").click(function () {
+
+        if ($('#cert_title').val() == "" || $('#cert_auth').val() == "" || $('#cert_frommonth').val() == "" || $('#cert_fromyear').val() == "" || $('#cert_tomonth').val() == "" || $('#cert_toyear').val() == "") {
+            alert('All fields are mandatory');
+
+        }
+        else {
+            addCertification();
+            $("#cert_form").hide();
+            $("#cert_form2").show();
+        }
+
+    });
+
+    $("#whaddmore").click(function () {
+        addWorkHistory();
+        $('#wh_jobtitle').val("");
+        $('#wh_company').val("");
+        $('#wh_location').val("");
+        $('#wh_level').val("");
+        $('#wh_reportingto').val("");
+        $("#wh_frommonth").val('');
+        $("#wh_tomonth").val('');
+        $("#wh_fromyear").val('');
+        $("#wh_toyear").val('');
+        $('#wh_description').val("");
+        $('#wh_salary').val("");
+        $('#wh_industry').val("");
+        $('#currentposition').val("");
+
+
+    });
+    $("#whsave").click(function () {
+        $("#whform").hide();
+        $("#whform2").show();
+        addWorkHistory();
+        window.location.href = "JobSeekerProfile";
+    });
+
+    function addWorkHistory() {
+        if ($('#wh_jobtitle').val() != "") {
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerWorkHistory",
+                data: {
+                    JobTitleID: $('#wh_jobtitle').val(), Company: $('#wh_company').val(), JobLevelID: $('#wh_level').val(), ReportingToID: $('#wh_reportingto').val(), IndustryID: $('#wh_industry').val(), FunctionID: $('#wh_function').val(), FromMonth: $('#wh_frommonth').val(), FromYear: $('#wh_fromyear').val(), ToMonth: $('#wh_tomonth').val(), ToYear: $('#wh_toyear').val(), CurrentlyWorkingHere: $('#wh_currentlywork').val(), JobLocationID: $('#wh_location').val(), SalaryID: $('#wh_salary').val(), Description: $('#wh_description').val()
+                },
+                success: function (data) {
+                    alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#whform2").hide();
+            $("#whform").show();
+        }
+    }
+
+    function addCertification() {
+
+        $("#cert_noexpiry").val()
+
+
+        var cert_noexpiry = "";
+        if ($("#cert_noexpiry").is(':checked')) {
+            // alert('  selected');
+            cert_noexpiry = "true";
+        }
+        else {
+            // alert('not selected');
+            cert_noexpiry = "false";
+        }
+
+        $.ajax({
+            method: "POST",
+            url: "JobSeekerCertification",
+            data: {
+                CertificationID: $('#cert_title').val(), AuthorityID: $('#cert_auth').val(), FromMonth: $('#cert_frommonth').val(), FromYear: $('#cert_fromyear').val(), ToMonth: $('#cert_tomonth').val(), ToYear: $('#cert_toyear').val(), DoNotExpire: cert_noexpiry
+            },
+            success: function (data) {
+                window.location.href = "JobSeekerProfile";
+            },
+            error: function () {
+                alert("Couldn't Save, check the input values!");
+            }
+        });
+
+    }
+
+    function addskill() {
+        if ($('#skill_add').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobseekerSkills",
+                data: { SkillID: $('#skill_add').val(), SkillLevelID: $('#skill_level').val()},
+                success: function (data) {
+                    $("#ot_itskills").val('TRUE');
+                    getCandidateSkills();
+                    alert('Successfully added!');
+
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+
+                }
+            });
+
+        }
+        else {
+            alert('Skill is mandatory');
+        }
+    }
+    function idelcareermove() {
+            $.ajax({
+                method: "POST",
+                url: "JobseekerCareerMove",
+                data: { IndustryID: $('#icm_industry').val(), JobTitleID: $('#ic_currentjobtitle').val(), FunctionID: $('#icm_jobfunction').val(), ExpectedSalaryID: $('#icm_salary').val(), ExperienceID: $('#icm_experience').val() },
+                success: function (data) {
+                    $("#ot_icm").val('TRUE');
+                    window.location.href = "JobSeekerProfile";
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                    $("#ot_icm").val('FALSE');
+                }
+            });
+    }
+
+
+    function delEDU(cawhid) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteEDU/")" + cawhid,
+            success: function (data) {
+                alert('Education Deleted!');
+                window.location.href = "@Url.Content("~/JobSeekerProfile")";
+            },
+            error: function () {
+                alert('No Education to delete!');
+            }
+        });
+    }
+
+    function delWH(cawhid) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteWH/")" + cawhid,
+            success: function (data) {
+                alert('Work History Deleted!');
+                window.location.href = "@Url.Content("~/JobSeekerProfile")";
+            },
+            error: function () {
+                alert('No Work History to delete!');
+            }
+        });
+    }
+
+
+    function delCER(cacerid) {
+
+
+        $.ajax({
+            url: "@Url.Content("~/DeleteCER/")" + cacerid,
+            success: function (data) {
+                alert('Ideal Caree Move Deleted!');
+                window.location.href = "@Url.Content("~/JobSeekerProfile")";
+            },
+            error: function () {
+                alert('No Ideal Caree Move to delete!');
+            }
+        });
+    }
+
+        function delIDC(caidcid) {
+
+
+            $.ajax({
+                url: "@Url.Content("~/DeleteICM/")" + caidcid,
+                success: function (data) {
+                   alert('Ideal Caree Move Deleted!');
+                    window.location.href = "@Url.Content("~/JobSeekerProfile")";
+                },
+                error: function () {
+                    alert('No Ideal Caree Move to delete!');
+                }
+            });
+        }
+
+        function deletejsSkills(caskillid) {
+
+
+            $.ajax({
+                url: "@Url.Content("~/DeleteCandidateSkill/")" + caskillid,
+                success: function (data) {
+                    alert('Skill deleted!');
+                    getCandidateSkills();
+                },
+                error: function () {
+                    alert('No skills to delete!');
+                }
+            });
+        }
+
+
+        function deletejsLanguage(caLanguageid) {
+
+
+            $.ajax({
+                url: "@Url.Content("~/DeleteCandidateLanguage/")" + caLanguageid,
+                success: function (data) {
+                    alert('Language deleted!');
+                    getJobSeekerLanguages();
+                },
+                error: function () {
+                    alert('No Language to delete!');
+                }
+            });
+        }
+        function getCandidateSkills() {
+            var contenthtml = '';
+            $.ajax({
+                url: "@Url.Content("~/getJobSeekerSkills/" + Session["Ca_ID_current"] + "")",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Skills + '</div><div class="skillleveltags">' + data[key].SkillLevel + '&nbsp;&nbsp;</div></div>';
+                    });
+                    $('#SkillsAdded').html(contenthtml);
+                },
+                //error: function () {
+                //    alert('No skills added yet!');
+                //}
+            });
+
+        }
+
+
+        function getJobSeekerLanguages() {
+            var contenthtml = '';
+            $.ajax({
+                url: "@Url.Content("~/getJobSeekerLanguages/" + Session["Ca_ID_current"] + "")",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        contenthtml += '<div class="skilloutertag"><div class="skilltags">' + data[key].Language + '</div><div class="skillleveltags">' + data[key].Proficiency + '&nbsp;&nbsp;</div></div>';
+                    });
+                    $('#LanguagesAdded').html(contenthtml);
+                },
+                error: function () {
+                    alert('No skills added yet!');
+                }
+            });
+
+        }
+    function addLanguages() {
+        if ($('#acclanguage').val() != "") {
+
+
+            $.ajax({
+                method: "POST",
+                url: "JobSeekerLanguage",
+                data: {LanguageID: $('#acclanguage').val(), ProficiencyID: $('#accProficiency').val()},
+                success: function (data) {
+                    $("#ot_accomplishment").val('TRUE');
+                    //alert('Successfully added!');
+                    getJobSeekerLanguages();
+                },
+                error: function () {
+                    alert("Couldn't Save, check the input values!");
+                }
+            });
+
+        }
+        else {
+            alert('All fields are mandatory');
+            $("#lnform2").hide();
+            $("#lnform").show();
+        }
+
+    }
+
+        $(document).ready(function () {
+            getCandidateSkills();
+            getJobSeekerLanguages();
+        });
+
+</script>
+
+
+<script>
+
+
+        $(document).ready(function () {
+
+            $("#AccountForm").submit(function (e) {
+                e.preventDefault();
+                var formdata = new FormData(this);
+                $.ajax({
+                    method: "POST",
+                    url: "UpdateCandidateAccount",
+                    data: formdata,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (data) {
+                        alert('Successfully added!');
+                        $("#AccountFormbox").hide();
+                        $("#AccountFormx2").show();
+                        window.location.href = "JobSeekerProfile";
+
+                    },
+                    error: function () {
+                        alert("Couldn't Save, check the input values!");
+                    }
+                });
+            });
+
+
+
+
+
+            $("#mainform").submit(function (e) {
+                e.preventDefault();
+                var formdata = new FormData(this);
+
+
+
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "RegisterCandidate",
+                    data: formdata,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (data) {
+                        alert('Successfully added!');
+                        $("#registerformbox").hide();
+                        $("#registerformbox2").show();
+
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Couldn't Save, check the input values!");
+                    }
+                });
+            });
+            $("#educationform").submit(function (e) {
+                e.preventDefault();
+                var edudata = new FormData(this);
+
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "JobSeekerEducation",
+                    data: edudata,
+                    mimeTypes: "multipart/form-data",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (data) {
+                        alert('Successfully added!');
+
+                        if ($(document.activeElement).attr('id') == 'eduaddmore') {
+                            $("#eduSchool").val('');
+                            $("#eduSchoolcountry").val('');
+                            $("#eduDegree").val('');
+                            $("#eduField").val('');
+                            $("#eduGrade").val('');
+                            $("#eduDescription").val('');
+                            $("#eduActivities").val('');
+                            $("#edufrommonth").val('');
+                            $("#edutomonth").val('');
+                            $("#edufromyear").val('');
+                            $("#edutoyear").val('');
+                            $("#uploadmedia").val('');
+                        }
+                        else {
+                            $("#eduform").hide();
+                            $("#eduform2").show();
+                            $("#ot_education").val('TRUE');
+                            whtab();
+                        }
+
+
+                    },
+                    error: function () {
+                        alert("Couldn't Save, check the input values!");
+                    }
+                });
+            });
+
+            $("#btnskills").click(function () {
+                if ($("#Skills").val() != "" && $("#SkillLevel").val() != "") {
+                    $.ajax({
+                        method: "POST",
+                        url: "AddCandidateSkill2",
+                        data: { Ca_ID: $("#Ca_ID").val(), Skills: $("#Skills").val(), SkillLevel: $("#SkillLevel").val() },
+                        success: function (data) {
+                            window.location.href = "JobSeekerProfile";
+                        },
+                        error: function () {
+                            alert("Sorry unable to add!");
+                        }
+                    })
+
+                }
+                else {
+                    alert("Skills and Skill Levels are mandatory");
+                }
+            });
+
+
+
+
+        });
+
+        $("#btnexperince").click(function () {
+            if ($("#JobTitle").val() != "" && $("#Experience").val() != "") {
+                $.ajax({
+                    method: "POST",
+                    url: "AddCandidateWorkHistory",
+                    data: { Ca_ID: $("#Ca_ID").val(), JobTitle: $("#JobTitle").val(), Company: $("#Company").val(), Experience: $("#Experience").val(), City: $("#City").val(), Country: $("#Country").val() },
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to add!");
+                    }
+                })
+
+            }
+            else {
+                alert("JobTitle and Experience are mandatory");
+            }
+        });
+
+
+        $("#btndegree").click(function () {
+            if ($("#Degree").val() != "" && $("#Major").val() != "") {
+                $.ajax({
+                    method: "POST",
+                    url: "AddCandidateDegree",
+                    data: { Ca_ID: $("#Ca_ID").val(), DegreeLevel: $("#Degree").val(), MajorSubject: $("#Major").val(), Institute: $("#Institute").val(), Grade: $("#Grade").val(), State: $("#State").val(), c: $("#c").val() },
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to add!");
+                    }
+                })
+
+            }
+            else {
+                alert("Degree and Major are mandatory");
+            }
+        });
+
+        $("#btnProfileSummary").click(function () {
+            if ($("#FirstName").val() != "" && $("#LastName").val() != "") {
+                $.ajax({
+                    method: "POST",
+                    url: "UpdateCandidateProfileSummary",
+                    data: { Ca_ID: $("#Ca_ID").val(), ca_FirstName: $("#FirstName").val(), ca_Surname: $("#LastName").val(), ca_DateOfBirth: $("#dateofbirth").val(), ca_Gender: $("#Gender").val(), ca_PhoneMobile: $("#Phone").val(), ca_EmailAddress: $("#Email").val(), ca_lm_EducationLevel: $("#EducationLevel").val(), ca_SalaryFrom: $("#CurrentSalary").val(), ca_Profile: $("#summary").val() },
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to add!");
+                    }
+                })
+
+            }
+            else {
+                alert("Degree and Major are mandatory");
+            }
+        });
+
+
+        function delskill(caskillid) {
+
+            var r = confirm("Are you sure to delete the skill");
+
+            if (r == true) {
+                urlx = "DeleteCandidateSkill/" + caskillid + "/"
+
+                $.ajax({
+                    type: 'GET',
+                    url: urlx,
+                    dataType: "json",
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to delete!");
+                    }
+                });
+            }
+        }
+
+
+
+        function delExperince(caExperince) {
+
+            var r = confirm("Are you sure to delete this work experince");
+
+            if (r == true) {
+                urlx = "DeleteCandidateExperince/" + caExperince + "/"
+
+                $.ajax({
+                    type: 'GET',
+                    url: urlx,
+                    dataType: "json",
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to delete!");
+                    }
+                });
+            }
+        }
+
+        function delDegree(CaEdu_ID) {
+
+            var r = confirm("Are you sure to delete this Degree");
+
+            if (r == true) {
+                urlx = "DeleteCandidateDegree/" + CaEdu_ID + "/"
+
+                $.ajax({
+                    type: 'GET',
+                    url: urlx,
+                    dataType: "json",
+                    success: function (data) {
+                        window.location.href = "JobSeekerProfile";
+                    },
+                    error: function () {
+                        alert("Sorry unable to delete!");
+                    }
+                });
+            }
+        }
+
+
+        $(function () {
+            $("#wh_company").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "getABCcompanies/" + request.term,
+                        success: function (data) {
+                            var transformed = $.map(data, function (el) {
+                                return {
+                                    label: el.Company,
+                                    id: el.id
+                                };
+                            });
+                            response(transformed);
+                        },
+                        error: function () {
+                            response([]);
+                        }
+                    });
+                }
+            });
+        });
+       $("#btnYes").click(function (e) {
+        e.preventDefault();
+       // alert('Yes clicked');
+        $.ajax({
+            method: "POST",
+            url:  "@Url.Action("RedeemCredit", "Home")",
+            data: { Ca_ID: $("#Ca_ID").val() },
+            success: function (data) {
+                   // console.log(JSON.stringify(data));
+                    // window.location.href = "JobSeekerProfile";
+                    $('#divContactLock').fadeOut();
+                    $('#divContactUnlock').fadeIn();
+                    $('#btnUnlock').html('<i  class="fa fa-unlock" style="color: green;"></i>  Contact');
+                    $('#redeemModal').modal('hide');
+                },
+            error: function () {
+                    alert("Sorry unable to redeem contact!");
+                }
+            })
+
+
+    });
+
+</script>

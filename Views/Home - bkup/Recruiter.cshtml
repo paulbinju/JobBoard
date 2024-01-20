@@ -1,0 +1,264 @@
+﻿
+@{
+    ViewBag.Title = "Recruiter";
+}
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg sticky">
+        <div class="toplogosection ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/images/logo.png")" alt="" /></a></div>
+                        <div id="cssmenu" class="menupadd">
+                            <ul>
+                                <li class="active"><a href="@Url.Content("~/Recruiter")">DASHBOARD</a></li>
+                                <li><a href="@Url.Content("~/CandidateSearch")">CANDIDATE SEARCH</a></li>
+                                <li><a href="@Url.Content("~/ManageVacancies")">MANAGE VACANCIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="notiuserdet">
+                            <ul>
+                                <li>
+                                    
+                                    @Html.Partial("_recruiterlogin")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="row mainrow">
+            <div class="col-sm-3">
+                <div class="leftpanelsec">
+                    <div class="userproimgsec  fade-1">
+                        <div class="userimgrec">
+                            <a href="#"><img src="@ViewBag.Logo" alt="" style="margin-top:20%" /></a>
+                            <div class="userpronamerec"> <span>@ViewBag.Name</span> @ViewBag.Company </div>
+                        </div>
+                        <div class="usernamegraybg">
+                            <div class="uercon">+973 @ViewBag.Phone </div>
+                            <div class="uercon">
+                                <a href="mailto:@ViewBag.Email">@ViewBag.Email</a>
+                                @*<div class="proediticon"><a href="#"><img src="@Url.Content("~/images/white-edit-icon.png")" alt="" /></a></div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboardwhiteboxshadow paynowpostjob  fade-2">
+                        <div class="paynowjoblist">
+                            <ul>
+                                <li>Company Logo<a  href="#" data-toggle="modal" data-target="#profilePicModal" class="editiconcat"><img src="@Url.Content("~/images/gray-edit-icon.png")" alt="" /></a></li>
+                                <li>Proﬁle summary<a  href="#" data-toggle="modal" data-target="#profileSummary" class="editiconcat"><img src="@Url.Content("~/images/gray-edit-icon.png")" alt="" /></a></li>
+                                
+                            </ul>
+                        </div>
+                        <div class="postjobntn"> <a href="" class="greenbgbtn">PAY NOW</a> <a href="@Url.Content("~/PostAJob")" class="redbgbtn">POST A JOB</a> </div>
+                    </div>
+                    <div class="moneytran-img  fade-3"> <a href="#"><img src="@Url.Content("~/images/money-transfer-img.jpg")" alt="" /></a> </div>
+                    <div class="ingrambox  fade-1">
+                        <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1">@@jobs4bahrainis</a>
+                        <script src="https://instawidget.net/js/instawidget.js?u=37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1&width=285px"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="homesearchsection  fade-2">
+                    <h1 class="mainpagetitle Padd15"><span>DASH</span>BOARD</h1>
+                    <div class="searchformsec">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Company: @ViewBag.Company
+                            </div>
+                           <div style="font-size:13px;">
+                               <div class="col-md-4">
+                                   Telephone: @ViewBag.CompanyPhone
+                               </div>
+                               <div class="col-md-4">
+                                   Address: @ViewBag.PostalAddress
+                               </div>
+                               <div class="col-md-4">
+                                   Last Updated: @ViewBag.LastUpdated.ToString("dd-MMM-yyyy")
+                               </div>
+
+
+                               <div class="col-md-4">
+                                   Contact Person: @ViewBag.Name
+                               </div>
+                               <div class="col-md-4">
+                                   Email: @ViewBag.Email
+                               </div>
+                               <div class="col-md-4">
+                                   Mobile: @ViewBag.Phone
+                               </div>
+                           </div>
+                        </div>
+                        <br />
+                        <h4 style="margin-left:5px;font-size:14px;font-weight:bold">Statistics</h4>
+                        <div class="row"  style="font-size:13px;">
+                            @{ int itemcount = 0; }
+                            @foreach (var s in ViewBag.Statistics)
+                            {
+                            <div class="col-md-4">
+                                @switch(itemcount) {
+                                case 0 :{
+                                <span>Total Jobs: @s</span>
+                                            break;
+                                        }
+                                    case 1 :{
+                                <span>Non-Expired Jobs: @s</span>
+                                            break;
+                                        }
+                                    case 2 :{
+                                <span>Expired Jobs: @s</span>
+                                            break;
+                                        }
+                                    case 3 :{
+                                <span>Non-Deleted Jobs: @s</span>
+                                            break;
+                                        }
+                                    case 4 :{
+                                <span>Deleted Jobs: @s</span>
+                                            break;
+                                        }
+                                    case 5 :{
+                                <span>Total Job Applications: @s</span>
+                                            break;
+                                        }
+                                }
+
+
+
+                               
+                            </div>
+                                itemcount++;
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-middsec">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="dashboardwhiteboxshadow tabacc-sec  fade-2">
+                                <ul class="accordion-tabs-minimal">
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link is-active">MY <span>VACANCIES</span></a>
+                                        <div class="tab-content">
+                                         
+                                            @foreach (var lj in ViewBag.LatestJobs)
+                                            {
+                                                
+                                                    <div class="listwhitebox tablistsec">
+
+                                                        <div class="jobcomnamelogo">
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-md-push-8">
+                                                                    <div class="comlogo"><a href="#"><img src="@lj.LogoURL" alt=""></a></div>
+                                                                </div>
+                                                                <div class="col-md-8 col-md-pull-4">
+                                                                    <div class="combydata">
+                                                                        <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                                                        <div class="comdet"> @lj.vc_Description ... </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="listtimelocation">
+                                                            <ul>
+                                                                <li><img src="images/latestjob-icon-1.png" alt=""> @lj.postedsince days ago</li>
+                                                                <li><img src="images/latestjob-icon-2.png" alt=""> @lj.co_Name</li>
+                                                                <li><img src="images/latestjob-icon-3.png" alt=""> @lj.vc_Location</li>
+                                                                <li><img src="images/latestjob-icon-4.png" alt=""> Full Time</li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                
+                                            }
+                                            
+                                        </div>
+                                    </li>
+                                    <li class="tab-header-and-content">
+                                        <a href="#" class="tab-link"><span>RECOMMENDED</span> CANDIDATES</a>
+                                        <div class="tab-content">
+                                            <div class="vacancieslist">
+                                                <ul>
+
+                                                    @foreach(var js in ViewBag.jobseekers) { 
+
+                                                    <li>
+                                                        <div class="vacanciestuserimg"><a href="#"><img style="width:100px;height:100px;" src="@js.ProfilePic" alt=""  onerror="this.src='@Url.Content("~/images/jobseeker.png")';"  /></a></div>
+                                                        <div class="vacanciestdet">
+                                                            <h4><a href="#">@js.ca_FirstName @js.ca_Surname</a></h4>
+                                                            <span>@js.ca_EmailAddress</span> +973 @js.ca_PhoneMobile<br />
+                                                            Gender: @js.ca_Gender &nbsp;&nbsp;&nbsp;Age: @js.Age
+                                                        </div>
+                                                    </li>
+                                                    }
+                                                </ul>
+                                                 
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feturedsectors-list dashboardwhiteboxshadow  fade-3">
+                                <h1 class="mainpagetitle Padd15"><span>FEATURED</span> SECTORS</h1>
+                                <div class="feturlist">
+                                    <ul>
+                                        @{int count = 0;}
+                                        @foreach (var jsc in ViewBag.lstjobsectorcount)
+                                        {
+                                            if (count < 18)
+                                            {
+                                                <li><a href="@Url.Content("~/SectorJobs/"+jsc.SectorID+"/"+jsc.SectorURL)">@jsc.Sector</a></li>
+                                            }
+                                            count++;
+                                        }
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="profilePicModal" class="modal fade" role="dialog">
+    <div class="modal-lg center-block">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="mainpagetitle"><span>PROFILE</span> PIC</h1>
+            </div>
+            <div class="modal-body">
+                <div class="searchformsec">
+
+                    @using (Html.BeginForm("CandidatePhoto", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-md-8"><input class="form-control" id="file" name="file" placeholder="Attach Logo" type="file" required></div>
+                        <div class="col-md-4"><input name="save" type="submit" value="Upload"></div>
+                    }
+
+                </div>
+                <br style="clear:both" />
+                <br style="clear:both" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

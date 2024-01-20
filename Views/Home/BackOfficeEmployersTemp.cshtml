@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Employers";
+
+}
+
+<style>
+    #cssmenu > ul > li.has-sub > a::after {
+        top: 60px;
+        text-align: left;
+    }
+
+    label span {
+        color: red;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<div class="menutoprel dashboardmenu">
+    <div class="topheaderbg">
+        <div class="toplogosection fade-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"><div class="toplogo "><a href="@Url.Content("~/")"><img src="@Url.Content("~/")images/jobs4bahrainislogo.png" alt="" /></a></div></div>
+                    <div class="col-md-11 pull-left">
+
+                        @Html.Partial("_BOmenu")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+
+        <div class="col-md-12 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+            <h1 class="mainpagetitle Padd15 centertext"> <span>EMPLOYERS</span> INTERESTED</h1>
+
+
+
+            <div class="col-md-12 centertext fade-2 searchformsec">
+                <div style="width:100%;overflow:scroll">
+                    <table class="table-bordered text-left" style="width:1300px;padding:2px 5px;font-size:12px">
+                        <tr>
+                            <th style="padding:2px 5px">No.</th>
+                            <th style="padding:2px 5px">Company Name</th>
+                            <th style="padding:2px 5px">First Name</th>
+                            <th style="padding:2px 5px">Last Name</th>
+                            <th style="padding:2px 5px">Email Address</th>
+                            <th style="padding:2px 5px">Phone No.</th>
+                            <th style="padding:2px 5px">CR No.</th>
+                            <th style="padding:2px 5px">PO Box</th>
+                            <th style="padding:2px 5px">Contact Time</th>
+                            <th style="padding:2px 5px">Reg. On</th>
+                        </tr>
+                        @{ int count = 0; }
+                        @foreach (var can in ViewBag.EmployersTemp)
+                    {
+                        count++;
+                            <tr>
+                                <td style="padding:2px 5px">@count</td>
+                                <td style="padding:2px 5px">@can.CompanyName</td>
+                                <td style="padding:2px 5px">@can.FirstName</td>
+                                <td style="padding:2px 5px">@can.LastName</td>
+                                <td style="padding:2px 5px">@can.Email</td>
+                                <td style="padding:2px 5px">@can.Phone</td>
+                                <td style="padding:2px 5px">@can.CompanyCR</td>
+                                <td style="padding:2px 5px">@can.POBox</td>
+                                <td style="padding:2px 5px">@can.ContactTime</td>
+                                <td style="padding:2px 5px">@can.DOC.ToString("dd-MMM-yyyy")</td>
+
+                            </tr>
+                    }
+                    </table>
+
+                </div>
+
+            </div>
+
+            <br />
+            <hr />
+
+            <br />
+            <br />
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

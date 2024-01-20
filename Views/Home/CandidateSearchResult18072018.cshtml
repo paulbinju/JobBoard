@@ -1,0 +1,356 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@*@using PagedList.Mvc.Common;*@
+@model IEnumerable<Jobs4Bahrainis.Models.CandidateSearchResultModel>  
+@{
+    ViewBag.Title = "JobSeeker";
+}
+@*@Html.Partial("_menu")*@
+
+@{
+    Html.RenderAction("menulogin");
+}
+<style>
+    .dashboard-middsec .col-md-12 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .pagination-container{
+        text-align:left;
+    }
+    .searchformsec a:hover {
+        color: #606163;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+@*<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+     
+                <div class="col-sm-12">
+                    <div class="homesearchsection wow fade-2">
+                        <h1 class="mainpagetitle Padd15">JOB <span>SEARCH</span></h1>
+                        <div class="searchformsec">
+
+                            <div class="row">
+                                @using (Html.BeginForm("Search", "Home"))
+                                {
+
+                                    <div class="col-sm-5">
+                                        <input name="keywords" type="text" required placeholder="Search keywords" id="keywords" class="skill-search-icon">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select name="sector" required>
+                                            <option value="0">Any Sector</option>
+                                            @foreach (var jsc in ViewBag.lstjobsectorcount)
+                                            {
+                                                <option value="@jsc.SectorID">@jsc.Sector (@jsc.Total)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select name="jobtype" required>
+                                            <option value="0">Any Job type</option>
+                                            <option>Permenant</option>
+                                            <option>Contract</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2 text-center">
+                                        <input name="" type="submit" value="Search">
+
+                                        <div style="margin-top:8px;"><a href="@Url.Content("~/JobSearch")" class="advsearch">Advanced Search</a></div>
+                                    </div>
+                                }
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="dashboard-middsec">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="dashboardwhiteboxshadow tabacc-sec wow fade-2">
+                                    <h1 class="mainpagetitle Padd15"><span>SEARCH</span> RESULTS</h1>
+                                    <div class="tab-content" style="padding:15px 15px 25px 15px;">
+                                        @{ int count = 0; }
+                                        @foreach (var lj in ViewBag.LatestJobs)
+                                        {
+                                            if (count <= 5)
+                                            {
+                                                <div class="listwhitebox tablistsec">
+
+                                                    <div class="jobcomnamelogo">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-md-push-8">
+                                                                <div class="comlogo"><a href="#"><img   src="@lj.LogoURL" alt=""></a></div>
+                                                            </div>
+                                                            <div class="col-md-8 col-md-pull-4">
+                                                                <div class="combydata">
+                                                                    <h4><a href="@Url.Content("~/JobDescription/" + lj.vc_id + "/" + lj.jobURL)">@lj.vc_Title</a></h4>
+                                                                    <div class="comdet"> @lj.vc_Description ... </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listtimelocation">
+                                                        <ul>
+                                                            <li><img src="@Url.Content("~/images/latestjob-icon-1.png")" alt=""> @lj.postedsince days ago</li>
+                                                            <li><img src="@Url.Content("~/images/latestjob-icon-2.png")" alt=""> @lj.co_Name</li>
+                                                            <li><img src="@Url.Content("~/images/latestjob-icon-3.png")" alt=""> @lj.vc_Location</li>
+                                                            <li><img src="@Url.Content("~/images/latestjob-icon-4.png")" alt=""> Full Time</li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            }
+                                            count++;
+
+
+                                        }
+                                        @if (count == 0)
+                                        {
+
+                                            <div style="height:649px;padding:30px;">
+                                                <br />
+                                               
+                                       <span> Sorry no match found, try again!</span>
+                                            </div>
+                                        }
+
+                                        @if (Session["CandidateID"] == null && Session["RecruiterID"] == null)
+                                        {
+                                            <p>
+                                                @Html.PagedListPager((PagedList.IPagedList)ViewBag.LatestJobs, page => Url.Action("../Login/-/Search2-" + ViewBag.keywords+ "-0-2"), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                
+                                            <p>
+                                                @Html.PagedListPager((PagedList.IPagedList)ViewBag.LatestJobs, page => Url.Action("../Search2/" + ViewBag.keywords + "/" + ViewBag.sector, new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                                            </p>
+                                        }
+
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3" style="padding:10px">
+                                    <h1 class="mainpagetitle Padd15"><span>FEATURED</span> SECTORS</h1>
+                                    <div class="feturlist">
+                                        <ul>
+                                            @{ count = 0;}
+                                            @foreach (var jsc in ViewBag.lstjobsectorcount)
+                                            {
+                                                if (count < 24)
+                                                {
+                                                    <li><a href="@Url.Content("~/SectorJobs/"+jsc.SectorID+"/"+jsc.SectorURL)">@jsc.Sector</a></li>
+                                                }
+                                                count++;
+                                            }
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="dashboardwhiteboxshadow fade-1 " style="text-align:center; padding:5px 0 0 0">
+
+                                    <a href="https://instawidget.net/v/user/jobs4bahrainis" id="link-37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1">@@jobs4bahrainis</a>
+                                    <script src="https://instawidget.net/js/instawidget.js?u=37f356537903be0388404109f9149070f39842d207f0cd5a3bbaeca580c972b1&width=370px"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       @Html.Partial("_topemployers")
+    </div>
+</div>*@
+
+<div class="dashboardsection MT30">
+    <div class="container">
+        <div class="leftrightpanel">
+            <div class="row mainrow">
+
+                <div class="col-sm-12">
+                  
+                    <div class="dashboard-middsec">
+                        <div class="row">
+                            <div class="homesearchsection wow fade-2 ">
+                                <h1 class="mainpagetitle Padd15">SEARCH <span>RESULTS</span></h1>
+                                <div class="searchformsec">
+                                    @{ 
+                                        if (Model != null && Model.Count() > 0)
+                                        {
+                                            foreach (var js in Model)
+                                            {
+                                        <a href="@Url.Action("CandidateSearchDetail", "Home", new { ca_id = js.ca_Id })">
+                                            
+                                            <div class="listwhitebox tablistsec">
+
+                                                <div class="row" style="font-size:15px;">
+                                                    <div class="col-md-12">
+                                                        <div class="candidatesearchimage" style="float:left;width:100px">
+                                                            <img style="width:100px;height:100px;" src="@js.LogoURL" alt="" onerror="this.src='@Url.Content("~/images/jobseeker.png")';" />
+                                                        </div>
+                                                        <div class="candidatesearchdet" style="margin-left:120px">
+                                                            @*<div class="row">
+                                                                <div class="col-md-8" style="font-size:18px;"><b>@js.ca_FullName</b></div>
+                                                                                                                <div class="col-md-2 postjobntn"><a target="_blank" href="@ViewBag.CVpath" class="redbgbtn">VIEW CV</a> </div>
+                                                                    </div>
+                                                            *@
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="font-size:18px;margin-bottom:20px"><b>@js.ca_FullName</b></div>
+
+                                                                <div class="col-md-4"><b style="font-size:14px">Date of Birth:</b> @(js.ca_DateOfBirth != null ? js.ca_DateOfBirth.GetValueOrDefault().ToString("dd-MM-yyyy") : "")</div>
+                                                                <div class="col-md-4" style="font-size:14px"><b>Phone:</b> @js.ca_PhoneMobile</div>
+                                                                <div class="col-md-4"><b style="font-size:14px">Email:</b> @js.ca_EmailAddress</div>
+
+                                                                <div class="col-md-4"><b style="font-size:14px">Gender:</b> @js.ca_Gender</div>
+                                                                <div class="col-md-4"><b style="font-size:14px">Education Level:</b> @js.EducationLevel</div>
+                                                                <div class="col-md-4"><b style="font-size:14px">Current Salary:</b> BHD @js.ca_SalaryFrom</div>
+                                                                <div class="col-md-12"><b style="font-size:14px">Interested Sectors:</b> @js.Interest</div>
+                                                                <div class="col-md-12"><b style="font-size:14px">Profile Summary:</b> @js.ca_Profile</div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                            }
+                                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("CandidateSearchResult",
+                                           new { page, keyword = Request.QueryString["keyword"] , lname = Request.QueryString["lname"],
+                                               fname = Request.QueryString["fname"],age = Request.QueryString["age"],
+                                               gender = Request.QueryString["gender"] ,qualification = Request.QueryString["qualification"],
+                                               salary = Request.QueryString["salary"] , experience = Request.QueryString["experience"] }))
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                No Record Found!!!
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                </div>
+                                    @*<div class="col-md-8">
+                                        <div class="dashboardwhiteboxshadow tabacc-sec wow fade-2">
+                                          
+
+                                    <div class="tab-content">
+                                        <div class="vacancieslist">
+                                            <ul>
+
+                                                @foreach (var js in Model)
+                                                {
+
+                                                    <li>
+                                                        <div class="vacanciestuserimg"><a href="#"><img style="width:100px;height:100px;" src="@ViewBag.TestImg" alt="" onerror="this.src='@Url.Content("~/images/jobseeker.png")';" /></a></div>
+                                                        <div class="vacanciestdet">
+                                                            <h4><a href="#">@js.ca_FullName</a></h4>
+                                                            <span>@js.ca_EmailAddress</span> @js.ca_PhoneMobile<br />
+                                                            Gender: @js.ca_Gender &nbsp;&nbsp;&nbsp;Age: @js.ca_Age
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>*@
+                            @*<div class="col-md-4">
+                                    <div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3" style="padding:10px">
+                                        <h1 class="mainpagetitle Padd15"><span>FEATURED</span> SECTORS</h1>
+                                        <div class="feturlist">
+                                           <ul>
+                                                @{ count = 0;}
+                                                @foreach (var jsc in ViewBag.lstjobsectorcount)
+                                                {
+                                                    if (count < 18)
+                                                    {
+                                                        <li><a href="@Url.Content("~/SectorJobs/"+jsc.SectorID+"/"+jsc.SectorURL)">@jsc.Sector</a></li>
+                                                    }
+                                                    count++;
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="feturedsectors-list dashboardwhiteboxshadow wow fade-3">
+            <h1 class="mainpagetitle Padd15">Top <span>EMPLOYERS</span></h1>
+            <div class="topemp-carousel centertext wow fade-1-5">
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-3.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-4.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-5.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-6.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-3.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-4.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-5.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-6.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-1.png")" alt="" /></a></div>
+                </div>
+                <div class="item">
+                    <div class="partnergraybg"><a href="#"><img src="@Url.Content("~/images/topemployers-logo-2.png")" alt="" /></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="@Url.Content("~/css/jquery-ui.css")">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="@Url.Content("~/js/autocompletevalues.js")"></script>

@@ -1,0 +1,84 @@
+﻿@model Jobs4Bahrainis.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Index";
+  
+}
+
+
+<div class="container" style="width:40%;margin-top:2%">
+
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open Modal</a>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Technotips MVC</h3>
+
+                </div>
+                <div class="modal-body">
+
+                    <form id="myForm">
+
+                        @Html.DropDownListFor(model => model.ID, ViewBag.Status as SelectList, "--select--", new { @class = "form-control" })
+
+                        @Html.TextBoxFor(model => model.ID, new { @class = "form-control", @placeholder = "ID" })
+
+                        @Html.TextBoxFor(model => model.Status, new { @class = "form-control", @placeholder = "Address" })
+
+                     
+
+
+                    </form>
+
+                    <div style="text-align:center;display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day.gif" width="150" /> @* //put any image in content folder*@
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <input type="reset" value="Submit" class="btn btn-success" id="btnSubmit" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#btnSubmit").click(function () {
+
+            $("#loaderDiv").show();
+
+            var myformdata = $("#myForm").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Test/Index",
+                data: myformdata,
+                success: function () {
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+
+                }
+
+            })
+        })
+
+    })
+
+
+</script>

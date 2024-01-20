@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Html.RenderAction("menulogin");
+}
+
+@Html.Partial("_menu")
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<br />
+<div class="dashboardsection mainlightgraybg">
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 fade-1 dashboardwhiteboxshadow" style="min-height:400px">
+            <h1 class="mainpagetitle Padd15 centertext"> <span>PAYMENT </span> SUCCESS</h1>
+            <br />
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <div class="col-md-12 centertext fade-2 searchformsec">
+
+
+                    <p> Oops! payment failed, please check with your bank!</p>
+                    <p>Alternatively you can try again with credit card or try Cash / Cheque payment method.</p>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 centertext" style="margin-bottom:10px;"><a href="@Url.Content("~/Packages")"><div class="" style="padding:8px 15px;color:white;background-color:#ec2027;">TRY AGAIN</div></a> </div>
+                    <div class="col-md-3"></div>
+
+                </div>
+
+                <br />
+                <hr />
+
+
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_partners")
+
+
+
+
+
+
